@@ -1,0 +1,147 @@
+[
+  {
+    "caption": "Ethics education stops at Knowing; example and experience carry it to Being — sequential, not rival.",
+    "conclusions": [
+      {
+        "text": "Example is not the main thing in influencing others; it is the only thing [verify: commonly attributed to Schweitzer]. Yet the example must first be recognised as worthy — and that recognition is taught.",
+        "type": "Quote-based"
+      },
+      {
+        "text": "Aristotle's settlement holds: virtue is a habit, and habits need both a rule to begin with and repetition to endure. Ethics education should build the reflex of asking the question, not transmit answers.",
+        "type": "Theory-linkage + action"
+      },
+      {
+        "text": "Ambedkar warned that constitutional morality must be cultivated, not assumed. Institutions that teach values but model their opposite produce officers fluent in ethics and empty of it.",
+        "type": "Broader goal"
+      }
+    ],
+    "decode": {
+      "concepts": [
+        "Sources of ethics",
+        "Moral development",
+        "Role of exemplars",
+        "Habituation"
+      ],
+      "demands": [
+        "Test the claim that ethics cannot be taught",
+        "Test the claim that it is internalized via experience and example",
+        "State and defend your own position"
+      ],
+      "directive": "“Do you agree” — a stated verdict is compulsory. “Justify” — defend it with reasoning, not assertion.",
+      "hidden": "The claim conflates teaching ethical reasoning (largely teachable) with producing ethical conduct (largely habituated). Splitting these is what lifts the answer. The unstated application is civil services training.",
+      "limit": "10 marks / 150 words"
+    },
+    "diagram": "   TAUGHT                          INTERNALIZED\n ---------------+              +------------------\n                |              |\n   KNOWING -----+--> FEELING --+--> DOING --> BEING\n   (Head)       |   (Heart)    |   (Hand)   (Character)\n                |              |\n  instruction,  |  role models,|  practice,\n  reasoning,    |  mentorship  |  cost of\n  vocabulary    |              |  choice",
+    "id": "ethics-taught",
+    "intros": [
+      {
+        "text": "जानामि धर्मं न च मे प्रवृत्तिः, जानाम्यधर्मं न च मे निवृत्तिः — “I know what is right, yet feel no urge to do it.” [verify source] Duryodhana had the same preceptor as the Pandavas: identical instruction, opposite conduct.",
+        "type": "Sanskrit shloka"
+      },
+      {
+        "text": "Aristotle held that we become just by doing just acts, not by learning what justice is — virtue is acquired like a craft, through practice under a master. The statement echoes this: ethics is caught more than taught.",
+        "type": "Theory-linkage"
+      },
+      {
+        "text": "पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय — “The world died reading books, yet none became wise.” Moral literacy is not moral character; the question is whether instruction is therefore useless, or merely insufficient.",
+        "type": "Doha (Kabir)"
+      }
+    ],
+    "notes": "",
+    "paper": "GS4",
+    "pitfalls": [
+      "Sitting on the fence — “Do you agree” without a verdict sentence loses the directive marks outright.",
+      "Reading “taught” as “classroom only” makes the whole answer a strawman fight.",
+      "Never leaving philosophy — Aristotle and Kohlberg earn the frame; LBSNAA and the officer-mentor earn the marks."
+    ],
+    "question": "“Ethics cannot be taught, only internalized through experience and example.” Do you agree? Justify your views.",
+    "sections": [
+      {
+        "framework": "Head → Heart → Hand",
+        "heading": "The statement holds — instruction alone does not produce conduct",
+        "off": [
+          "Ethics is dispositional — it shows up under pressure, and no classroom can simulate the cost of doing right. Experience is not just a teacher; it is the only examiner."
+        ],
+        "points": [
+          "Moral knowledge ≠ moral motivation — the knowing–doing gap. Every corrupt official knows the Conduct Rules verbatim.",
+          "Values are absorbed pre-cognitively through socialization — Gandhi traced his truthfulness to the Harishchandra play, not to law school.",
+          "Observational learning (Bandura) — a probationer copies what the DM actually does in a crisis, not the training syllabus.",
+          "Codified ethics decays into compliance — ethical fading, integrity replaced by box-ticking."
+        ],
+        "valueAdd": [
+          "Keywords: ethical fading, moral muteness, knowing–doing gap",
+          "Theory: Bandura's social learning; Aristotle on habituation"
+        ],
+        "why": "Teaching reliably reaches the Head; the gap opens after that."
+      },
+      {
+        "framework": "Kohlberg's stages",
+        "heading": "But the claim overstates itself — teaching does real work",
+        "off": [
+          "The statement is self-defeating — “learning by example” is itself a pedagogy. It relocates the teacher from the classroom to the corridor; it does not abolish teaching."
+        ],
+        "points": [
+          "Teaching supplies moral sensitivity — you cannot internalize a dilemma you never noticed.",
+          "It gives vocabulary and reasoning tools to defend a stand — utilitarian, deontological, care-based.",
+          "Constitutional morality, in Ambedkar's framing, is not a natural sentiment — it has to be cultivated. [verify wording] Art. 51A; NEP 2020.",
+          "Experience without instruction is unreliable — the same posting produced both Satyendra Dubey and colleagues who stayed silent."
+        ],
+        "valueAdd": [
+          "Anchor: Ambedkar on constitutional morality; Art. 51A",
+          "Theory: Kohlberg; Dewey's learning by doing"
+        ],
+        "why": "Structured dilemma-discussion moves reasoning from conventional rule-following to post-conventional principle."
+      },
+      {
+        "framework": "Rest's Four Component Model",
+        "heading": "My position — a division of labour, not a contest",
+        "off": [
+          "Everyday anchor: a child learns honesty from watching a parent return excess change; the textbook only gives it a name."
+        ],
+        "points": [
+          "Moral sensitivity (recognising the issue) — TAUGHT",
+          "Moral judgement (deciding what is right) — TAUGHT",
+          "Moral motivation (prioritising it over self-interest) — EXAMPLE",
+          "Moral character (acting despite cost) — EXPERIENCE",
+          "Verdict: agree in part. Instruction builds the map; experience and example supply the will to walk it.",
+          "Application: pair classroom ethics with case dilemmas, field immersion and mentorship by officers of demonstrated integrity."
+        ],
+        "valueAdd": [
+          "Keywords: hidden curriculum, moral imagination",
+          "Anchor: Mission Karmayogi, LBSNAA training design"
+        ],
+        "why": "Resolves the question cleanly instead of splitting the difference."
+      }
+    ],
+    "tags": [
+      [
+        "Foundations",
+        "Ethics & Human Interface"
+      ],
+      [
+        "Foundations",
+        "Aptitude & Foundational Values"
+      ]
+    ],
+    "taxonomyVersion": 1,
+    "type": "Quote-based",
+    "vaBank": {
+      "examples": [
+        "Ekalavya learning before a statue",
+        "E. Sreedharan's delivery culture spreading by imitation"
+      ],
+      "keywords": [
+        "hidden curriculum",
+        "moral imagination",
+        "knowing–doing gap"
+      ],
+      "quotes": [
+        "Socrates on the unexamined life",
+        "Gandhi: an ounce of practice outweighs a thousand words [verify]"
+      ],
+      "thinkers": [
+        "Carol Gilligan — ethics of care is learned inside relationships"
+      ]
+    }
+  }
+]

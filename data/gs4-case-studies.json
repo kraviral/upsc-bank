@@ -1,0 +1,180 @@
+[
+  {
+    "caption": "Consent and design as gates before clearance — not compliance sought after commitment.",
+    "conclusions": [
+      {
+        "text": "Gandhi's talisman applies literally: recall the face of the poorest person you have seen and ask whether this step will be of any use to them. Applied to the 40 villages, it converts an investment decision into a design brief.",
+        "type": "Theory-linkage + action"
+      },
+      {
+        "text": "SDG 6 and SDG 16 are not in tension with India's AI ambition; a project that cannot be built with consent was never bankable.",
+        "type": "Broader goal"
+      },
+      {
+        "text": "Leopold's land ethic — a thing is right when it tends to preserve the integrity of the biotic community. The grove is not an obstacle to the data centre; both are infrastructure, on different timescales.",
+        "type": "Quote-based"
+      }
+    ],
+    "decode": {
+      "concepts": [
+        "Environmental ethics",
+        "Intergenerational equity",
+        "Distributive justice",
+        "FPIC and consent"
+      ],
+      "demands": [
+        "Ethical justifiability of the extraction",
+        "Socio-economic and administrative challenges",
+        "Alternatives and policy interventions",
+        "Your course of action as CEO"
+      ],
+      "directive": "(a) verdict. (b) categorised challenges. (c) alternatives — costed and binding. (d) course of action + named ethical principles.",
+      "hidden": "You are a CEO under fiduciary duty, not a Collector — reason through trusteeship, ESG and licence to operate. Second trap: the water-positive-by-2035 pledge is moral licensing, not mitigation.",
+      "limit": "20–25 marks / ~250 words — roughly 60 words per sub-part"
+    },
+    "diagram": "                    +------------------+\n                    |  PROJECT PAUSED  |\n                    +--------+---------+\n                             v\n        +----------------------------------------+\n        | GATE 1 - Independent SIA + basin-level  |\n        | water audit, publicly disclosed         |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 2 - Redesign: closed-loop cooling  |\n        | on treated wastewater; grove excluded   |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 3 - Gram Sabha FPIC + binding      |\n        | benefit-sharing & employment ladder     |\n        +------+--------------------------+------+\n          CONSENT                    NO CONSENT\n               v                          v\n        +-------------+          +------------------+\n        |  PROCEED    | <-audit- |  RELOCATE to a   |\n        |  + monitor  |          |  water-surplus   |\n        |  in public  |          |  site            |\n        +-------------+          +------------------+",
+    "id": "zenith-ai-datacentre",
+    "intros": [
+      {
+        "text": "माता भूमिः पुत्रोऽहं पृथिव्याः (Atharva Veda) — “The earth is my mother, I am her son.” For 40 villages the river and grove are not project inputs; they are the standing conditions of existence.",
+        "type": "Scripture"
+      },
+      {
+        "text": "This is not development versus environment but a question of who bears the cost and who reaps the benefit — a distributive question wearing a technical disguise.",
+        "type": "Framing the dilemma"
+      },
+      {
+        "text": "The case pits economic efficiency against procedural justice and intergenerational equity, with the added temptation of using a 2035 pledge to license a 2026 harm.",
+        "type": "Keyword-led"
+      }
+    ],
+    "notes": "",
+    "paper": "GS4",
+    "pitfalls": [
+      "Answering as a Collector. The role is CEO — fiduciary duty, trusteeship, licence to operate.",
+      "A binary decision. The marks are in the gated course of action with a stated fallback.",
+      "Treating the 2035 pledge as mitigation instead of naming it as moral licensing.",
+      "Word discipline — four sub-parts at ~60 words each."
+    ],
+    "question": "ZenithAI Technologies — as MD & CEO, you must decide on an AI data centre in a backward tribal district: 4–5 million litres/day of freshwater from a river and aquifer serving 40 tribal villages, a sacred grove and spring catchment at risk, hurried public hearings, high-skill jobs likely going to outsiders, and a Board warning that delay endangers international contracts.",
+    "sections": [
+      {
+        "framework": "Legality → Morality → Practicality → Sustainability",
+        "heading": "(a) Can it be ethically justified?",
+        "off": [
+          "The sacred grove cannot be compensated. Where loss is incommensurable, cost-benefit analysis is the wrong instrument."
+        ],
+        "points": [
+          "Legality — Fifth Schedule areas require Gram Sabha consent under PESA (1996) and FRA (2006); a hurried hearing is void in spirit even if valid on paper.",
+          "Morality — the utilitarian defence fails its own test: the aggregate gain is computed by discounting the losers. Rawls' difference principle is violated.",
+          "Practicality — 4–5 MLD in a summer-stressed region is not a shared resource but a transferred one. Enclosure, not tragedy, of the commons.",
+          "Sustainability — aquifer drawdown and spring loss are irreversible; public trust doctrine (M.C. Mehta v. Kamal Nath, 1997).",
+          "Verdict: not justified as designed — it externalises an irreversible cost onto a community that has neither consented nor shares proportionately."
+        ],
+        "valueAdd": [
+          "Keywords: moral licensing, ecological debt, precautionary principle",
+          "Anchors: public trust doctrine, PESA, FRA, Art. 21"
+        ],
+        "why": "Shows that statutory clearance is a floor, not a ceiling."
+      },
+      {
+        "framework": "Socio-cultural · Economic · Ecological · Administrative",
+        "heading": "(b) Socio-economic and administrative challenges",
+        "off": [
+          "The deepest challenge is temporal mismatch — investment runs on quarterly cycles, aquifer recharge on decadal ones, cultural loss on generational ones."
+        ],
+        "points": [
+          "Socio-cultural — erosion of identity tied to grove and river; loss of unrecorded traditional ecological knowledge; consultation in a format the community cannot engage with.",
+          "Economic — enclave development; shift from diversified subsistence to dependent wage labour; benefits aggregate and national, costs concentrated and local.",
+          "Ecological — aquifer depletion, spring decline, habitat fragmentation; cumulative impact invisible because each clearance is assessed alone.",
+          "Administrative — district capacity deficit; information asymmetry; weak post-clearance monitoring; the State as both investment promoter and rights protector."
+        ],
+        "valueAdd": [
+          "Keywords: environmental justice, elite capture, consultation vs consent",
+          "Theory: Sen's niti vs nyaya"
+        ],
+        "why": "Prevents the common error of listing only environmental harms."
+      },
+      {
+        "framework": "Technological → Legal → Economic → Community",
+        "heading": "(c) Substantial alternatives and policy interventions",
+        "off": [
+          "The strongest intervention is a sequencing rule — consent and design must precede clearance-hunting."
+        ],
+        "points": [
+          "Technological — closed-loop immersion or air cooling on treated municipal wastewater; rainwater harvesting, condensate recovery, ZLD; waste-heat recovery for local use.",
+          "Legal — fresh SIA and cumulative EIA with a basin-level water budget; FPIC via Gram Sabha; grove notified as a Biodiversity Heritage Site; binding public water cap with summer triggers.",
+          "Economic — DMF-type revenue share into a Gram Sabha trust; community equity rather than one-time compensation; guaranteed local employment ladder with ITI pipeline.",
+          "Community — document and credit traditional ecological knowledge; grove custodians in catchment management; independent grievance redress.",
+          "Policy — national water-use norms and disclosure for data centres; siting that weights water alongside power and connectivity."
+        ],
+        "valueAdd": [
+          "Anchors: DMF model, BD Act 2002, PESA",
+          "Keywords: social licence to operate, externality transfer"
+        ],
+        "why": "“Substantial” means each must be costed, binding and verifiable."
+      },
+      {
+        "framework": "Decision → Justification → Immediate/Short/Long → Values",
+        "heading": "(d) Course of action as CEO",
+        "off": [
+          "The Niyamgiri precedent [verify: Orissa Mining Corp. v. MoEF, 2013] shows stranded assets cost more than redesign. Consent is the cheapest risk insurance."
+        ],
+        "points": [
+          "Decision first: neither abandon nor proceed as designed. Formal pause; re-enter only via near-zero-freshwater redesign with genuine Gram Sabha consent — relocate if consent is withheld.",
+          "Kidder — short-term vs long-term and individual vs community; in both the durable interest converges with the company's own.",
+          "Blanchard–Peale — legal? clearances don't settle it. Balanced? not as designed. Defensible publicly? a dry well beside a cooling tower answers that.",
+          "Kantian — consent converts the community from instrument into participant. Gandhian trusteeship — resources held in trust for the society granting the licence to operate.",
+          "To shareholders: this is not a pre-existing problem, it is a cost the company would itself create.",
+          "To the 2035 pledge: water-positive in 2035 does not compensate a village dry in 2027 — moral licensing, and ESG investors will read it as greenwashing.",
+          "Immediate — disclose the water plan; independent assessment; suspend clearance processing; brief the Board on exposure.",
+          "Short — re-engineer cooling; exclude grove and catchment with a buffer; reconvene Gram Sabha; binding benefit-sharing.",
+          "Long — community trust and skilling; public monitoring dashboards; watershed restoration."
+        ],
+        "valueAdd": [
+          "Values: integrity over compliance, moral courage before the Board, transparency",
+          "Keywords: fiduciary duty, licence to operate, incommensurable loss"
+        ],
+        "why": "Examiners reward decisiveness; a survey of options without a choice loses marks."
+      }
+    ],
+    "tags": [
+      [
+        "Case Studies",
+        "Environment vs development"
+      ],
+      [
+        "Case Studies",
+        "Corporate ethics, CSR & private sector"
+      ],
+      [
+        "Case Studies",
+        "Social justice, discrimination & vulnerable groups"
+      ],
+      [
+        "Case Studies",
+        "Technology, data & AI ethics"
+      ]
+    ],
+    "taxonomyVersion": 1,
+    "type": "Case study",
+    "vaBank": {
+      "examples": [
+        "Samatha v. State of A.P. (1997) [verify]",
+        "Data centres cooling on treated wastewater in water-stressed Indian cities [verify]"
+      ],
+      "keywords": [
+        "ethical fading",
+        "incommensurable loss",
+        "enclave development"
+      ],
+      "quotes": [
+        "Gandhi — enough for everyone's need, not everyone's greed",
+        "Sen — development as freedom, not merely output"
+      ],
+      "thinkers": [
+        "Aldo Leopold — the biotic community as a moral subject"
+      ]
+    }
+  }
+]

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UPSC — Answer Skeletons</title>
+<style>
+:root{
+  --paper:#EDEFEA; --sheet:#FBFCFA; --ink:#16202E; --ink2:#5C6875; --ink3:#8B95A0;
+  --rule:#D8DDD6; --margin:#A8483C; --marker:#F5D76E; --accent:#1F5E55;
+  --display:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --body:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+.masthead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:30}
+.wordmark{font-family:var(--display);font-size:19px}
+.wordmark em{font-style:normal;color:var(--ink3)}
+.masthead .spacer{flex:1}
+button.tool{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink2);padding:5px 9px;border-radius:2px;cursor:pointer}
+button.tool:hover{border-color:var(--accent);color:var(--accent)}
+button.tool:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+main{display:grid;grid-template-columns:288px minmax(0,1fr)}
+.nav{border-right:1px solid var(--rule);padding:14px 12px 60px;position:sticky;top:51px;max-height:calc(100vh - 51px);overflow:auto}
+.search{width:100%;font-size:13px;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink);margin-bottom:10px;font-family:var(--body)}
+.papers{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
+.chip{font-family:var(--mono);font-size:10px;padding:3px 8px;border:1px solid var(--rule);border-radius:99px;cursor:pointer;color:var(--ink2);background:none}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+
+.tree details{margin-bottom:1px}
+.tree summary{cursor:pointer;list-style:none;padding:4px 4px;font-size:12.5px;color:var(--ink2);display:flex;gap:6px;align-items:baseline;border-radius:2px}
+.tree summary::-webkit-details-marker{display:none}
+.tree summary:hover{background:rgba(255,255,255,.6);color:var(--ink)}
+.tree .caret{font-family:var(--mono);font-size:9px;color:var(--ink3);width:9px}
+.tree .cnt{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--ink3)}
+.tree .paper>summary{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--rule);padding-bottom:6px;margin-top:8px}
+.tree .topic{margin-left:9px}
+.tree .sub{margin-left:9px}
+.qbtn{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:5px 6px 5px 10px;margin-left:18px;border-left:2px solid transparent;color:var(--ink2);font-size:12px;line-height:1.35}
+.qbtn:hover{color:var(--ink);background:rgba(255,255,255,.6)}
+.qbtn[aria-current="true"]{border-left-color:var(--margin);color:var(--ink);background:var(--sheet)}
+.empty{color:var(--ink3);font-size:12.5px;padding:10px 4px}
+
+.sheet{background:var(--sheet);min-height:calc(100vh - 51px);padding:28px 32px 90px 42px;position:relative}
+.sheet::before{content:"";position:absolute;left:24px;top:0;bottom:0;width:1px;background:var(--margin);opacity:.35}
+.qmeta{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;display:flex;gap:14px;flex-wrap:wrap}
+.qtext{font-family:var(--display);font-size:19px;line-height:1.45;margin:0 0 12px;max-width:74ch}
+.tagrow{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px}
+.tagpill{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;padding:2px 7px;border:1px solid var(--rule);border-radius:99px;color:var(--ink2)}
+.decode{max-width:74ch;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:12px 0;margin-bottom:20px}
+.decode dl{display:grid;grid-template-columns:108px minmax(0,1fr);gap:5px 14px;margin:0}
+.decode dt{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);padding-top:3px}
+.decode dd{margin:0;font-size:13.5px}
+.revealbar{display:flex;gap:8px;margin-bottom:14px}
+
+.block{border-bottom:1px solid var(--rule);max-width:80ch}
+.block:first-of-type{border-top:1px solid var(--rule)}
+.block>summary{list-style:none;cursor:pointer;padding:13px 26px 13px 0;position:relative;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.block>summary::-webkit-details-marker{display:none}
+.block>summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:15px;color:var(--ink3)}
+.block[open]>summary::after{content:"\2212"}
+.block>summary:hover .btitle{color:var(--accent)}
+.bnum{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:.08em;min-width:20px}
+.btitle{font-family:var(--display);font-size:16px;line-height:1.3}
+.bcount{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-left:auto;padding-left:10px}
+.fw{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);padding:2px 6px;position:relative;white-space:nowrap}
+.fw::before{content:"";position:absolute;inset:1px -2px 1px -3px;background:var(--marker);transform:skewX(-11deg) rotate(-.5deg);border-radius:2px 5px 3px 6px;z-index:-1;opacity:.85}
+.fw span{position:relative}
+.bbody{padding:2px 0 20px 32px}
+.fwline{font-size:13px;color:var(--ink2);margin:0 0 12px;font-style:italic}
+.bbody ul{margin:0 0 14px;padding-left:17px}
+.bbody li{margin-bottom:6px}
+.bbody li::marker{color:var(--ink3)}
+.sublabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:0 0 5px}
+.off{border-left:2px solid var(--marker);padding-left:11px;margin:0 0 14px}
+.off p{margin:0;font-size:14px}
+.va{font-size:13px;color:var(--ink2)}
+.opt{margin:0 0 13px}
+.opt .otype{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:3px}
+.opt p{margin:0}
+pre.diagram{font-family:var(--mono);font-size:11.5px;line-height:1.35;background:var(--paper);border:1px solid var(--rule);padding:14px;overflow:auto;margin:0 0 8px}
+.caption{font-size:12.5px;color:var(--ink2);font-style:italic;margin:0}
+
+dialog{border:1px solid var(--ink);border-radius:3px;padding:0;max-width:660px;width:94vw;background:var(--sheet);color:var(--ink)}
+dialog::backdrop{background:rgba(22,32,46,.42)}
+.dlg{padding:20px}
+.dlg h3{font-family:var(--display);font-size:18px;margin:0 0 6px}
+.dlg p.hint{font-size:13px;color:var(--ink2);margin:0 0 12px}
+.dlg textarea{width:100%;height:220px;font-family:var(--mono);font-size:11.5px;line-height:1.45;padding:10px;border:1px solid var(--rule);border-radius:2px;background:var(--paper);color:var(--ink);resize:vertical}
+.dlgrow{display:flex;gap:8px;align-items:center;margin-top:12px}
+.dlgrow .spacer{flex:1}
+.msg{font-size:12.5px;color:var(--margin);min-height:18px;margin-top:8px}
+.msg.ok{color:var(--accent)}
+.cats{max-height:52vh;overflow:auto;border-top:1px solid var(--rule)}
+.catrow{display:grid;grid-template-columns:52px 1fr 1fr 40px;gap:7px;align-items:center;padding:5px 0;border-bottom:1px solid var(--rule)}
+.catrow .pp{font-family:var(--mono);font-size:9.5px;color:var(--ink3);letter-spacing:.08em}
+.catrow input{font-size:12.5px;padding:4px 6px;border:1px solid var(--rule);border-radius:2px;background:var(--paper);color:var(--ink);width:100%;font-family:var(--body)}
+.catrow .n{font-family:var(--mono);font-size:10px;color:var(--ink3);text-align:right}
+
+.drop{position:fixed;inset:0;background:rgba(31,94,85,.12);border:3px dashed var(--accent);z-index:60;display:none;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.drop.on{display:flex}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--sheet);font-size:13px;padding:9px 16px;border-radius:3px;z-index:70;opacity:0;transition:opacity .18s}
+.toast.on{opacity:1}
+
+@media (max-width:860px){
+  main{grid-template-columns:1fr}
+  .nav{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--rule)}
+  .sheet{padding:22px 16px 70px 26px}
+  .sheet::before{left:12px}
+  .decode dl{grid-template-columns:1fr;gap:2px}
+  .decode dt{padding-top:8px}
+  .catrow{grid-template-columns:1fr;gap:3px}
+}
+.csband{margin:10px 0 2px 9px;padding-top:7px;border-top:1px dashed var(--margin);font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--margin)}
+.src{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+@media print{.masthead,.nav,.revealbar,.tagrow{display:none}main{grid-template-columns:1fr}.sheet{background:#fff}.block>summary::after{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wordmark">UPSC <em>·</em> answer skeletons</div>
+  <span class="src" id="src"></span>
+  <div class="spacer"></div>
+  <button class="tool" id="addBtn">Add</button>
+  <button class="tool" id="catBtn">Categories</button>
+  <button class="tool" id="promptBtn">Copy prompt</button>
+  <button class="tool" id="expBtn">Export</button>
+  <button class="tool" id="impBtn">Import</button>
+</header>
+
+<main>
+  <nav class="nav">
+    <input class="search" id="search" type="search" placeholder="Search everything…" aria-label="Search">
+    <div class="papers" id="papers"></div>
+    <div class="tree" id="tree"></div>
+  </nav>
+  <section class="sheet" id="sheet"></section>
+</main>
+
+<div class="drop" id="drop">Drop .json to add</div>
+<div class="toast" id="toast"></div>
+
+<dialog id="dlg"><div class="dlg">
+  <h3 id="dlgTitle"></h3>
+  <p class="hint" id="dlgHint"></p>
+  <div id="dlgSlot"></div>
+  <div class="msg" id="dlgMsg"></div>
+  <div class="dlgrow">
+    <button class="tool" id="dlgClose">Close</button>
+    <div class="spacer"></div>
+    <button class="tool" id="dlgAct"></button>
+  </div>
+</div></dialog>
+
+<script type="application/json" id="seed">
+{
+"schemaVersion":1,
+"taxonomy":{
+ "Essay":{"Themes":["Truth, knowledge & perception","Ethics, values & character","Self, mind & human nature","Time, change & progress","Society, justice & inequality","Women, gender & patriarchy","Education & youth","Economy, development & agriculture","Governance, democracy & institutions","Science, technology & the digital age","Environment & sustainability","India and the world / security","Culture, tradition & identity","Media, information & communication"]},
+ "GS1":{"History":["Art & Culture","Modern Indian History","Freedom Struggle","Post-Independence Consolidation","World History"],"Society":["Indian Society & Diversity","Role of Women","Population & Poverty","Urbanisation","Effects of Globalisation","Communalism, Regionalism & Secularism"],"Geography":["Physical Geography","Resource Distribution","Industrial Location","Geophysical Phenomena","Changes in Geographical Features"]},
+ "GS2":{"Polity":["Constitution & Federalism","Separation of Powers","Parliament & State Legislatures","Executive & Judiciary","Constitutional & Statutory Bodies"],"Governance":["Government Policies & Interventions","Transparency & Accountability","Citizen's Charter","e-Governance","Role of Civil Services","Development Processes, NGOs & SHGs","Pressure Groups"],"Social Justice":["Welfare Schemes","Health, Education & Human Resources","Poverty & Hunger","Vulnerable Sections"],"International Relations":["India & Neighbourhood","Bilateral & Regional Groupings","Global Institutions","Policies of Developed & Developing Countries","Indian Diaspora"]},
+ "GS3":{"Economy":["Indian Economy & Planning","Inclusive Growth","Government Budgeting","Land Reforms","Investment Models","Infrastructure"],"Agriculture":["Cropping Patterns","MSP & PDS","Food Processing","Subsidies","Agricultural Marketing","Animal Rearing"],"Science & Technology":["Developments & Applications","Indigenisation","IT, Space, Robotics & Biotech","Intellectual Property Rights"],"Environment":["Conservation","Pollution & Degradation","Environmental Impact Assessment","Disaster Management"],"Security":["Internal Security & Extremism","Cyber Security","Money Laundering","Border Management","Security Forces & Agencies"]},
+ "GS4":{"Foundations":["Ethics & Human Interface","Attitude","Aptitude & Foundational Values","Emotional Intelligence","Moral Thinkers & Philosophers"],"Public Administration":["Public/Civil Service Values","Ethics in Public Administration","Probity in Governance","Corporate Governance"],"Case Studies":["Corruption, bribery & extortion","Political pressure & bureaucratic autonomy","Conflict of interest & nepotism","Sexual harassment & gender at the workplace","Public funds, procurement & fund diversion","Environment vs development","Resource allocation & competing claimants","Personal vs professional obligations","Corporate ethics, CSR & private sector","Whistleblowing & organisational silence","Social justice, discrimination & vulnerable groups","Welfare delivery — health, education, schemes","Law & order, protest & communal tension","Technology, data & AI ethics"]}
+},
+"questions":[
+{
+ "id":"ethics-taught","paper":"GS4","type":"Quote-based","taxonomyVersion":1,
+ "tags":[["Foundations","Ethics & Human Interface"],["Foundations","Aptitude & Foundational Values"]],
+ "question":"“Ethics cannot be taught, only internalized through experience and example.” Do you agree? Justify your views.",
+ "decode":{"directive":"“Do you agree” — a stated verdict is compulsory. “Justify” — defend it with reasoning, not assertion.","demands":["Test the claim that ethics cannot be taught","Test the claim that it is internalized via experience and example","State and defend your own position"],"hidden":"The claim conflates teaching ethical reasoning (largely teachable) with producing ethical conduct (largely habituated). Splitting these is what lifts the answer. The unstated application is civil services training.","limit":"10 marks / 150 words","concepts":["Sources of ethics","Moral development","Role of exemplars","Habituation"]},
+ "intros":[
+  {"type":"Sanskrit shloka","text":"जानामि धर्मं न च मे प्रवृत्तिः, जानाम्यधर्मं न च मे निवृत्तिः — “I know what is right, yet feel no urge to do it.” [verify source] Duryodhana had the same preceptor as the Pandavas: identical instruction, opposite conduct."},
+  {"type":"Theory-linkage","text":"Aristotle held that we become just by doing just acts, not by learning what justice is — virtue is acquired like a craft, through practice under a master. The statement echoes this: ethics is caught more than taught."},
+  {"type":"Doha (Kabir)","text":"पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय — “The world died reading books, yet none became wise.” Moral literacy is not moral character; the question is whether instruction is therefore useless, or merely insufficient."}],
+ "sections":[
+  {"heading":"The statement holds — instruction alone does not produce conduct","framework":"Head → Heart → Hand","why":"Teaching reliably reaches the Head; the gap opens after that.",
+   "points":["Moral knowledge ≠ moral motivation — the knowing–doing gap. Every corrupt official knows the Conduct Rules verbatim.","Values are absorbed pre-cognitively through socialization — Gandhi traced his truthfulness to the Harishchandra play, not to law school.","Observational learning (Bandura) — a probationer copies what the DM actually does in a crisis, not the training syllabus.","Codified ethics decays into compliance — ethical fading, integrity replaced by box-ticking."],
+   "off":["Ethics is dispositional — it shows up under pressure, and no classroom can simulate the cost of doing right. Experience is not just a teacher; it is the only examiner."],
+   "valueAdd":["Keywords: ethical fading, moral muteness, knowing–doing gap","Theory: Bandura's social learning; Aristotle on habituation"]},
+  {"heading":"But the claim overstates itself — teaching does real work","framework":"Kohlberg's stages","why":"Structured dilemma-discussion moves reasoning from conventional rule-following to post-conventional principle.",
+   "points":["Teaching supplies moral sensitivity — you cannot internalize a dilemma you never noticed.","It gives vocabulary and reasoning tools to defend a stand — utilitarian, deontological, care-based.","Constitutional morality, in Ambedkar's framing, is not a natural sentiment — it has to be cultivated. [verify wording] Art. 51A; NEP 2020.","Experience without instruction is unreliable — the same posting produced both Satyendra Dubey and colleagues who stayed silent."],
+   "off":["The statement is self-defeating — “learning by example” is itself a pedagogy. It relocates the teacher from the classroom to the corridor; it does not abolish teaching."],
+   "valueAdd":["Anchor: Ambedkar on constitutional morality; Art. 51A","Theory: Kohlberg; Dewey's learning by doing"]},
+  {"heading":"My position — a division of labour, not a contest","framework":"Rest's Four Component Model","why":"Resolves the question cleanly instead of splitting the difference.",
+   "points":["Moral sensitivity (recognising the issue) — TAUGHT","Moral judgement (deciding what is right) — TAUGHT","Moral motivation (prioritising it over self-interest) — EXAMPLE","Moral character (acting despite cost) — EXPERIENCE","Verdict: agree in part. Instruction builds the map; experience and example supply the will to walk it.","Application: pair classroom ethics with case dilemmas, field immersion and mentorship by officers of demonstrated integrity."],
+   "off":["Everyday anchor: a child learns honesty from watching a parent return excess change; the textbook only gives it a name."],
+   "valueAdd":["Keywords: hidden curriculum, moral imagination","Anchor: Mission Karmayogi, LBSNAA training design"]}],
+ "conclusions":[
+  {"type":"Quote-based","text":"Example is not the main thing in influencing others; it is the only thing [verify: commonly attributed to Schweitzer]. Yet the example must first be recognised as worthy — and that recognition is taught."},
+  {"type":"Theory-linkage + action","text":"Aristotle's settlement holds: virtue is a habit, and habits need both a rule to begin with and repetition to endure. Ethics education should build the reflex of asking the question, not transmit answers."},
+  {"type":"Broader goal","text":"Ambedkar warned that constitutional morality must be cultivated, not assumed. Institutions that teach values but model their opposite produce officers fluent in ethics and empty of it."}],
+ "diagram":"   TAUGHT                          INTERNALIZED\n ---------------+              +------------------\n                |              |\n   KNOWING -----+--> FEELING --+--> DOING --> BEING\n   (Head)       |   (Heart)    |   (Hand)   (Character)\n                |              |\n  instruction,  |  role models,|  practice,\n  reasoning,    |  mentorship  |  cost of\n  vocabulary    |              |  choice",
+ "caption":"Ethics education stops at Knowing; example and experience carry it to Being — sequential, not rival.",
+ "vaBank":{"quotes":["Socrates on the unexamined life","Gandhi: an ounce of practice outweighs a thousand words [verify]"],"keywords":["hidden curriculum","moral imagination","knowing–doing gap"],"examples":["Ekalavya learning before a statue","E. Sreedharan's delivery culture spreading by imitation"],"thinkers":["Carol Gilligan — ethics of care is learned inside relationships"]},
+ "pitfalls":["Sitting on the fence — “Do you agree” without a verdict sentence loses the directive marks outright.","Reading “taught” as “classroom only” makes the whole answer a strawman fight.","Never leaving philosophy — Aristotle and Kohlberg earn the frame; LBSNAA and the officer-mentor earn the marks."],
+ "notes":""
+},
+{
+ "id":"zenith-ai-datacentre","paper":"GS4","type":"Case study","taxonomyVersion":1,
+ "tags":[["Case Studies","Environment vs development"],["Case Studies","Corporate ethics, CSR & private sector"],["Case Studies","Social justice, discrimination & vulnerable groups"],["Case Studies","Technology, data & AI ethics"]],
+ "question":"ZenithAI Technologies — as MD & CEO, you must decide on an AI data centre in a backward tribal district: 4–5 million litres/day of freshwater from a river and aquifer serving 40 tribal villages, a sacred grove and spring catchment at risk, hurried public hearings, high-skill jobs likely going to outsiders, and a Board warning that delay endangers international contracts.",
+ "decode":{"directive":"(a) verdict. (b) categorised challenges. (c) alternatives — costed and binding. (d) course of action + named ethical principles.","demands":["Ethical justifiability of the extraction","Socio-economic and administrative challenges","Alternatives and policy interventions","Your course of action as CEO"],"hidden":"You are a CEO under fiduciary duty, not a Collector — reason through trusteeship, ESG and licence to operate. Second trap: the water-positive-by-2035 pledge is moral licensing, not mitigation.","limit":"20–25 marks / ~250 words — roughly 60 words per sub-part","concepts":["Environmental ethics","Intergenerational equity","Distributive justice","FPIC and consent"]},
+ "intros":[
+  {"type":"Scripture","text":"माता भूमिः पुत्रोऽहं पृथिव्याः (Atharva Veda) — “The earth is my mother, I am her son.” For 40 villages the river and grove are not project inputs; they are the standing conditions of existence."},
+  {"type":"Framing the dilemma","text":"This is not development versus environment but a question of who bears the cost and who reaps the benefit — a distributive question wearing a technical disguise."},
+  {"type":"Keyword-led","text":"The case pits economic efficiency against procedural justice and intergenerational equity, with the added temptation of using a 2035 pledge to license a 2026 harm."}],
+ "sections":[
+  {"heading":"(a) Can it be ethically justified?","framework":"Legality → Morality → Practicality → Sustainability","why":"Shows that statutory clearance is a floor, not a ceiling.",
+   "points":["Legality — Fifth Schedule areas require Gram Sabha consent under PESA (1996) and FRA (2006); a hurried hearing is void in spirit even if valid on paper.","Morality — the utilitarian defence fails its own test: the aggregate gain is computed by discounting the losers. Rawls' difference principle is violated.","Practicality — 4–5 MLD in a summer-stressed region is not a shared resource but a transferred one. Enclosure, not tragedy, of the commons.","Sustainability — aquifer drawdown and spring loss are irreversible; public trust doctrine (M.C. Mehta v. Kamal Nath, 1997).","Verdict: not justified as designed — it externalises an irreversible cost onto a community that has neither consented nor shares proportionately."],
+   "off":["The sacred grove cannot be compensated. Where loss is incommensurable, cost-benefit analysis is the wrong instrument."],
+   "valueAdd":["Keywords: moral licensing, ecological debt, precautionary principle","Anchors: public trust doctrine, PESA, FRA, Art. 21"]},
+  {"heading":"(b) Socio-economic and administrative challenges","framework":"Socio-cultural · Economic · Ecological · Administrative","why":"Prevents the common error of listing only environmental harms.",
+   "points":["Socio-cultural — erosion of identity tied to grove and river; loss of unrecorded traditional ecological knowledge; consultation in a format the community cannot engage with.","Economic — enclave development; shift from diversified subsistence to dependent wage labour; benefits aggregate and national, costs concentrated and local.","Ecological — aquifer depletion, spring decline, habitat fragmentation; cumulative impact invisible because each clearance is assessed alone.","Administrative — district capacity deficit; information asymmetry; weak post-clearance monitoring; the State as both investment promoter and rights protector."],
+   "off":["The deepest challenge is temporal mismatch — investment runs on quarterly cycles, aquifer recharge on decadal ones, cultural loss on generational ones."],
+   "valueAdd":["Keywords: environmental justice, elite capture, consultation vs consent","Theory: Sen's niti vs nyaya"]},
+  {"heading":"(c) Substantial alternatives and policy interventions","framework":"Technological → Legal → Economic → Community","why":"“Substantial” means each must be costed, binding and verifiable.",
+   "points":["Technological — closed-loop immersion or air cooling on treated municipal wastewater; rainwater harvesting, condensate recovery, ZLD; waste-heat recovery for local use.","Legal — fresh SIA and cumulative EIA with a basin-level water budget; FPIC via Gram Sabha; grove notified as a Biodiversity Heritage Site; binding public water cap with summer triggers.","Economic — DMF-type revenue share into a Gram Sabha trust; community equity rather than one-time compensation; guaranteed local employment ladder with ITI pipeline.","Community — document and credit traditional ecological knowledge; grove custodians in catchment management; independent grievance redress.","Policy — national water-use norms and disclosure for data centres; siting that weights water alongside power and connectivity."],
+   "off":["The strongest intervention is a sequencing rule — consent and design must precede clearance-hunting."],
+   "valueAdd":["Anchors: DMF model, BD Act 2002, PESA","Keywords: social licence to operate, externality transfer"]},
+  {"heading":"(d) Course of action as CEO","framework":"Decision → Justification → Immediate/Short/Long → Values","why":"Examiners reward decisiveness; a survey of options without a choice loses marks.",
+   "points":["Decision first: neither abandon nor proceed as designed. Formal pause; re-enter only via near-zero-freshwater redesign with genuine Gram Sabha consent — relocate if consent is withheld.","Kidder — short-term vs long-term and individual vs community; in both the durable interest converges with the company's own.","Blanchard–Peale — legal? clearances don't settle it. Balanced? not as designed. Defensible publicly? a dry well beside a cooling tower answers that.","Kantian — consent converts the community from instrument into participant. Gandhian trusteeship — resources held in trust for the society granting the licence to operate.","To shareholders: this is not a pre-existing problem, it is a cost the company would itself create.","To the 2035 pledge: water-positive in 2035 does not compensate a village dry in 2027 — moral licensing, and ESG investors will read it as greenwashing.","Immediate — disclose the water plan; independent assessment; suspend clearance processing; brief the Board on exposure.","Short — re-engineer cooling; exclude grove and catchment with a buffer; reconvene Gram Sabha; binding benefit-sharing.","Long — community trust and skilling; public monitoring dashboards; watershed restoration."],
+   "off":["The Niyamgiri precedent [verify: Orissa Mining Corp. v. MoEF, 2013] shows stranded assets cost more than redesign. Consent is the cheapest risk insurance."],
+   "valueAdd":["Values: integrity over compliance, moral courage before the Board, transparency","Keywords: fiduciary duty, licence to operate, incommensurable loss"]}],
+ "conclusions":[
+  {"type":"Theory-linkage + action","text":"Gandhi's talisman applies literally: recall the face of the poorest person you have seen and ask whether this step will be of any use to them. Applied to the 40 villages, it converts an investment decision into a design brief."},
+  {"type":"Broader goal","text":"SDG 6 and SDG 16 are not in tension with India's AI ambition; a project that cannot be built with consent was never bankable."},
+  {"type":"Quote-based","text":"Leopold's land ethic — a thing is right when it tends to preserve the integrity of the biotic community. The grove is not an obstacle to the data centre; both are infrastructure, on different timescales."}],
+ "diagram":"                    +------------------+\n                    |  PROJECT PAUSED  |\n                    +--------+---------+\n                             v\n        +----------------------------------------+\n        | GATE 1 - Independent SIA + basin-level  |\n        | water audit, publicly disclosed         |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 2 - Redesign: closed-loop cooling  |\n        | on treated wastewater; grove excluded   |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 3 - Gram Sabha FPIC + binding      |\n        | benefit-sharing & employment ladder     |\n        +------+--------------------------+------+\n          CONSENT                    NO CONSENT\n               v                          v\n        +-------------+          +------------------+\n        |  PROCEED    | <-audit- |  RELOCATE to a   |\n        |  + monitor  |          |  water-surplus   |\n        |  in public  |          |  site            |\n        +-------------+          +------------------+",
+ "caption":"Consent and design as gates before clearance — not compliance sought after commitment.",
+ "vaBank":{"quotes":["Gandhi — enough for everyone's need, not everyone's greed","Sen — development as freedom, not merely output"],"keywords":["ethical fading","incommensurable loss","enclave development"],"examples":["Samatha v. State of A.P. (1997) [verify]","Data centres cooling on treated wastewater in water-stressed Indian cities [verify]"],"thinkers":["Aldo Leopold — the biotic community as a moral subject"]},
+ "pitfalls":["Answering as a Collector. The role is CEO — fiduciary duty, trusteeship, licence to operate.","A binary decision. The marks are in the gated course of action with a stated fallback.","Treating the 2035 pledge as mitigation instead of naming it as moral licensing.","Word discipline — four sub-parts at ~60 words each."],
+ "notes":""
+}
+]}
+</script>
+
+<script>
+(function(){
+"use strict";
+var KEY="upsc-skeleton-bank-v1";
+var PAPERS=["Essay","GS1","GS2","GS3","GS4"];
+var CS="Case Studies";
+var FILES={"Essay":"essay.json","GS1":"gs1.json","GS2":"gs2.json","GS3":"gs3.json"};
+
+var store={
+  read:async function(){
+    try{
+      if(window.storage&&window.storage.get){var r=await window.storage.get(KEY);return r&&r.value?JSON.parse(r.value):null;}
+      var raw=localStorage.getItem(KEY);return raw?JSON.parse(raw):null;
+    }catch(e){return null;}
+  },
+  write:async function(d){
+    var s=JSON.stringify(d);
+    try{
+      if(window.storage&&window.storage.set){await window.storage.set(KEY,s);return true;}
+      localStorage.setItem(KEY,s);return true;
+    }catch(e){return false;}
+  }
+};
+
+var db={taxonomy:{},questions:[]}, current=null, paperFilter="All", query="", addedSinceExport=0;
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(function(){t.classList.remove("on");},2800);}
+function isCase(q){return (q.tags||[]).some(function(t){return t[0]===CS;});}
+
+async function save(){
+  var ok=await store.write(db);
+  if(!ok) toast("Could not save — storage is blocked. Export now to avoid losing this.");
+  return ok;
+}
+
+/* -------- search -------- */
+function haystack(q){
+  var s=[q.question,q.type,q.paper,(q.notes||"")];
+  (q.tags||[]).forEach(function(t){s.push(t.join(" "));});
+  (q.sections||q.body||[]).forEach(function(x){
+    s.push(x.heading,x.framework,x.why);
+    ["points","off","valueAdd"].forEach(function(k){(x[k]||[]).forEach(function(v){s.push(v);});});
+  });
+  (q.intros||[]).concat(q.conclusions||[]).forEach(function(o){s.push(o.text);});
+  (q.pitfalls||[]).forEach(function(p){s.push(p);});
+  return s.join(" ").toLowerCase();
+}
+function matches(q){
+  if(paperFilter!=="All"&&q.paper!==paperFilter) return false;
+  if(!query) return true;
+  return haystack(q).indexOf(query)>-1;
+}
+
+/* -------- nav -------- */
+function renderNav(){
+  var pw=$("papers");pw.innerHTML="";
+  ["All"].concat(PAPERS).forEach(function(p){
+    var b=document.createElement("button");b.className="chip";b.textContent=p;
+    b.setAttribute("aria-pressed",String(p===paperFilter));
+    b.onclick=function(){paperFilter=p;renderNav();};
+    pw.appendChild(b);
+  });
+
+  var shown=db.questions.filter(matches);
+  var tree=$("tree");tree.innerHTML="";
+  if(!shown.length){tree.innerHTML='<p class="empty">Nothing matches. Add a question, or clear the search.</p>';return;}
+
+  PAPERS.forEach(function(paper){
+    var inPaper=shown.filter(function(q){return q.paper===paper;});
+    if(!inPaper.length) return;
+    var tax=db.taxonomy[paper]||{};
+    var pd=document.createElement("details");pd.className="paper";pd.open=(paperFilter===paper)||!!query;
+    pd.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(paper)+'<span class="cnt">'+inPaper.length+'</span></summary>';
+
+    var placed={},theory=inPaper.filter(function(q){return !isCase(q);}),cases=inPaper.filter(isCase);
+
+    Object.keys(tax).forEach(function(topic){
+      if(topic===CS) return;
+      var subs=tax[topic]||[];
+      var inTopic=theory.filter(function(q){return (q.tags||[]).some(function(t){return t[0]===topic;});});
+      if(!inTopic.length) return;
+      var td=document.createElement("details");td.className="topic";td.open=!!query;
+      td.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(topic)+'<span class="cnt">'+inTopic.length+'</span></summary>';
+      subs.forEach(function(sub){
+        var inSub=theory.filter(function(q){return (q.tags||[]).some(function(t){return t[0]===topic&&t[1]===sub;});});
+        if(!inSub.length) return;
+        var sd=document.createElement("details");sd.className="sub";sd.open=!!query;
+        sd.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(sub)+'<span class="cnt">'+inSub.length+'</span></summary>';
+        inSub.forEach(function(q){placed[q.id]=1;sd.appendChild(qBtn(q));});
+        td.appendChild(sd);
+      });
+      pd.appendChild(td);
+    });
+
+    if(cases.length){
+      var band=document.createElement("div");band.className="csband";
+      band.textContent="Case Studies \u00b7 "+cases.length;pd.appendChild(band);
+      (tax[CS]||[]).forEach(function(sub){
+        var inSub=cases.filter(function(q){return (q.tags||[]).some(function(t){return t[0]===CS&&t[1]===sub;});});
+        if(!inSub.length) return;
+        var sd=document.createElement("details");sd.className="topic";sd.open=!!query;
+        sd.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(sub)+'<span class="cnt">'+inSub.length+'</span></summary>';
+        inSub.forEach(function(q){placed[q.id]=1;sd.appendChild(qBtn(q));});
+        pd.appendChild(sd);
+      });
+    }
+
+    var loose=inPaper.filter(function(q){return !placed[q.id];});
+    if(loose.length){
+      var od=document.createElement("details");od.className="topic";od.open=!!query;
+      od.innerHTML='<summary><span class="caret">\u25b8</span>Unfiled<span class="cnt">'+loose.length+'</span></summary>';
+      loose.forEach(function(q){od.appendChild(qBtn(q));});
+      pd.appendChild(od);
+    }
+    tree.appendChild(pd);
+  });
+}
+function qBtn(q){
+  var b=document.createElement("button");b.className="qbtn";
+  b.textContent=(q.question||"").slice(0,80)+((q.question||"").length>80?"…":"");
+  if(current&&current.id===q.id) b.setAttribute("aria-current","true");
+  b.onclick=function(){current=q;renderNav();renderSheet();window.scrollTo(0,0);};
+  return b;
+}
+
+/* -------- sheet -------- */
+function ul(a){return a&&a.length?'<ul>'+a.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul>':'';}
+function block(num,title,fw,count,inner){
+  return '<details class="block"><summary><span class="bnum">'+esc(num)+'</span><span class="btitle">'+esc(title)+'</span>'+
+    (fw?'<span class="fw"><span>'+esc(fw)+'</span></span>':'')+(count?'<span class="bcount">'+esc(count)+'</span>':'')+
+    '</summary><div class="bbody">'+inner+'</div></details>';
+}
+function renderSheet(){
+  var s=$("sheet");
+  if(!current){s.innerHTML='<p class="empty">Pick a question from the tree, or use Add.</p>';return;}
+  var q=current,d=q.decode||{},h="";
+  h+='<div class="qmeta"><span>'+esc(q.paper||"")+'</span><span>'+esc(q.type||"")+'</span>'+(q.year?'<span>'+esc(q.year)+'</span>':'')+(d.limit?'<span>'+esc(d.limit)+'</span>':'')+'</div>';
+  h+='<p class="qtext">'+esc(q.question)+'</p>';
+  if(q.tags&&q.tags.length) h+='<div class="tagrow">'+q.tags.map(function(t){return '<span class="tagpill">'+esc(t.join(" › "))+'</span>';}).join('')+'</div>';
+
+  h+='<div class="decode"><dl>';
+  if(d.directive)h+='<dt>Directive</dt><dd>'+esc(d.directive)+'</dd>';
+  if(d.demands&&d.demands.length)h+='<dt>Demands</dt><dd>'+d.demands.map(function(x,i){return (i+1)+". "+esc(x);}).join('<br>')+'</dd>';
+  if(d.hidden)h+='<dt>Hidden demand</dt><dd>'+esc(d.hidden)+'</dd>';
+  if(d.concepts&&d.concepts.length)h+='<dt>Concepts</dt><dd>'+esc(d.concepts.join(" · "))+'</dd>';
+  h+='</dl></div>';
+
+  h+='<div class="revealbar"><button class="tool" data-all="1">Reveal all</button><button class="tool" data-all="0">Hide all</button></div>';
+
+  if(q.intros&&q.intros.length) h+=block("00","Introduction","3 options","",q.intros.map(optHtml).join(''));
+  (q.sections||q.body||[]).forEach(function(sec,i){
+    var inner="";
+    if(sec.why)inner+='<p class="fwline">'+esc(sec.why)+'</p>';
+    inner+=ul(sec.points);
+    if(sec.off&&sec.off.length)inner+='<p class="sublabel">Off-framework</p><div class="off">'+sec.off.map(function(o){return '<p>'+esc(o)+'</p>';}).join('')+'</div>';
+    if(sec.valueAdd&&sec.valueAdd.length)inner+='<p class="sublabel">Value addition</p><div class="va">'+sec.valueAdd.map(function(v){return '<div>'+esc(v)+'</div>';}).join('')+'</div>';
+    h+=block(("0"+(i+1)).slice(-2),sec.heading,sec.framework,(sec.points||[]).length+" pts",inner);
+  });
+  if(q.conclusions&&q.conclusions.length) h+=block("99","Conclusion","3 options","",q.conclusions.map(optHtml).join(''));
+  if(q.diagram) h+=block("—","Diagram","","",'<pre class="diagram">'+esc(q.diagram)+'</pre>'+(q.caption?'<p class="caption">'+esc(q.caption)+'</p>':''));
+  if(q.vaBank){
+    var inner="";
+    [["Quotes","quotes"],["Keywords","keywords"],["Examples","examples"],["Thinkers","thinkers"]].forEach(function(p){
+      if(q.vaBank[p[1]]&&q.vaBank[p[1]].length) inner+='<p class="sublabel">'+p[0]+'</p>'+ul(q.vaBank[p[1]]);
+    });
+    if(inner) h+=block("—","Value addition bank","","",inner);
+  }
+  if(q.pitfalls&&q.pitfalls.length) h+=block("—","Pitfalls in this question","",q.pitfalls.length,ul(q.pitfalls));
+  if(q.notes) h+=block("—","My notes","","",'<p>'+esc(q.notes)+'</p>');
+
+  s.innerHTML=h;
+  s.querySelectorAll("[data-all]").forEach(function(b){
+    b.onclick=function(){var o=b.getAttribute("data-all")==="1";s.querySelectorAll("details.block").forEach(function(x){x.open=o;});};
+  });
+}
+function optHtml(o){return '<div class="opt"><span class="otype">'+esc(o.type)+'</span><p>'+esc(o.text)+'</p></div>';}
+
+/* -------- ingest -------- */
+function ingest(raw){
+  var parsed;
+  try{ parsed=JSON.parse(String(raw).replace(/^\s*```(?:json)?/i,"").replace(/```\s*$/,"")); }
+  catch(e){ return {err:"Not valid JSON — check for a missing comma or bracket."}; }
+
+  if(parsed&&parsed.questions&&parsed.taxonomy){
+    db=parsed; return {n:(parsed.questions||[]).length,replaced:true};
+  }
+  var items=Array.isArray(parsed)?parsed:[parsed];
+  for(var i=0;i<items.length;i++){
+    var q=items[i];
+    if(!q||!q.question) return {err:"Item "+(i+1)+" has no \"question\" field."};
+    if(!q.paper||PAPERS.indexOf(q.paper)<0) return {err:"Item "+(i+1)+": \"paper\" must be one of "+PAPERS.join(", ")+"."};
+    if(!q.id) q.id="q-"+Date.now()+"-"+i;
+    if(!Array.isArray(q.tags)) q.tags=[];
+    q.tags=q.tags.map(function(t){return Array.isArray(t)?t:[String(t)];});
+    var lbl="Item "+(i+1);
+    var hasCS=q.tags.some(function(t){return t[0]===CS;}),hasOther=q.tags.some(function(t){return t[0]!==CS;});
+    if(hasCS&&q.paper!=="GS4") return {err:lbl+": only GS4 questions can use the Case Studies branch."};
+    if(hasCS&&hasOther) return {err:lbl+": a case study is tagged only under Case Studies \u2014 remove the theory tags."};
+    if(q.type==="Case study"&&!hasCS) return {err:lbl+": type is \"Case study\" but it has no Case Studies tag."};
+    if(q.type!=="Case study"&&hasCS) return {err:lbl+": tagged under Case Studies but type is \""+(q.type||"")+"\"."};
+    // grow the taxonomy so nothing lands in Unfiled unnecessarily
+    db.taxonomy[q.paper]=db.taxonomy[q.paper]||{};
+    q.tags.forEach(function(t){
+      if(!t[0])return;
+      db.taxonomy[q.paper][t[0]]=db.taxonomy[q.paper][t[0]]||[];
+      if(t[1]&&db.taxonomy[q.paper][t[0]].indexOf(t[1])<0) db.taxonomy[q.paper][t[0]].push(t[1]);
+    });
+    db.questions=db.questions.filter(function(x){return x.id!==q.id;});
+    db.questions.unshift(q);
+  }
+  current=db.questions[0];
+  return {n:items.length};
+}
+
+/* -------- dialog -------- */
+var dlg=$("dlg"),act=null;
+function openDlg(title,hint,slotHtml,actLabel,onAct){
+  $("dlgTitle").textContent=title;$("dlgHint").textContent=hint;
+  $("dlgSlot").innerHTML=slotHtml;$("dlgMsg").textContent="";$("dlgMsg").className="msg";
+  var b=$("dlgAct");
+  if(actLabel){b.style.display="";b.textContent=actLabel;act=onAct;} else {b.style.display="none";act=null;}
+  dlg.showModal();
+}
+$("dlgClose").onclick=function(){dlg.close();};
+$("dlgAct").onclick=function(){if(act)act();};
+function ta(v){return '<textarea id="taBox" spellcheck="false">'+esc(v||"")+'</textarea>';}
+
+$("addBtn").onclick=function(){
+  openDlg("Add questions","Paste one question object, or an array of them. Markdown fences are stripped automatically.",ta(""),"Save",async function(){
+    var r=ingest($("taBox").value);
+    if(r.err){$("dlgMsg").className="msg";$("dlgMsg").textContent=r.err;return;}
+    var ok=await save();addedSinceExport+=r.n;
+    $("dlgMsg").className="msg ok";$("dlgMsg").textContent=ok?("Saved "+r.n+"."):"Added, but storage failed — export now.";
+    renderNav();renderSheet();
+    setTimeout(function(){dlg.close();nudge();},600);
+  });
+};
+$("impBtn").onclick=function(){
+  openDlg("Import bank","Paste a full exported bank. This replaces everything currently here.",ta(""),"Replace",async function(){
+    var r=ingest($("taBox").value);
+    if(r.err){$("dlgMsg").className="msg";$("dlgMsg").textContent=r.err;return;}
+    if(!r.replaced){$("dlgMsg").textContent="That looks like questions, not a full bank — use Add instead.";return;}
+    await save();current=db.questions[0]||null;addedSinceExport=0;
+    renderNav();renderSheet();dlg.close();toast("Bank replaced.");
+  });
+};
+function sortKeys(o){
+  if(Array.isArray(o)) return o.map(sortKeys);
+  if(o&&typeof o==="object"){var out={};Object.keys(o).sort().forEach(function(k){out[k]=sortKeys(o[k]);});return out;}
+  return o;
+}
+function byId(a,b){return a.id<b.id?-1:a.id>b.id?1:0;}
+function dl(name,obj){
+  var b=new Blob([JSON.stringify(obj,null,2)],{type:"application/json"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(a.href);},3000);
+}
+$("expBtn").onclick=function(){
+  var gs4=db.questions.filter(function(q){return q.paper==="GS4";});
+  var files=[["manifest.json",{schemaVersion:db.schemaVersion||1,exported:new Date().toISOString().slice(0,10),
+    taxonomy:"taxonomy.json",papers:{Essay:["essay.json"],GS1:["gs1.json"],GS2:["gs2.json"],GS3:["gs3.json"],
+    GS4:["gs4-theory.json","gs4-case-studies.json"]}}],["taxonomy.json",sortKeys(db.taxonomy)]];
+  Object.keys(FILES).forEach(function(p){
+    files.push([FILES[p],db.questions.filter(function(q){return q.paper===p;}).sort(byId)]);});
+  files.push(["gs4-theory.json",gs4.filter(function(q){return !isCase(q);}).sort(byId)]);
+  files.push(["gs4-case-studies.json",gs4.filter(isCase).sort(byId)]);
+  files.forEach(function(f,i){setTimeout(function(){dl(f[0],f[1]);},i*350);});
+  addedSinceExport=0;toast("Writing 8 files \u2014 allow multiple downloads if asked. They go in data/.");
+};
+$("promptBtn").onclick=function(){
+  openDlg("Prompt for Claude","Paste this above your question. Copy it from the box.",ta(PROMPT),null,null);
+  setTimeout(function(){var t=$("taBox");t.focus();t.select();},60);
+};
+
+/* -------- categories: edit names, identical names merge -------- */
+$("catBtn").onclick=function(){
+  var rows=[],idx=0;
+  PAPERS.forEach(function(p){
+    var tax=db.taxonomy[p]||{};
+    Object.keys(tax).forEach(function(topic){
+      var subs=tax[topic]||[];
+      if(!subs.length){rows.push({p:p,topic:topic,sub:"",i:idx++});return;}
+      subs.forEach(function(sub){rows.push({p:p,topic:topic,sub:sub,i:idx++});});
+    });
+  });
+  var html='<div class="cats">'+rows.map(function(r){
+    var n=db.questions.filter(function(q){return q.paper===r.p&&(q.tags||[]).some(function(t){return t[0]===r.topic&&(r.sub?t[1]===r.sub:true);});}).length;
+    return '<div class="catrow"><span class="pp">'+esc(r.p)+'</span>'+
+      '<input data-i="'+r.i+'" data-f="topic" value="'+esc(r.topic)+'">'+
+      '<input data-i="'+r.i+'" data-f="sub" value="'+esc(r.sub)+'">'+
+      '<span class="n">'+n+'</span></div>';
+  }).join('')+'</div>';
+  openDlg("Categories","Edit any name and apply. Two rows given the same name merge into one. Counts are questions currently tagged there.",html,"Apply",async function(){
+    var edits={};
+    $("dlgSlot").querySelectorAll("input").forEach(function(inp){
+      var i=+inp.getAttribute("data-i");edits[i]=edits[i]||{};edits[i][inp.getAttribute("data-f")]=inp.value.trim();
+    });
+    var changed=0,blocked=false;
+    rows.forEach(function(r){
+      var e=edits[r.i];if(!e||!e.topic)return;
+      if(e.topic===r.topic&&e.sub===r.sub)return;
+      if((r.topic===CS)!==(e.topic===CS)){blocked=true;return;}
+      changed++;
+      db.questions.forEach(function(q){
+        if(q.paper!==r.p)return;
+        (q.tags||[]).forEach(function(t){
+          if(t[0]===r.topic&&((r.sub&&t[1]===r.sub)||(!r.sub&&!t[1]))){t[0]=e.topic;if(e.sub)t[1]=e.sub;else t.length=1;}
+        });
+        var seen={};q.tags=(q.tags||[]).filter(function(t){var k=t.join("›");if(seen[k])return false;seen[k]=1;return true;});
+      });
+      var tax=db.taxonomy[r.p]||{};
+      if(tax[r.topic]){
+        tax[r.topic]=tax[r.topic].filter(function(s){return s!==r.sub;});
+        if(!tax[r.topic].length&&r.sub) delete tax[r.topic];
+      }
+      tax[e.topic]=tax[e.topic]||[];
+      if(e.sub&&tax[e.topic].indexOf(e.sub)<0) tax[e.topic].push(e.sub);
+      db.taxonomy[r.p]=tax;
+    });
+    if(blocked){$("dlgMsg").textContent="Categories cannot move into or out of Case Studies \u2014 that split is fixed.";return;}
+    if(!changed){dlg.close();return;}
+    await save();renderNav();renderSheet();dlg.close();
+    toast(changed+" categor"+(changed===1?"y":"ies")+" updated.");
+  });
+};
+
+function nudge(){
+  if(addedSinceExport>=10){toast("10 added since your last export — worth exporting a backup.");addedSinceExport=0;}
+}
+
+/* -------- drag & drop -------- */
+var dz=$("drop"),depth=0;
+window.addEventListener("dragenter",function(e){e.preventDefault();depth++;dz.classList.add("on");});
+window.addEventListener("dragover",function(e){e.preventDefault();});
+window.addEventListener("dragleave",function(e){depth--;if(depth<=0){depth=0;dz.classList.remove("on");}});
+window.addEventListener("drop",async function(e){
+  e.preventDefault();depth=0;dz.classList.remove("on");
+  var files=Array.prototype.slice.call(e.dataTransfer.files||[]).filter(function(f){return /\.json$/i.test(f.name);});
+  if(!files.length){toast("Only .json files can be dropped.");return;}
+  var added=0,errs=[];
+  for(var i=0;i<files.length;i++){
+    var text=await files[i].text();
+    var r=ingest(text);
+    if(r.err) errs.push(files[i].name+": "+r.err); else added+=r.n;
+  }
+  if(added){await save();addedSinceExport+=added;renderNav();renderSheet();}
+  toast(errs.length?(added+" added, "+errs.length+" failed — "+errs[0]):(added+" question"+(added===1?"":"s")+" added."));
+  nudge();
+});
+
+/* -------- prompt text -------- */
+var PROMPT=[
+"Use the answer-skeleton format. Return ONLY a JSON object — no prose, no markdown fences:",
+"",
+"{",
+'  "id": "short-slug",',
+'  "paper": "Essay" | "GS1" | "GS2" | "GS3" | "GS4",',
+'  "type": "Theory/Concept" | "Quote-based" | "Case study" | "Essay",',
+'  "year": 2024,',
+'  "question": "full question text",',
+'  "tags": [["Topic","Sub-topic"], ["Other Topic","Other Sub-topic"]],',
+'  "decode": { "directive": "", "demands": [], "hidden": "", "limit": "", "concepts": [] },',
+'  "intros": [ { "type": "", "text": "" } ],',
+'  "sections": [ { "heading": "", "framework": "", "why": "", "points": [], "off": [], "valueAdd": [] } ],',
+'  "conclusions": [ { "type": "", "text": "" } ],',
+'  "diagram": "ASCII only: - | + v ^ and letters",',
+'  "caption": "",',
+'  "vaBank": { "quotes": [], "keywords": [], "examples": [], "thinkers": [] },',
+'  "pitfalls": [], "notes": ""',
+"}",
+"",
+"Rules: exactly 3 intros and 3 conclusions. Points are single-line stems, not paragraphs.",
+"Tag into EVERY category the question fits, using my existing taxonomy where possible.",
+"GS4 case studies: type must be Case study and tags go ONLY under topic Case Studies;",
+"never mix a case study with theory tags. GS4 theory questions must NOT use Case Studies.",
+"Escape newlines in \"diagram\" as \\n. Essay tags use topic \"Themes\".",
+"",
+"Question:"
+].join("\n");
+
+/* -------- boot -------- */
+$("search").addEventListener("input",function(e){query=e.target.value.toLowerCase().trim();renderNav();});
+window.addEventListener("beforeprint",function(){document.querySelectorAll("details.block").forEach(function(d){d.open=true;});});
+
+async function fromFiles(){
+  try{
+    var m=await fetch("data/manifest.json",{cache:"no-store"});
+    if(!m.ok) return null;
+    var man=await m.json();
+    var tr=await fetch("data/"+(man.taxonomy||"taxonomy.json"),{cache:"no-store"});
+    if(!tr.ok) return null;
+    var tax=await tr.json(),qs=[],names=[];
+    Object.keys(man.papers||{}).forEach(function(p){(man.papers[p]||[]).forEach(function(f){names.push(f);});});
+    for(var i=0;i<names.length;i++){
+      var r=await fetch("data/"+names[i],{cache:"no-store"});
+      if(r.ok){var arr=await r.json();if(Array.isArray(arr)) qs=qs.concat(arr);}
+    }
+    return {schemaVersion:man.schemaVersion||1,taxonomy:tax,questions:qs};
+  }catch(e){return null;}
+}
+(async function(){
+  var files=await fromFiles(),local=await store.read(),label;
+  if(files){
+    db=files;
+    if(local&&local.questions&&local.questions.length){
+      var have={},extra=0;
+      db.questions.forEach(function(q,i){have[q.id]=i;});
+      local.questions.forEach(function(q){
+        if(have[q.id]!==undefined) db.questions[have[q.id]]=q;
+        else {db.questions.unshift(q);extra++;}
+      });
+      Object.keys(local.taxonomy||{}).forEach(function(p){
+        db.taxonomy[p]=db.taxonomy[p]||{};
+        Object.keys(local.taxonomy[p]).forEach(function(t){
+          db.taxonomy[p][t]=db.taxonomy[p][t]||[];
+          local.taxonomy[p][t].forEach(function(x){if(db.taxonomy[p][t].indexOf(x)<0) db.taxonomy[p][t].push(x);});
+        });
+      });
+      label="data/ + "+extra+" local";
+    } else label="data/";
+  } else if(local&&local.questions&&local.questions.length){db=local;label="browser";}
+  else {db=JSON.parse($("seed").textContent);await store.write(db);label="browser";}
+  db.taxonomy=db.taxonomy||{};db.questions=db.questions||[];
+  $("src").textContent=label;
+  current=db.questions[0]||null;
+  renderNav();renderSheet();
+})();
+})();
+</script>
+</body>
+</html>
