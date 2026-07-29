@@ -849,14 +849,19 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 <script>
 (function(){
 "use strict";
-var KEY="upsc-skeleton-bank-v1";
+/* Browser storage is scoped to the ORIGIN, not the path — on user.github.io every Pages
+   project of yours shares one namespace. Without this suffix a second project would collide
+   with this bank's draft and, worse, with its GitHub token. */
+var SCOPE=location.pathname.replace(/\/index\.html$/,"").replace(/\/+$/,"");
+var KEY="upsc-skeleton-bank-v1"+SCOPE;
+var LEGACY_KEY="upsc-skeleton-bank-v1";
 var PAPERS=["Essay","GS1","GS2","GS3","GS4"];
 var CS="Case Studies";
 var CASE_TYPE="Case study";
 var TYPES=["Theory/Concept","Quote-based","Case study","Essay"];
 var FILES={"Essay":"essay.json","GS1":"gs1.json","GS2":"gs2.json","GS3":"gs3.json"};
 
-var GHKEY="upsc-github-config";
+var GHKEY="upsc-github-config"+SCOPE;
 /* Local storage is a DRAFT BUFFER, not a second source of truth. It carries a `dirty` flag:
    only a dirty draft is allowed to override what came from the repo. A clean one is discarded
    on load, so a stale browser copy can never silently shadow the committed files. */
@@ -866,6 +871,11 @@ var store={
       var raw;
       if(window.storage&&window.storage.get){var r=await window.storage.get(KEY);raw=r&&r.value;}
       else raw=localStorage.getItem(KEY);
+      // one-time migration: adopt an unsaved draft written before the key was scoped
+      if(!raw&&KEY!==LEGACY_KEY){
+        var old=localStorage.getItem(LEGACY_KEY);
+        if(old){var po=JSON.parse(old);if(po&&(po.dirty||po.questions)) raw=old;}
+      }
       if(!raw) return null;
       var o=JSON.parse(raw);
       if(o&&o.questions) return {dirty:true,db:o};      // legacy shape: assume unsaved
