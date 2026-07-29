@@ -57,60 +57,132 @@
     "question": "“Ethics cannot be taught, only internalized through experience and example.” Do you agree? Justify your views.",
     "sections": [
       {
-        "framework": "Head → Heart → Hand",
+        "frameworks": [
+          {
+            "name": "Head → Heart → Hand",
+            "points": [
+              "Moral knowledge ≠ moral motivation — the knowing–doing gap. Every corrupt official knows the Conduct Rules verbatim.",
+              "Values are absorbed pre-cognitively through socialization — Gandhi traced his truthfulness to the Harishchandra play, not to law school.",
+              "Observational learning (Bandura) — a probationer copies what the DM actually does in a crisis, not the training syllabus.",
+              "Codified ethics decays into compliance — ethical fading, integrity replaced by box-ticking."
+            ],
+            "why": "Teaching reliably reaches the Head; the gap opens after that."
+          },
+          {
+            "name": "Sources of ethics — Family, Peers, Religion, Education, Law, Media, Culture",
+            "points": [
+              "Family and religion instil values years before any formal ethics course begins.",
+              "Peer conduct and organisational culture override the syllabus once in service — the DM's actual behaviour outweighs the training manual.",
+              "Media and popular culture normalise shortcuts faster than a classroom can correct them.",
+              "Law can mandate compliance, but rule-following under threat of punishment is not the same as internalised ethics."
+            ],
+            "why": "Classroom instruction is one channel among seven, competing for weight with forces that act far earlier and longer."
+          },
+          {
+            "name": "Barriers lens — Individual → Institutional → Systemic → Societal",
+            "points": [
+              "Individual — temperament and early habituation predate any ethics course.",
+              "Institutional — an organisation that rewards target-chasing teaches the opposite lesson to its own code of conduct.",
+              "Systemic — ACR and promotion incentives can outweigh classroom ideals in practice.",
+              "Societal — a culture that tolerates jugaad normalises the very shortcuts ethics classes warn against."
+            ],
+            "why": "Shows the gap opens at every level, not only inside the classroom."
+          }
+        ],
         "heading": "The statement holds — instruction alone does not produce conduct",
         "off": [
           "Ethics is dispositional — it shows up under pressure, and no classroom can simulate the cost of doing right. Experience is not just a teacher; it is the only examiner."
         ],
-        "points": [
-          "Moral knowledge ≠ moral motivation — the knowing–doing gap. Every corrupt official knows the Conduct Rules verbatim.",
-          "Values are absorbed pre-cognitively through socialization — Gandhi traced his truthfulness to the Harishchandra play, not to law school.",
-          "Observational learning (Bandura) — a probationer copies what the DM actually does in a crisis, not the training syllabus.",
-          "Codified ethics decays into compliance — ethical fading, integrity replaced by box-ticking."
-        ],
         "valueAdd": [
           "Keywords: ethical fading, moral muteness, knowing–doing gap",
           "Theory: Bandura's social learning; Aristotle on habituation"
-        ],
-        "why": "Teaching reliably reaches the Head; the gap opens after that."
+        ]
       },
       {
-        "framework": "Kohlberg's stages",
+        "frameworks": [
+          {
+            "name": "Kohlberg's stages",
+            "points": [
+              "Teaching supplies moral sensitivity — you cannot internalize a dilemma you never noticed.",
+              "It gives vocabulary and reasoning tools to defend a stand — utilitarian, deontological, care-based.",
+              "Constitutional morality, in Ambedkar's framing, is not a natural sentiment — it has to be cultivated. [verify wording] Art. 51A; NEP 2020.",
+              "Experience without instruction is unreliable — the same posting produced both Satyendra Dubey and colleagues who stayed silent."
+            ],
+            "why": "Structured dilemma-discussion moves reasoning from conventional rule-following to post-conventional principle."
+          },
+          {
+            "name": "Values ladder — Personal → Professional → Constitutional → Universal",
+            "points": [
+              "Personal values are largely pre-formed — the concession the statement is right about.",
+              "But professional value systems (Nolan principles, Conduct Rules) are explicit taught curricula, not caught by accident.",
+              "Constitutional morality is a taught legal-philosophical concept — Ambedkar had to argue it into existence; it was never self-evident.",
+              "Universal principles of rights and justice are transmitted through structured moral education across civilisations, not stumbled upon."
+            ],
+            "why": "Shows teaching moves reasoning from pre-formed personal preference to deliberately constructed constitutional and universal principle."
+          },
+          {
+            "name": "Elaboration Likelihood — central vs peripheral route",
+            "points": [
+              "Central-route processing — structured dilemma debate — produces conviction that resists counter-pressure, unlike a copied habit.",
+              "LBSNAA's case-method training is built for exactly this: deliberate reasoning, not mimicry.",
+              "A reasoned position can be defended and adapted to a novel dilemma; a copied habit cannot generalise beyond the situation it was learned in.",
+              "Peripheral-route learning (imitation) is fast but fragile — it collapses the moment the exemplar disappears or contradicts itself."
+            ],
+            "why": "Teaching engages the central, reasoned route, which produces attitude change that survives contrary pressure better than mere imitation."
+          }
+        ],
         "heading": "But the claim overstates itself — teaching does real work",
         "off": [
           "The statement is self-defeating — “learning by example” is itself a pedagogy. It relocates the teacher from the classroom to the corridor; it does not abolish teaching."
         ],
-        "points": [
-          "Teaching supplies moral sensitivity — you cannot internalize a dilemma you never noticed.",
-          "It gives vocabulary and reasoning tools to defend a stand — utilitarian, deontological, care-based.",
-          "Constitutional morality, in Ambedkar's framing, is not a natural sentiment — it has to be cultivated. [verify wording] Art. 51A; NEP 2020.",
-          "Experience without instruction is unreliable — the same posting produced both Satyendra Dubey and colleagues who stayed silent."
-        ],
         "valueAdd": [
           "Anchor: Ambedkar on constitutional morality; Art. 51A",
           "Theory: Kohlberg; Dewey's learning by doing"
-        ],
-        "why": "Structured dilemma-discussion moves reasoning from conventional rule-following to post-conventional principle."
+        ]
       },
       {
-        "framework": "Rest's Four Component Model",
+        "frameworks": [
+          {
+            "name": "Rest's Four Component Model",
+            "points": [
+              "Moral sensitivity (recognising the issue) — TAUGHT",
+              "Moral judgement (deciding what is right) — TAUGHT",
+              "Moral motivation (prioritising it over self-interest) — EXAMPLE",
+              "Moral character (acting despite cost) — EXPERIENCE",
+              "Verdict: agree in part. Instruction builds the map; experience and example supply the will to walk it.",
+              "Application: pair classroom ethics with case dilemmas, field immersion and mentorship by officers of demonstrated integrity."
+            ],
+            "why": "Resolves the question cleanly instead of splitting the difference."
+          },
+          {
+            "name": "Timeframe — Immediate → Short term → Long term",
+            "points": [
+              "Immediate — classroom curriculum builds moral vocabulary and sensitivity before any posting begins.",
+              "Short term — structured case-dilemma discussion and simulated field exercises attach reasoning to realistic pressure.",
+              "Long term — mentorship by officers of demonstrated integrity and repeated exposure to real dilemmas habituate character.",
+              "Verdict: a sequence, not a single method, produces the ethical officer."
+            ],
+            "why": "Turns the division-of-labour verdict into an implementable training sequence."
+          },
+          {
+            "name": "Private conscience → Professional duty → Constitutional obligation",
+            "points": [
+              "Private conscience — shaped by family and experience, largely outside institutional teaching's reach.",
+              "Professional duty — explicitly taught through codes, rules and training, where classroom instruction does its clearest work.",
+              "Constitutional obligation — needs both taught doctrine (constitutional morality) and habituated commitment sustained by example.",
+              "Verdict: the debate feels unresolved because both sides are right about a different level."
+            ],
+            "why": "Maps the division-of-labour verdict onto three levels of obligation, each cultivated differently."
+          }
+        ],
         "heading": "My position — a division of labour, not a contest",
         "off": [
           "Everyday anchor: a child learns honesty from watching a parent return excess change; the textbook only gives it a name."
         ],
-        "points": [
-          "Moral sensitivity (recognising the issue) — TAUGHT",
-          "Moral judgement (deciding what is right) — TAUGHT",
-          "Moral motivation (prioritising it over self-interest) — EXAMPLE",
-          "Moral character (acting despite cost) — EXPERIENCE",
-          "Verdict: agree in part. Instruction builds the map; experience and example supply the will to walk it.",
-          "Application: pair classroom ethics with case dilemmas, field immersion and mentorship by officers of demonstrated integrity."
-        ],
         "valueAdd": [
           "Keywords: hidden curriculum, moral imagination",
           "Anchor: Mission Karmayogi, LBSNAA training design"
-        ],
-        "why": "Resolves the question cleanly instead of splitting the difference."
+        ]
       }
     ],
     "tags": [
