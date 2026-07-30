@@ -42,6 +42,9 @@ any category that is not already in your taxonomy.
 With Claude Code running in this folder, steps 2–4 collapse: ask it to add the question and
 it writes `data/` directly. See `CLAUDE.md` for the rules it follows.
 
+There are five ways in altogether, with different trade-offs and traps —
+**[docs/adding-questions.md](docs/adding-questions.md)** covers each one step by step.
+
 ## Saving to GitHub
 
 **Save** → **Connection**. You need a **fine-grained** personal access token from
@@ -76,6 +79,7 @@ you save, so a `git pull` or a hand-edit is picked up on the next page load.
 ```
 index.html                  renderer — no question data in here
 CLAUDE.md                   project rules for Claude Code
+docs/adding-questions.md    the five ways to add a question, and the traps
 data/manifest.json          schema version, paper → files
 data/taxonomy.json          the controlled vocabulary
 data/prompts.json           per-paper prompt bodies for Copy prompt
