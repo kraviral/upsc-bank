@@ -1257,10 +1257,11 @@ function renderSheet(){
     if(!EDIT){h+='<span class="tagpill">'+esc(t[0]||"")+(t[1]?' › '+esc(t[1]):'')+'</span>';return;}
     h+='<span class="tagpill">'+etext(function(){return t[0];},function(v){t[0]=v;},{placeholder:"Topic"})+' › '+
       etext(function(){return t[1];},function(v){t[1]=v;},{placeholder:"Sub-topic"});
-    if(!isCS) h+=actionBtn("×",function(){q.tags.splice(i,1);save();renderNav();renderSheet();},"xbtn");
+    h+=actionBtn("×",function(){q.tags.splice(i,1);save();renderNav();renderSheet();},"xbtn");
     h+='</span>';
   });
-  if(!isCS||q.tags.length<1) h+=actionBtn("+ tag",function(){q.tags.push(isCS?[CS,""]:["",""]);renderSheet();});
+  // one category per question: the only way to add is when there is none, so re-tagging is × then +
+  if(q.tags.length<1) h+=actionBtn("+ tag",function(){q.tags.push(isCS?[CS,""]:["",""]);renderSheet();});
   h+='</div>';
 
   // when reading, a decode row with nothing in it is noise — drop it
@@ -1371,6 +1372,7 @@ function validateQ(q,lbl){
   if(hasCS&&q.paper!=="GS4") return lbl+": only GS4 questions can use the Case Studies branch.";
   if(hasCS&&hasOther) return lbl+": a case study is tagged only under Case Studies \u2014 remove the theory tags.";
   if(hasCS&&q.tags.length>1) return lbl+": a case study takes exactly one Case Studies tag \u2014 pick the single dominant dilemma.";
+  if((q.tags||[]).length>1) return lbl+": one category per question \u2014 \"tags\" takes exactly one [Topic, Sub-topic] pair. Pick what the question is about, not everything it touches.";
   if(q.type===CASE_TYPE&&!hasCS) return lbl+": type is \"Case study\" but it has no Case Studies tag.";
   if(q.type!==CASE_TYPE&&hasCS) return lbl+": tagged under Case Studies but type is \""+(q.type||"")+"\".";
   if(q.type===CASE_TYPE&&!q.summary) return lbl+": case studies need a one-line \"summary\" field for the collapsed view.";

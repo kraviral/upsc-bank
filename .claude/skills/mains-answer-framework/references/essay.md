@@ -59,7 +59,7 @@ Keywords worth having: moral imagination · path dependence · tragedy of the co
 
 ## Tags
 
-Tags use the topic **Themes**. Tag into every theme the essay could be turned toward — a good essay skeleton is reusable across several prompts, and the tags are how it gets found again.
+Tags use the topic **Themes**, and there is exactly **one** — the theme the prompt is about, not every theme the essay travels through. Most essay prompts touch five or six themes by design; resist tagging them all. An essay skeleton is reusable across prompts, but the search box is what finds it again, so the tag should name its centre of gravity rather than its range.
 
 ## Diagram
 

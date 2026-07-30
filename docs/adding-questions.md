@@ -114,10 +114,15 @@ banner live if an edit breaks it. That banner is the same validator that gates i
 Exactly 3 intros, 3 conclusions, and 3 frameworks per sub-heading. The framework
 **+ Add** button greys out at 3.
 
-### One question in several places is correct
+### One category per question
 
-Multi-tagging is by reference, so a question tagged into three categories appears three times
-in the tree. That is one object, not three copies.
+`tags` holds a single `[Topic, Sub-topic]` pair, so every question appears exactly once in the
+tree and the branch counts are real. Choose what the question is *about* rather than everything
+it touches — the subject, not the mechanism.
+
+Finding a question from a different angle is the **search box's** job. It indexes the question
+text, the decode, every framework and point, the pitfalls and the whole value-addition bank, so
+a question is reachable by any thinker, keyword or example inside it regardless of its tag.
 
 ### `[verify]` means verify
 

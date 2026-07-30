@@ -56,7 +56,7 @@ Each section carries exactly 3 `frameworks` entries — self-contained alternati
 ## Rules that must hold
 
 1. **Case studies are separate.** A GS4 case study has `type: "Case study"` and tags **only** under topic `Case Studies`. Never cross-tag it into Foundations or Public Administration. A theory question must never carry a `Case Studies` tag. No other paper may use that topic.
-2. **Tag into every category that fits**, not just the closest one. Multi-tagging is by reference — one object, many tags. **Exception: case studies get exactly one `Case Studies` sub-topic** — the single dilemma the case is actually built around, not every category that's merely present in the fact pattern.
+2. **Exactly one category per question.** `tags` holds a single `[Topic, Sub-topic]` pair — the one thing the question is actually *about*, not every category it touches. Pick the subject, not the mechanism: an essay on deferred responsibility is about ethics and character even though it argues through time, governance and the environment. Cross-cutting discovery is the search box's job, not the tree's; search covers the question, decode, frameworks, points and value bank. For a GS4 case study that single tag must sit under `Case Studies` and name the dominant dilemma.
 3. **Use existing categories from `taxonomy.json`.** If nothing fits, propose a new one and ask before adding it. Silent invention fragments the bank ("Citizen's Charter" vs "Citizens Charter").
 4. **Never fabricate** a quote, attribution, statistic, scheme name, case citation or news event. Mark uncertainty inline with `[verify]`.
 5. **Deterministic files.** Sort questions by `id`, sort object keys, 2-space indent — so git diffs stay readable.
