@@ -62,6 +62,12 @@ Each section carries exactly 3 `frameworks` entries — self-contained alternati
 5. **Deterministic files.** Sort questions by `id`, sort object keys, 2-space indent — so git diffs stay readable.
 6. **Adding is upsert by `id`.** Same id replaces; new id appends.
 
+## Before editing data/
+
+The app's **Save** commits directly to GitHub, so the working tree may be behind without any
+local sign of it. Run `git pull` before writing to `data/`, or you will be editing a stale
+copy of a file that has already moved on.
+
 ## Adding a question
 
 1. Generate the skeleton per the schema above.

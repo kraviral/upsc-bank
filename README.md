@@ -58,6 +58,19 @@ offers to reload or to overwrite, rather than silently clobbering the other chan
 **Download files instead** is always available in the Save dialog if you would rather move
 the eight files by hand.
 
+### After saving from the app, pull before working locally
+
+An in-app save commits straight to GitHub, so your local clone is immediately one commit
+behind and does not know it. Run `git pull` before you ask Claude Code to touch `data/`,
+or it will work from a stale copy and you will end up resolving a conflict by hand.
+
+```
+git pull
+```
+
+The reverse direction is already handled: the browser's draft stops shadowing the files once
+you save, so a `git pull` or a hand-edit is picked up on the next page load.
+
 ## Layout
 
 ```
