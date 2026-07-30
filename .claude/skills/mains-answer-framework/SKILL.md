@@ -29,8 +29,9 @@ Open with a compact decode block, maximum six lines:
 
 - **Question type** — Theory/Concept | Quote-based/Philosophical | Case Study | Essay
 - **Directive word(s)** and what each obliges (*discuss* ≠ *examine* ≠ *critically analyse* ≠ *elucidate* ≠ *substantiate*). The directive-word table is in `gs4-frameworks.md` §4 and applies to every paper.
-- **Core demands**, numbered — every distinct thing asked
-- **Hidden demand**, if any — the part most aspirants miss
+- **Core demands**, numbered — what the directive literally asks for
+- **Enabling demands** — what the answer needs in order to stand, though the question never says so: the premise that must be established before it can be challenged, the terms that must be distinguished, the way forward, the verdict. See the coverage check in Step 2.
+- **Hidden demand**, if any — the part most aspirants miss. Whatever you write here must end up as an actual sub-heading; naming it and then not covering it means you decoded the question without answering it.
 - **Marks / word limit** — assume 10 marks / 150 words unless stated; 15 marks / 250 words for longer GS questions; GS4 case studies 20 marks / 250 words; Essay 125 marks / 1000–1200 words
 - **Concepts being tested** — the 2–4 syllabus concepts actually in play
 
@@ -47,7 +48,23 @@ Each captures the **essence** of the question in 2–3 lines. A definition alone
 
 ## Step 2 — Body
 
-Derive sub-headings from the demands. Under each, give all four of:
+### Sub-heading coverage — the commonest failure
+
+Sub-headings must cover **both** the core demands and the enabling ones. A body that only mirrors the literal ask is the single most frequent way an otherwise good skeleton loses marks: the question is answered narrowly and the examiner sees a list where an argument was wanted.
+
+Run this check on every question:
+
+1. **Does the question assert something before asking you to judge it?** Then one sub-heading must establish why that thing matters, or the critique has nothing to push against. A prompt calling X the "soul" of Y needs a section on what X actually contributes, *before* the section on its problems.
+2. **Does it turn on two or more concepts?** Separate what each distinctly contributes.
+3. **Does it name a condition or constraint** — "in a resource-constrained environment", "in a federal polity", "in the digital age"? Give it its own treatment, not a passing clause.
+4. **Does it ask about challenges, problems, tensions, conflicts, or dilemmas?** Then the answer needs a **way forward** — how the official actually resolves or manages them. This is almost never stated in the question and is almost always required.
+5. **Does the directive demand a verdict** (*evaluate*, *critically examine*, *do you agree*, *to what extent*)? Then a sub-heading must carry the reasoned position, not merely a survey.
+
+One core demand still needs 3–4 sub-headings. "Evaluate the challenges" answered as three kinds of challenge is a list, not an answer.
+
+### Under each sub-heading
+
+Give all four of:
 
 **(a) Frameworks — three options, not one.** Each is a self-contained thinking lens that generates points on the spot when memory fails: name it, expand any acronym, state in one line why it fits *this* sub-heading, and give it **its own** 3–5 points. Pick three genuinely different lenses from the paper's framework library — never three renamings of the same idea. List the strongest fit first; it is the default the reader sees, the other two are alternatives to swap in. Never force-fit: if a third good lens does not exist, replace it with a straightforward logical progression of points, labelled as that rather than mislabelled as a framework. A forced framework produces padding, which examiners read as filler.
 
