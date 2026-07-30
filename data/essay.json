@@ -1,1 +1,361 @@
-[]
+[
+  {
+    "caption": "No diagram. This is prose, and a chart here would draw attention to itself rather than clarify the argument.",
+    "conclusions": [
+      {
+        "text": "The crack in the embankment never demanded much. It asked for a day in June and was given a season of looking away, and in August it collected the difference. Responsibility behaves like that crack: it does not withdraw its claim because we have declined to meet it, and it does not charge us the June price in August.",
+        "type": "Return to the opening image"
+      },
+      {
+        "text": "Because the moment of cost and the moment of choice are separated, resolve is the wrong instrument. Societies that manage this well do not exhort themselves; they legislate dates, create bodies that outlive governments, and make the responsible path the automatic one — writing rules today that their weaker tomorrow cannot talk its way around.",
+        "type": "Institutional — bind the future now"
+      },
+      {
+        "text": "A society's maturity is measured by how it treats those who cannot yet argue back — the generation not born, the constituency not organised, the consequence not yet arrived. To act today for their sake, with no prospect of their thanks, is the plainest form of responsibility there is, and the one an aphorism about tomorrow is finally asking for.",
+        "type": "Aspirational-normative"
+      }
+    ],
+    "decode": {
+      "concepts": [
+        "Moral responsibility and sins of omission",
+        "Intergenerational equity",
+        "Time preference and present bias",
+        "Path dependence and irreversibility",
+        "Commitment devices and institutional design"
+      ],
+      "demands": [
+        "Establish that evasion is itself a choice, not a neutral pause",
+        "Show why a deferred responsibility grows instead of waiting intact",
+        "Trace who ends up paying, and whether they consented",
+        "Concede honestly that not all delay is evasion, and give a test to tell them apart",
+        "Explain why we evade anyway — psychology and incentives, not just weakness",
+        "Say what acting today concretely requires"
+      ],
+      "directive": "No directive word — an aphorism to be tested, not summarised. You must take a position on whether it always holds, and the essay must travel rather than circle.",
+      "hidden": "The quote is about responsibility, but the argument that carries it is about ASYMMETRY — the cost of the same act is not the same today and tomorrow, and the person who pays is often not the person who deferred. An essay that only moralises about procrastination misses both halves.",
+      "limit": "125 marks / 1000-1200 words"
+    },
+    "diagram": "",
+    "id": "responsibility-tomorrow-evading-today",
+    "intros": [
+      {
+        "text": "On the field at Kurukshetra, Arjuna lowers his bow and asks to walk away. Krishna's answer is not that fighting is pleasant but that withdrawal is not available: to refuse to act is itself an act, with consequences he will own either way. The counsel is not about war. It is that the man who steps back from a duty has not escaped it — he has only chosen which version of it he will face.",
+        "type": "Mythology — Arjuna's evasion"
+      },
+      {
+        "text": "A hairline crack opens in a village embankment in June. Repairing it costs a day's labour and some earth. Everyone who walks past sees it; nobody owns it. By August the same crack costs the village its fields. Nothing changed about the responsibility between June and August except the price of discharging it.",
+        "type": "Concrete image — the crack in the embankment"
+      },
+      {
+        "text": "Evasion promises to save us effort and reliably charges us more. It is the only bargain we keep striking despite knowing the terms, because its cost falls due after the moment of choosing — and often on somebody else's account.",
+        "type": "Paradox"
+      }
+    ],
+    "notes": "",
+    "paper": "Essay",
+    "pitfalls": [
+      "The prompt is usually attributed to Abraham Lincoln [verify — widely cited but not securely documented in his own writings]. Do not build an opening on the attribution; use the idea, not the name.",
+      "Writing a personal-productivity essay about procrastination. The prompt reaches individual, institutional and intergenerational scales, and an essay confined to the first reads as a school composition.",
+      "Refusing to concede that some delay is legitimate. Without the counter-movement the essay is a sermon, and examiners read unbroken agreement as thin thinking."
+    ],
+    "question": "You cannot escape the responsibility of tomorrow by evading it today.",
+    "sections": [
+      {
+        "frameworks": [
+          {
+            "name": "Inaction as action",
+            "points": [
+              "The clock does not stop for the undecided — the situation keeps moving while we do not.",
+              "Declining to choose is choosing whatever the default produces.",
+              "Sins of omission carry moral weight; we simply find them easier to look at.",
+              "Every deferral silently allocates a cost to somebody, usually unnamed."
+            ],
+            "why": "The claim only bites once we stop treating 'not yet' as a neutral state."
+          },
+          {
+            "name": "Descriptive to normative",
+            "points": [
+              "What evasion actually looks like: not refusal, but a series of reasonable postponements.",
+              "Why it feels costless: the bill and the choice are separated in time.",
+              "Why it is not: the interval is doing work we are not watching.",
+              "What follows: the burden of proof belongs on delay, not on action."
+            ],
+            "why": "Moves from what evasion looks like to what it obliges, without moralising first."
+          },
+          {
+            "name": "Scale — one person to a civilisation",
+            "points": [
+              "A student who will begin revising next month, every month.",
+              "A government that lets a subsidy distortion run one more budget.",
+              "A species that agrees decarbonisation matters and sets the date beyond its own tenure."
+            ],
+            "why": "Shows the same structure at three magnitudes, which is what makes an aphorism worth an essay."
+          }
+        ],
+        "heading": "Deferral is a decision, not a pause",
+        "off": [
+          "Evasion is rarely a decision anyone remembers making; that is precisely what makes it dangerous."
+        ],
+        "valueAdd": [
+          "Keywords: sins of omission, default effect, decision by non-decision",
+          "Theory: the Gita's karmani akarma — recognising inaction within action",
+          "Example: the unrepaired crack, deferred by everyone because it was owned by no one"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Compound cost",
+            "points": [
+              "The same correction costs more the later it is made; delay is borrowed at interest.",
+              "Small manageable adjustments become large disruptive ones.",
+              "What could have been reform becomes crisis management, which is worse and less chosen.",
+              "The window for cheap action is itself a resource, and it depletes."
+            ],
+            "why": "The arithmetic is the strongest part of the claim and the least often written."
+          },
+          {
+            "name": "Reversible to irreversible",
+            "points": [
+              "Some costs are recoverable: a delayed audit, a postponed conversation.",
+              "Some are not: a depleted aquifer, an extinct species, a childhood spent out of school.",
+              "Thresholds convert gradual neglect into sudden permanence.",
+              "Where irreversibility is possible, the precautionary case for acting now is decisive."
+            ],
+            "why": "Separates problems that merely worsen from those that close the door entirely."
+          },
+          {
+            "name": "Path dependence",
+            "points": [
+              "Infrastructure built today fixes emissions for decades regardless of later intent.",
+              "Institutions calcify around the workaround adopted to avoid the reform.",
+              "Habits harden — in people and in bureaucracies alike.",
+              "Each postponement raises the cost of the eventual change, so postponing again looks rational."
+            ],
+            "why": "Explains why delay narrows options even when nothing visibly worsens."
+          }
+        ],
+        "heading": "The debt compounds — tomorrow's bill is larger than today's",
+        "off": [
+          "Delay does not preserve a problem in amber; it feeds it. This is the difference between the claim being a platitude and being true."
+        ],
+        "valueAdd": [
+          "Keywords: lock-in, tipping point, precautionary principle, opportunity window",
+          "Example: the Montreal Protocol acted while the problem was still tractable; the contrast with decades of climate negotiation is the essay's sharpest pairing",
+          "Example: groundwater depletion in north-western India, where each year of deferral makes reversal costlier [verify specifics before citing figures]"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Who pays",
+            "points": [
+              "Deferred costs are not cancelled, only transferred.",
+              "Future generations cannot vote, negotiate, or refuse the transfer.",
+              "We borrow against people who have no standing to object.",
+              "Intergenerational equity asks what we would accept if the order of birth were reversed."
+            ],
+            "why": "Turns a claim about time into a claim about justice, which is where the marks are."
+          },
+          {
+            "name": "Power asymmetry",
+            "points": [
+              "The costs of delay land first on those least able to absorb them.",
+              "Those who contributed least to a problem are usually most exposed to it.",
+              "A successor inherits the arrears of a predecessor who has already moved on.",
+              "Evasion is comfortable in proportion to one's distance from the consequence."
+            ],
+            "why": "Shows the transfer is not random — it runs reliably downhill."
+          },
+          {
+            "name": "Duties and rights as a pair",
+            "points": [
+              "Every unmet duty appears somewhere as an unhonoured claim.",
+              "The right does not lapse because the duty-bearer looked away.",
+              "Naming the right-holder makes evasion much harder to describe as prudence."
+            ],
+            "why": "Reframes evasion as an active harm rather than an absence of virtue."
+          }
+        ],
+        "heading": "The burden does not stay where it was incurred",
+        "off": [
+          "Ask of any deferral: who is holding the receipt? If the answer is 'someone not in the room', the deferral is an ethical act, not an administrative one."
+        ],
+        "valueAdd": [
+          "Keywords: intergenerational equity, externality, moral hazard, discounting the powerless",
+          "Theory: Rawls behind the veil, not knowing which generation you will be born into",
+          "Anchor: the Constitution's directive to protect the environment reads as a duty owed forward in time"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "A test to tell them apart",
+            "points": [
+              "Is the wait buying information, or buying comfort?",
+              "Is there a date and a trigger, or only an intention?",
+              "Who bears the cost of waiting — the one deciding, or someone else?",
+              "Does the delay preserve options or quietly destroy them?"
+            ],
+            "why": "The essay earns its position by conceding the strongest counter-case and then drawing the line precisely."
+          },
+          {
+            "name": "Sequencing and capacity",
+            "points": [
+              "Reform without groundwork can discredit the reform for a generation.",
+              "Triage is not evasion: choosing what to do first is still doing.",
+              "Capacity built during a deliberate wait is itself an action."
+            ],
+            "why": "Recognises that acting before the ground is prepared can be worse than waiting."
+          },
+          {
+            "name": "Logical progression — cases where waiting was right",
+            "points": [
+              "Waiting for evidence before a decision that cannot be unmade.",
+              "Waiting for consent where imposing the right answer would poison it.",
+              "Against these: the far commoner case where 'more study is needed' is the study's purpose."
+            ],
+            "why": "Not a framework; a straight comparison, which is the honest form here."
+          }
+        ],
+        "heading": "The honest objection — not every delay is evasion",
+        "off": [
+          "The distinction is not the length of the delay but whether anyone has accepted ownership of the outcome."
+        ],
+        "valueAdd": [
+          "Keywords: prudent deferral, analysis paralysis, precautionary vs proactionary",
+          "Example: the personal version — the difference between not yet replying to a difficult message and hoping it becomes irrelevant"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "The future self as a stranger",
+            "points": [
+              "We discount the future steeply and inconsistently — near costs feel sharper than larger distant ones.",
+              "The self who will pay is imagined less vividly than the self who is spared today.",
+              "Knowing the right action and failing to take it is an old problem, not a modern one.",
+              "Relief on deferring is immediate; the cost arrives without a reminder attached."
+            ],
+            "why": "Explains evasion as a predictable feature of how humans weigh time, not as a character flaw."
+          },
+          {
+            "name": "Incentives shorter than the problem",
+            "points": [
+              "Electoral cycles are shorter than the problems they govern.",
+              "A tenure ends before the consequence of a decision matures.",
+              "Credit for prevention is invisible; credit for crisis response is not.",
+              "When responsibility is shared by everyone it is exercised by no one."
+            ],
+            "why": "Moves the diagnosis from individuals to the structures that reward them."
+          },
+          {
+            "name": "Moral distancing",
+            "points": [
+              "Victims become abstractions — a statistic rather than a face.",
+              "Ethical content fades when a choice is framed as merely technical or procedural.",
+              "'Someone else is handling it' survives precisely because nobody checks.",
+              "Each small postponement is defensible; only the sequence is indefensible."
+            ],
+            "why": "Names the mechanism that lets decent people defer without feeling they have done anything."
+          }
+        ],
+        "heading": "Why we evade anyway",
+        "off": [
+          "Evasion is usually not cowardice but arithmetic — the incentives genuinely favour it, which is why exhortation fails and design works."
+        ],
+        "valueAdd": [
+          "Keywords: present bias, hyperbolic discounting, akrasia, diffusion of responsibility, ethical fading",
+          "Theory: Aristotle on akrasia — acting against one's own better judgement",
+          "Anchor: why prevention is chronically underfunded relative to relief"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Binding the future self",
+            "points": [
+              "Pre-commitment converts a future choice into a present one.",
+              "Automatic triggers act without requiring courage at the moment of cost.",
+              "Sunset clauses and hard budget rules take the option to defer off the table.",
+              "Entrenching a duty makes evading it a visible act rather than a quiet one."
+            ],
+            "why": "The practical answer to a problem of time is a commitment made while resolve is high."
+          },
+          {
+            "name": "Legal to institutional to behavioural",
+            "points": [
+              "Law: statutory targets with dates, not aspirations.",
+              "Institutions: bodies whose horizon outlasts the government that created them.",
+              "Behaviour: defaults that make the responsible path the lazy one.",
+              "Transparency: publishing who owns each deferred decision."
+            ],
+            "why": "Sequences the response so it does not collapse into a call for willpower."
+          },
+          {
+            "name": "Individual virtue",
+            "points": [
+              "Courage is a habit built on small occasions, not summoned on large ones.",
+              "The daily discharge of ordinary duty is what makes the extraordinary one possible.",
+              "Leadership is largely the willingness to absorb a near cost for a distant benefit.",
+              "The question is not whether we will be tested but whether we will have practised."
+            ],
+            "why": "Returns the essay to the person, since institutions are staffed by people who must still choose."
+          }
+        ],
+        "heading": "What acting today actually requires",
+        "off": [
+          "The mature response to our own weakness is not to promise harder but to arrange things so that promising is not required."
+        ],
+        "valueAdd": [
+          "Keywords: commitment device, Ulysses contract, sunset clause, institutional memory",
+          "Example: a fiscal rule that binds a future finance minister is a society writing a note to its own weaker self",
+          "Theory: Aristotle on habituation — we become courageous by doing courageous acts"
+        ]
+      }
+    ],
+    "tags": [
+      [
+        "Themes",
+        "Ethics, values & character"
+      ],
+      [
+        "Themes",
+        "Time, change & progress"
+      ],
+      [
+        "Themes",
+        "Self, mind & human nature"
+      ],
+      [
+        "Themes",
+        "Governance, democracy & institutions"
+      ],
+      [
+        "Themes",
+        "Environment & sustainability"
+      ]
+    ],
+    "type": "Essay",
+    "vaBank": {
+      "examples": [
+        "Antimicrobial resistance — a cost deferred by every unnecessary prescription and paid by a future patient",
+        "Deferred maintenance of public assets, where the repair bill grows faster than the budget saved"
+      ],
+      "keywords": [
+        "temporal myopia",
+        "tragedy of the horizon",
+        "intertemporal choice",
+        "deferred maintenance"
+      ],
+      "quotes": [
+        "The best time to plant a tree was twenty years ago; the second best time is now — proverb, origin disputed [verify]",
+        "Tomorrow is often the busiest day of the week — proverb, commonly rendered as Spanish [verify]",
+        "We do not inherit the earth from our ancestors, we borrow it from our children — widely quoted, attribution contested [verify]"
+      ],
+      "thinkers": [
+        "Derek Parfit on our obligations to future people and the puzzles they raise"
+      ]
+    }
+  }
+]
