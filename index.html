@@ -1523,9 +1523,12 @@ function byId(a,b){return a.id<b.id?-1:a.id>b.id?1:0;}
    app write and a Claude Code write of the same content are byte-identical and diff cleanly. */
 function buildFiles(){
   var gs4=db.questions.filter(function(q){return q.paper==="GS4";});
-  var files=[["manifest.json",{schemaVersion:db.schemaVersion||1,exported:new Date().toISOString().slice(0,10),
+  // the manifest needs sortKeys too — without it the app writes literal key order while
+  // anything following rule 5 writes sorted order, and the two ping-pong on every save
+  var files=[["manifest.json",sortKeys({schemaVersion:db.schemaVersion||1,
+    exported:new Date().toISOString().slice(0,10),
     taxonomy:"taxonomy.json",papers:{Essay:["essay.json"],GS1:["gs1.json"],GS2:["gs2.json"],GS3:["gs3.json"],
-    GS4:["gs4-theory.json","gs4-case-studies.json"]}}],["taxonomy.json",sortKeys(db.taxonomy)]];
+    GS4:["gs4-theory.json","gs4-case-studies.json"]}})],["taxonomy.json",sortKeys(db.taxonomy)]];
   Object.keys(FILES).forEach(function(p){
     files.push([FILES[p],sortKeys(db.questions.filter(function(q){return q.paper===p;}).sort(byId))]);});
   files.push(["gs4-theory.json",sortKeys(gs4.filter(function(q){return !isCase(q);}).sort(byId))]);

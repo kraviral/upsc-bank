@@ -1,7 +1,5 @@
 {
-  "schemaVersion": 1,
   "exported": "2026-07-30",
-  "taxonomy": "taxonomy.json",
   "papers": {
     "Essay": [
       "essay.json"
@@ -19,5 +17,7 @@
       "gs4-theory.json",
       "gs4-case-studies.json"
     ]
-  }
+  },
+  "schemaVersion": 1,
+  "taxonomy": "taxonomy.json"
 }
