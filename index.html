@@ -898,7 +898,7 @@ function ghReady(){return !!(ghCfg.owner&&ghCfg.repo&&ghCfg.token);}
 var db={taxonomy:{},questions:[]}, current=null, paperFilter="All", query="", addedSinceExport=0;
 var uidCounter=0, fieldRegistry={}, actionRegistry={}, editKey=null, confirmKey=null, pendingArr=null, pendingIdx=-1;
 var openBlocks={}, lastRenderedId=null;
-var editBlocks={}, editAll=false, EDIT=false, prompts=null;
+var editBlocks={}, editAll=false, EDIT=false, prompts=null, navOpen={}, navRenderedWithQuery=false;
 function blockEdit(key){return editAll||!!editBlocks[key];}
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -950,7 +950,32 @@ function matches(q){
 }
 
 /* -------- nav -------- */
+/* The tree is rebuilt from scratch on every render, so open/closed state has to be carried
+   across by hand — otherwise clicking a question snaps every branch you expanded shut.
+   Read from the live DOM rather than a toggle listener: setting .open fires toggle events of
+   its own, and those would overwrite the state we are trying to preserve. */
+function captureNav(){
+  // if the tree on screen was rendered under a search it is force-expanded, and that is not a
+  // user choice — recording it would erase whatever they had actually collapsed
+  if(navRenderedWithQuery) return;
+  var t=$("tree");if(!t) return;
+  t.querySelectorAll("details[data-navkey]").forEach(function(d){
+    navOpen[d.getAttribute("data-navkey")]=d.open;
+  });
+}
+function navDetails(cls,key,dflt){
+  var d=document.createElement("details");
+  d.className=cls;
+  d.setAttribute("data-navkey",key);
+  // a live search expands everything; otherwise an explicit choice beats the default
+  d.open=query?true:(navOpen[key]!==undefined?navOpen[key]:!!dflt);
+  return d;
+}
+function hasCurrent(list){
+  return !!(current&&list.some(function(q){return q.id===current.id;}));
+}
 function renderNav(){
+  captureNav();
   var pw=$("papers");pw.innerHTML="";
   ["All"].concat(PAPERS).forEach(function(p){
     var b=document.createElement("button");b.className="chip";b.textContent=p;
@@ -961,13 +986,13 @@ function renderNav(){
 
   var shown=db.questions.filter(matches);
   var tree=$("tree");tree.innerHTML="";
-  if(!shown.length){tree.innerHTML='<p class="empty">Nothing matches. Add a question, or clear the search.</p>';return;}
+  if(!shown.length){tree.innerHTML='<p class="empty">Nothing matches. Add a question, or clear the search.</p>';navRenderedWithQuery=!!query;return;}
 
   PAPERS.forEach(function(paper){
     var inPaper=shown.filter(function(q){return q.paper===paper;});
     if(!inPaper.length) return;
     var tax=db.taxonomy[paper]||{};
-    var pd=document.createElement("details");pd.className="paper";pd.open=(paperFilter===paper)||!!query;
+    var pd=navDetails("paper",paper,(paperFilter===paper)||hasCurrent(inPaper));
     pd.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(paper)+'<span class="cnt">'+inPaper.length+'</span></summary>';
 
     var placed={},theory=inPaper.filter(function(q){return !isCase(q);}),cases=inPaper.filter(isCase);
@@ -977,12 +1002,12 @@ function renderNav(){
       var subs=tax[topic]||[];
       var inTopic=theory.filter(function(q){return (q.tags||[]).some(function(t){return t[0]===topic;});});
       if(!inTopic.length) return;
-      var td=document.createElement("details");td.className="topic";td.open=!!query;
+      var td=navDetails("topic",paper+"\u203a"+topic,hasCurrent(inTopic));
       td.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(topic)+'<span class="cnt">'+inTopic.length+'</span></summary>';
       subs.forEach(function(sub){
         var inSub=theory.filter(function(q){return (q.tags||[]).some(function(t){return t[0]===topic&&t[1]===sub;});});
         if(!inSub.length) return;
-        var sd=document.createElement("details");sd.className="sub";sd.open=!!query;
+        var sd=navDetails("sub",paper+"\u203a"+topic+"\u203a"+sub,hasCurrent(inSub));
         sd.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(sub)+'<span class="cnt">'+inSub.length+'</span></summary>';
         inSub.forEach(function(q){placed[q.id]=1;sd.appendChild(qBtn(q));});
         td.appendChild(sd);
@@ -996,7 +1021,7 @@ function renderNav(){
       (tax[CS]||[]).forEach(function(sub){
         var inSub=cases.filter(function(q){return (q.tags||[]).some(function(t){return t[0]===CS&&t[1]===sub;});});
         if(!inSub.length) return;
-        var sd=document.createElement("details");sd.className="topic";sd.open=!!query;
+        var sd=navDetails("topic",paper+"\u203a"+CS+"\u203a"+sub,hasCurrent(inSub));
         sd.innerHTML='<summary><span class="caret">\u25b8</span>'+esc(sub)+'<span class="cnt">'+inSub.length+'</span></summary>';
         inSub.forEach(function(q){placed[q.id]=1;sd.appendChild(qBtn(q));});
         pd.appendChild(sd);
@@ -1005,13 +1030,14 @@ function renderNav(){
 
     var loose=inPaper.filter(function(q){return !placed[q.id];});
     if(loose.length){
-      var od=document.createElement("details");od.className="topic";od.open=!!query;
+      var od=navDetails("topic",paper+"\u203a__unfiled",hasCurrent(loose));
       od.innerHTML='<summary><span class="caret">\u25b8</span>Unfiled<span class="cnt">'+loose.length+'</span></summary>';
       loose.forEach(function(q){od.appendChild(qBtn(q));});
       pd.appendChild(od);
     }
     tree.appendChild(pd);
   });
+  navRenderedWithQuery=!!query;
 }
 function qBtn(q){
   var b=document.createElement("button");b.className="qbtn";
