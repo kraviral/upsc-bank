@@ -1657,7 +1657,9 @@ function openSaveDlg(){
     '<div class="ghfiles">'+(files.length?files.map(function(f){return esc(f.path);}).join("<br>")
       :"Nothing has changed since the last save.")+'</div>'+
     '<div class="dlgrow"><button class="tool" id="ghCfgBtn">Connection</button>'+
-    '<button class="tool" id="ghDlBtn">Download files instead</button></div>';
+    '<button class="tool" id="ghDlBtn">Download files instead</button>'+
+    (dirty?'<div class="spacer"></div><button class="tool" id="ghDiscard">Discard local draft</button>':'')+
+    '</div>';
   openDlg("Save",files.length?(files.length+" file"+(files.length===1?"":"s")+" to write."):"Up to date.",
     body,files.length?"Commit":null,async function(){
       var b=$("dlgAct");b.disabled=true;b.textContent="Saving…";
@@ -1687,6 +1689,22 @@ function openSaveDlg(){
     });
   $("ghCfgBtn").onclick=function(){openGhSetup();};
   $("ghDlBtn").onclick=function(){downloadAll();dlg.close();};
+  // the other half of the dirty flag: a draft you can see warned about but not throw away
+  // is a draft that silently shadows the repo forever
+  var disc=$("ghDiscard");
+  if(disc) disc.onclick=function(){
+    if(disc.getAttribute("data-armed")!=="1"){
+      disc.setAttribute("data-armed","1");disc.textContent="Discard — really?";
+      $("dlgMsg").className="msg";
+      $("dlgMsg").textContent="Throws away every unsaved change in this browser and reloads from the repo. The repo copy is not touched.";
+      return;
+    }
+    try{
+      localStorage.removeItem(KEY);
+      if(KEY!==LEGACY_KEY) localStorage.removeItem(LEGACY_KEY);
+    }catch(e){}
+    location.reload();
+  };
 }
 $("saveBtn").onclick=function(){
   if(!ghReady()){openGhSetup();return;}
