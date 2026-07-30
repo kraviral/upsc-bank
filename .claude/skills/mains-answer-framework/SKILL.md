@@ -62,6 +62,8 @@ Run this check on every question:
 
 One core demand still needs 3–4 sub-headings. "Evaluate the challenges" answered as three kinds of challenge is a list, not an answer.
 
+Where a paper file mandates a fixed body sequence — a GS4 case study, or a question with labelled sub-parts — **that sequence governs and this check adds nothing to it**. The sequence already satisfies the check: the course of action *is* the way forward, and the decision *is* the verdict.
+
 ### Under each sub-heading
 
 Give all four of:
