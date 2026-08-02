@@ -29,7 +29,7 @@ main{display:grid;grid-template-columns:288px minmax(0,1fr)}
 .search{width:100%;font-size:13px;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink);margin-bottom:10px;font-family:var(--body)}
 .papers{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px}
 .chip{font-family:var(--mono);font-size:10px;padding:3px 8px;border:1px solid var(--rule);border-radius:99px;cursor:pointer;color:var(--ink2);background:none}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.chip[aria-pressed="true"],.chip.on{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 
 .tree details{margin-bottom:1px}
 .tree summary{cursor:pointer;list-style:none;padding:4px 4px;font-size:12.5px;color:var(--ink2);display:flex;gap:6px;align-items:baseline;border-radius:2px}
@@ -213,11 +213,13 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .badge.done{border-color:var(--margin);color:var(--margin)}
 .filters{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
 .filters .chip{font-size:9.5px;padding:3px 7px}
+.homepapers{margin:0 0 16px}
+.homepapers .chip{font-size:10px;padding:3px 9px}
+.chipn{margin-left:5px;opacity:.6}
 .collide{font-size:12.5px;color:var(--margin);margin:8px 0 0}
 .collide ul{margin:4px 0 0;padding-left:17px}
 .ppick{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
 .ppick .chip{font-size:10.5px;padding:4px 9px}
-.ppick .chip.on{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .dangerzone{margin:24px 0 40px;padding-top:14px;border-top:1px solid var(--rule);max-width:74ch}
 .csband{margin:10px 0 2px 9px;padding-top:7px;border-top:1px dashed var(--margin);font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--margin)}
 .src{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
@@ -1504,6 +1506,14 @@ function renderHome(){
           '<button class="chip'+(homeGroup==="year"?" on":"")+'" data-hg="year">by year</button>'+
         '</div></div>';
 
+  h+='<div class="filters homepapers">';
+  ["All"].concat(PAPERS).forEach(function(p){
+    var n=(p==="All")?qs.length:qs.filter(function(x){return x.paper===p;}).length;
+    h+='<button class="chip'+(paperFilter===p?" on":"")+'" data-hp="'+esc(p)+'">'+esc(p)+
+       (p!=="All"&&n?'<span class="chipn">'+n+'</span>':'')+'</button>';
+  });
+  h+='</div>';
+
   if(!qs.length){
     h+='<p class="empty">Nothing matches the current filters.</p></div>';
     s.innerHTML=h; wireHome(s); return;
@@ -1558,6 +1568,10 @@ function qRow(q){
 function wireHome(s){
   s.querySelectorAll("[data-hg]").forEach(function(b){
     b.onclick=function(){homeGroup=b.getAttribute("data-hg");renderHome();};
+  });
+  // shares paperFilter with the sidebar chips, so the two never disagree
+  s.querySelectorAll("[data-hp]").forEach(function(b){
+    b.onclick=function(){paperFilter=b.getAttribute("data-hp");openTheme=null;renderNav();renderHome();};
   });
   s.querySelectorAll("[data-theme]").forEach(function(b){
     b.onclick=function(){var k=b.getAttribute("data-theme");openTheme=(openTheme===k?null:k);renderHome();};
