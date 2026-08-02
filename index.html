@@ -1938,11 +1938,15 @@ async function loadPrompts(){
   if(files){
     db=files;srcLabel="repo";
     if(draft){
+      // Index by id, and APPEND rather than unshift. Unshifting mid-loop shifted every
+      // element by one and invalidated every index already recorded, so the next "replace"
+      // wrote over an innocent question and left the intended one behind as a duplicate —
+      // it both duplicated and silently destroyed. Appending keeps every index valid.
       var have={},extra=0;
       db.questions.forEach(function(q,i){have[q.id]=i;});
       draft.questions.forEach(function(q){
-        if(have[q.id]!==undefined) db.questions[have[q.id]]=q;
-        else {db.questions.unshift(q);extra++;}
+        if(have[q.id]!==undefined){ db.questions[have[q.id]]=q; }
+        else { have[q.id]=db.questions.length; db.questions.push(q); extra++; }
       });
       Object.keys(draft.taxonomy||{}).forEach(function(p){
         db.taxonomy[p]=db.taxonomy[p]||{};
@@ -1957,6 +1961,19 @@ async function loadPrompts(){
   else { db=JSON.parse($("seed").textContent);srcLabel="seed";await store.write(db,false); }
 
   db.taxonomy=db.taxonomy||{};db.questions=db.questions||[];
+  // Safety net: a duplicate id means something upstream went wrong. Keep the first,
+  // report the rest, rather than carrying a corrupt bank forward silently.
+  (function(){
+    var seen={},dups=[],keep=[];
+    db.questions.forEach(function(q){
+      if(seen[q.id]){dups.push(q.id);return;}
+      seen[q.id]=1;keep.push(q);
+    });
+    if(dups.length){
+      db.questions=keep;
+      setTimeout(function(){toast("Dropped "+dups.length+" duplicate question"+(dups.length===1?"":"s")+" on load — save to clean the files.");},800);
+    }
+  })();
   if(ghReady()){
     try{ baseSha=await ghHeadSha(); }
     catch(e){ toast("GitHub is configured but unreachable — you can still edit; saving will retry."); }

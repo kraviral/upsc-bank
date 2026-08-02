@@ -1,402 +1,449 @@
 [
   {
-    "caption": "Ethics education stops at Knowing; example and experience carry it to Being — sequential, not rival.",
-    "conclusions": [
+    "answers": [
       {
-        "text": "Example is not the main thing in influencing others; it is the only thing [verify: commonly attributed to Schweitzer]. Yet the example must first be recognised as worthy — and that recognition is taught.",
-        "type": "Quote-based"
-      },
-      {
-        "text": "Aristotle's settlement holds: virtue is a habit, and habits need both a rule to begin with and repetition to endure. Ethics education should build the reflex of asking the question, not transmit answers.",
-        "type": "Theory-linkage + action"
-      },
-      {
-        "text": "Ambedkar warned that constitutional morality must be cultivated, not assumed. Institutions that teach values but model their opposite produce officers fluent in ethics and empty of it.",
-        "type": "Broader goal"
+        "caption": "Ethics education stops at Knowing; example and experience carry it to Being — sequential, not rival.",
+        "conclusions": [
+          {
+            "text": "Example is not the main thing in influencing others; it is the only thing [verify: commonly attributed to Schweitzer]. Yet the example must first be recognised as worthy — and that recognition is taught.",
+            "type": "Quote-based"
+          },
+          {
+            "text": "Aristotle's settlement holds: virtue is a habit, and habits need both a rule to begin with and repetition to endure. Ethics education should build the reflex of asking the question, not transmit answers.",
+            "type": "Theory-linkage + action"
+          },
+          {
+            "text": "Ambedkar warned that constitutional morality must be cultivated, not assumed. Institutions that teach values but model their opposite produce officers fluent in ethics and empty of it.",
+            "type": "Broader goal"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Sources of ethics",
+            "Moral development",
+            "Role of exemplars",
+            "Habituation"
+          ],
+          "demands": [
+            "Test the claim that ethics cannot be taught",
+            "Test the claim that it is internalized via experience and example",
+            "State and defend your own position"
+          ],
+          "directive": "“Do you agree” — a stated verdict is compulsory. “Justify” — defend it with reasoning, not assertion.",
+          "hidden": "The claim conflates teaching ethical reasoning (largely teachable) with producing ethical conduct (largely habituated). Splitting these is what lifts the answer. The unstated application is civil services training.",
+          "limit": "10 marks / 150 words"
+        },
+        "diagram": "   TAUGHT                          INTERNALIZED\n ---------------+              +------------------\n                |              |\n   KNOWING -----+--> FEELING --+--> DOING --> BEING\n   (Head)       |   (Heart)    |   (Hand)   (Character)\n                |              |\n  instruction,  |  role models,|  practice,\n  reasoning,    |  mentorship  |  cost of\n  vocabulary    |              |  choice",
+        "generatedAt": null,
+        "id": "a1",
+        "intros": [
+          {
+            "text": "जानामि धर्मं न च मे प्रवृत्तिः, जानाम्यधर्मं न च मे निवृत्तिः — “I know what is right, yet feel no urge to do it.” [verify source] Duryodhana had the same preceptor as the Pandavas: identical instruction, opposite conduct.",
+            "type": "Sanskrit shloka"
+          },
+          {
+            "text": "Aristotle held that we become just by doing just acts, not by learning what justice is — virtue is acquired like a craft, through practice under a master. The statement echoes this: ethics is caught more than taught.",
+            "type": "Theory-linkage"
+          },
+          {
+            "text": "पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय — “The world died reading books, yet none became wise.” Moral literacy is not moral character; the question is whether instruction is therefore useless, or merely insufficient.",
+            "type": "Doha (Kabir)"
+          }
+        ],
+        "model": "imported",
+        "pitfalls": [
+          "Sitting on the fence — “Do you agree” without a verdict sentence loses the directive marks outright.",
+          "Reading “taught” as “classroom only” makes the whole answer a strawman fight.",
+          "Never leaving philosophy — Aristotle and Kohlberg earn the frame; LBSNAA and the officer-mentor earn the marks."
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Head → Heart → Hand",
+                "points": [
+                  "Moral knowledge ≠ moral motivation — the knowing–doing gap. Every corrupt official knows the Conduct Rules verbatim.",
+                  "Values are absorbed pre-cognitively through socialization — Gandhi traced his truthfulness to the Harishchandra play, not to law school.",
+                  "Observational learning (Bandura) — a probationer copies what the DM actually does in a crisis, not the training syllabus.",
+                  "Codified ethics decays into compliance — ethical fading, integrity replaced by box-ticking."
+                ],
+                "why": "Teaching reliably reaches the Head; the gap opens after that."
+              },
+              {
+                "name": "Sources of ethics — Family, Peers, Religion, Education, Law, Media, Culture",
+                "points": [
+                  "Family and religion instil values years before any formal ethics course begins.",
+                  "Peer conduct and organisational culture override the syllabus once in service — the DM's actual behaviour outweighs the training manual.",
+                  "Media and popular culture normalise shortcuts faster than a classroom can correct them.",
+                  "Law can mandate compliance, but rule-following under threat of punishment is not the same as internalised ethics."
+                ],
+                "why": "Classroom instruction is one channel among seven, competing for weight with forces that act far earlier and longer."
+              },
+              {
+                "name": "Barriers lens — Individual → Institutional → Systemic → Societal",
+                "points": [
+                  "Individual — temperament and early habituation predate any ethics course.",
+                  "Institutional — an organisation that rewards target-chasing teaches the opposite lesson to its own code of conduct.",
+                  "Systemic — ACR and promotion incentives can outweigh classroom ideals in practice.",
+                  "Societal — a culture that tolerates jugaad normalises the very shortcuts ethics classes warn against."
+                ],
+                "why": "Shows the gap opens at every level, not only inside the classroom."
+              }
+            ],
+            "heading": "The statement holds — instruction alone does not produce conduct",
+            "off": [
+              "Ethics is dispositional — it shows up under pressure, and no classroom can simulate the cost of doing right. Experience is not just a teacher; it is the only examiner."
+            ],
+            "valueAdd": [
+              "Keywords: ethical fading, moral muteness, knowing–doing gap",
+              "Theory: Bandura's social learning; Aristotle on habituation"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Kohlberg's stages",
+                "points": [
+                  "Teaching supplies moral sensitivity — you cannot internalize a dilemma you never noticed.",
+                  "It gives vocabulary and reasoning tools to defend a stand — utilitarian, deontological, care-based.",
+                  "Constitutional morality, in Ambedkar's framing, is not a natural sentiment — it has to be cultivated. [verify wording] Art. 51A; NEP 2020.",
+                  "Experience without instruction is unreliable — the same posting produced both Satyendra Dubey and colleagues who stayed silent."
+                ],
+                "why": "Structured dilemma-discussion moves reasoning from conventional rule-following to post-conventional principle."
+              },
+              {
+                "name": "Values ladder — Personal → Professional → Constitutional → Universal",
+                "points": [
+                  "Personal values are largely pre-formed — the concession the statement is right about.",
+                  "But professional value systems (Nolan principles, Conduct Rules) are explicit taught curricula, not caught by accident.",
+                  "Constitutional morality is a taught legal-philosophical concept — Ambedkar had to argue it into existence; it was never self-evident.",
+                  "Universal principles of rights and justice are transmitted through structured moral education across civilisations, not stumbled upon."
+                ],
+                "why": "Shows teaching moves reasoning from pre-formed personal preference to deliberately constructed constitutional and universal principle."
+              },
+              {
+                "name": "Elaboration Likelihood — central vs peripheral route",
+                "points": [
+                  "Central-route processing — structured dilemma debate — produces conviction that resists counter-pressure, unlike a copied habit.",
+                  "LBSNAA's case-method training is built for exactly this: deliberate reasoning, not mimicry.",
+                  "A reasoned position can be defended and adapted to a novel dilemma; a copied habit cannot generalise beyond the situation it was learned in.",
+                  "Peripheral-route learning (imitation) is fast but fragile — it collapses the moment the exemplar disappears or contradicts itself."
+                ],
+                "why": "Teaching engages the central, reasoned route, which produces attitude change that survives contrary pressure better than mere imitation."
+              }
+            ],
+            "heading": "But the claim overstates itself — teaching does real work",
+            "off": [
+              "The statement is self-defeating — “learning by example” is itself a pedagogy. It relocates the teacher from the classroom to the corridor; it does not abolish teaching."
+            ],
+            "valueAdd": [
+              "Anchor: Ambedkar on constitutional morality; Art. 51A",
+              "Theory: Kohlberg; Dewey's learning by doing"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Rest's Four Component Model",
+                "points": [
+                  "Moral sensitivity (recognising the issue) — TAUGHT",
+                  "Moral judgement (deciding what is right) — TAUGHT",
+                  "Moral motivation (prioritising it over self-interest) — EXAMPLE",
+                  "Moral character (acting despite cost) — EXPERIENCE",
+                  "Verdict: agree in part. Instruction builds the map; experience and example supply the will to walk it.",
+                  "Application: pair classroom ethics with case dilemmas, field immersion and mentorship by officers of demonstrated integrity."
+                ],
+                "why": "Resolves the question cleanly instead of splitting the difference."
+              },
+              {
+                "name": "Timeframe — Immediate → Short term → Long term",
+                "points": [
+                  "Immediate — classroom curriculum builds moral vocabulary and sensitivity before any posting begins.",
+                  "Short term — structured case-dilemma discussion and simulated field exercises attach reasoning to realistic pressure.",
+                  "Long term — mentorship by officers of demonstrated integrity and repeated exposure to real dilemmas habituate character.",
+                  "Verdict: a sequence, not a single method, produces the ethical officer."
+                ],
+                "why": "Turns the division-of-labour verdict into an implementable training sequence."
+              },
+              {
+                "name": "Private conscience → Professional duty → Constitutional obligation",
+                "points": [
+                  "Private conscience — shaped by family and experience, largely outside institutional teaching's reach.",
+                  "Professional duty — explicitly taught through codes, rules and training, where classroom instruction does its clearest work.",
+                  "Constitutional obligation — needs both taught doctrine (constitutional morality) and habituated commitment sustained by example.",
+                  "Verdict: the debate feels unresolved because both sides are right about a different level."
+                ],
+                "why": "Maps the division-of-labour verdict onto three levels of obligation, each cultivated differently."
+              }
+            ],
+            "heading": "My position — a division of labour, not a contest",
+            "off": [
+              "Everyday anchor: a child learns honesty from watching a parent return excess change; the textbook only gives it a name."
+            ],
+            "valueAdd": [
+              "Keywords: hidden curriculum, moral imagination",
+              "Anchor: Mission Karmayogi, LBSNAA training design"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Ekalavya learning before a statue",
+            "E. Sreedharan's delivery culture spreading by imitation"
+          ],
+          "keywords": [
+            "hidden curriculum",
+            "moral imagination",
+            "knowing–doing gap"
+          ],
+          "quotes": [
+            "Socrates on the unexamined life",
+            "Gandhi: an ounce of practice outweighs a thousand words [verify]"
+          ],
+          "thinkers": [
+            "Carol Gilligan — ethics of care is learned inside relationships"
+          ]
+        }
       }
     ],
-    "decode": {
-      "concepts": [
-        "Sources of ethics",
-        "Moral development",
-        "Role of exemplars",
-        "Habituation"
-      ],
-      "demands": [
-        "Test the claim that ethics cannot be taught",
-        "Test the claim that it is internalized via experience and example",
-        "State and defend your own position"
-      ],
-      "directive": "“Do you agree” — a stated verdict is compulsory. “Justify” — defend it with reasoning, not assertion.",
-      "hidden": "The claim conflates teaching ethical reasoning (largely teachable) with producing ethical conduct (largely habituated). Splitting these is what lifts the answer. The unstated application is civil services training.",
-      "limit": "10 marks / 150 words"
-    },
-    "diagram": "   TAUGHT                          INTERNALIZED\n ---------------+              +------------------\n                |              |\n   KNOWING -----+--> FEELING --+--> DOING --> BEING\n   (Head)       |   (Heart)    |   (Hand)   (Character)\n                |              |\n  instruction,  |  role models,|  practice,\n  reasoning,    |  mentorship  |  cost of\n  vocabulary    |              |  choice",
     "id": "ethics-taught",
-    "intros": [
-      {
-        "text": "जानामि धर्मं न च मे प्रवृत्तिः, जानाम्यधर्मं न च मे निवृत्तिः — “I know what is right, yet feel no urge to do it.” [verify source] Duryodhana had the same preceptor as the Pandavas: identical instruction, opposite conduct.",
-        "type": "Sanskrit shloka"
-      },
-      {
-        "text": "Aristotle held that we become just by doing just acts, not by learning what justice is — virtue is acquired like a craft, through practice under a master. The statement echoes this: ethics is caught more than taught.",
-        "type": "Theory-linkage"
-      },
-      {
-        "text": "पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय — “The world died reading books, yet none became wise.” Moral literacy is not moral character; the question is whether instruction is therefore useless, or merely insufficient.",
-        "type": "Doha (Kabir)"
-      }
-    ],
+    "mine": {
+      "conclusion": "",
+      "intro": "",
+      "sections": []
+    },
     "notes": "",
     "paper": "GS4",
-    "pitfalls": [
-      "Sitting on the fence — “Do you agree” without a verdict sentence loses the directive marks outright.",
-      "Reading “taught” as “classroom only” makes the whole answer a strawman fight.",
-      "Never leaving philosophy — Aristotle and Kohlberg earn the frame; LBSNAA and the officer-mentor earn the marks."
-    ],
     "question": "“Ethics cannot be taught, only internalized through experience and example.” Do you agree? Justify your views.",
-    "sections": [
-      {
-        "frameworks": [
-          {
-            "name": "Head → Heart → Hand",
-            "points": [
-              "Moral knowledge ≠ moral motivation — the knowing–doing gap. Every corrupt official knows the Conduct Rules verbatim.",
-              "Values are absorbed pre-cognitively through socialization — Gandhi traced his truthfulness to the Harishchandra play, not to law school.",
-              "Observational learning (Bandura) — a probationer copies what the DM actually does in a crisis, not the training syllabus.",
-              "Codified ethics decays into compliance — ethical fading, integrity replaced by box-ticking."
-            ],
-            "why": "Teaching reliably reaches the Head; the gap opens after that."
-          },
-          {
-            "name": "Sources of ethics — Family, Peers, Religion, Education, Law, Media, Culture",
-            "points": [
-              "Family and religion instil values years before any formal ethics course begins.",
-              "Peer conduct and organisational culture override the syllabus once in service — the DM's actual behaviour outweighs the training manual.",
-              "Media and popular culture normalise shortcuts faster than a classroom can correct them.",
-              "Law can mandate compliance, but rule-following under threat of punishment is not the same as internalised ethics."
-            ],
-            "why": "Classroom instruction is one channel among seven, competing for weight with forces that act far earlier and longer."
-          },
-          {
-            "name": "Barriers lens — Individual → Institutional → Systemic → Societal",
-            "points": [
-              "Individual — temperament and early habituation predate any ethics course.",
-              "Institutional — an organisation that rewards target-chasing teaches the opposite lesson to its own code of conduct.",
-              "Systemic — ACR and promotion incentives can outweigh classroom ideals in practice.",
-              "Societal — a culture that tolerates jugaad normalises the very shortcuts ethics classes warn against."
-            ],
-            "why": "Shows the gap opens at every level, not only inside the classroom."
-          }
-        ],
-        "heading": "The statement holds — instruction alone does not produce conduct",
-        "off": [
-          "Ethics is dispositional — it shows up under pressure, and no classroom can simulate the cost of doing right. Experience is not just a teacher; it is the only examiner."
-        ],
-        "valueAdd": [
-          "Keywords: ethical fading, moral muteness, knowing–doing gap",
-          "Theory: Bandura's social learning; Aristotle on habituation"
-        ]
-      },
-      {
-        "frameworks": [
-          {
-            "name": "Kohlberg's stages",
-            "points": [
-              "Teaching supplies moral sensitivity — you cannot internalize a dilemma you never noticed.",
-              "It gives vocabulary and reasoning tools to defend a stand — utilitarian, deontological, care-based.",
-              "Constitutional morality, in Ambedkar's framing, is not a natural sentiment — it has to be cultivated. [verify wording] Art. 51A; NEP 2020.",
-              "Experience without instruction is unreliable — the same posting produced both Satyendra Dubey and colleagues who stayed silent."
-            ],
-            "why": "Structured dilemma-discussion moves reasoning from conventional rule-following to post-conventional principle."
-          },
-          {
-            "name": "Values ladder — Personal → Professional → Constitutional → Universal",
-            "points": [
-              "Personal values are largely pre-formed — the concession the statement is right about.",
-              "But professional value systems (Nolan principles, Conduct Rules) are explicit taught curricula, not caught by accident.",
-              "Constitutional morality is a taught legal-philosophical concept — Ambedkar had to argue it into existence; it was never self-evident.",
-              "Universal principles of rights and justice are transmitted through structured moral education across civilisations, not stumbled upon."
-            ],
-            "why": "Shows teaching moves reasoning from pre-formed personal preference to deliberately constructed constitutional and universal principle."
-          },
-          {
-            "name": "Elaboration Likelihood — central vs peripheral route",
-            "points": [
-              "Central-route processing — structured dilemma debate — produces conviction that resists counter-pressure, unlike a copied habit.",
-              "LBSNAA's case-method training is built for exactly this: deliberate reasoning, not mimicry.",
-              "A reasoned position can be defended and adapted to a novel dilemma; a copied habit cannot generalise beyond the situation it was learned in.",
-              "Peripheral-route learning (imitation) is fast but fragile — it collapses the moment the exemplar disappears or contradicts itself."
-            ],
-            "why": "Teaching engages the central, reasoned route, which produces attitude change that survives contrary pressure better than mere imitation."
-          }
-        ],
-        "heading": "But the claim overstates itself — teaching does real work",
-        "off": [
-          "The statement is self-defeating — “learning by example” is itself a pedagogy. It relocates the teacher from the classroom to the corridor; it does not abolish teaching."
-        ],
-        "valueAdd": [
-          "Anchor: Ambedkar on constitutional morality; Art. 51A",
-          "Theory: Kohlberg; Dewey's learning by doing"
-        ]
-      },
-      {
-        "frameworks": [
-          {
-            "name": "Rest's Four Component Model",
-            "points": [
-              "Moral sensitivity (recognising the issue) — TAUGHT",
-              "Moral judgement (deciding what is right) — TAUGHT",
-              "Moral motivation (prioritising it over self-interest) — EXAMPLE",
-              "Moral character (acting despite cost) — EXPERIENCE",
-              "Verdict: agree in part. Instruction builds the map; experience and example supply the will to walk it.",
-              "Application: pair classroom ethics with case dilemmas, field immersion and mentorship by officers of demonstrated integrity."
-            ],
-            "why": "Resolves the question cleanly instead of splitting the difference."
-          },
-          {
-            "name": "Timeframe — Immediate → Short term → Long term",
-            "points": [
-              "Immediate — classroom curriculum builds moral vocabulary and sensitivity before any posting begins.",
-              "Short term — structured case-dilemma discussion and simulated field exercises attach reasoning to realistic pressure.",
-              "Long term — mentorship by officers of demonstrated integrity and repeated exposure to real dilemmas habituate character.",
-              "Verdict: a sequence, not a single method, produces the ethical officer."
-            ],
-            "why": "Turns the division-of-labour verdict into an implementable training sequence."
-          },
-          {
-            "name": "Private conscience → Professional duty → Constitutional obligation",
-            "points": [
-              "Private conscience — shaped by family and experience, largely outside institutional teaching's reach.",
-              "Professional duty — explicitly taught through codes, rules and training, where classroom instruction does its clearest work.",
-              "Constitutional obligation — needs both taught doctrine (constitutional morality) and habituated commitment sustained by example.",
-              "Verdict: the debate feels unresolved because both sides are right about a different level."
-            ],
-            "why": "Maps the division-of-labour verdict onto three levels of obligation, each cultivated differently."
-          }
-        ],
-        "heading": "My position — a division of labour, not a contest",
-        "off": [
-          "Everyday anchor: a child learns honesty from watching a parent return excess change; the textbook only gives it a name."
-        ],
-        "valueAdd": [
-          "Keywords: hidden curriculum, moral imagination",
-          "Anchor: Mission Karmayogi, LBSNAA training design"
-        ]
-      }
-    ],
+    "source": "Test series",
     "tags": [
       [
         "Foundations",
         "Ethics & Human Interface"
       ]
     ],
-    "taxonomyVersion": 1,
-    "type": "Quote-based",
-    "vaBank": {
-      "examples": [
-        "Ekalavya learning before a statue",
-        "E. Sreedharan's delivery culture spreading by imitation"
-      ],
-      "keywords": [
-        "hidden curriculum",
-        "moral imagination",
-        "knowing–doing gap"
-      ],
-      "quotes": [
-        "Socrates on the unexamined life",
-        "Gandhi: an ounce of practice outweighs a thousand words [verify]"
-      ],
-      "thinkers": [
-        "Carol Gilligan — ethics of care is learned inside relationships"
-      ]
-    }
+    "type": "Quote-based"
   },
   {
-    "caption": "Scarcity forces a structured hybrid; residual unmet need must be made visible rather than hidden",
-    "conclusions": [
+    "answers": [
       {
-        "text": "Aristotle’s golden mean suggests neither rigid justice nor unbounded care, but a context-sensitive equilibrium calibrated to available resources and constitutional ends.",
-        "type": "theory-linkage"
-      },
-      {
-        "text": "Balancing the two frameworks advances the Preambular commitment to justice—social, economic and political—while remaining faithful to the rule of law under Article 14.",
-        "type": "constitutional-anchor"
-      },
-      {
-        "text": "The ideal administrator treats justice as the non-negotiable skeleton and care as the limited but real soul, converting scarcity from a moral dead-end into a disciplined, accountable practice of public service.",
-        "type": "aspirational"
+        "caption": "Scarcity forces a structured hybrid; residual unmet need must be made visible rather than hidden",
+        "conclusions": [
+          {
+            "text": "Aristotle’s golden mean suggests neither rigid justice nor unbounded care, but a context-sensitive equilibrium calibrated to available resources and constitutional ends.",
+            "type": "theory-linkage"
+          },
+          {
+            "text": "Balancing the two frameworks advances the Preambular commitment to justice—social, economic and political—while remaining faithful to the rule of law under Article 14.",
+            "type": "constitutional-anchor"
+          },
+          {
+            "text": "The ideal administrator treats justice as the non-negotiable skeleton and care as the limited but real soul, converting scarcity from a moral dead-end into a disciplined, accountable practice of public service.",
+            "type": "aspirational"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Ethics of Justice",
+            "Ethics of Care",
+            "Administrative discretion under scarcity",
+            "Public service values"
+          ],
+          "demands": [
+            "Core: identify and assess the challenges of balancing Ethics of Justice with Ethics of Care under resource constraints",
+            "Enabling: establish what each framework distinctly contributes so the critique has substance to push against",
+            "Enabling: treat resource scarcity as a structural multiplier rather than a background clause",
+            "Enabling: offer a practical way forward on how an administrator can manage the tension"
+          ],
+          "directive": "Evaluate requires a reasoned assessment of difficulties and trade-offs, culminating in a clear position on how the balance can be managed",
+          "hidden": "Most answers list challenges in isolation and never establish the prior contributions of each ethic or supply a workable resolution; scarcity is treated as colour rather than the force that turns complementarity into conflict",
+          "limit": "10 marks / 150 words"
+        },
+        "diagram": "Justice (rules)\n     |\n     v\nResource Constraint ---> Structured Hybrid Window\n     |\n     v\nCare (context)\n     |\n     v\nUpward feedback of unmet need",
+        "generatedAt": null,
+        "id": "a1",
+        "intros": [
+          {
+            "text": "Ethics of Justice supplies the impartial rules, rights and universal procedures that form the structural skeleton of public administration, while Ethics of Care supplies the contextual empathy and relational responsiveness that give it living soul.",
+            "type": "conceptual contrast"
+          },
+          {
+            "text": "In a resource-constrained system the very rules that guarantee justice can starve care, yet pure care without rules risks injustice through favouritism and elite capture.",
+            "type": "paradox"
+          },
+          {
+            "text": "Carol Gilligan’s critique of exclusively justice-oriented moral reasoning reminds us that silencing the voice of care produces an incomplete public ethic; scarcity only sharpens that incompleteness.",
+            "type": "thinker-anchor"
+          }
+        ],
+        "model": "imported",
+        "pitfalls": [
+          "Listing challenges without first establishing what each ethic contributes",
+          "Treating resource scarcity as background colour rather than the structural multiplier",
+          "Ending without a concrete way forward or reasoned position on how the balance is managed"
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Structural versus Relational",
+                "points": [
+                  "Justice anchors predictability, equal treatment and protection against arbitrary power",
+                  "Care anchors responsiveness to particular vulnerability that formal criteria often miss",
+                  "Together they prevent both rigid impersonalism and unbounded particularism"
+                ],
+                "why": "Separates the formal architecture each ethic supplies so their later tension is intelligible"
+              },
+              {
+                "name": "Deontology versus Relational Ethics",
+                "points": [
+                  "Justice operates through universalisable rules and rights claims",
+                  "Care operates through concrete relationships and contextual responsibilities",
+                  "An administrator needs both logics because citizens present both as rights-holders and as persons in need"
+                ],
+                "why": "Locates each framework in its primary moral logic rather than treating them as interchangeable virtues"
+              },
+              {
+                "name": "Skeleton versus Soul Metaphor",
+                "points": [
+                  "A skeleton without soul is a lifeless structure that fails to heal human distress",
+                  "A soul without skeleton dissipates into inconsistency and capture",
+                  "Public administration requires the rigidity of form and the flexibility of responsiveness"
+                ],
+                "why": "Uses the question’s own imagery to show why neither can stand alone"
+              }
+            ],
+            "heading": "Distinct contributions of Justice and Care to public administration",
+            "off": [
+              "The assertion in the question is not rhetorical; without prior clarity on what each contributes, evaluation of challenges collapses into vague preference",
+              "Justice without care produces legitimacy deficits; care without justice produces fairness deficits"
+            ],
+            "valueAdd": [
+              "Keywords: complementary ethics, structural impartiality, relational responsiveness",
+              "Theory: Carol Gilligan’s Ethics of Care set against justice-centric reasoning",
+              "Anchor: Article 14 equality before law read with Directive Principles of social justice",
+              "Example: Eligibility norms in a welfare scheme (justice) versus hardship exceptions for the undocumented needy (care)"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Individual–Institutional–Systemic",
+                "points": [
+                  "Personal cognitive dissonance when rule-bound denial collides with visible human need",
+                  "Institutional audit culture that treats discretionary care as procedural irregularity",
+                  "Systemic scarcity that converts every care allocation into a justice claim by those excluded"
+                ],
+                "why": "Shows how scarcity multiplies the tension at every level the administrator actually occupies"
+              },
+              {
+                "name": "Rule versus Discretion Spectrum",
+                "points": [
+                  "Strict equality under limited budgets systematically under-serves those outside formal criteria",
+                  "Contextual discretion for one case invites charges of partiality and opens pathways to capture",
+                  "Accountability systems measure compliance far more readily than relational outcomes"
+                ],
+                "why": "Captures the procedural conflict that resource pressure intensifies"
+              },
+              {
+                "name": "Short-term Efficiency versus Long-term Legitimacy",
+                "points": [
+                  "Rule-bound allocation maximises immediate throughput and audit safety",
+                  "Care-oriented responses consume time and emotional labour yet build citizen trust",
+                  "Repeated denial of care under scarcity erodes the perceived legitimacy of the justice framework itself"
+                ],
+                "why": "Highlights the temporal trade-off that scarcity forces into every decision"
+              }
+            ],
+            "heading": "Challenges of balancing the two under resource constraints",
+            "off": [
+              "Scarcity is not colour; it is the force that turns two complementary ethics into competing claimants for the same limited pool",
+              "Administrators often retreat into moral muteness, hiding behind procedure to avoid the emotional cost of visible suffering"
+            ],
+            "valueAdd": [
+              "Keywords: zero-sum allocation, moral muteness, ethical fading, dharma-sankat, bounded ethicality",
+              "Theory: Kidder’s justice-versus-mercy paradigm applied to public resource allocation",
+              "Anchor: Constitutional morality requires both formal equality and substantive social justice",
+              "Example: Front-line officer denying relief to an ineligible yet needy family solely to uphold eligibility norms"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Structured Hybrid Approach",
+                "points": [
+                  "Retain rule-based allocation as the default so the justice skeleton remains intact",
+                  "Create a small, pre-defined, transparent window for documented care exceptions",
+                  "Require every discretionary decision to carry reasons and remain within a fixed ceiling"
+                ],
+                "why": "Supplies a concrete institutional response rather than an abstract call for balance"
+              },
+              {
+                "name": "Personal–Professional–Constitutional",
+                "points": [
+                  "Personal integrity supplies the courage to record inconvenient hardship cases",
+                  "Professional duty requires that exceptions never become unaccountable patronage",
+                  "Constitutional morality keeps both Article 14 equality and social-justice directives in view"
+                ],
+                "why": "Aligns the administrator’s internal resources with the institutional and constitutional frame"
+              },
+              {
+                "name": "Immediate–Short–Long Sequence",
+                "points": [
+                  "Immediate: document every care exception and place it on a supervisory register",
+                  "Short-term: issue clear internal guidelines defining limited grounds and quantum of exceptions",
+                  "Long-term: aggregate unmet-need data upward so eligibility rules and resource envelopes can be reformed"
+                ],
+                "why": "Converts the way forward into time-bound actions an officer can actually initiate"
+              }
+            ],
+            "heading": "Managing the balance: a practical way forward",
+            "off": [
+              "The workable position is not pure justice or pure care but a structured hybrid that keeps residual injustice and residual care deficit visible rather than hidden",
+              "Personal virtue alone cannot permanently compensate for chronically inadequate resource envelopes"
+            ],
+            "valueAdd": [
+              "Keywords: structured discretion, residual injustice, upward feedback, practical wisdom",
+              "Theory: Aristotelian phronesis applied to the justice–care tension under constraint",
+              "Anchor: Public service values of integrity, impartiality and dedication to public service",
+              "Example: Hardship quotas inside otherwise rule-bound schemes with mandatory documentation and periodic review"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Front-line officer denying relief to an ineligible yet needy family to uphold eligibility norms",
+            "Scholarship seats limited between pure merit and socio-economic need",
+            "Disaster-relief prioritisation between SOP timelines and individual medical urgency"
+          ],
+          "keywords": [
+            "moral myopia",
+            "ethical fading",
+            "cognitive dissonance",
+            "bounded ethicality",
+            "dharma-sankat",
+            "knowing-doing gap",
+            "structured discretion",
+            "residual injustice"
+          ],
+          "quotes": [],
+          "thinkers": [
+            "Carol Gilligan",
+            "Nel Noddings"
+          ]
+        }
       }
     ],
-    "decode": {
-      "concepts": [
-        "Ethics of Justice",
-        "Ethics of Care",
-        "Administrative discretion under scarcity",
-        "Public service values"
-      ],
-      "demands": [
-        "Core: identify and assess the challenges of balancing Ethics of Justice with Ethics of Care under resource constraints",
-        "Enabling: establish what each framework distinctly contributes so the critique has substance to push against",
-        "Enabling: treat resource scarcity as a structural multiplier rather than a background clause",
-        "Enabling: offer a practical way forward on how an administrator can manage the tension"
-      ],
-      "directive": "Evaluate requires a reasoned assessment of difficulties and trade-offs, culminating in a clear position on how the balance can be managed",
-      "hidden": "Most answers list challenges in isolation and never establish the prior contributions of each ethic or supply a workable resolution; scarcity is treated as colour rather than the force that turns complementarity into conflict",
-      "limit": "10 marks / 150 words"
-    },
-    "diagram": "Justice (rules)\n     |\n     v\nResource Constraint ---> Structured Hybrid Window\n     |\n     v\nCare (context)\n     |\n     v\nUpward feedback of unmet need",
     "id": "justice-care-balance-resource-challenges",
-    "intros": [
-      {
-        "text": "Ethics of Justice supplies the impartial rules, rights and universal procedures that form the structural skeleton of public administration, while Ethics of Care supplies the contextual empathy and relational responsiveness that give it living soul.",
-        "type": "conceptual contrast"
-      },
-      {
-        "text": "In a resource-constrained system the very rules that guarantee justice can starve care, yet pure care without rules risks injustice through favouritism and elite capture.",
-        "type": "paradox"
-      },
-      {
-        "text": "Carol Gilligan’s critique of exclusively justice-oriented moral reasoning reminds us that silencing the voice of care produces an incomplete public ethic; scarcity only sharpens that incompleteness.",
-        "type": "thinker-anchor"
-      }
-    ],
+    "mine": {
+      "conclusion": "",
+      "intro": "",
+      "sections": []
+    },
     "notes": "",
     "paper": "GS4",
-    "pitfalls": [
-      "Listing challenges without first establishing what each ethic contributes",
-      "Treating resource scarcity as background colour rather than the structural multiplier",
-      "Ending without a concrete way forward or reasoned position on how the balance is managed"
-    ],
     "question": "While 'Ethics of Justice' provides the skeleton of public administration, 'Ethics of Care' provides its soul. Evaluate the challenges an administrator faces when trying to balance these two frameworks in a resource-constrained environment.",
-    "sections": [
-      {
-        "frameworks": [
-          {
-            "name": "Structural versus Relational",
-            "points": [
-              "Justice anchors predictability, equal treatment and protection against arbitrary power",
-              "Care anchors responsiveness to particular vulnerability that formal criteria often miss",
-              "Together they prevent both rigid impersonalism and unbounded particularism"
-            ],
-            "why": "Separates the formal architecture each ethic supplies so their later tension is intelligible"
-          },
-          {
-            "name": "Deontology versus Relational Ethics",
-            "points": [
-              "Justice operates through universalisable rules and rights claims",
-              "Care operates through concrete relationships and contextual responsibilities",
-              "An administrator needs both logics because citizens present both as rights-holders and as persons in need"
-            ],
-            "why": "Locates each framework in its primary moral logic rather than treating them as interchangeable virtues"
-          },
-          {
-            "name": "Skeleton versus Soul Metaphor",
-            "points": [
-              "A skeleton without soul is a lifeless structure that fails to heal human distress",
-              "A soul without skeleton dissipates into inconsistency and capture",
-              "Public administration requires the rigidity of form and the flexibility of responsiveness"
-            ],
-            "why": "Uses the question’s own imagery to show why neither can stand alone"
-          }
-        ],
-        "heading": "Distinct contributions of Justice and Care to public administration",
-        "off": [
-          "The assertion in the question is not rhetorical; without prior clarity on what each contributes, evaluation of challenges collapses into vague preference",
-          "Justice without care produces legitimacy deficits; care without justice produces fairness deficits"
-        ],
-        "valueAdd": [
-          "Keywords: complementary ethics, structural impartiality, relational responsiveness",
-          "Theory: Carol Gilligan’s Ethics of Care set against justice-centric reasoning",
-          "Anchor: Article 14 equality before law read with Directive Principles of social justice",
-          "Example: Eligibility norms in a welfare scheme (justice) versus hardship exceptions for the undocumented needy (care)"
-        ]
-      },
-      {
-        "frameworks": [
-          {
-            "name": "Individual–Institutional–Systemic",
-            "points": [
-              "Personal cognitive dissonance when rule-bound denial collides with visible human need",
-              "Institutional audit culture that treats discretionary care as procedural irregularity",
-              "Systemic scarcity that converts every care allocation into a justice claim by those excluded"
-            ],
-            "why": "Shows how scarcity multiplies the tension at every level the administrator actually occupies"
-          },
-          {
-            "name": "Rule versus Discretion Spectrum",
-            "points": [
-              "Strict equality under limited budgets systematically under-serves those outside formal criteria",
-              "Contextual discretion for one case invites charges of partiality and opens pathways to capture",
-              "Accountability systems measure compliance far more readily than relational outcomes"
-            ],
-            "why": "Captures the procedural conflict that resource pressure intensifies"
-          },
-          {
-            "name": "Short-term Efficiency versus Long-term Legitimacy",
-            "points": [
-              "Rule-bound allocation maximises immediate throughput and audit safety",
-              "Care-oriented responses consume time and emotional labour yet build citizen trust",
-              "Repeated denial of care under scarcity erodes the perceived legitimacy of the justice framework itself"
-            ],
-            "why": "Highlights the temporal trade-off that scarcity forces into every decision"
-          }
-        ],
-        "heading": "Challenges of balancing the two under resource constraints",
-        "off": [
-          "Scarcity is not colour; it is the force that turns two complementary ethics into competing claimants for the same limited pool",
-          "Administrators often retreat into moral muteness, hiding behind procedure to avoid the emotional cost of visible suffering"
-        ],
-        "valueAdd": [
-          "Keywords: zero-sum allocation, moral muteness, ethical fading, dharma-sankat, bounded ethicality",
-          "Theory: Kidder’s justice-versus-mercy paradigm applied to public resource allocation",
-          "Anchor: Constitutional morality requires both formal equality and substantive social justice",
-          "Example: Front-line officer denying relief to an ineligible yet needy family solely to uphold eligibility norms"
-        ]
-      },
-      {
-        "frameworks": [
-          {
-            "name": "Structured Hybrid Approach",
-            "points": [
-              "Retain rule-based allocation as the default so the justice skeleton remains intact",
-              "Create a small, pre-defined, transparent window for documented care exceptions",
-              "Require every discretionary decision to carry reasons and remain within a fixed ceiling"
-            ],
-            "why": "Supplies a concrete institutional response rather than an abstract call for balance"
-          },
-          {
-            "name": "Personal–Professional–Constitutional",
-            "points": [
-              "Personal integrity supplies the courage to record inconvenient hardship cases",
-              "Professional duty requires that exceptions never become unaccountable patronage",
-              "Constitutional morality keeps both Article 14 equality and social-justice directives in view"
-            ],
-            "why": "Aligns the administrator’s internal resources with the institutional and constitutional frame"
-          },
-          {
-            "name": "Immediate–Short–Long Sequence",
-            "points": [
-              "Immediate: document every care exception and place it on a supervisory register",
-              "Short-term: issue clear internal guidelines defining limited grounds and quantum of exceptions",
-              "Long-term: aggregate unmet-need data upward so eligibility rules and resource envelopes can be reformed"
-            ],
-            "why": "Converts the way forward into time-bound actions an officer can actually initiate"
-          }
-        ],
-        "heading": "Managing the balance: a practical way forward",
-        "off": [
-          "The workable position is not pure justice or pure care but a structured hybrid that keeps residual injustice and residual care deficit visible rather than hidden",
-          "Personal virtue alone cannot permanently compensate for chronically inadequate resource envelopes"
-        ],
-        "valueAdd": [
-          "Keywords: structured discretion, residual injustice, upward feedback, practical wisdom",
-          "Theory: Aristotelian phronesis applied to the justice–care tension under constraint",
-          "Anchor: Public service values of integrity, impartiality and dedication to public service",
-          "Example: Hardship quotas inside otherwise rule-bound schemes with mandatory documentation and periodic review"
-        ]
-      }
-    ],
+    "source": "Test series",
     "tags": [
       [
         "Public Administration",
@@ -404,244 +451,6 @@
       ]
     ],
     "type": "Theory/Concept",
-    "vaBank": {
-      "examples": [
-        "Front-line officer denying relief to an ineligible yet needy family to uphold eligibility norms",
-        "Scholarship seats limited between pure merit and socio-economic need",
-        "Disaster-relief prioritisation between SOP timelines and individual medical urgency"
-      ],
-      "keywords": [
-        "moral myopia",
-        "ethical fading",
-        "cognitive dissonance",
-        "bounded ethicality",
-        "dharma-sankat",
-        "knowing-doing gap",
-        "structured discretion",
-        "residual injustice"
-      ],
-      "quotes": [],
-      "thinkers": [
-        "Carol Gilligan",
-        "Nel Noddings"
-      ]
-    },
-    "year": 2024
-  },
-  {
-    "caption": "Scarcity forces a structured hybrid; residual unmet need must be made visible rather than hidden",
-    "conclusions": [
-      {
-        "text": "Aristotle’s golden mean suggests neither rigid justice nor unbounded care, but a context-sensitive equilibrium calibrated to available resources and constitutional ends.",
-        "type": "theory-linkage"
-      },
-      {
-        "text": "Balancing the two frameworks advances the Preambular commitment to justice—social, economic and political—while remaining faithful to the rule of law under Article 14.",
-        "type": "constitutional-anchor"
-      },
-      {
-        "text": "The ideal administrator treats justice as the non-negotiable skeleton and care as the limited but real soul, converting scarcity from a moral dead-end into a disciplined, accountable practice of public service.",
-        "type": "aspirational"
-      }
-    ],
-    "decode": {
-      "concepts": [
-        "Ethics of Justice",
-        "Ethics of Care",
-        "Administrative discretion under scarcity",
-        "Public service values"
-      ],
-      "demands": [
-        "Core: identify and assess the challenges of balancing Ethics of Justice with Ethics of Care under resource constraints",
-        "Enabling: establish what each framework distinctly contributes so the critique has substance to push against",
-        "Enabling: treat resource scarcity as a structural multiplier rather than a background clause",
-        "Enabling: offer a practical way forward on how an administrator can manage the tension"
-      ],
-      "directive": "Evaluate requires a reasoned assessment of difficulties and trade-offs, culminating in a clear position on how the balance can be managed",
-      "hidden": "Most answers list challenges in isolation and never establish the prior contributions of each ethic or supply a workable resolution; scarcity is treated as colour rather than the force that turns complementarity into conflict",
-      "limit": "10 marks / 150 words"
-    },
-    "diagram": "Justice (rules)\n     |\n     v\nResource Constraint ---> Structured Hybrid Window\n     |\n     v\nCare (context)\n     |\n     v\nUpward feedback of unmet need",
-    "id": "justice-care-balance-resource-challenges",
-    "intros": [
-      {
-        "text": "Ethics of Justice supplies the impartial rules, rights and universal procedures that form the structural skeleton of public administration, while Ethics of Care supplies the contextual empathy and relational responsiveness that give it living soul.",
-        "type": "conceptual contrast"
-      },
-      {
-        "text": "In a resource-constrained system the very rules that guarantee justice can starve care, yet pure care without rules risks injustice through favouritism and elite capture.",
-        "type": "paradox"
-      },
-      {
-        "text": "Carol Gilligan’s critique of exclusively justice-oriented moral reasoning reminds us that silencing the voice of care produces an incomplete public ethic; scarcity only sharpens that incompleteness.",
-        "type": "thinker-anchor"
-      }
-    ],
-    "notes": "",
-    "paper": "GS4",
-    "pitfalls": [
-      "Listing challenges without first establishing what each ethic contributes",
-      "Treating resource scarcity as background colour rather than the structural multiplier",
-      "Ending without a concrete way forward or reasoned position on how the balance is managed"
-    ],
-    "question": "While 'Ethics of Justice' provides the skeleton of public administration, 'Ethics of Care' provides its soul. Evaluate the challenges an administrator faces when trying to balance these two frameworks in a resource-constrained environment.",
-    "sections": [
-      {
-        "frameworks": [
-          {
-            "name": "Structural versus Relational",
-            "points": [
-              "Justice anchors predictability, equal treatment and protection against arbitrary power",
-              "Care anchors responsiveness to particular vulnerability that formal criteria often miss",
-              "Together they prevent both rigid impersonalism and unbounded particularism"
-            ],
-            "why": "Separates the formal architecture each ethic supplies so their later tension is intelligible"
-          },
-          {
-            "name": "Deontology versus Relational Ethics",
-            "points": [
-              "Justice operates through universalisable rules and rights claims",
-              "Care operates through concrete relationships and contextual responsibilities",
-              "An administrator needs both logics because citizens present both as rights-holders and as persons in need"
-            ],
-            "why": "Locates each framework in its primary moral logic rather than treating them as interchangeable virtues"
-          },
-          {
-            "name": "Skeleton versus Soul Metaphor",
-            "points": [
-              "A skeleton without soul is a lifeless structure that fails to heal human distress",
-              "A soul without skeleton dissipates into inconsistency and capture",
-              "Public administration requires the rigidity of form and the flexibility of responsiveness"
-            ],
-            "why": "Uses the question’s own imagery to show why neither can stand alone"
-          }
-        ],
-        "heading": "Distinct contributions of Justice and Care to public administration",
-        "off": [
-          "The assertion in the question is not rhetorical; without prior clarity on what each contributes, evaluation of challenges collapses into vague preference",
-          "Justice without care produces legitimacy deficits; care without justice produces fairness deficits"
-        ],
-        "valueAdd": [
-          "Keywords: complementary ethics, structural impartiality, relational responsiveness",
-          "Theory: Carol Gilligan’s Ethics of Care set against justice-centric reasoning",
-          "Anchor: Article 14 equality before law read with Directive Principles of social justice",
-          "Example: Eligibility norms in a welfare scheme (justice) versus hardship exceptions for the undocumented needy (care)"
-        ]
-      },
-      {
-        "frameworks": [
-          {
-            "name": "Individual–Institutional–Systemic",
-            "points": [
-              "Personal cognitive dissonance when rule-bound denial collides with visible human need",
-              "Institutional audit culture that treats discretionary care as procedural irregularity",
-              "Systemic scarcity that converts every care allocation into a justice claim by those excluded"
-            ],
-            "why": "Shows how scarcity multiplies the tension at every level the administrator actually occupies"
-          },
-          {
-            "name": "Rule versus Discretion Spectrum",
-            "points": [
-              "Strict equality under limited budgets systematically under-serves those outside formal criteria",
-              "Contextual discretion for one case invites charges of partiality and opens pathways to capture",
-              "Accountability systems measure compliance far more readily than relational outcomes"
-            ],
-            "why": "Captures the procedural conflict that resource pressure intensifies"
-          },
-          {
-            "name": "Short-term Efficiency versus Long-term Legitimacy",
-            "points": [
-              "Rule-bound allocation maximises immediate throughput and audit safety",
-              "Care-oriented responses consume time and emotional labour yet build citizen trust",
-              "Repeated denial of care under scarcity erodes the perceived legitimacy of the justice framework itself"
-            ],
-            "why": "Highlights the temporal trade-off that scarcity forces into every decision"
-          }
-        ],
-        "heading": "Challenges of balancing the two under resource constraints",
-        "off": [
-          "Scarcity is not colour; it is the force that turns two complementary ethics into competing claimants for the same limited pool",
-          "Administrators often retreat into moral muteness, hiding behind procedure to avoid the emotional cost of visible suffering"
-        ],
-        "valueAdd": [
-          "Keywords: zero-sum allocation, moral muteness, ethical fading, dharma-sankat, bounded ethicality",
-          "Theory: Kidder’s justice-versus-mercy paradigm applied to public resource allocation",
-          "Anchor: Constitutional morality requires both formal equality and substantive social justice",
-          "Example: Front-line officer denying relief to an ineligible yet needy family solely to uphold eligibility norms"
-        ]
-      },
-      {
-        "frameworks": [
-          {
-            "name": "Structured Hybrid Approach",
-            "points": [
-              "Retain rule-based allocation as the default so the justice skeleton remains intact",
-              "Create a small, pre-defined, transparent window for documented care exceptions",
-              "Require every discretionary decision to carry reasons and remain within a fixed ceiling"
-            ],
-            "why": "Supplies a concrete institutional response rather than an abstract call for balance"
-          },
-          {
-            "name": "Personal–Professional–Constitutional",
-            "points": [
-              "Personal integrity supplies the courage to record inconvenient hardship cases",
-              "Professional duty requires that exceptions never become unaccountable patronage",
-              "Constitutional morality keeps both Article 14 equality and social-justice directives in view"
-            ],
-            "why": "Aligns the administrator’s internal resources with the institutional and constitutional frame"
-          },
-          {
-            "name": "Immediate–Short–Long Sequence",
-            "points": [
-              "Immediate: document every care exception and place it on a supervisory register",
-              "Short-term: issue clear internal guidelines defining limited grounds and quantum of exceptions",
-              "Long-term: aggregate unmet-need data upward so eligibility rules and resource envelopes can be reformed"
-            ],
-            "why": "Converts the way forward into time-bound actions an officer can actually initiate"
-          }
-        ],
-        "heading": "Managing the balance: a practical way forward",
-        "off": [
-          "The workable position is not pure justice or pure care but a structured hybrid that keeps residual injustice and residual care deficit visible rather than hidden",
-          "Personal virtue alone cannot permanently compensate for chronically inadequate resource envelopes"
-        ],
-        "valueAdd": [
-          "Keywords: structured discretion, residual injustice, upward feedback, practical wisdom",
-          "Theory: Aristotelian phronesis applied to the justice–care tension under constraint",
-          "Anchor: Public service values of integrity, impartiality and dedication to public service",
-          "Example: Hardship quotas inside otherwise rule-bound schemes with mandatory documentation and periodic review"
-        ]
-      }
-    ],
-    "tags": [
-      [
-        "Public Administration",
-        "Ethics in Public Administration"
-      ]
-    ],
-    "type": "Theory/Concept",
-    "vaBank": {
-      "examples": [
-        "Front-line officer denying relief to an ineligible yet needy family to uphold eligibility norms",
-        "Scholarship seats limited between pure merit and socio-economic need",
-        "Disaster-relief prioritisation between SOP timelines and individual medical urgency"
-      ],
-      "keywords": [
-        "moral myopia",
-        "ethical fading",
-        "cognitive dissonance",
-        "bounded ethicality",
-        "dharma-sankat",
-        "knowing-doing gap",
-        "structured discretion",
-        "residual injustice"
-      ],
-      "quotes": [],
-      "thinkers": [
-        "Carol Gilligan",
-        "Nel Noddings"
-      ]
-    },
     "year": 2024
   }
 ]
