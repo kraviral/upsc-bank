@@ -13,7 +13,12 @@
     "question": "Thinking is like a game, it does not begin unless there is an opposite team.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Truth, knowledge & perception"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023
@@ -32,7 +37,12 @@
     "question": "Visionary decision-making happens at the intersection of intuition and logic.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Truth, knowledge & perception"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023
@@ -51,7 +61,12 @@
     "question": "Not all who wander are lost.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Self, mind & human nature"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023
@@ -70,7 +85,12 @@
     "question": "Inspiration for creativity springs from the effort to look for the magical in the mundane.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Self, mind & human nature"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023
@@ -89,7 +109,12 @@
     "question": "Girls are weighed down by restrictions, boys with demands — two equally harmful disciplines.",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Women, gender & patriarchy"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023
@@ -108,7 +133,12 @@
     "question": "Mathematics is the music of reason.",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Truth, knowledge & perception"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023
@@ -127,7 +157,12 @@
     "question": "A society that has more justice is a society that needs less charity.",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Society, justice & inequality"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023
@@ -146,7 +181,12 @@
     "question": "Education is what remains after one has forgotten what one has learned in school.",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Education & youth"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2023

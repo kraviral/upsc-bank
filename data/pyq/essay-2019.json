@@ -13,7 +13,12 @@
     "question": "Wisdom finds truth",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Truth, knowledge & perception"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019
@@ -32,7 +37,12 @@
     "question": "Values are not what humanity is, but what humanity ought to be",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Ethics, values & character"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019
@@ -51,7 +61,12 @@
     "question": "Best for an individual is not necessarily best for the society",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Society, justice & inequality"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019
@@ -70,7 +85,12 @@
     "question": "Courage to accept and dedication to improve are two keys to success",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Ethics, values & character"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019
@@ -89,7 +109,12 @@
     "question": "South Asian societies are woven not around the state, but around their plural cultures and plural identities",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Culture, tradition & identity"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019
@@ -108,7 +133,12 @@
     "question": "Neglect of primary health care and education in India are reasons for its backwardness",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Education & youth"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019
@@ -127,7 +157,12 @@
     "question": "Biased media is a real threat to Indian democracy",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Media, information & communication"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019
@@ -146,7 +181,12 @@
     "question": "Rise of Artificial Intelligence : the threat of jobless future or better job opportunities through reskilling and upskilling",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Science, technology & the digital age"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2019

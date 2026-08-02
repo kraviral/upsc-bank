@@ -1,143 +1,215 @@
 {
   "Essay": {
     "Themes": [
-      "Truth, knowledge & perception",
-      "Ethics, values & character",
-      "Self, mind & human nature",
-      "Time, change & progress",
-      "Society, justice & inequality",
-      "Women, gender & patriarchy",
-      "Education & youth",
-      "Economy, development & agriculture",
-      "Governance, democracy & institutions",
-      "Science, technology & the digital age",
-      "Environment & sustainability",
-      "India and the world / security",
       "Culture, tradition & identity",
-      "Media, information & communication"
+      "Economy, development & agriculture",
+      "Education & youth",
+      "Environment & sustainability",
+      "Ethics, values & character",
+      "Governance, democracy & institutions",
+      "India and the world / security",
+      "Media, information & communication",
+      "Science, technology & the digital age",
+      "Self, mind & human nature",
+      "Society, justice & inequality",
+      "Time, change & progress",
+      "Truth, knowledge & perception",
+      "Women, gender & patriarchy"
     ]
   },
   "GS1": {
-    "Geography": [
-      "Physical Geography",
-      "Resource Distribution",
-      "Industrial Location",
-      "Geophysical Phenomena",
-      "Changes in Geographical Features"
+    "Art & Culture": [
+      "Ancient India & Indus Valley",
+      "Art, architecture & heritage",
+      "Kingdoms & dynasties",
+      "Religion & philosophy",
+      "Sources of history"
     ],
-    "History": [
-      "Art & Culture",
-      "Modern Indian History",
-      "Freedom Struggle",
-      "Post-Independence Consolidation",
-      "World History"
+    "Geography": [
+      "Biogeography",
+      "Climatology & climate change",
+      "Cryosphere & atmospheric phenomena",
+      "Economic geography & industrial location",
+      "Geomorphology & tectonics",
+      "Mineral & energy resources",
+      "Natural hazards",
+      "Oceanography",
+      "Settlement & land use",
+      "Water resources & management"
+    ],
+    "Modern History": [
+      "1857 and early revolts",
+      "Colonial policy & administration",
+      "Freedom struggle — stages & movements",
+      "Gandhi",
+      "Personalities & contributions"
+    ],
+    "Post-Independence": [
+      "Consolidation & reorganisation",
+      "Personalities & slogans",
+      "Post-independence foreign & security policy"
     ],
     "Society": [
-      "Indian Society & Diversity",
-      "Role of Women",
-      "Population & Poverty",
+      "Caste, tribe & social empowerment",
+      "Communalism, regionalism & secularism",
+      "Diversity & pluralism",
+      "Family & population",
+      "Globalisation & its effects",
+      "Poverty & development",
       "Urbanisation",
-      "Effects of Globalisation",
-      "Communalism, Regionalism & Secularism"
+      "Women & gender"
+    ],
+    "World History": [
+      "Decolonisation",
+      "Industrial Revolution & capitalism",
+      "Revolutions",
+      "World wars & the 20th century"
     ]
   },
   "GS2": {
     "Governance": [
-      "Government Policies & Interventions",
-      "Transparency & Accountability",
-      "Citizen's Charter",
-      "e-Governance",
-      "Role of Civil Services",
-      "Development Processes, NGOs & SHGs",
-      "Pressure Groups"
+      "Civil society, SHGs & NGOs",
+      "E-governance",
+      "Policy design & implementation",
+      "Role of civil services",
+      "Transparency & accountability"
     ],
     "International Relations": [
-      "India & Neighbourhood",
-      "Bilateral & Regional Groupings",
-      "Global Institutions",
-      "Policies of Developed & Developing Countries",
-      "Indian Diaspora"
+      "Bilateral relations",
+      "Diaspora & energy security",
+      "Geopolitics & India's interests",
+      "Global economic institutions",
+      "Regional & global groupings",
+      "UN & international institutions"
     ],
     "Polity": [
-      "Constitution & Federalism",
-      "Separation of Powers",
-      "Parliament & State Legislatures",
-      "Executive & Judiciary",
-      "Constitutional & Statutory Bodies"
+      "Amendment & emergency provisions",
+      "Comparative constitutions",
+      "Constitutional posts & audit",
+      "Elections & party system",
+      "Executive & pressure groups",
+      "Federalism & centre-state relations",
+      "Judiciary & dispute resolution",
+      "Local self-government",
+      "Parliament & legislatures",
+      "Rights, duties & constitutional values",
+      "Separation of powers",
+      "Statutory & regulatory bodies"
     ],
     "Social Justice": [
-      "Welfare Schemes",
-      "Health, Education & Human Resources",
-      "Poverty & Hunger",
-      "Vulnerable Sections"
+      "Education & human resources",
+      "Health",
+      "Poverty & hunger",
+      "Vulnerable sections",
+      "Welfare scheme efficacy"
     ]
   },
   "GS3": {
     "Agriculture": [
-      "Cropping Patterns",
-      "MSP & PDS",
-      "Food Processing",
-      "Subsidies",
-      "Agricultural Marketing",
-      "Animal Rearing"
+      "Agricultural marketing & storage",
+      "Allied sectors — animal rearing & fisheries",
+      "Crops & cropping patterns",
+      "Farm support — MSP, subsidies, insurance",
+      "Farm technology & extension",
+      "Food security & PDS",
+      "Irrigation & water management",
+      "Land reforms & tenancy"
     ],
-    "Economy": [
-      "Indian Economy & Planning",
-      "Inclusive Growth",
-      "Government Budgeting",
-      "Land Reforms",
-      "Investment Models",
-      "Infrastructure"
+    "Disaster Management": [
+      "Disaster preparedness & resilience",
+      "Geophysical disasters",
+      "Hydro-meteorological disasters"
+    ],
+    "Economic Development": [
+      "Banking & financial inclusion",
+      "Energy & renewables",
+      "External sector",
+      "Fiscal policy & budgeting",
+      "Food processing industry",
+      "Growth, planning & national income",
+      "Inclusive growth & employment",
+      "Infrastructure & investment models",
+      "Liberalisation & industrial policy",
+      "Manufacturing & industry"
     ],
     "Environment": [
-      "Conservation",
-      "Pollution & Degradation",
-      "Environmental Impact Assessment",
-      "Disaster Management"
+      "Air pollution & waste",
+      "Biodiversity & conservation",
+      "Climate governance & international regimes",
+      "Environmental clearance & impact assessment",
+      "Mining & land degradation",
+      "Water pollution"
+    ],
+    "Internal Security": [
+      "Border management",
+      "Cyber security & data protection",
+      "External state & non-state actors",
+      "Left-wing extremism",
+      "Maritime & regional insurgency",
+      "Media, social media & security",
+      "Money laundering & security forces",
+      "Terrorism & organised crime"
     ],
     "Science & Technology": [
-      "Developments & Applications",
-      "Indigenisation",
-      "IT, Space, Robotics & Biotech",
-      "Intellectual Property Rights"
-    ],
-    "Security": [
-      "Internal Security & Extremism",
-      "Cyber Security",
-      "Money Laundering",
-      "Border Management",
-      "Security Forces & Agencies"
+      "Biotechnology & genetics",
+      "Emerging tech — AI, robotics, nano",
+      "Health & medical technology",
+      "IPR & innovation",
+      "Indian achievements & applications",
+      "Nuclear & defence technology",
+      "Space technology"
     ]
   },
   "GS4": {
+    "Aptitude & Foundational Values": [
+      "Empathy, compassion & fortitude",
+      "Foundational values",
+      "Integrity & impartiality"
+    ],
+    "Attitude": [
+      "Attitude in public service",
+      "Attitude — concept & structure",
+      "Persuasion & social influence",
+      "Teachings of great leaders"
+    ],
     "Case Studies": [
-      "Corruption, bribery & extortion",
-      "Political pressure & bureaucratic autonomy",
-      "Conflict of interest & nepotism",
-      "Sexual harassment & gender at the workplace",
-      "Public funds, procurement & fund diversion",
       "Environment vs development",
-      "Resource allocation & competing claimants",
-      "Personal vs professional obligations",
-      "Corporate ethics, CSR & private sector",
-      "Whistleblowing & organisational silence",
-      "Social justice, discrimination & vulnerable groups",
-      "Welfare delivery — health, education, schemes",
-      "Law & order, protest & communal tension",
-      "Technology, data & AI ethics"
+      "Whistleblowing & organisational silence"
     ],
-    "Foundations": [
-      "Ethics & Human Interface",
-      "Attitude",
-      "Aptitude & Foundational Values",
-      "Emotional Intelligence",
-      "Moral Thinkers & Philosophers"
+    "Emotional Intelligence": [
+      "Emotional intelligence"
     ],
-    "Public Administration": [
-      "Public/Civil Service Values",
-      "Ethics in Public Administration",
-      "Probity in Governance",
-      "Corporate Governance"
+    "Ethics & Human Interface": [
+      "Applied ethics",
+      "Essence & determinants of ethics",
+      "Ethical terms & concepts",
+      "Ethics in private vs public sphere",
+      "Normative theories"
+    ],
+    "Human Values & Moral Thinkers": [
+      "Crisis of ethical values",
+      "Nature of values",
+      "Quotes — attitude, thought & self-examination",
+      "Quotes — character, courage & fortitude",
+      "Quotes — compassion, service & forgiveness",
+      "Quotes — corruption & probity",
+      "Quotes — justice, society & interdependence",
+      "Quotes — law, ethics & morality",
+      "Role of education in values"
+    ],
+    "Probity in Governance": [
+      "Codes of ethics & conduct",
+      "Corruption & public funds",
+      "Probity & public service values",
+      "RTI & transparency",
+      "Service delivery & work culture"
+    ],
+    "Public Service Values & Ethics in Administration": [
+      "Accountability & ethical governance",
+      "Conflict of interest",
+      "Corporate governance & dilemma resolution",
+      "Ethics in international relations & funding",
+      "Laws, rules & conscience"
     ]
   }
 }

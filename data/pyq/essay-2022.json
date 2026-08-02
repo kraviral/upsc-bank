@@ -13,7 +13,12 @@
     "question": "Forests are the best case studies for economic excellence",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Environment & sustainability"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022
@@ -32,7 +37,12 @@
     "question": "Poets are the unacknowledged legislators of the world",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Culture, tradition & identity"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022
@@ -51,7 +61,12 @@
     "question": "History is a series of victories won by the scientific man over the romantic man",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Time, change & progress"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022
@@ -70,7 +85,12 @@
     "question": "A ship in harbour is safe, but that is not what ship is for",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Ethics, values & character"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022
@@ -89,7 +109,12 @@
     "question": "The time to repair the roof is when the sun is shining",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Time, change & progress"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022
@@ -108,7 +133,12 @@
     "question": "You cannot step twice in the same river",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Time, change & progress"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022
@@ -127,7 +157,12 @@
     "question": "A smile is the chosen vehicle for all ambiguities",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Self, mind & human nature"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022
@@ -146,7 +181,12 @@
     "question": "Just because you have a choice, it does not mean that any of them has to be right",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Ethics, values & character"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2022

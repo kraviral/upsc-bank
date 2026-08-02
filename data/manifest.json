@@ -17,17 +17,69 @@
       "pyq/essay-2025.json"
     ],
     "GS1": [
-      "gs1.json"
+      "gs1.json",
+      "pyq/gs1-2013.json",
+      "pyq/gs1-2014.json",
+      "pyq/gs1-2015.json",
+      "pyq/gs1-2016.json",
+      "pyq/gs1-2017.json",
+      "pyq/gs1-2018.json",
+      "pyq/gs1-2019.json",
+      "pyq/gs1-2020.json",
+      "pyq/gs1-2021.json",
+      "pyq/gs1-2022.json",
+      "pyq/gs1-2023.json",
+      "pyq/gs1-2024.json",
+      "pyq/gs1-2025.json"
     ],
     "GS2": [
-      "gs2.json"
+      "gs2.json",
+      "pyq/gs2-2013.json",
+      "pyq/gs2-2014.json",
+      "pyq/gs2-2015.json",
+      "pyq/gs2-2016.json",
+      "pyq/gs2-2017.json",
+      "pyq/gs2-2018.json",
+      "pyq/gs2-2019.json",
+      "pyq/gs2-2020.json",
+      "pyq/gs2-2021.json",
+      "pyq/gs2-2022.json",
+      "pyq/gs2-2023.json",
+      "pyq/gs2-2024.json",
+      "pyq/gs2-2025.json"
     ],
     "GS3": [
-      "gs3.json"
+      "gs3.json",
+      "pyq/gs3-2013.json",
+      "pyq/gs3-2014.json",
+      "pyq/gs3-2015.json",
+      "pyq/gs3-2016.json",
+      "pyq/gs3-2017.json",
+      "pyq/gs3-2018.json",
+      "pyq/gs3-2019.json",
+      "pyq/gs3-2020.json",
+      "pyq/gs3-2021.json",
+      "pyq/gs3-2022.json",
+      "pyq/gs3-2023.json",
+      "pyq/gs3-2024.json",
+      "pyq/gs3-2025.json"
     ],
     "GS4": [
       "gs4-theory.json",
-      "gs4-case-studies.json"
+      "gs4-case-studies.json",
+      "pyq/gs4-2013.json",
+      "pyq/gs4-2014.json",
+      "pyq/gs4-2015.json",
+      "pyq/gs4-2016.json",
+      "pyq/gs4-2017.json",
+      "pyq/gs4-2018.json",
+      "pyq/gs4-2019.json",
+      "pyq/gs4-2020.json",
+      "pyq/gs4-2021.json",
+      "pyq/gs4-2022.json",
+      "pyq/gs4-2023.json",
+      "pyq/gs4-2024.json",
+      "pyq/gs4-2025.json"
     ]
   },
   "schemaVersion": 1,

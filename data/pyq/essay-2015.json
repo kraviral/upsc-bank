@@ -13,7 +13,12 @@
     "question": "Lending hands to someone is better than giving a dole.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Economy, development & agriculture"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015
@@ -32,7 +37,12 @@
     "question": "Quick but steady wins the race.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Time, change & progress"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015
@@ -51,7 +61,12 @@
     "question": "Character of an institution is reflected in its leader.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Governance, democracy & institutions"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015
@@ -70,7 +85,12 @@
     "question": "Education without values, as useful as it is, seems rather to make a man more clever devil.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Education & youth"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015
@@ -89,7 +109,12 @@
     "question": "Technology cannot replace manpower.",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Science, technology & the digital age"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015
@@ -108,7 +133,12 @@
     "question": "Crisis faced in India – moral or economic.",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Ethics, values & character"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015
@@ -127,7 +157,12 @@
     "question": "Dreams which should not let India sleep.",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Time, change & progress"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015
@@ -146,7 +181,12 @@
     "question": "Can capitalism bring inclusive growth ?",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Economy, development & agriculture"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2015

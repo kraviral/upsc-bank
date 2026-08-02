@@ -13,7 +13,12 @@
     "question": "With greater power comes greater responsibility.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Ethics, values & character"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
@@ -32,7 +37,12 @@
     "question": "Is the growing level of competition good for the youth?",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Education & youth"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
@@ -51,7 +61,12 @@
     "question": "Are the standardized tests good measure of academic ability or progress?",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Education & youth"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
@@ -70,7 +85,12 @@
     "question": "Words are sharper than the two-edged sword.",
     "section": "A",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Media, information & communication"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
@@ -89,7 +109,12 @@
     "question": "Was it the policy paralysis or the paralysis of implementation which slowed the growth of our country?",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Governance, democracy & institutions"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
@@ -108,7 +133,12 @@
     "question": "Is sting operation an invasion on privacy?",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Media, information & communication"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
@@ -127,7 +157,12 @@
     "question": "Fifty Golds in Olympics : Can this be a reality for India?",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Education & youth"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
@@ -146,7 +181,12 @@
     "question": "Tourism : Can this be the next big thing for India?",
     "section": "B",
     "source": "PYQ",
-    "tags": [],
+    "tags": [
+      [
+        "Themes",
+        "Economy, development & agriculture"
+      ]
+    ],
     "type": "Essay",
     "words": 1200,
     "year": 2014
