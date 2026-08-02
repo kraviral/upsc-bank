@@ -1,8 +1,20 @@
 {
-  "exported": "2026-08-02",
+  "exported": "2026-08-03",
   "papers": {
     "Essay": [
-      "essay.json"
+      "essay.json",
+      "pyq/essay-2014.json",
+      "pyq/essay-2015.json",
+      "pyq/essay-2016.json",
+      "pyq/essay-2017.json",
+      "pyq/essay-2018.json",
+      "pyq/essay-2019.json",
+      "pyq/essay-2020.json",
+      "pyq/essay-2021.json",
+      "pyq/essay-2022.json",
+      "pyq/essay-2023.json",
+      "pyq/essay-2024.json",
+      "pyq/essay-2025.json"
     ],
     "GS1": [
       "gs1.json"

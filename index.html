@@ -1895,18 +1895,41 @@ function byId(a,b){return a.id<b.id?-1:a.id>b.id?1:0;}
    sortKeys applies to the questions too, not just the taxonomy - CLAUDE.md rule 5 - so an
    app write and a Claude Code write of the same content are byte-identical and diff cleanly. */
 function buildFiles(){
-  var gs4=db.questions.filter(function(q){return q.paper==="GS4";});
-  // the manifest needs sortKeys too — without it the app writes literal key order while
-  // anything following rule 5 writes sorted order, and the two ping-pong on every save
-  var files=[["manifest.json",sortKeys({schemaVersion:db.schemaVersion||1,
-    exported:new Date().toISOString().slice(0,10),
-    taxonomy:"taxonomy.json",papers:{Essay:["essay.json"],GS1:["gs1.json"],GS2:["gs2.json"],GS3:["gs3.json"],
-    GS4:["gs4-theory.json","gs4-case-studies.json"]}})],["taxonomy.json",sortKeys(db.taxonomy)]];
+  var SLUG={"Essay":"essay","GS1":"gs1","GS2":"gs2","GS3":"gs3","GS4":"gs4"};
+  var out=[], papers={};
+
+  // PYQs are sharded by paper and year - one file per exam paper. Without this the
+  // 8-file writer would drop every shard from the manifest on the first Save.
+  var shards={};
+  db.questions.filter(function(q){return q.source==="PYQ";}).forEach(function(q){
+    var name="pyq/"+SLUG[q.paper]+"-"+(q.year||"undated")+".json";
+    (shards[name]=shards[name]||[]).push(q);
+  });
+
+  var authored=db.questions.filter(function(q){return q.source!=="PYQ";});
+  var gs4=authored.filter(function(q){return q.paper==="GS4";});
+  function add(name,arr){ out.push({path:"data/"+name,text:JSON.stringify(sortKeys(arr.sort(byId)),null,2)+"\n"}); }
+
   Object.keys(FILES).forEach(function(p){
-    files.push([FILES[p],sortKeys(db.questions.filter(function(q){return q.paper===p;}).sort(byId))]);});
-  files.push(["gs4-theory.json",sortKeys(gs4.filter(function(q){return !isCase(q);}).sort(byId))]);
-  files.push(["gs4-case-studies.json",sortKeys(gs4.filter(isCase).sort(byId))]);
-  return files.map(function(f){return {path:"data/"+f[0],text:JSON.stringify(f[1],null,2)+"\n"};});
+    add(FILES[p],authored.filter(function(q){return q.paper===p;}));
+    papers[p]=[FILES[p]];
+  });
+  add("gs4-theory.json",gs4.filter(function(q){return !isCase(q);}));
+  add("gs4-case-studies.json",gs4.filter(isCase));
+  papers.GS4=["gs4-theory.json","gs4-case-studies.json"];
+
+  Object.keys(shards).sort().forEach(function(name){
+    add(name,shards[name]);
+    var paper=null;
+    Object.keys(SLUG).forEach(function(p){ if(name.indexOf("pyq/"+SLUG[p]+"-")===0) paper=p; });
+    if(paper) papers[paper]=(papers[paper]||[]).concat([name]);
+  });
+
+  var manifest={schemaVersion:db.schemaVersion||1,exported:new Date().toISOString().slice(0,10),
+                taxonomy:"taxonomy.json",papers:papers};
+  out.unshift({path:"data/manifest.json",text:JSON.stringify(sortKeys(manifest),null,2)+"\n"});
+  out.push({path:"data/taxonomy.json",text:JSON.stringify(sortKeys(db.taxonomy),null,2)+"\n"});
+  return out;
 }
 function downloadAll(){
   var files=buildFiles();
