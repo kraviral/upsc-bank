@@ -56,6 +56,9 @@ Each section carries exactly 3 `frameworks` entries — self-contained alternati
 `summary` is a one-sentence précis, required for case studies only (the viewer shows it collapsed, with the full `question` behind a "read the full case" expand).
 `diagram` is ASCII using only `- | + v ^` and letters; box-drawing characters misalign.
 `notes` belongs to the user. Never overwrite a non-empty `notes` when regenerating a question.
+No string value contains a double quote. Quoted phrases, titles and scare quotes take single quotes
+(`'source code'`, not `"source code"`) — a raw double quote ends the string early and the whole
+skeleton fails to parse, which is the most common way a generated answer is lost outright.
 
 ## Rules that must hold
 

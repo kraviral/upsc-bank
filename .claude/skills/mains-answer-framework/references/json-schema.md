@@ -72,5 +72,5 @@ This schema is the same one the app's **Copy prompt** button hands to external A
 - `summary`: required for GS4 case studies, a single sentence. The viewer shows this collapsed with the full `question` behind an expand — write it so it stands alone. Omit the key entirely for everything else.
 - `diagram`: use only `- | + v ^ >` and letters. Box-drawing characters (`─ │ ┌ ►`) misalign in monospace across platforms; the ASCII fallback always renders correctly. Escape newlines as `\n`.
 - Case studies: map each sub-part `(a) (b) (c) (d)` to one `sections` entry, using the sub-part label as the start of `heading`.
-- Everything must be valid JSON — one unescaped quote breaks the import.
+- Everything must be valid JSON. Never put a double quote inside a string value — quoted phrases, titles and scare quotes take single quotes (`'source code'`, not `"source code"`). A raw double quote ends the string early and the whole skeleton fails to parse, which is the most common way a generated answer is lost outright.
 - Omit optional keys entirely rather than passing empty strings, except `notes`.

@@ -128,7 +128,10 @@
    "- `diagram` uses only - | + v ^ > and letters. Box-drawing characters misalign in monospace.",
    "  Escape its newlines as \\n. If no diagram earns its place, return \"\" — a decorative one costs exam time.",
    "- Leave `notes` as an empty string. That field belongs to the candidate.",
-   "- Omit `summary` entirely unless this is a GS4 case study."
+   "- Omit `summary` entirely unless this is a GS4 case study.",
+   "- Never put a double quote inside a string value. Quoted phrases, titles and scare quotes take",
+   "  single quotes: 'source code', not \"source code\". A raw double quote ends the string early and",
+   "  the whole skeleton fails to parse — this is the most common way a generation is lost outright."
   ],
   "selfCheck": [
    "Before you output, verify every line of this:",
@@ -149,7 +152,7 @@
    "14. GS4 ONLY: every point also has a non-empty \"ethic\". Absent or empty fails.",
    "15. Every date, Act, judgment and scheme name you asserted is one you are sure of. GST came into force",
    "    in 2017, not 2020 - a confident wrong year is worse than [verify], and worse than omitting it.",
-   "16. The JSON parses. One unescaped quote breaks the whole import."
+   "16. The JSON parses: no string value contains a raw double quote — inner quotes are single."
   ]
  },
  "papers": [
