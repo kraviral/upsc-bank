@@ -86,6 +86,16 @@ main{display:grid;grid-template-columns:288px minmax(0,1fr)}
 .bbody li::marker{color:var(--ink3)}
 .sublabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:0 0 5px}
 .off{border-left:2px solid var(--marker);padding-left:11px;margin:0 0 14px}
+/* substantiation carried by a point: the keyword to deploy, the evidence to
+   anchor it, and on GS4 the theory it rests on. Muted enough that the stem
+   still reads as the point. */
+.plist .pkw{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--accent);white-space:nowrap}
+.plist .pkw::before{content:"‹"}
+.plist .pkw::after{content:"›"}
+.plist .pev{font-size:12.5px;color:var(--ink2);font-style:italic}
+.plist .peth{font-size:12.5px;color:var(--margin);font-style:italic}
+.psub{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin:-2px 0 8px 14px}
+.psub .plab{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
 .off p{margin:0;font-size:14px}
 .va{font-size:13px;color:var(--ink2)}
 .opt{margin:0 0 13px}
@@ -953,7 +963,7 @@ function ghReady(){return !!(ghCfg.owner&&ghCfg.repo&&ghCfg.token);}
 var db={taxonomy:{},questions:[]}, current=null, paperFilter="All", query="", addedSinceExport=0;
 var uidCounter=0, fieldRegistry={}, actionRegistry={}, editKey=null, confirmKey=null, pendingArr=null, pendingIdx=-1;
 var openBlocks={}, lastRenderedId=null;
-var editBlocks={}, editAll=false, EDIT=false, prompts=null, navOpen={}, navRenderedWithQuery=false;
+var sheetPaper="", editBlocks={}, editAll=false, EDIT=false, prompts=null, navOpen={}, navRenderedWithQuery=false;
 var view="ai", answerIdx=0, homeMode=true, homeGroup="theme", openTheme=null, srcFilter="All", statusFilter="All";
 function blockEdit(key){return editAll||!!editBlocks[key];}
 function $(i){return document.getElementById(i);}
@@ -1171,6 +1181,41 @@ function confirmBtn(label,fn){
   actionRegistry[id]=function(){confirmKey=id;renderSheet();};
   return '<button class="xbtn" data-act="'+id+'">'+esc(label||"×")+'</button>';
 }
+/* Points carry substantiation the other lists don't: a keyword to deploy and a
+   data/example to anchor the stem, plus an ethical theory on GS4. A point is
+   either a bare string (everything written before substantiation) or
+   {stem, keyword, evidence, ethic} - both shapes render and edit here. */
+function asPoint(arr,i){
+  if(!arr[i]||typeof arr[i]!=="object") arr[i]={stem:String(arr[i]==null?"":arr[i])};
+  return arr[i];
+}
+function pointList(arr,ph,gs4){
+  if(!EDIT){
+    var items=arr.filter(function(v){return pointStem(v).trim()!=="";});
+    if(!items.length) return "";
+    return '<ul class="plist">'+items.map(function(v){
+      return '<li>'+pointHtml(v)+'</li>';
+    }).join('')+'</ul>';
+  }
+  function fld(i,key,ph2){
+    return '<span class="plab">'+key.slice(0,3)+'</span>'+
+      etext(function(){var p=arr[i];return (p&&typeof p==="object"&&p[key])||"";},
+            function(nv){asPoint(arr,i)[key]=nv;},{placeholder:ph2});
+  }
+  return '<div class="ilist">'+arr.map(function(v,i){
+    var focus=(arr===pendingArr&&i===pendingIdx);
+    var h='<div class="erow">'+
+      etext(function(){return pointStem(arr[i]);},
+            function(nv){ if(arr[i]&&typeof arr[i]==="object") arr[i].stem=nv; else arr[i]=nv; },
+            {placeholder:ph,autoFocus:focus})+
+      actionBtn("×",function(){arr.splice(i,1);save();renderSheet();},"xbtn")+'</div>';
+    h+='<div class="psub">'+fld(i,"keyword","keyword to deploy")+fld(i,"evidence","data, example or case");
+    if(gs4) h+=fld(i,"ethic","ethical theory or thinker");
+    return h+'</div>';
+  }).join('')+actionBtn("+ Add",function(){
+    arr.push({stem:"",keyword:"",evidence:""});pendingArr=arr;pendingIdx=arr.length-1;save();renderSheet();
+  })+'</div>';
+}
 function strListInline(arr,ph){
   if(!EDIT){
     var items=arr.filter(function(v){return v!=null&&String(v).trim()!=="";});
@@ -1272,12 +1317,12 @@ function sectionBlock(sec,si,sections){
       pane+='<div class="erow">'+etext(function(){return fw.name;},function(v){fw.name=v;},{placeholder:"framework name (optional while drafting)",autoFocus:nameFocus})+
         confirmBtn("Remove framework",function(){sec.frameworks.splice(fi,1);save();renderSheet();})+'</div>'+
         etext(function(){return fw.why;},function(v){fw.why=v;},{multiline:true,block:true,placeholder:"why this lens fits (optional)"})+
-        '<p class="sublabel">Points</p>'+strListInline(fw.points,"single-line stem");
+        '<p class="sublabel">Points</p>'+pointList(fw.points,"single-line stem",sheetPaper==="GS4");
     } else {
       // with two or more lenses the chips already carry the name, so don't repeat it
       if(sec.frameworks.length<2&&fw.name) pane+='<p class="fwname"><mark>'+esc(fw.name)+'</mark></p>';
       if(fw.why) pane+='<p class="fwline">'+esc(fw.why)+'</p>';
-      pane+=strListInline(fw.points,"");
+      pane+=pointList(fw.points,"",sheetPaper==="GS4");
     }
     return pane+'</div>';
   }).join('');
@@ -1342,6 +1387,7 @@ function pointHtml(p){
   var h=esc(p.stem||"");
   if(p.keyword)  h+=' <span class="pkw">'+esc(p.keyword)+'</span>';
   if(p.evidence) h+=' <span class="pev">'+esc(p.evidence)+'</span>';
+  if(p.ethic)    h+=' <span class="peth">'+esc(p.ethic)+'</span>';
   return h;
 }
 
@@ -1431,6 +1477,7 @@ function mineView(q){
 /* -------- AI answers view -------- */
 function aiView(q){
   var h="";
+  sheetPaper=q.paper;          // sectionBlock is top-level; it needs the paper for the GS4 ethics field
   if(!q.answers.length){
     return '<div class="blank"><p>No AI answer stored for this question yet.</p>'+
       '<button class="tool" id="pasteAnsBtn">Paste a skeleton</button>'+

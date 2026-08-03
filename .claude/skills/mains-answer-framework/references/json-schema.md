@@ -30,10 +30,17 @@ This schema is the same one the app's **Copy prompt** button hands to external A
         {
           "name": "SHORT NAME — revealed only when this sub-heading is expanded, not shown collapsed",
           "why": "one line on why this framework fits",
-          "points": ["single-line stem", "single-line stem"]
+          "points": [
+            {
+              "stem": "single-line stem",
+              "keyword": "the term to actually deploy in that sentence",
+              "evidence": "a datum, example, scheme, case or report that anchors it",
+              "ethic": "GS4 ONLY — the theory, thinker or value it rests on; omit on other papers"
+            }
+          ]
         },
-        { "name": "second, genuinely different lens", "why": "...", "points": ["...", "..."] },
-        { "name": "third, genuinely different lens", "why": "...", "points": ["...", "..."] }
+        { "name": "second, genuinely different lens", "why": "...", "points": [{ "stem": "...", "keyword": "...", "evidence": "..." }] },
+        { "name": "third, genuinely different lens", "why": "...", "points": [{ "stem": "...", "keyword": "...", "evidence": "..." }] }
       ],
       "off": ["off-framework insight"],
       "valueAdd": ["Keywords: ...", "Theory: ...", "Anchor: ..."]
@@ -56,7 +63,7 @@ This schema is the same one the app's **Copy prompt** button hands to external A
 - **The body array is called `sections`**, not `body`. The viewer still accepts `body` as a legacy alias and writes back `sections`, but do not emit `body` in new output.
 - `intros` and `conclusions`: exactly three each.
 - `frameworks`: exactly three per `sections` entry, each self-contained with its own `points`. Order the strongest fit first — the viewer shows it by default and lets the reader switch to the other two.
-- `points`: single-line stems, not paragraphs — the viewer renders them as a list, and long prose defeats the purpose of a skeleton.
+- `points`: objects, not bare strings. `stem` is a single line, never a paragraph — long prose defeats the purpose of a skeleton. `keyword` and `evidence` are what make the stem scoreable: the term to deploy, and the datum, example, scheme, committee, case or report that anchors it. `ethic` is GS4-only and names the theory, thinker or value the point rests on. Vary the evidence across a section; four points leaning on one report is one point. A bare string is still read as `{stem}` with the rest empty — that is what the bank held before substantiation — but never emit that form in new output.
 - `name` (inside each framework): keep it short. It renders as a highlighter-marked tag, but only once the reader expands that sub-heading — never shown next to the collapsed heading. A full expansion belongs in `why`.
 - `off` and `valueAdd` sit on the `sections` entry itself, not inside any one framework — they apply regardless of which of the three lenses is active.
 - `tags` must come from `data/taxonomy.json`. Do not invent a category; propose it and ask. The viewer lists any unknown category and requires confirmation before adding it.

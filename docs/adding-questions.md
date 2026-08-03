@@ -124,6 +124,19 @@ Finding a question from a different angle is the **search box's** job. It indexe
 text, the decode, every framework and point, the pitfalls and the whole value-addition bank, so
 a question is reachable by any thinker, keyword or example inside it regardless of its tag.
 
+### Points carry their own substantiation
+
+A point is no longer a bare line. Each one holds a **keyword** — the term to actually deploy in that
+sentence — and **evidence**, a datum, example, scheme, committee, case or report that anchors it. GS4
+adds a third, **ethic**: the theory, thinker or value the point rests on, because GS4 is marked on
+ethical reasoning rather than administrative common sense.
+
+The viewer shows them inline after the stem: keyword in green `‹like this›`, evidence in grey italic,
+the GS4 ethic in red. In edit mode each point gains `key` / `evi` / `eth` fields underneath it.
+
+Older answers written before this change hold plain strings, and still render and edit fine — they
+simply show a stem with empty substantiation fields waiting to be filled.
+
 ### `[verify]` means verify
 
 Every prompt instructs the AI to flag uncertain quotes, statistics, scheme names and judgments

@@ -33,7 +33,7 @@ Serve it, don't open it directly — a `file://` page cannot read `data/`:
   "sections": [{
     "heading": "",
     "frameworks": [
-      { "name": "", "why": "", "points": [] },
+      { "name": "", "why": "", "points": [{ "stem": "", "keyword": "", "evidence": "", "ethic": "" }] },
       { "name": "", "why": "", "points": [] },
       { "name": "", "why": "", "points": [] }
     ],
@@ -47,7 +47,11 @@ Serve it, don't open it directly — a `file://` page cannot read `data/`:
 ```
 
 `paper` ∈ Essay, GS1, GS2, GS3, GS4. Exactly 3 intros and 3 conclusions.
-`points` are single-line stems to expand in the exam, never paragraphs.
+A `point` is a single-line stem to expand in the exam, never a paragraph, and it carries its own
+substantiation: `keyword` is the term to actually deploy, `evidence` a datum, example, scheme, case
+or report that anchors it. `ethic` is GS4-only — the theory, thinker or value the point rests on.
+A bare string is still accepted everywhere a point is read, since that is what the bank held before
+substantiation; treat it as `{stem}` with the rest empty and fill it in when you next touch it.
 Each section carries exactly 3 `frameworks` entries — self-contained alternative lenses, each with its own `name`, `why`, and `points`. List the strongest fit first; it renders as the default view, with the other two switchable in the viewer. The framework `name` is only revealed once the reader expands that sub-heading — never shown next to the collapsed heading itself. `off` and `valueAdd` sit at the section level, shared across all three framework options, since they don't depend on which lens is active.
 `summary` is a one-sentence précis, required for case studies only (the viewer shows it collapsed, with the full `question` behind a "read the full case" expand).
 `diagram` is ASCII using only `- | + v ^` and letters; box-drawing characters misalign.

@@ -72,6 +72,16 @@ Give all four of:
 
 **(b) Points** — under each of the three frameworks, 3–5 bullet stems mapped to *that* framework, one line each, expandable into 2–3 lines in the exam. Because the three frameworks are different lenses, their point sets should read as genuinely different treatments of the sub-heading, not the same points relabelled.
 
+Every point is **substantiated**. A bare stem is a reminder, not an answer: in the hall the user has neither this page nor a reliable memory of it, so each point must carry what turns it into a sentence that scores.
+
+| Field | What it is | The test |
+|---|---|---|
+| `keyword` | the term to actually deploy in that sentence | not a synonym of the stem — the vocabulary that signals command of the subject |
+| `evidence` | a datum, example, scheme, committee, case or report | concrete and checkable; mark it `[verify]` rather than dropping it |
+| `ethic` | GS4 only: the theory, thinker or value it rests on | GS4 is marked on ethical reasoning, not administrative common sense |
+
+Two failure modes to avoid. **Padding**: if a point has no honest evidence, say what is missing rather than inventing a statistic or a report name — a fabricated anchor is worse than none. **Monotony**: vary the evidence across a section, since four points leaning on the same report is one point, and don't bolt the same ethical theory onto every GS4 stem.
+
 **(c) Off-framework points** — 1–2 strong insights that fit none of the three frameworks but are too good to drop. These sit at the sub-heading level, not under any one framework.
 
 **(d) Value addition** for that sub-heading, also at the sub-heading level and shared across all three frameworks. What counts as value addition differs by paper — see the paper file. Universally: 1–2 keywords, 1 theory or thinker, 1 anchor (constitutional, institutional, or data), 1–2 examples.
