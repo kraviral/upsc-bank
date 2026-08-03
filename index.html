@@ -1396,6 +1396,16 @@ function isTouched(q){
   return (m.sections||[]).some(function(s){return (s.heading||"").trim()||(s.body||"").trim();});
 }
 /* a point may be a bare string or {stem, keyword?, evidence?} — only stem is required */
+function isPYQ(q){ return (q.source==="PYQ") || /^pyq-/.test(q.id||""); }
+function deleteQuestion(q){
+  if(isPYQ(q)){ toast("Past-paper questions cannot be deleted."); return; }
+  var i=db.questions.indexOf(q);
+  if(i<0) return;
+  db.questions.splice(i,1);
+  confirmKey=null; current=null; homeMode=true; lastRenderedId=null;
+  save(); renderNav(); renderSheet();
+  toast("Deleted “"+String(q.question||"untitled").slice(0,44)+"…”");
+}
 function pointStem(p){ return (p&&typeof p==="object") ? (p.stem||"") : String(p==null?"":p); }
 function pointHtml(p){
   if(!p||typeof p!=="object") return esc(String(p==null?"":p));
@@ -1704,7 +1714,19 @@ function renderSheet(){
     h+='</span>';
   });
   if(q.tags.length<1) h+=actionBtn("+ tag",function(){q.tags.push(isCS?[CS,""]:["",""]);renderSheet();});
-  h+='</div></div>';
+  h+='</div>';
+
+  /* A past paper is a fact, not an entry — it is the fixed spine everything else
+     hangs off, and deleting one silently changes what the bank claims a year
+     contained. Guarded on the id as well as the source, so relabelling a PYQ as
+     test series in the dropdown above does not open a back door to deleting it. */
+  if(EDIT){
+    h+= isPYQ(q)
+      ? '<p class="ph">A past-paper question cannot be deleted — it is what the paper actually asked. '+
+        'Delete an answer instead, from the bar above it.</p>'
+      : '<div class="dangerzone">'+confirmBtn("Delete this question",function(){ deleteQuestion(q); })+'</div>';
+  }
+  h+='</div>';
 
   if(q.question){
     var verr=validateQ(q,"This question");
@@ -2616,7 +2638,14 @@ window.addEventListener("drop",async function(e){
 
 /* -------- boot -------- */
 $("homeBtn").onclick=function(){homeMode=true;current=null;lastRenderedId=null;renderNav();renderSheet();window.scrollTo(0,0);};
-$("search").addEventListener("input",function(e){query=e.target.value.toLowerCase().trim();renderNav();});
+$("search").addEventListener("input",function(e){
+  query=e.target.value.toLowerCase().trim();
+  renderNav();
+  // the home grid is filtered by the same query as the tree, so it has to be
+  // repainted too. Only on home: repainting an open question mid-keystroke
+  // would tear the focus out of whatever field is being edited.
+  if(homeMode) renderSheet();
+});
 window.addEventListener("beforeprint",function(){document.querySelectorAll("details.block").forEach(function(d){d.open=true;});});
 
 async function fromFiles(){
