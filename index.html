@@ -186,17 +186,27 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .blank p{margin:0 0 12px;font-size:13.5px}
 .blank .tool{margin:0 4px}
 
-/* my answer — always-editable, borderless until touched */
+/* my answer — always-editable, borderless until touched, collapsible per block */
 .mine{max-width:74ch}
-.minehead{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:20px 0 5px}
-.minehead:first-child{margin-top:0}
-.mineheadrow{display:flex;gap:6px;align-items:center;margin:22px 0 5px}
-.mineheadrow input{flex:1;font-family:var(--display);font-size:16px;border:0;border-bottom:1px dashed var(--rule);background:none;color:var(--ink);padding:3px 0}
-.mineheadrow input:focus{outline:none;border-bottom-color:var(--accent)}
-.minebox{width:100%;font-family:var(--body);font-size:14.5px;line-height:1.6;border:1px solid transparent;border-radius:2px;background:none;color:var(--ink);padding:6px 8px;resize:none;overflow:hidden;display:block;min-height:2.6em}
+.mineblk{border-bottom:1px solid var(--rule)}
+.mineblk:first-of-type{border-top:1px solid var(--rule)}
+.mineblk>summary{list-style:none;cursor:pointer;padding:11px 24px 11px 0;position:relative;display:flex;gap:8px;align-items:center}
+.mineblk>summary::-webkit-details-marker{display:none}
+.mineblk>summary::after{content:"+";position:absolute;right:2px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:15px;color:var(--ink3)}
+.mineblk[open]>summary::after{content:"\2212"}
+.mineblk>summary:hover .minehead{color:var(--accent)}
+.minehead{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:0}
+.mineblk>summary input{flex:1;min-width:0;font-family:var(--display);font-size:16px;border:0;border-bottom:1px dashed var(--rule);background:none;color:var(--ink);padding:3px 0}
+.mineblk>summary input:focus{outline:none;border-bottom-color:var(--accent)}
+.mbody{padding:0 0 16px}
+/* contenteditable, not textarea: a textarea wraps every line flush left, so the
+   second line of a long bullet lands under the bullet instead of under its text.
+   Hanging indent needs one block element per line, which only this gives. */
+.minebox{position:relative;width:100%;font-family:var(--body);font-size:14.5px;line-height:1.66;border:1px solid transparent;border-radius:2px;background:none;color:var(--ink);padding:6px 8px;min-height:2.6em;white-space:pre-wrap;overflow-wrap:break-word;cursor:text}
 .minebox:hover{border-color:var(--rule)}
 .minebox:focus{outline:none;border-color:var(--accent);background:var(--paper)}
-.minebox::placeholder{color:var(--ink3);font-style:italic}
+.minebox .ml{min-height:1.66em}
+.minebox.mbempty::before{content:attr(data-ph);position:absolute;left:8px;top:6px;color:var(--ink3);font-style:italic;pointer-events:none}
 .minehint{font-size:11.5px;color:var(--ink3);margin:14px 0 0;font-style:italic}
 
 /* home */
@@ -1427,84 +1437,166 @@ function pointHtml(p){
   return h;
 }
 
-/* -------- my answer: always-editable boxes with markdown-ish keys -------- */
-var mineBoxes={}, saveTimer=null;
+/* -------- my answer: always-editable boxes with markdown-ish keys --------
+   The stored value stays plain text — one line per line, two spaces per indent
+   level, "• " for a bullet. Indent depth lives on the line's data-d rather than
+   as literal spaces in the DOM, so the leading whitespace never renders and the
+   hanging indent lands where the text starts instead of two characters right of
+   it. Anything written before this change still loads: leading spaces are read
+   back into data-d, and a leading "- " is rewritten to "• ". */
+var mineBoxes={}, saveTimer=null, MB_STEP="  ";
 function scheduleSave(){ clearTimeout(saveTimer); saveTimer=setTimeout(function(){save();},500); }
+try{ document.execCommand("defaultParagraphSeparator",false,"div"); }catch(e){}
+
+function mbPad(d){ var s=""; for(var i=0;i<d;i++) s+=MB_STEP; return s; }
+function mbNorm(v){ return String(v==null?"":v).replace(/\r\n?/g,"\n").replace(/^([ \t]*)[-*] /gm,"$1• "); }
+function mbHtml(v){
+  return mbNorm(v).split("\n").map(function(l){
+    var lead=(l.match(/^[ \t]*/)||[""])[0];
+    var d=Math.floor(lead.replace(/\t/g,MB_STEP).length/MB_STEP.length);
+    var t=l.slice(lead.length);
+    return '<div class="ml" data-d="'+d+'">'+(t?esc(t):"<br>")+'</div>';
+  }).join("");
+}
+function mbText(el){
+  var out=[];
+  for(var i=0;i<el.childNodes.length;i++){
+    var n=el.childNodes[i];
+    if(n.nodeType===3) out.push(n.nodeValue.replace(/\n/g,""));
+    else if(n.nodeName==="BR") out.push("");
+    else if(n.nodeType===1) out.push(mbPad(+(n.getAttribute("data-d")||0))+(n.textContent||""));
+  }
+  return out.join("\n");
+}
+function mbLine(el){
+  var s=window.getSelection(); if(!s||!s.rangeCount) return null;
+  var n=s.getRangeAt(0).startContainer;
+  while(n&&n!==el){ if(n.parentNode===el&&n.nodeType===1) return n; n=n.parentNode; }
+  return null;
+}
+function mbSelect(d){
+  var r=document.createRange(); r.selectNodeContents(d);
+  var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+/* Style only — no text or structure is touched, so the caret never moves. */
+function mbPaint(el){
+  var blank=true;
+  for(var i=0;i<el.children.length;i++){
+    var d=el.children[i], t=d.textContent||"";
+    if(t.trim()) blank=false;
+    var stray=(t.match(/^[ \t]*/)||[""])[0].replace(/\t/g,MB_STEP).length/MB_STEP.length;
+    var depth=(+(d.getAttribute("data-d")||0))+Math.floor(stray);
+    var hang=/^[ \t]*•\s/.test(t)?1.35:0;
+    d.style.paddingLeft=(depth*1.7+hang)+"em";
+    d.style.textIndent=hang?("-"+hang+"em"):"";
+  }
+  el.classList.toggle("mbempty",blank&&!(el.textContent||"").trim());
+}
+function mbKeys(e,el){
+  var d=mbLine(el);
+  if(e.key==="Tab"){
+    e.preventDefault();
+    if(!d) return;
+    var cur=+(d.getAttribute("data-d")||0);
+    d.setAttribute("data-d",String(Math.max(0,Math.min(8,cur+(e.shiftKey?-1:1)))));
+    mbPaint(el); el.dispatchEvent(new Event("input",{bubbles:true}));
+    return;
+  }
+  if(e.key==="Enter"&&!e.shiftKey&&d){
+    var t=d.textContent||"";
+    if(/^\s*•\s*$/.test(t)){                 // empty bullet: leave the list
+      e.preventDefault();
+      mbSelect(d); document.execCommand("delete");
+      el.dispatchEvent(new Event("input",{bubbles:true}));
+      return;
+    }
+    // let the browser split the line (it keeps undo intact), then carry the bullet
+    if(/^\s*•\s/.test(t)) el._mbBullet=true;
+  }
+}
+function mbInput(el){
+  var kids=el.children, i;
+  for(i=0;i<kids.length;i++){                // a line the browser just split off
+    if(!kids[i].hasAttribute("data-d")){     // inherits the depth of the one above
+      kids[i].className="ml";
+      kids[i].setAttribute("data-d",i>0?(kids[i-1].getAttribute("data-d")||"0"):"0");
+    }
+  }
+  if(el._mbBullet){
+    el._mbBullet=false;
+    var ln=mbLine(el);
+    if(ln&&!/^\s*•/.test(ln.textContent||"")) document.execCommand("insertText",false,"• ");
+  }
+  var cur=mbLine(el), m=cur&&(cur.textContent||"").match(/^([ \t]*)[-*] $/);
+  if(m){                                     // "- " on an otherwise empty line becomes a bullet
+    mbSelect(cur); document.execCommand("insertText",false,m[1]+"• ");
+  }
+  mbPaint(el);
+}
 function mineBox(key,getVal,setVal,ph){
   var id="mb"+key;
   mineBoxes[id]={get:getVal,set:setVal};
-  return '<textarea class="minebox" data-mb="'+id+'" placeholder="'+esc(ph)+'" rows="2">'+esc(getVal()||"")+'</textarea>';
-}
-function autoGrow(t){ t.style.height="auto"; t.style.height=(t.scrollHeight+2)+"px"; }
-function mineKeys(e,t){
-  var v=t.value, a=t.selectionStart, b=t.selectionEnd;
-  var ls=v.lastIndexOf("\n",a-1)+1;
-  var le=v.indexOf("\n",a); if(le<0) le=v.length;
-  var line=v.slice(ls,le);
-  var m=line.match(/^([ \t]*)- (.*)$/);
-  if(e.key==="Enter"&&!e.shiftKey&&m){
-    e.preventDefault();
-    if(!m[2].trim()){                       // empty bullet: leave the list
-      t.value=v.slice(0,ls)+v.slice(le);
-      t.selectionStart=t.selectionEnd=ls;
-    } else {
-      var ins="\n"+m[1]+"- ";
-      t.value=v.slice(0,a)+ins+v.slice(b);
-      t.selectionStart=t.selectionEnd=a+ins.length;
-    }
-    t.dispatchEvent(new Event("input",{bubbles:true}));
-    return;
-  }
-  if(e.key==="Tab"){
-    e.preventDefault();
-    if(e.shiftKey){
-      if(v.slice(ls,ls+2)==="  "){
-        t.value=v.slice(0,ls)+v.slice(ls+2);
-        t.selectionStart=t.selectionEnd=Math.max(ls,a-2);
-      }
-    } else {
-      t.value=v.slice(0,ls)+"  "+v.slice(ls);
-      t.selectionStart=t.selectionEnd=a+2;
-    }
-    t.dispatchEvent(new Event("input",{bubbles:true}));
-  }
+  return '<div class="minebox" contenteditable="true" spellcheck="true" '+
+    'data-mb="'+id+'" data-ph="'+esc(ph)+'">'+mbHtml(getVal())+'</div>';
 }
 function wireMine(s){
-  s.querySelectorAll("[data-mb]").forEach(function(t){
-    var e=mineBoxes[t.getAttribute("data-mb")];
+  s.querySelectorAll("[data-mb]").forEach(function(el){
+    var e=mineBoxes[el.getAttribute("data-mb")];
     if(!e) return;
-    autoGrow(t);
-    t.addEventListener("input",function(){ e.set(t.value); autoGrow(t); scheduleSave(); });
-    t.addEventListener("keydown",function(ev){ mineKeys(ev,t); });
+    mbPaint(el);
+    el.addEventListener("input",function(){ mbInput(el); e.set(mbText(el)); scheduleSave(); });
+    el.addEventListener("keydown",function(ev){ mbKeys(ev,el); });
+    el.addEventListener("paste",function(ev){
+      ev.preventDefault();
+      var txt=((ev.clipboardData||window.clipboardData).getData("text/plain")||"");
+      document.execCommand("insertText",false,mbNorm(txt));
+    });
   });
   s.querySelectorAll("[data-mh]").forEach(function(inp){
     var e=mineBoxes[inp.getAttribute("data-mh")];
     if(!e) return;
     inp.addEventListener("input",function(){ e.set(inp.value); scheduleSave(); });
   });
+  // the heading input and its buttons sit inside the <summary>; without this a
+  // click to place the cursor would fold the block instead
+  s.querySelectorAll(".mineblk>summary input").forEach(function(c){
+    c.addEventListener("click",function(e){e.stopPropagation();});
+    c.addEventListener("mousedown",function(e){e.stopPropagation();});
+    c.addEventListener("keydown",function(e){ if(e.key===" "||e.key==="Enter") e.stopPropagation(); });
+  });
+  s.querySelectorAll(".mineblk").forEach(function(blk){
+    var key=blk.getAttribute("data-blockkey");
+    if(key) blk.addEventListener("toggle",function(){openBlocks[key]=blk.open;});
+  });
+}
+/* Blocks default open — a fresh question should show the whole sheet, not a row
+   of shut drawers. openBlocks only ever records a deliberate fold. */
+function mineBlk(key,headHtml,inner){
+  var k="mine:"+key;
+  return '<details class="mineblk" data-blockkey="'+esc(k)+'"'+(openBlocks[k]===false?"":" open")+'>'+
+    '<summary>'+headHtml+'</summary><div class="mbody">'+inner+'</div></details>';
 }
 function mineView(q){
   // your own answer is always editable - no pencil, no read mode. actionBtn/confirmBtn
   // return nothing while EDIT is false, so this must be set before building any control.
   var wasEdit=EDIT; EDIT=true;
   var m=q.mine, h='<div class="mine">';
-  h+='<p class="minehead">Introduction</p>'+
-     mineBox("intro",function(){return m.intro;},function(v){m.intro=v;},"your opening — 2-3 lines");
+  h+=mineBlk("intro",'<span class="minehead">Introduction</span>',
+     mineBox("intro",function(){return m.intro;},function(v){m.intro=v;},"your opening — 2-3 lines"));
   m.sections.forEach(function(sec,i){
     mineBoxes["mh"+i]={get:function(){return sec.heading;},set:function(v){sec.heading=v;}};
-    h+='<div class="mineheadrow">'+
+    h+=mineBlk("s"+i,
        '<input data-mh="mh'+i+'" value="'+esc(sec.heading||"")+'" placeholder="sub-heading">'+
        actionBtn("↑",function(){if(i>0){var t=m.sections[i];m.sections[i]=m.sections[i-1];m.sections[i-1]=t;save();renderSheet();}},"mvbtn",i===0)+
        actionBtn("↓",function(){if(i<m.sections.length-1){var t=m.sections[i];m.sections[i]=m.sections[i+1];m.sections[i+1]=t;save();renderSheet();}},"mvbtn",i===m.sections.length-1)+
-       confirmBtn("×",function(){m.sections.splice(i,1);save();renderSheet();})+
-       '</div>'+
-       mineBox("s"+i,function(){return sec.body;},function(v){sec.body=v;},"your points for this sub-heading");
+       confirmBtn("×",function(){m.sections.splice(i,1);save();renderSheet();}),
+       mineBox("s"+i,function(){return sec.body;},function(v){sec.body=v;},"your points for this sub-heading"));
   });
-  h+='<div style="margin-top:14px">'+actionBtn("+ Add sub-heading",function(){
+  h+='<div style="margin:14px 0">'+actionBtn("+ Add sub-heading",function(){
        m.sections.push({heading:"",body:""});save();renderSheet();
      })+'</div>';
-  h+='<p class="minehead">Conclusion</p>'+
-     mineBox("concl",function(){return m.conclusion;},function(v){m.conclusion=v;},"your close — 2-3 lines");
+  h+=mineBlk("concl",'<span class="minehead">Conclusion</span>',
+     mineBox("concl",function(){return m.conclusion;},function(v){m.conclusion=v;},"your close — 2-3 lines"));
   h+='<p class="minehint">Type “- ” for a bullet. Enter continues the list, Tab indents, Shift-Tab outdents, an empty bullet ends it.</p>';
   EDIT=wasEdit;
   return h+'</div>';
@@ -2300,7 +2392,7 @@ $("promptBtn").onclick=function(){
    will not ask for one, so there is nothing on the public page to spend.
    The gate is belt-and-braces on top of that — a visitor who edits the check
    out in devtools still has only their own key to spend. */
-var genKey="", genProvider="anthropic", genModel="claude-opus-5",
+var genKey="", genProvider="anthropic", genModel="claude-opus-5", genEffort="high",
     genUse={inTok:0,outTok:0,usd:0,calls:0}, genAbort=null, orModels=null, orCredits=null;
 
 /* Usage ledger. Per model, on this device only — never the repo, which is
@@ -2332,16 +2424,25 @@ function isLocal(){
   return h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]"||h==="";
 }
 /* USD per million tokens. Anthropic's list is small and stable enough to carry;
-   OpenRouter's is fetched live so nothing here goes stale or gets invented. */
+   OpenRouter's is fetched live so nothing here goes stale or gets invented.
+   `think` marks the models that take output_config.effort — Haiku 4.5 predates
+   it and rejects the field. Sonnet 5's introductory rate expires on its own
+   date rather than being silently wrong the day after. */
 var ANTHROPIC_MODELS=[
-  {id:"claude-opus-5",    label:"Opus 5 — best skeletons",  inM:5,  outM:25},
-  {id:"claude-sonnet-5",  label:"Sonnet 5 — good, cheaper", inM:3,  outM:15},
-  {id:"claude-haiku-4-5", label:"Haiku 4.5 — cheapest",     inM:1,  outM:5}
+  {id:"claude-fable-5",   label:"Fable 5 — deepest, dearest",  inM:10, outM:50, think:true},
+  {id:"claude-opus-5",    label:"Opus 5 — best skeletons",     inM:5,  outM:25, think:true},
+  {id:"claude-opus-4-8",  label:"Opus 4.8 — previous Opus",    inM:5,  outM:25, think:true},
+  {id:"claude-sonnet-5",  label:"Sonnet 5 — good, cheaper",    inM:3,  outM:15, think:true,
+                                                               introInM:2, introOutM:10, introTo:"2026-08-31"},
+  {id:"claude-haiku-4-5", label:"Haiku 4.5 — cheapest",        inM:1,  outM:5}
 ];
+function anthModel(id){ return ANTHROPIC_MODELS.filter(function(x){return x.id===id;})[0]||null; }
 function priceFor(model){
   if(genProvider==="anthropic"){
-    var m=ANTHROPIC_MODELS.filter(function(x){return x.id===model;})[0];
-    return m?{inM:m.inM,outM:m.outM}:{inM:0,outM:0};
+    var m=anthModel(model);
+    if(!m) return {inM:0,outM:0};
+    if(m.introTo&&new Date().toISOString().slice(0,10)<=m.introTo) return {inM:m.introInM,outM:m.introOutM};
+    return {inM:m.inM,outM:m.outM};
   }
   var o=(orModels||[]).filter(function(x){return x.id===model;})[0];
   if(!o||!o.pricing) return {inM:0,outM:0};
@@ -2390,8 +2491,18 @@ async function callModel(prompt,onDelta){
     headers={"content-type":"application/json","x-api-key":genKey,
              "anthropic-version":"2023-06-01",
              "anthropic-dangerous-direct-browser-access":"true"};
-    body={model:genModel,max_tokens:8000,stream:true,
+    var am=anthModel(genModel);
+    /* On every current Claude model thinking is on by default and its tokens
+       come out of max_tokens, so an 8k ceiling would be spent reasoning and the
+       skeleton would arrive truncated. display:summarized exists only so the
+       progress pane shows movement through the long silent think — the summary
+       arrives as thinking_delta and never joins `text`. */
+    body={model:genModel,max_tokens:(am&&am.think)?32000:8000,stream:true,
           messages:[{role:"user",content:prompt}]};
+    if(am&&am.think){
+      body.thinking={type:"adaptive",display:"summarized"};
+      body.output_config={effort:genEffort};
+    }
   } else {
     url="https://openrouter.ai/api/v1/chat/completions";
     headers={"content-type":"application/json","authorization":"Bearer "+genKey};
@@ -2406,7 +2517,7 @@ async function callModel(prompt,onDelta){
     try{ var j=JSON.parse(detail); detail=(j.error&&(j.error.message||j.error.type))||detail; }catch(e){}
     throw new Error("HTTP "+res.status+" — "+String(detail).slice(0,300));
   }
-  var reader=res.body.getReader(), dec=new TextDecoder(), buf="", text="", inTok=0, outTok=0;
+  var reader=res.body.getReader(), dec=new TextDecoder(), buf="", text="", think="", inTok=0, outTok=0;
   for(;;){
     var chunk=await reader.read();
     if(chunk.done) break;
@@ -2420,7 +2531,10 @@ async function callModel(prompt,onDelta){
       var ev; try{ ev=JSON.parse(payload); }catch(e){ continue; }
       if(genProvider==="anthropic"){
         if(ev.type==="content_block_delta"&&ev.delta&&typeof ev.delta.text==="string"){
-          text+=ev.delta.text; onDelta&&onDelta(text);
+          text+=ev.delta.text; onDelta&&onDelta(text,think);
+        }
+        if(ev.type==="content_block_delta"&&ev.delta&&typeof ev.delta.thinking==="string"){
+          think+=ev.delta.thinking; onDelta&&onDelta(text,think);
         }
         if(ev.type==="message_start"&&ev.message&&ev.message.usage) inTok=ev.message.usage.input_tokens||0;
         if(ev.type==="message_delta"&&ev.usage) outTok=ev.usage.output_tokens||outTok;
@@ -2499,14 +2613,32 @@ function genDialog(q){
     var r=useLedger[id];
     return r&&r.calls ? (" · used "+r.calls+"× "+money(r.usd)) : "";
   }
+  /* Price per question, not per million tokens — the reader should not have to
+     do the arithmetic. Same estIn/estOut the OpenRouter list is sorted by, so
+     the two providers are directly comparable. Thinking tokens bill as output,
+     so effort above `high` will run over this. */
+  function anthPer(m){ var p=priceFor(m.id); return (estIn/1e6)*p.inM+(estOut/1e6)*p.outM; }
   function modelPicker(){
     if(genProvider==="anthropic"){
       return '<select id="genModel">'+ANTHROPIC_MODELS.map(function(m){
+        var p=priceFor(m.id);
         return '<option value="'+esc(m.id)+'"'+(m.id===genModel?' selected':'')+'>'+esc(m.label)+
-               ' — $'+m.inM+'/$'+m.outM+' per Mtok'+esc(spent(m.id))+'</option>';}).join('')+'</select>';
+               ' — ≈'+money(anthPer(m))+'/question ($'+p.inM+'/$'+p.outM+' per Mtok)'+
+               esc(spent(m.id))+'</option>';}).join('')+'</select>';
     }
     if(!orModels) return '<span class="ph">loading model list…</span>';
     return '<input id="genModelTxt" value="'+esc(genModel)+'" placeholder="model id, or pick below">';
+  }
+  function effortRow(){
+    var m=anthModel(genModel);
+    if(genProvider!=="anthropic") return "";
+    if(!m||!m.think) return '<p class="ph">'+esc(genModel)+' has no thinking control.</p>';
+    return '<div class="genrow"><label>Thinking</label>'+
+      '<select id="genEffort">'+["low","medium","high","xhigh","max"].map(function(l){
+        return '<option value="'+l+'"'+(l===genEffort?' selected':'')+'>'+l+'</option>';
+      }).join('')+'</select></div>'+
+      '<p class="ph">How hard it reasons before writing. Thinking tokens bill as output, so '+
+      'xhigh and max cost more than the per-question figure above; low is fastest and cheapest.</p>';
   }
   function slot(){
     return '<div class="genrow"><label>Provider</label>'+
@@ -2515,6 +2647,7 @@ function genDialog(q){
           '<option value="openrouter"'+(genProvider==="openrouter"?' selected':'')+'>OpenRouter (many models, some free)</option>'+
         '</select></div>'+
       '<div class="genrow"><label>Model</label><span id="genModelWrap">'+modelPicker()+'</span></div>'+
+      effortRow()+
       (genProvider==="openrouter"?
         '<div class="genrow"><label>Filter</label>'+
           '<input id="orFilter" placeholder="name or maker, e.g. gemini, qwen, claude" value="'+esc(orFilter)+'">'+
@@ -2523,8 +2656,9 @@ function genDialog(q){
       '<div class="genrow"><label>API key</label>'+
         '<input id="genKey" type="password" autocomplete="off" spellcheck="false" value="'+esc(genKey)+'" '+
         'placeholder="'+(genProvider==="anthropic"?"sk-ant-…":"sk-or-…")+'"></div>'+
-      '<p class="ph">Kept in memory for this tab only — never written to disk, never committed. '+
-        'A reload forgets it.</p>'+
+      '<p class="ph">Kept in a variable for this tab only — never written to disk, never committed. '+
+        'That is why it is already filled in if you have generated once since loading the page; '+
+        'a reload forgets it.</p>'+
       '<div id="genOut" class="genout"></div>'+
       '<div id="genMeter" class="usemeter">'+meterHtml()+'</div>';
   }
@@ -2567,7 +2701,9 @@ function genDialog(q){
     wireModel();
   }
   function wireModel(){
-    var s=$("genModel"); if(s) s.onchange=function(){genModel=s.value;};
+    // repaint, not a bare assignment: the thinking row is model-dependent
+    var s=$("genModel"); if(s) s.onchange=function(){genModel=s.value;repaint();};
+    var ef=$("genEffort"); if(ef) ef.onchange=function(){genEffort=ef.value;};
     var t=$("genModelTxt"); if(t) t.oninput=function(){genModel=t.value.trim();paintList();};
     var f=$("orFilter");   if(f) f.oninput=function(){orFilter=f.value;paintList();};
     var fr=$("orFree");    if(fr) fr.onchange=function(){orFreeOnly=fr.checked;paintList();};
@@ -2593,8 +2729,11 @@ function genDialog(q){
       var btn=$("dlgAct"); btn.disabled=true; btn.textContent="Generating…";
       $("dlgMsg").className="msg"; $("dlgMsg").textContent="";
       try{
-        var out=await callModel(generationPrompt(q),function(t){
-          streamed=t; $("genOut").textContent=t.slice(-1200);
+        var out=await callModel(generationPrompt(q),function(t,think){
+          streamed=t;
+          // nothing but thinking has arrived yet - show that rather than a blank pane
+          var shown=t?t:(think?("thinking…\n\n"+think):"");
+          $("genOut").textContent=shown.slice(-1200);
           $("genOut").scrollTop=$("genOut").scrollHeight;
         });
         /* Book the tokens the moment they come back. A reply that fails to parse
