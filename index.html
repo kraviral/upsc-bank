@@ -243,6 +243,8 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .orid{flex:1;font-family:var(--mono);font-size:11px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .orcost{font-family:var(--mono);font-size:10.5px;color:var(--accent);width:56px;text-align:right;flex:none}
 .orctx{font-family:var(--mono);font-size:10px;color:var(--ink3);width:38px;text-align:right;flex:none}
+.frow{display:flex;align-items:center;gap:4px;margin-bottom:3px}
+.flab{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);width:58px;flex:none}
 .ppick{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
 .ppick .chip{font-size:10.5px;padding:4px 9px}
 .dangerzone{margin:24px 0 40px;padding-top:14px;border-top:1px solid var(--rule);max-width:74ch}
@@ -979,7 +981,7 @@ var db={taxonomy:{},questions:[]}, current=null, paperFilter="All", query="", ad
 var uidCounter=0, fieldRegistry={}, actionRegistry={}, editKey=null, confirmKey=null, pendingArr=null, pendingIdx=-1;
 var openBlocks={}, lastRenderedId=null;
 var sheetPaper="", editBlocks={}, editAll=false, EDIT=false, prompts=null, navOpen={}, navRenderedWithQuery=false;
-var view="ai", answerIdx=0, homeMode=true, homeGroup="theme", openTheme=null, srcFilter="All", statusFilter="All";
+var view="ai", answerIdx=0, homeMode=true, homeGroup="theme", openTheme=null, srcFilter="All", mineFilter="All", aiFilter="All";
 function blockEdit(key){return editAll||!!editBlocks[key];}
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -1035,8 +1037,10 @@ function haystack(q){
 function matches(q){
   if(paperFilter!=="All"&&q.paper!==paperFilter) return false;
   if(srcFilter!=="All"&&(q.source||"Test series")!==srcFilter) return false;
-  if(statusFilter==="Touched"&&!isTouched(q)) return false;
-  if(statusFilter==="Untouched"&&isTouched(q)) return false;
+  if(mineFilter==="Yes"&&!hasMine(q)) return false;
+  if(mineFilter==="No"&&hasMine(q)) return false;
+  if(aiFilter==="Yes"&&!hasAI(q)) return false;
+  if(aiFilter==="No"&&hasAI(q)) return false;
   if(!query) return true;
   return haystack(q).indexOf(query)>-1;
 }
@@ -1389,12 +1393,13 @@ function normalizeQ(q){
   q.mine.sections=q.mine.sections||[];
   return q;
 }
-function isTouched(q){
-  if((q.answers||[]).length) return true;
+function hasAI(q){ return (q.answers||[]).length>0; }
+function hasMine(q){
   var m=q.mine||{};
   if((m.intro||"").trim()||(m.conclusion||"").trim()) return true;
   return (m.sections||[]).some(function(s){return (s.heading||"").trim()||(s.body||"").trim();});
 }
+function isTouched(q){ return hasAI(q)||hasMine(q); }
 /* a point may be a bare string or {stem, keyword?, evidence?} — only stem is required */
 function isPYQ(q){ return (q.source==="PYQ") || /^pyq-/.test(q.id||""); }
 function deleteQuestion(q){
@@ -1595,9 +1600,13 @@ function renderHome(){
 
   if(homeGroup==="year"){
     var byYear={};
-    qs.forEach(function(q){ var y=q.year||"undated"; (byYear[y]=byYear[y]||[]).push(q); });
+    // a test-series question has no year by design, so name that bucket for what
+    // it is rather than filing it under "undated" as if the year were missing
+    qs.forEach(function(q){ var y=q.year||(isPYQ(q)?"undated":"test series"); (byYear[y]=byYear[y]||[]).push(q); });
     Object.keys(byYear).sort(function(a,b){
-      if(a==="undated") return 1; if(b==="undated") return -1; return b-a;
+      var na=(a==="undated"||a==="test series"), nb=(b==="undated"||b==="test series");
+      if(na&&nb) return a<b?-1:1;
+      if(na) return 1; if(nb) return -1; return b-a;
     }).forEach(function(y){
       h+='<div class="paperblk"><h3>'+esc(y)+'<span class="tc" style="float:right;font-family:var(--mono);font-size:10px;color:var(--ink3)">'+byYear[y].length+'</span></h3>';
       h+='<div class="qlist" style="border-left-color:var(--rule)">'+byYear[y].map(qRow).join("")+'</div></div>';
@@ -1660,21 +1669,27 @@ function wireHome(s){
 }
 function renderFilters(){
   var f=$("filters"); if(!f) return;
-  var html="";
-  [["All","All"],["PYQ","PYQ"],["Test series","Test"]].forEach(function(o){
-    html+='<button class="chip'+(srcFilter===o[0]?' on':'')+'" data-sf="'+esc(o[0])+'">'+esc(o[1])+'</button>';
-  });
-  html+='<span style="width:8px"></span>';
-  [["All","Any"],["Touched","Started"],["Untouched","Blank"]].forEach(function(o){
-    html+='<button class="chip'+(statusFilter===o[0]?' on':'')+'" data-tf="'+esc(o[0])+'">'+esc(o[1])+'</button>';
-  });
-  f.innerHTML=html;
-  f.querySelectorAll("[data-sf]").forEach(function(b){
-    b.onclick=function(){srcFilter=b.getAttribute("data-sf");renderFilters();renderNav();if(homeMode)renderHome();};
-  });
-  f.querySelectorAll("[data-tf]").forEach(function(b){
-    b.onclick=function(){statusFilter=b.getAttribute("data-tf");renderFilters();renderNav();if(homeMode)renderHome();};
-  });
+  function row(label,cur,attr,opts){
+    return '<div class="frow"><span class="flab">'+label+'</span>'+opts.map(function(o){
+      return '<button class="chip'+(cur===o[0]?' on':'')+'" data-'+attr+'="'+esc(o[0])+'">'+esc(o[1])+'</button>';
+    }).join('')+'</div>';
+  }
+  /* Two independent axes, because "have I written this one" and "has a model
+     drafted it" are different questions and a single Started/Blank chip
+     conflated them — a question with three AI answers and nothing of your own
+     counted as started. */
+  f.innerHTML=
+    row("source",srcFilter,"sf",[["All","All"],["PYQ","PYQ"],["Test series","Test"]])+
+    row("my answer",mineFilter,"mf",[["All","Any"],["Yes","Written"],["No","Blank"]])+
+    row("ai answer",aiFilter,"af",[["All","Any"],["Yes","Generated"],["No","None"]]);
+  function bind(attr,set){
+    f.querySelectorAll("["+attr+"]").forEach(function(b){
+      b.onclick=function(){set(b.getAttribute(attr));renderFilters();renderNav();if(homeMode)renderSheet();};
+    });
+  }
+  bind("data-sf",function(v){srcFilter=v;});
+  bind("data-mf",function(v){mineFilter=v;});
+  bind("data-af",function(v){aiFilter=v;});
 }
 
 function renderSheet(){
@@ -1694,7 +1709,10 @@ function renderSheet(){
   h+=eselect(function(){return q.paper;},function(v){q.paper=v;},PAPERS);
   h+=eselect(function(){return q.source;},function(v){q.source=v;},["Test series","PYQ"]);
   h+=eselect(function(){return q.type;},function(v){q.type=v;},TYPES);
-  h+=etext(function(){return q.year;},function(v){q.year=v?+v:null;},{placeholder:"year"});
+  /* A year is what identifies a past paper. A test-series question has no year
+     worth recording — the field only invited a meaningless number and then
+     scattered those questions across the by-year view. */
+  if(isPYQ(q)) h+=etext(function(){return q.year;},function(v){q.year=v?+v:null;},{placeholder:"year"});
   h+='</div>';
 
   if(isCS){
@@ -2678,6 +2696,17 @@ async function loadPrompts(){
 
   if(files){
     db=files;srcLabel="repo";
+    /* Baseline for "what changed". Without it lastSaved stays null until the
+       first in-app commit, so changedFiles() falls back to "everything" and
+       Save lists all 70 data files whether or not one byte differs — which
+       buries the one file you actually touched. Snapshot BEFORE the draft is
+       merged, so the comparison is against the repo and draft edits show up.
+       Normalise first: normalizeQ fills in missing fields the moment a question
+       is rendered, so a baseline taken before it would show files as changed
+       just because you opened something. */
+    db.questions.forEach(normalizeQ);
+    lastSaved={};
+    buildFiles().forEach(function(f){ lastSaved[f.path]=f.text; });
     if(draft){
       // Index by id, and APPEND rather than unshift. Unshifting mid-loop shifted every
       // element by one and invalidated every index already recorded, so the next "replace"
