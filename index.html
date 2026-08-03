@@ -6,11 +6,28 @@
 <title>UPSC — Answer Skeletons</title>
 <style>
 :root{
+  color-scheme:light;
   --paper:#EDEFEA; --sheet:#FBFCFA; --ink:#16202E; --ink2:#5C6875; --ink3:#8B95A0;
   --rule:#D8DDD6; --margin:#A8483C; --marker:#F5D76E; --accent:#1F5E55;
+  /* a lift off the page for hovered and being-edited rows, and the text that has
+     to stay legible on a highlighter — both were hardcoded white and near-black,
+     which only works while the page is pale */
+  --lift:rgba(255,255,255,.6); --lift2:rgba(255,255,255,.55); --onmarker:#16202E;
+  --scrim:rgba(22,32,46,.42); --drop:rgba(0,0,0,.09);
   --display:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
   --body:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --mono:'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+/* Dark is the same design at a different luminance, not a second stylesheet:
+   only the eight colours move. Teal and rust have to come up to stay legible
+   against a dark page; the highlighter stays a highlighter, so the text on it
+   stays dark in both themes. */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#11151A; --sheet:#191E25; --ink:#E7ECEF; --ink2:#A7B2BC; --ink3:#78838E;
+  --rule:#2B323B; --margin:#D9776A; --marker:#C9A227; --accent:#5CBBA9;
+  --lift:rgba(255,255,255,.045); --lift2:rgba(255,255,255,.05);
+  --scrim:rgba(0,0,0,.6); --drop:rgba(0,0,0,.45);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -34,14 +51,14 @@ main{display:grid;grid-template-columns:288px minmax(0,1fr)}
 .tree details{margin-bottom:1px}
 .tree summary{cursor:pointer;list-style:none;padding:4px 4px;font-size:12.5px;color:var(--ink2);display:flex;gap:6px;align-items:baseline;border-radius:2px}
 .tree summary::-webkit-details-marker{display:none}
-.tree summary:hover{background:rgba(255,255,255,.6);color:var(--ink)}
+.tree summary:hover{background:var(--lift);color:var(--ink)}
 .tree .caret{font-family:var(--mono);font-size:9px;color:var(--ink3);width:9px}
 .tree .cnt{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:var(--ink3)}
 .tree .paper>summary{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--rule);padding-bottom:6px;margin-top:8px}
 .tree .topic{margin-left:9px}
 .tree .sub{margin-left:9px}
 .qbtn{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:5px 6px 5px 10px;margin-left:18px;border-left:2px solid transparent;color:var(--ink2);font-size:12px;line-height:1.35}
-.qbtn:hover{color:var(--ink);background:rgba(255,255,255,.6)}
+.qbtn:hover{color:var(--ink);background:var(--lift)}
 .qbtn[aria-current="true"]{border-left-color:var(--margin);color:var(--ink);background:var(--sheet)}
 .empty{color:var(--ink3);font-size:12.5px;padding:10px 4px}
 
@@ -73,7 +90,7 @@ main{display:grid;grid-template-columns:288px minmax(0,1fr)}
 .fwchips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .fwchip{font-family:var(--mono);font-size:10px;letter-spacing:.03em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink2);padding:4px 8px;border-radius:2px;cursor:pointer;white-space:normal;text-align:left}
 .fwchip:hover{border-color:var(--accent);color:var(--accent)}
-.fwchip.active{background:var(--marker);border-color:var(--marker);color:var(--ink);opacity:.95}
+.fwchip.active{background:var(--marker);border-color:var(--marker);color:var(--onmarker);opacity:.95}
 .fwpane[hidden]{display:none}
 .qcase summary{cursor:pointer;list-style:none}
 .qcase summary::-webkit-details-marker{display:none}
@@ -105,7 +122,7 @@ pre.diagram{font-family:var(--mono);font-size:11.5px;line-height:1.35;background
 .caption{font-size:12.5px;color:var(--ink2);font-style:italic;margin:0}
 
 dialog{border:1px solid var(--ink);border-radius:3px;padding:0;max-width:660px;width:94vw;background:var(--sheet);color:var(--ink)}
-dialog::backdrop{background:rgba(22,32,46,.42)}
+dialog::backdrop{background:var(--scrim)}
 .dlg{padding:20px}
 .dlg h3{font-family:var(--display);font-size:18px;margin:0 0 6px}
 .dlg p.hint{font-size:13px;color:var(--ink2);margin:0 0 12px}
@@ -126,7 +143,7 @@ dialog::backdrop{background:rgba(22,32,46,.42)}
 /* generation runs detached from the dialog, so its progress needs somewhere to
    live that is not the dialog */
 .genstrip{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;gap:6px;width:340px;max-width:calc(100vw - 32px)}
-.genjob{background:var(--sheet);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:3px;padding:8px 10px;box-shadow:0 2px 12px rgba(0,0,0,.09);font-size:12px;color:var(--ink2)}
+.genjob{background:var(--sheet);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:3px;padding:8px 10px;box-shadow:0 2px 12px var(--drop);font-size:12px;color:var(--ink2)}
 .genjob.done{border-left-color:#3f7d4f}
 .genjob.err{border-left-color:#b4453a}
 .genjob.cancelled{border-left-color:var(--ink3)}
@@ -174,8 +191,8 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .pencil:hover{border-color:var(--accent);color:var(--accent)}
 .pencil.on{opacity:1;border-color:var(--accent);color:var(--accent)}
 .pencil.zp{opacity:1;margin-left:0}
-.block.editing{background:rgba(255,255,255,.55);box-shadow:inset 2px 0 0 var(--accent)}
-.zone.editing{background:rgba(255,255,255,.55);box-shadow:inset 2px 0 0 var(--accent);padding:10px 12px 2px;margin:0 -12px 4px}
+.block.editing{background:var(--lift2);box-shadow:inset 2px 0 0 var(--accent)}
+.zone.editing{background:var(--lift2);box-shadow:inset 2px 0 0 var(--accent);padding:10px 12px 2px;margin:0 -12px 4px}
 .zonebar{display:flex;justify-content:flex-end;margin-bottom:6px}
 .ro{white-space:pre-wrap}
 .ro.mono{font-family:var(--mono);font-size:11.5px}
@@ -183,7 +200,7 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .decode dd ul{margin:0;padding-left:16px}
 .decode dd li{margin-bottom:2px}
 .fwname{margin:0 0 6px}
-.fwname mark{background:var(--marker);font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;color:var(--ink)}
+.fwname mark{background:var(--marker);font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;color:var(--onmarker)}
 .off ul,.va ul{margin:0;padding-left:15px}
 .va li{font-size:13px;color:var(--ink2)}
 
@@ -246,7 +263,7 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .themecard .tc{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink3)}
 .qlist{margin:8px 0 4px;padding:8px 0 8px 12px;border-left:2px solid var(--margin)}
 .qlist button{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:5px 4px;color:var(--ink2);font-size:13px;line-height:1.4}
-.qlist button:hover{color:var(--ink);background:rgba(255,255,255,.6)}
+.qlist button:hover{color:var(--ink);background:var(--lift)}
 .qlist .yr{font-family:var(--mono);font-size:9.5px;color:var(--ink3);margin-right:8px}
 .badge{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--rule);border-radius:99px;padding:1px 6px;color:var(--ink3);margin-left:6px}
 .badge.pyq{border-color:var(--accent);color:var(--accent)}
@@ -258,6 +275,10 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .chipn{margin-left:5px;opacity:.6}
 .collide{font-size:12.5px;color:var(--margin);margin:8px 0 0}
 .collide ul{margin:4px 0 0;padding-left:17px}
+.ncmap{margin:7px 0 0;display:flex;flex-direction:column;gap:5px}
+.ncrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ncwas{font-family:var(--mono);font-size:11px;color:var(--ink2);flex:1;min-width:170px}
+.ncrow select{font:inherit;font-size:12px;padding:3px 6px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink)}
 .genrow{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .genrow label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);width:76px;flex:none}
 .genrow select,.genrow input{flex:1;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink)}
@@ -272,6 +293,7 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .orrow:last-child{border-bottom:none}
 .orrow:hover{background:var(--paper)}
 .orrow.on{background:var(--marker)}
+.orrow.on .orid,.orrow.on .orused,.orrow.on .orcost,.orrow.on .orctx{color:var(--onmarker)}
 .orid{flex:1;font-family:var(--mono);font-size:11px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .orcost{font-family:var(--mono);font-size:10.5px;color:var(--accent);width:56px;text-align:right;flex:none}
 .orctx{font-family:var(--mono);font-size:10px;color:var(--ink3);width:38px;text-align:right;flex:none}
@@ -289,9 +311,19 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .ghnote{font-size:12.5px;color:var(--ink2);margin:10px 0 0;line-height:1.5}
 .ghnote code{font-family:var(--mono);font-size:11.5px;background:var(--paper);padding:1px 4px;border-radius:2px}
 .ghfiles{font-family:var(--mono);font-size:11px;color:var(--ink2);margin:10px 0 0;line-height:1.7}
-@media print{.masthead,.nav,.revealbar,.tagrow,.pencil,.zonebar,.secctl,.dangerzone,.addbtn,.xbtn,.mvbtn{display:none}main{grid-template-columns:1fr}.sheet{background:#fff}.block>summary::after{display:none}.block.editing,.zone.editing{background:none;box-shadow:none}}
+@media print{:root[data-theme="dark"]{--paper:#fff;--sheet:#fff;--ink:#16202E;--ink2:#5C6875;--ink3:#8B95A0;--rule:#D8DDD6;--margin:#A8483C;--marker:#F5D76E;--accent:#1F5E55;--lift:transparent;--lift2:transparent;--onmarker:#16202E}.masthead,.nav,.revealbar,.tagrow,.pencil,.zonebar,.secctl,.dangerzone,.addbtn,.xbtn,.mvbtn{display:none}main{grid-template-columns:1fr}.sheet{background:#fff}.block>summary::after{display:none}.block.editing,.zone.editing{background:none;box-shadow:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<script>
+/* Runs before first paint so a dark-mode reader is never flashed a white page.
+   The masthead toggle writes the same key; with nothing stored we follow the OS. */
+(function(){
+  var t=null; try{ t=localStorage.getItem("upsc-theme"); }catch(e){}
+  if(t!=="light"&&t!=="dark")
+    t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";
+  document.documentElement.setAttribute("data-theme",t);
+})();
+</script>
 </head>
 <body>
 
@@ -305,6 +337,7 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
   <button class="tool" id="promptBtn">Copy prompt</button>
   <button class="tool" id="saveBtn">Save</button>
   <button class="tool" id="impBtn">Import</button>
+  <button class="tool" id="themeBtn" title="Light or dark">Dark</button>
 </header>
 
 <main>
@@ -2086,10 +2119,58 @@ function reportHtml(collisions,newCats){
   }
   if(newCats.length){
     h+='<div class="collide"><strong>'+newCats.length+' categor'+(newCats.length===1?'y':'ies')+
-      ' not in your taxonomy — saving adds '+(newCats.length===1?'it':'them')+':</strong><ul>'+
-      newCats.map(function(c){return '<li>'+esc(c.paper)+' › '+esc(c.topic)+(c.sub?' › '+esc(c.sub):'')+'</li>';}).join('')+'</ul></div>';
+      ' not in your taxonomy — decide '+(newCats.length===1?'it':'each')+' before saving:</strong>'+
+      '<div class="ncmap">'+newCats.map(function(c,i){
+        return '<div class="ncrow"><span class="ncwas">'+esc(c.paper)+' › '+esc(c.topic)+
+          (c.sub?' › '+esc(c.sub):'')+'</span>'+
+          '<select data-nc="'+i+'"><option value="new">add as new</option>'+
+            '<option value="skip">drop this tag</option>'+
+            taxPairs(c.paper).map(function(p){
+              return '<option value="'+esc(p[0]+"›"+p[1])+'">use '+
+                     esc(p[0]+(p[1]?" › "+p[1]:""))+'</option>';
+            }).join('')+
+          '</select></div>';
+      }).join('')+'</div></div>';
   }
   return h;
+}
+function taxPairs(paper){
+  var tax=db.taxonomy[paper]||{}, out=[];
+  Object.keys(tax).sort().forEach(function(topic){
+    var subs=(tax[topic]||[]).slice().sort();
+    if(!subs.length){ out.push([topic,""]); return; }
+    subs.forEach(function(sub){ out.push([topic,sub]); });
+  });
+  return out;
+}
+/* Rule 3 of the bank: a category nothing in the taxonomy matches is proposed,
+   never added quietly. Showing them was only half of it — "Ethics & Human
+   Interface" and "Ethics and Human Interface" are two different topics as far
+   as the tree is concerned, so the chance to fold one into the other has to be
+   offered here, at the confirmation, or it never gets taken. Read straight off
+   the dialog, which is still on screen when the second click commits. */
+function applyCatChoices(items,newCats){
+  var map={};
+  document.querySelectorAll("#dlgSlot [data-nc]").forEach(function(sel){
+    var c=newCats[+sel.getAttribute("data-nc")];
+    if(c&&sel.value!=="new") map[c.paper+"›"+c.topic+"›"+(c.sub||"")]=sel.value;
+  });
+  if(!Object.keys(map).length) return;
+  items.forEach(function(q){
+    var seen={};
+    q.tags=(q.tags||[]).map(function(t){
+      var to=map[q.paper+"›"+t[0]+"›"+(t[1]||"")];
+      if(to===undefined) return t;
+      if(to==="skip") return null;
+      var p=to.split("›");
+      return p[1]?[p[0],p[1]]:[p[0]];
+    }).filter(function(t){                       // a remap can collide with a tag already there
+      if(!t) return false;
+      var k=t[0]+"›"+(t[1]||"");
+      if(seen[k]) return false;
+      seen[k]=1; return true;
+    });
+  });
 }
 
 
@@ -2117,8 +2198,9 @@ $("newBtn").onclick=function(){
   window.scrollTo(0,0);
 };
 $("addBtn").onclick=function(){
-  var staged=null;
+  var staged=null, stagedCats=[];
   async function commitStaged(){
+    applyCatChoices(staged,stagedCats);
     var n=commitItems(staged);
     var ok=await save();addedSinceExport+=n;
     $("dlgMsg").className="msg ok";$("dlgMsg").textContent=ok?("Saved "+n+"."):"Added, but storage failed — export now.";
@@ -2130,7 +2212,7 @@ $("addBtn").onclick=function(){
     var r=prepare($("taBox").value);
     if(r.err){$("dlgMsg").className="msg";$("dlgMsg").textContent=r.err;return;}
     if(r.bank){$("dlgMsg").className="msg";$("dlgMsg").textContent="That looks like a full bank — use Import instead.";return;}
-    staged=r.items;
+    staged=r.items; stagedCats=r.newCats;
     if(r.collisions.length||r.newCats.length){
       $("dlgSlot").innerHTML=reportHtml(r.collisions,r.newCats);
       $("dlgAct").textContent="Save anyway";
@@ -2899,6 +2981,7 @@ window.addEventListener("drop",async function(e){
     var staged=items;
     openDlg("Confirm before adding",files.length+" file"+(files.length===1?"":"s")+" parsed cleanly, but some ids or categories need a look.",
       reportHtml(collisions,newCats),"Add anyway",async function(){
+        applyCatChoices(staged,newCats);
         var n=commitItems(staged);await save();addedSinceExport+=n;
         renderNav();renderSheet();dlg.close();toast(n+" question"+(n===1?"":"s")+" added.");nudge();
       });
@@ -2909,6 +2992,18 @@ window.addEventListener("drop",async function(e){
   toast(errs.length?(added+" added, "+errs.length+" failed — "+errs[0]):(added+" question"+(added===1?"":"s")+" added."));
   nudge();
 });
+
+/* -------- theme -------- */
+function applyTheme(t){
+  document.documentElement.setAttribute("data-theme",t);
+  $("themeBtn").textContent=(t==="dark")?"Light":"Dark";   // the label is what a click does
+}
+applyTheme(document.documentElement.getAttribute("data-theme")||"light");
+$("themeBtn").onclick=function(){
+  var next=(document.documentElement.getAttribute("data-theme")==="dark")?"light":"dark";
+  try{ localStorage.setItem("upsc-theme",next); }catch(e){}
+  applyTheme(next);
+};
 
 /* -------- boot -------- */
 $("homeBtn").onclick=function(){homeMode=true;current=null;lastRenderedId=null;renderNav();renderSheet();window.scrollTo(0,0);};
