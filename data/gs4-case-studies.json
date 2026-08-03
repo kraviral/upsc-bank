@@ -1,275 +1,243 @@
 [
   {
-    "answers": [
+    "caption": "Detect and document first — refuse certification through evidence, not through the superior's chain of command.",
+    "conclusions": [
       {
-        "caption": "Detect and document first — refuse certification through evidence, not through the superior's chain of command.",
-        "conclusions": [
-          {
-            "text": "Martin Luther King Jr.: “The ultimate measure of a man is not where he stands in moments of comfort, but where he stands at times of challenge and controversy.” Aditi's controversy is a set of lab reports her superior wants unread.",
-            "type": "Quote-based"
-          },
-          {
-            "text": "Gandhi's talisman: recall the face of the poorest person in the water-scarce district before signing the certificate. Applied here, it converts a technical sign-off into a test of whose interest the signature actually serves.",
-            "type": "Theory-linkage + action"
-          },
-          {
-            "text": "SDG 6 (clean water) and SDG 16 (strong institutions) are not two separate goals in this case — a pipeline built on a forged certificate can deliver neither.",
-            "type": "Broader goal"
-          }
-        ],
-        "decode": {
-          "concepts": [
-            "Conflict of interest",
-            "Whistleblower protection",
-            "Probity in public procurement",
-            "Moral courage vs institutional loyalty"
-          ],
-          "demands": [
-            "Stakeholders and the ethical issues involved",
-            "Options available, critically evaluated",
-            "Course of action justified with ethical principles and constitutional values",
-            "Institutional measures for whistleblowing without compromising timely, quality delivery"
-          ],
-          "directive": "(a) identify — list without narration. (b) critically evaluate each option — merits, demerits, verdict. (c) adopt and justify — decision first, named principles second. (d) suggest — forward-looking institutional design.",
-          "hidden": "Three distinct pressures are bundled — bribery below, political/superior pressure above, and a personal post-retirement inducement — and must be named separately, not collapsed into one 'corruption' line. Part (d) must also answer the superior's implicit charge that whistleblowing causes delay, by designing measures that catch defects earlier and cheaper, not merely punish retaliation after the fact.",
-          "limit": "20 marks / ~250 words across all four sub-parts, ~60 words each"
-        },
-        "diagram": "+-------------------------------+\n| DETECT substandard pipes      |\n| (lab report confirms defect)  |\n+---------------+---------------+\n                v\n+-------------------------------+\n| DOCUMENT in writing +         |\n| preserve evidence             |\n+---------------+---------------+\n                v                              WRONG PATH\n+-------------------------------+      +------------------------------+\n| REFUSE certification          | ---> | certify for ACR safety /     |\n+---------------+---------------+      | post-retirement job offer    |\n                v                       +---------------+--------------+\n+-------------------------------+                       v\n| ESCALATE past compromised     |       +------------------------------+\n| superior to CVC / Vigilance /  |      | contamination, leakage, cost |\n| Lokayukta                     |       | overrun surface later        |\n+---------------+---------------+       +------------------------------+\n                v\n+-------------------------------+\n| THIRD-PARTY RE-AUDIT of laid  |\n| sections before further sign- |\n| off                           |\n+-------------------------------+",
-        "generatedAt": null,
-        "id": "a1",
-        "intros": [
-          {
-            "text": "Kohlberg's stages of moral development place the superior's advice — protect the ACR, protect the timeline — squarely at the conventional stage: loyalty to hierarchy. Refusing a compromised certification is post-conventional reasoning, anchored in a universal principle — public safety — that outranks institutional comfort.",
-            "type": "Theory-linkage"
-          },
-          {
-            "text": "India's flagship drinking-water missions have repeatedly run into the same fault line: pipeline and material quality certified on paper but not in the ground [verify specific scheme/incident if named in the exam]. Aditi's project is this fault line made personal.",
-            "type": "Recent context"
-          },
-          {
-            "text": "A ₹1,800-crore project meant to carry safe water to 15 lakh people is, section by section, being built to carry contamination instead — infrastructure quietly inverting its own purpose.",
-            "type": "Contrast/paradox"
-          }
-        ],
-        "model": "imported",
-        "pitfalls": [
-          "Retelling the narrative — dates, names, sequence — instead of naming stakeholders' claims and duties; part (a) rewards identification, not summary.",
-          "Treating this as one generic 'corruption' case and missing that it bundles three separate pressures — bribery below, political/superior pressure above, personal inducement from the contractor — each needs its own line.",
-          "Answering part (d) with generic whistleblower-protection platitudes that ignore the superior's explicit delay/cost objection — measures must show detection getting earlier and cheaper, not only retaliation getting punished later."
-        ],
-        "sections": [
-          {
-            "frameworks": [
-              {
-                "name": "Stakeholder – Stake – Duty map",
-                "points": [
-                  "15 lakh residents across water-scarce districts — right to safe drinking water; first claim on the department's duty of care",
-                  "Contractor — profit motive; duty to meet technical specification, not to purchase compliance",
-                  "Colluding officials — statutory duty to certify quality truthfully; breached by bribery and forged certificates",
-                  "Immediate superior — duty to back a subordinate's lawful stand; instead pressuring suppression by invoking ACR and transfer",
-                  "Junior engineer (transferred) — a precedent stakeholder showing the department's real cost of raising this issue",
-                  "State Government — political ownership of 'priority project' status; institutional duty to prioritise safety over optics"
-                ],
-                "why": "Converts a cast of characters into named claims and duties — what 'identify' rewards over retelling the narrative."
-              },
-              {
-                "name": "Governance actors — Political executive → Bureaucracy → Judiciary → Civil society → Citizen",
-                "points": [
-                  "Political executive — treats 'priority project' status as a reason to suppress bad news, not investigate it.",
-                  "Bureaucracy — split down the middle: colluding officials, Aditi, and the superior, all inside the same department.",
-                  "Judiciary/vigilance — the only actor with power to test the forged certificates, currently un-notified.",
-                  "Civil society/citizen — 15 lakh future users have no voice in a decision being made entirely inside the department."
-                ],
-                "why": "Maps the same stakeholders by institutional role rather than personal stake, showing the ethical failure sits inside one office, not just between government and contractor."
-              },
-              {
-                "name": "Barriers lens — Individual → Institutional → Systemic → Societal",
-                "points": [
-                  "Individual — officials' personal financial gain from bribery.",
-                  "Institutional — a reporting chain where the 'immediate superior' is also a source of pressure, not a safeguard.",
-                  "Systemic — ACR and transfer wielded as informal punishment tools outside any formal disciplinary process.",
-                  "Societal — a 'flagship project' halo that discourages scrutiny of exactly the projects that most need it."
-                ],
-                "why": "Separates the ethical issues by the level at which each actually operates."
-              }
-            ],
-            "heading": "(a) Stakeholders and the ethical issues involved",
-            "off": [
-              "Aditi is a stakeholder too — her career and conscience carry legitimate weight, not just inconvenience to note in passing"
-            ],
-            "valueAdd": [
-              "Keywords: conflict of interest, moral courage vs institutional loyalty",
-              "Theory: public trust doctrine — public office held in trust, not personal entitlement",
-              "Anchor: Article 21 — right to safe drinking water read into right to life",
-              "Example: Satyendra Dubey, NHAI project engineer, exposed Golden Quadrilateral contract irregularities and was murdered in 2003 — the case that catalysed India's whistleblower-protection debate"
-            ]
-          },
-          {
-            "frameworks": [
-              {
-                "name": "PLUS filter — Policies, Legal, Universal, Self",
-                "points": [
-                  "Certify the work as satisfactory — fails Legal and Universal; buys short-term ACR safety at the cost of complicity in future contamination and structural failure",
-                  "Stay silent, let the forged certificates stand — passes 'Self' alone; fails Policies and Universal, converting a bystander into a participant",
-                  "Report through vigilance/CVC/Lokayukta channel, on record — passes Legal and Universal; carries the same retaliation risk the junior engineer faced, but now with documented evidence behind it",
-                  "Go directly to the press — passes Universal but fails Policies, bypassing due process and exposing Aditi to a separate service-conduct charge",
-                  "Accept the contractor's consultancy offer and certify — fails every test simultaneously; disqualified before any cost-benefit weighing begins"
-                ],
-                "why": "Tests each option against code of conduct, statute, universal principle and conscience in one pass — what 'critically evaluate each' demands."
-              },
-              {
-                "name": "Kidder's three resolution principles — ends-based, rule-based, care-based",
-                "points": [
-                  "Certifying as directed only holds up under a narrow ends-based logic that ignores whose ends are served — the contractor's and superior's, not the 15 lakh residents'.",
-                  "Reporting through vigilance channels satisfies rule-based reasoning — a rule every engineer could follow without the system collapsing.",
-                  "Care-based reasoning favours protecting the junior engineer's precedent by acting on record rather than leaving each engineer to face retaliation alone.",
-                  "Only the report-and-document option survives being tested against more than one resolution principle."
-                ],
-                "why": "Evaluates the same options by which ethical logic each would need to invoke to be defended."
-              },
-              {
-                "name": "Front-page test + Blanchard–Peale",
-                "points": [
-                  "Certifying as directed fails 'would this survive tomorrow's front page' the moment a section fails.",
-                  "Staying silent fails Blanchard–Peale's 'how will this make me feel about myself' the day the pipeline leaks.",
-                  "Reporting on record passes both tests, even though it does not remove the retaliation risk.",
-                  "Accepting the consultancy offer fails Blanchard–Peale's legality test outright — it is the accepted definition of a bribe, deferred."
-                ],
-                "why": "A fast personal check on each option before committing to it."
-              }
-            ],
-            "heading": "(b) Options available, critically evaluated",
-            "off": [
-              "Refusing certification while demanding documented rectification isn't a sixth option — it is the operational form the vigilance-report option takes, worth stating so the answer commits rather than reading as an undifferentiated list"
-            ],
-            "valueAdd": [
-              "Keywords: whistleblower protection, bystander effect",
-              "Anchor: Whistleblowers Protection Act, 2014",
-              "Example: Satyam Computers, 2009 — forged compliance and audit certificates concealed for years before collapse, showing how long a paper fiction survives once the first false certificate is signed [verify specifics]"
-            ]
-          },
-          {
-            "frameworks": [
-              {
-                "name": "Decision → named principle → immediate/short/long-term",
-                "points": [
-                  "Decision: refuse certification, record objections and lab reports in writing, report the forged certificates to the competent vigilance authority through proper channel",
-                  "Principle 1: Kidder's truth-vs-loyalty paradigm resolved ends-based — 15 lakh future users outweigh one officer's ACR or posting",
-                  "Principle 2: public trust doctrine and Article 21 — public office cannot convert public money into private illegal gain",
-                  "Immediate: preserve evidence — lab reports and correspondence — before any verbal escalation becomes deniable",
-                  "Short-term: formal reference to vigilance machinery; independent re-inspection of sections already laid",
-                  "Long-term: push the institutional fix in part (d), so the next Aditi isn't left to make this choice alone"
-                ],
-                "why": "States the choice before defending it — decisiveness is what 'adopt' rewards over a hedged survey of options."
-              },
-              {
-                "name": "Legality → Morality → Practicality → Sustainability",
-                "points": [
-                  "Legality — forged certificates and bribery are offences under the Prevention of Corruption Act; reporting a known offence is a duty, not a discretionary act.",
-                  "Morality — certifying substandard work trades a near-certain harm to 15 lakh people for one officer's certain personal safety.",
-                  "Practicality — a paper trail created now is cheaper to defend than an undocumented decision after a pipe fails.",
-                  "Sustainability — an unreported defect resurfaces at a worse political moment and larger human cost than reporting it today."
-                ],
-                "why": "Tests the chosen course against four independent axes rather than one."
-              },
-              {
-                "name": "Front-page test",
-                "points": [
-                  "'Engineer certified substandard pipes after contractor's job offer' ends a career and opens a criminal case — certification is disqualified before any other reasoning.",
-                  "'Engineer flagged forged certificates despite pressure' is a headline that withstands scrutiny even if it costs her the posting.",
-                  "The test also disciplines the manner of reporting — an anonymous leak reads worse on a front page than a formal, on-record vigilance reference.",
-                  "A decision that only looks defensible in private, not in public, is not yet the right decision."
-                ],
-                "why": "A single, fast, publicly defensible check for the decision itself."
-              }
-            ],
-            "heading": "(c) Course of action and justification",
-            "off": [
-              "Accepting the post-retirement offer doesn't just add a new wrong — it retroactively recolours every certification she has already signed, which is why it is disqualified before any weighing starts"
-            ],
-            "valueAdd": [
-              "Keywords: courage of conviction, ends-based reasoning",
-              "Theory: Kant's categorical imperative — could 'certify for a future job offer' survive as universal law for every engineer?",
-              "Anchor: Nolan's seven principles of public life — integrity, objectivity, accountability",
-              "Example: a shopkeeper who sells expired medicine because the customer won't notice — the same small, deniable compromise that a certified pipe scales up to a district's water supply"
-            ]
-          },
-          {
-            "frameworks": [
-              {
-                "name": "Legal → Institutional → Behavioural → Technological",
-                "points": [
-                  "Legal: operationalise the Whistleblowers Protection Act, 2014 with a binding time-bound inquiry clause, so 'protection' doesn't become an open-ended parking of the complainant's career",
-                  "Institutional: mandatory independent third-party quality audit before certification is due, so no single officer's signature — or exposure — carries the whole decision",
-                  "Behavioural: rotate quality-certifying officials periodically to break the contractor–official familiarity that enables collusion",
-                  "Technological: GPS/QR-tagged material batches with lab reports on a public real-time dashboard, catching substandard material at delivery rather than after laying"
-                ],
-                "why": "Spans legal safeguards through to tools that make delay unnecessary — answering both halves of the directive at once."
-              },
-              {
-                "name": "Prevention → Detection → Punishment",
-                "points": [
-                  "Prevention — pre-qualify contractors and rotate certifying officials so no single relationship matures long enough to be exploited.",
-                  "Detection — independent third-party lab testing at delivery, not only at final certification.",
-                  "Punishment — time-bound vigilance inquiries with published outcomes, so a silent file isn't itself the deterrent-killing message.",
-                  "Whistleblower protection cuts across all three stages — it only has to last as long as detection and punishment take to act."
-                ],
-                "why": "Organises measures by which stage of the corruption cycle each one interrupts."
-              },
-              {
-                "name": "Accountability — Answerability → Enforceability → Responsiveness",
-                "points": [
-                  "Answerability — every certification names the certifying officer and the lab report it relies on, publicly.",
-                  "Enforceability — a binding timeline within which the vigilance authority must act on a whistleblower complaint.",
-                  "Responsiveness — a fast-track independent audit option the whistleblower can trigger, so protection doesn't come at the cost of a stalled project.",
-                  "Named accountability at each stage lets a project keep moving while still being contestable — directly answering the superior's delay objection."
-                ],
-                "why": "Frames 'responsible whistleblowing without sacrificing delivery' as an accountability design problem, not only a protection problem."
-              }
-            ],
-            "heading": "(d) Institutional measures for whistleblowing without sacrificing delivery speed",
-            "off": [
-              "Whistleblower protection that arrives only after retaliation has already been applied is protection in name only — timing matters as much as existence. A dedicated ombudsperson for infrastructure whistleblowers, sitting outside the reporting officer's own department chain, directly answers the retaliation-via-ACR/transfer pattern this case shows"
-            ],
-            "valueAdd": [
-              "Keywords: normalization of deviance, dharma-sankat",
-              "Theory: 2nd ARC's 'Ethics in Governance' report — probity as precondition for, not obstacle to, timely delivery",
-              "Anchor: Citizen's Charter and RTI-based real-time procurement disclosure",
-              "Example: real-time IoT-based water-quality and material-tracking dashboards piloted under India's rural water-supply mission [verify]"
-            ]
-          }
-        ],
-        "vaBank": {
-          "examples": [
-            "Vidura's counsel to Dhritarashtra, warned repeatedly against turning a blind eye to Duryodhana's wrongs, and was ignored until ruin followed",
-            "2G spectrum and coal-block allocation cases — patterns of paperwork built to survive audit rather than reflect reality [verify specifics]"
-          ],
-          "keywords": [
-            "moral muteness",
-            "ethical fading",
-            "groupthink"
-          ],
-          "quotes": [
-            "Kautilya, Arthashastra — as hard to detect an official siphoning public funds as to know when a fish in water drinks it [verify exact translation]",
-            "Attributed to Edmund Burke — 'All that is necessary for the triumph of evil is that good men do nothing' [verify attribution — widely disputed]",
-            "Thirukkural on incorruptible rule — exact couplet number and translation [verify]"
-          ],
-          "thinkers": [
-            "Aristotle — virtue as a habituated disposition; moral courage strengthens each time it is exercised"
-          ]
-        }
+        "text": "Martin Luther King Jr.: “The ultimate measure of a man is not where he stands in moments of comfort, but where he stands at times of challenge and controversy.” Aditi's controversy is a set of lab reports her superior wants unread.",
+        "type": "Quote-based"
+      },
+      {
+        "text": "Gandhi's talisman: recall the face of the poorest person in the water-scarce district before signing the certificate. Applied here, it converts a technical sign-off into a test of whose interest the signature actually serves.",
+        "type": "Theory-linkage + action"
+      },
+      {
+        "text": "SDG 6 (clean water) and SDG 16 (strong institutions) are not two separate goals in this case — a pipeline built on a forged certificate can deliver neither.",
+        "type": "Broader goal"
       }
     ],
-    "id": "pwd-drinking-water-substandard-pipes",
-    "mine": {
-      "conclusion": "",
-      "intro": "",
-      "sections": []
+    "decode": {
+      "concepts": [
+        "Conflict of interest",
+        "Whistleblower protection",
+        "Probity in public procurement",
+        "Moral courage vs institutional loyalty"
+      ],
+      "demands": [
+        "Stakeholders and the ethical issues involved",
+        "Options available, critically evaluated",
+        "Course of action justified with ethical principles and constitutional values",
+        "Institutional measures for whistleblowing without compromising timely, quality delivery"
+      ],
+      "directive": "(a) identify — list without narration. (b) critically evaluate each option — merits, demerits, verdict. (c) adopt and justify — decision first, named principles second. (d) suggest — forward-looking institutional design.",
+      "hidden": "Three distinct pressures are bundled — bribery below, political/superior pressure above, and a personal post-retirement inducement — and must be named separately, not collapsed into one 'corruption' line. Part (d) must also answer the superior's implicit charge that whistleblowing causes delay, by designing measures that catch defects earlier and cheaper, not merely punish retaliation after the fact.",
+      "limit": "20 marks / ~250 words across all four sub-parts, ~60 words each"
     },
+    "diagram": "+-------------------------------+\n| DETECT substandard pipes      |\n| (lab report confirms defect)  |\n+---------------+---------------+\n                v\n+-------------------------------+\n| DOCUMENT in writing +         |\n| preserve evidence             |\n+---------------+---------------+\n                v                              WRONG PATH\n+-------------------------------+      +------------------------------+\n| REFUSE certification          | ---> | certify for ACR safety /     |\n+---------------+---------------+      | post-retirement job offer    |\n                v                       +---------------+--------------+\n+-------------------------------+                       v\n| ESCALATE past compromised     |       +------------------------------+\n| superior to CVC / Vigilance /  |      | contamination, leakage, cost |\n| Lokayukta                     |       | overrun surface later        |\n+---------------+---------------+       +------------------------------+\n                v\n+-------------------------------+\n| THIRD-PARTY RE-AUDIT of laid  |\n| sections before further sign- |\n| off                           |\n+-------------------------------+",
+    "id": "pwd-drinking-water-substandard-pipes",
+    "intros": [
+      {
+        "text": "Kohlberg's stages of moral development place the superior's advice — protect the ACR, protect the timeline — squarely at the conventional stage: loyalty to hierarchy. Refusing a compromised certification is post-conventional reasoning, anchored in a universal principle — public safety — that outranks institutional comfort.",
+        "type": "Theory-linkage"
+      },
+      {
+        "text": "India's flagship drinking-water missions have repeatedly run into the same fault line: pipeline and material quality certified on paper but not in the ground [verify specific scheme/incident if named in the exam]. Aditi's project is this fault line made personal.",
+        "type": "Recent context"
+      },
+      {
+        "text": "A ₹1,800-crore project meant to carry safe water to 15 lakh people is, section by section, being built to carry contamination instead — infrastructure quietly inverting its own purpose.",
+        "type": "Contrast/paradox"
+      }
+    ],
     "notes": "",
     "paper": "GS4",
+    "pitfalls": [
+      "Retelling the narrative — dates, names, sequence — instead of naming stakeholders' claims and duties; part (a) rewards identification, not summary.",
+      "Treating this as one generic 'corruption' case and missing that it bundles three separate pressures — bribery below, political/superior pressure above, personal inducement from the contractor — each needs its own line.",
+      "Answering part (d) with generic whistleblower-protection platitudes that ignore the superior's explicit delay/cost objection — measures must show detection getting earlier and cheaper, not only retaliation getting punished later."
+    ],
     "question": "You are Aditi, a young Executive Engineer in the Public Works Department (PWD), entrusted with supervising the construction of a ₹1,800-crore drinking water supply project under a flagship government programme. The project aims to provide safe drinking water to nearly 15 lakh people across several water-scarce districts and has been declared a priority project by the State Government.\nDuring a routine inspection, you discover that the contractor has been using substandard pipes and construction materials in several sections of the project, in violation of technical specifications. Laboratory reports confirm that these materials are likely to reduce the lifespan of the pipeline network and may lead to leakages, contamination of drinking water, and significant maintenance costs in the future.\nOn further scrutiny, you find evidence that a few officials in the department have deliberately approved forged quality certificates in return for illegal gratification. The contractor enjoys considerable political influence and has contributed to several government projects in the past.\nWhen you raise the issue with your immediate superior, he advises you to overlook the irregularities, arguing that exposing the matter would delay the project by at least a year, escalate costs, and invite adverse media attention. He also warns that your confidential performance report (ACR/APAR) may be adversely affected and that you could be transferred to a remote posting.\nMeanwhile, the contractor privately offers you a lucrative consultancy position after retirement and hints at financial incentives if you certify the work as satisfactory. At the same time, a junior engineer who had earlier complained about similar irregularities was recently transferred and is reportedly facing departmental inquiries.\nAs the officer responsible for quality assurance, you must decide how to proceed.\n(a) Identify the stakeholders and the ethical issues involved in the case.\n(b) What are the various options available to you? Critically evaluate each of the options listed by you.\n(c) As a conscientious public servant, what course of action would you adopt? Justify your decision with reference to ethical principles and constitutional values.\n(d) Suggest institutional measures to encourage responsible whistleblowing while ensuring timely completion and quality of public projects",
-    "source": "Test series",
+    "sections": [
+      {
+        "frameworks": [
+          {
+            "name": "Stakeholder – Stake – Duty map",
+            "points": [
+              "15 lakh residents across water-scarce districts — right to safe drinking water; first claim on the department's duty of care",
+              "Contractor — profit motive; duty to meet technical specification, not to purchase compliance",
+              "Colluding officials — statutory duty to certify quality truthfully; breached by bribery and forged certificates",
+              "Immediate superior — duty to back a subordinate's lawful stand; instead pressuring suppression by invoking ACR and transfer",
+              "Junior engineer (transferred) — a precedent stakeholder showing the department's real cost of raising this issue",
+              "State Government — political ownership of 'priority project' status; institutional duty to prioritise safety over optics"
+            ],
+            "why": "Converts a cast of characters into named claims and duties — what 'identify' rewards over retelling the narrative."
+          },
+          {
+            "name": "Governance actors — Political executive → Bureaucracy → Judiciary → Civil society → Citizen",
+            "points": [
+              "Political executive — treats 'priority project' status as a reason to suppress bad news, not investigate it.",
+              "Bureaucracy — split down the middle: colluding officials, Aditi, and the superior, all inside the same department.",
+              "Judiciary/vigilance — the only actor with power to test the forged certificates, currently un-notified.",
+              "Civil society/citizen — 15 lakh future users have no voice in a decision being made entirely inside the department."
+            ],
+            "why": "Maps the same stakeholders by institutional role rather than personal stake, showing the ethical failure sits inside one office, not just between government and contractor."
+          },
+          {
+            "name": "Barriers lens — Individual → Institutional → Systemic → Societal",
+            "points": [
+              "Individual — officials' personal financial gain from bribery.",
+              "Institutional — a reporting chain where the 'immediate superior' is also a source of pressure, not a safeguard.",
+              "Systemic — ACR and transfer wielded as informal punishment tools outside any formal disciplinary process.",
+              "Societal — a 'flagship project' halo that discourages scrutiny of exactly the projects that most need it."
+            ],
+            "why": "Separates the ethical issues by the level at which each actually operates."
+          }
+        ],
+        "heading": "(a) Stakeholders and the ethical issues involved",
+        "off": [
+          "Aditi is a stakeholder too — her career and conscience carry legitimate weight, not just inconvenience to note in passing"
+        ],
+        "valueAdd": [
+          "Keywords: conflict of interest, moral courage vs institutional loyalty",
+          "Theory: public trust doctrine — public office held in trust, not personal entitlement",
+          "Anchor: Article 21 — right to safe drinking water read into right to life",
+          "Example: Satyendra Dubey, NHAI project engineer, exposed Golden Quadrilateral contract irregularities and was murdered in 2003 — the case that catalysed India's whistleblower-protection debate"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "PLUS filter — Policies, Legal, Universal, Self",
+            "points": [
+              "Certify the work as satisfactory — fails Legal and Universal; buys short-term ACR safety at the cost of complicity in future contamination and structural failure",
+              "Stay silent, let the forged certificates stand — passes 'Self' alone; fails Policies and Universal, converting a bystander into a participant",
+              "Report through vigilance/CVC/Lokayukta channel, on record — passes Legal and Universal; carries the same retaliation risk the junior engineer faced, but now with documented evidence behind it",
+              "Go directly to the press — passes Universal but fails Policies, bypassing due process and exposing Aditi to a separate service-conduct charge",
+              "Accept the contractor's consultancy offer and certify — fails every test simultaneously; disqualified before any cost-benefit weighing begins"
+            ],
+            "why": "Tests each option against code of conduct, statute, universal principle and conscience in one pass — what 'critically evaluate each' demands."
+          },
+          {
+            "name": "Kidder's three resolution principles — ends-based, rule-based, care-based",
+            "points": [
+              "Certifying as directed only holds up under a narrow ends-based logic that ignores whose ends are served — the contractor's and superior's, not the 15 lakh residents'.",
+              "Reporting through vigilance channels satisfies rule-based reasoning — a rule every engineer could follow without the system collapsing.",
+              "Care-based reasoning favours protecting the junior engineer's precedent by acting on record rather than leaving each engineer to face retaliation alone.",
+              "Only the report-and-document option survives being tested against more than one resolution principle."
+            ],
+            "why": "Evaluates the same options by which ethical logic each would need to invoke to be defended."
+          },
+          {
+            "name": "Front-page test + Blanchard–Peale",
+            "points": [
+              "Certifying as directed fails 'would this survive tomorrow's front page' the moment a section fails.",
+              "Staying silent fails Blanchard–Peale's 'how will this make me feel about myself' the day the pipeline leaks.",
+              "Reporting on record passes both tests, even though it does not remove the retaliation risk.",
+              "Accepting the consultancy offer fails Blanchard–Peale's legality test outright — it is the accepted definition of a bribe, deferred."
+            ],
+            "why": "A fast personal check on each option before committing to it."
+          }
+        ],
+        "heading": "(b) Options available, critically evaluated",
+        "off": [
+          "Refusing certification while demanding documented rectification isn't a sixth option — it is the operational form the vigilance-report option takes, worth stating so the answer commits rather than reading as an undifferentiated list"
+        ],
+        "valueAdd": [
+          "Keywords: whistleblower protection, bystander effect",
+          "Anchor: Whistleblowers Protection Act, 2014",
+          "Example: Satyam Computers, 2009 — forged compliance and audit certificates concealed for years before collapse, showing how long a paper fiction survives once the first false certificate is signed [verify specifics]"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Decision → named principle → immediate/short/long-term",
+            "points": [
+              "Decision: refuse certification, record objections and lab reports in writing, report the forged certificates to the competent vigilance authority through proper channel",
+              "Principle 1: Kidder's truth-vs-loyalty paradigm resolved ends-based — 15 lakh future users outweigh one officer's ACR or posting",
+              "Principle 2: public trust doctrine and Article 21 — public office cannot convert public money into private illegal gain",
+              "Immediate: preserve evidence — lab reports and correspondence — before any verbal escalation becomes deniable",
+              "Short-term: formal reference to vigilance machinery; independent re-inspection of sections already laid",
+              "Long-term: push the institutional fix in part (d), so the next Aditi isn't left to make this choice alone"
+            ],
+            "why": "States the choice before defending it — decisiveness is what 'adopt' rewards over a hedged survey of options."
+          },
+          {
+            "name": "Legality → Morality → Practicality → Sustainability",
+            "points": [
+              "Legality — forged certificates and bribery are offences under the Prevention of Corruption Act; reporting a known offence is a duty, not a discretionary act.",
+              "Morality — certifying substandard work trades a near-certain harm to 15 lakh people for one officer's certain personal safety.",
+              "Practicality — a paper trail created now is cheaper to defend than an undocumented decision after a pipe fails.",
+              "Sustainability — an unreported defect resurfaces at a worse political moment and larger human cost than reporting it today."
+            ],
+            "why": "Tests the chosen course against four independent axes rather than one."
+          },
+          {
+            "name": "Front-page test",
+            "points": [
+              "'Engineer certified substandard pipes after contractor's job offer' ends a career and opens a criminal case — certification is disqualified before any other reasoning.",
+              "'Engineer flagged forged certificates despite pressure' is a headline that withstands scrutiny even if it costs her the posting.",
+              "The test also disciplines the manner of reporting — an anonymous leak reads worse on a front page than a formal, on-record vigilance reference.",
+              "A decision that only looks defensible in private, not in public, is not yet the right decision."
+            ],
+            "why": "A single, fast, publicly defensible check for the decision itself."
+          }
+        ],
+        "heading": "(c) Course of action and justification",
+        "off": [
+          "Accepting the post-retirement offer doesn't just add a new wrong — it retroactively recolours every certification she has already signed, which is why it is disqualified before any weighing starts"
+        ],
+        "valueAdd": [
+          "Keywords: courage of conviction, ends-based reasoning",
+          "Theory: Kant's categorical imperative — could 'certify for a future job offer' survive as universal law for every engineer?",
+          "Anchor: Nolan's seven principles of public life — integrity, objectivity, accountability",
+          "Example: a shopkeeper who sells expired medicine because the customer won't notice — the same small, deniable compromise that a certified pipe scales up to a district's water supply"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Legal → Institutional → Behavioural → Technological",
+            "points": [
+              "Legal: operationalise the Whistleblowers Protection Act, 2014 with a binding time-bound inquiry clause, so 'protection' doesn't become an open-ended parking of the complainant's career",
+              "Institutional: mandatory independent third-party quality audit before certification is due, so no single officer's signature — or exposure — carries the whole decision",
+              "Behavioural: rotate quality-certifying officials periodically to break the contractor–official familiarity that enables collusion",
+              "Technological: GPS/QR-tagged material batches with lab reports on a public real-time dashboard, catching substandard material at delivery rather than after laying"
+            ],
+            "why": "Spans legal safeguards through to tools that make delay unnecessary — answering both halves of the directive at once."
+          },
+          {
+            "name": "Prevention → Detection → Punishment",
+            "points": [
+              "Prevention — pre-qualify contractors and rotate certifying officials so no single relationship matures long enough to be exploited.",
+              "Detection — independent third-party lab testing at delivery, not only at final certification.",
+              "Punishment — time-bound vigilance inquiries with published outcomes, so a silent file isn't itself the deterrent-killing message.",
+              "Whistleblower protection cuts across all three stages — it only has to last as long as detection and punishment take to act."
+            ],
+            "why": "Organises measures by which stage of the corruption cycle each one interrupts."
+          },
+          {
+            "name": "Accountability — Answerability → Enforceability → Responsiveness",
+            "points": [
+              "Answerability — every certification names the certifying officer and the lab report it relies on, publicly.",
+              "Enforceability — a binding timeline within which the vigilance authority must act on a whistleblower complaint.",
+              "Responsiveness — a fast-track independent audit option the whistleblower can trigger, so protection doesn't come at the cost of a stalled project.",
+              "Named accountability at each stage lets a project keep moving while still being contestable — directly answering the superior's delay objection."
+            ],
+            "why": "Frames 'responsible whistleblowing without sacrificing delivery' as an accountability design problem, not only a protection problem."
+          }
+        ],
+        "heading": "(d) Institutional measures for whistleblowing without sacrificing delivery speed",
+        "off": [
+          "Whistleblower protection that arrives only after retaliation has already been applied is protection in name only — timing matters as much as existence. A dedicated ombudsperson for infrastructure whistleblowers, sitting outside the reporting officer's own department chain, directly answers the retaliation-via-ACR/transfer pattern this case shows"
+        ],
+        "valueAdd": [
+          "Keywords: normalization of deviance, dharma-sankat",
+          "Theory: 2nd ARC's 'Ethics in Governance' report — probity as precondition for, not obstacle to, timely delivery",
+          "Anchor: Citizen's Charter and RTI-based real-time procurement disclosure",
+          "Example: real-time IoT-based water-quality and material-tracking dashboards piloted under India's rural water-supply mission [verify]"
+        ]
+      }
+    ],
     "summary": "As Executive Engineer Aditi, you discover a contractor has used substandard pipes on a ₹1,800-crore drinking water project, backed by forged quality certificates and official bribery, while your superior pressures you to stay silent and the contractor dangles a post-retirement job.",
     "tags": [
       [
@@ -277,271 +245,261 @@
         "Whistleblowing & organisational silence"
       ]
     ],
-    "type": "Case study"
+    "taxonomyVersion": 1,
+    "type": "Case study",
+    "vaBank": {
+      "examples": [
+        "Vidura's counsel to Dhritarashtra, warned repeatedly against turning a blind eye to Duryodhana's wrongs, and was ignored until ruin followed",
+        "2G spectrum and coal-block allocation cases — patterns of paperwork built to survive audit rather than reflect reality [verify specifics]"
+      ],
+      "keywords": [
+        "moral muteness",
+        "ethical fading",
+        "groupthink"
+      ],
+      "quotes": [
+        "Kautilya, Arthashastra — as hard to detect an official siphoning public funds as to know when a fish in water drinks it [verify exact translation]",
+        "Attributed to Edmund Burke — 'All that is necessary for the triumph of evil is that good men do nothing' [verify attribution — widely disputed]",
+        "Thirukkural on incorruptible rule — exact couplet number and translation [verify]"
+      ],
+      "thinkers": [
+        "Aristotle — virtue as a habituated disposition; moral courage strengthens each time it is exercised"
+      ]
+    },
+    "year": null
   },
   {
-    "answers": [
+    "caption": "Consent and design as gates before clearance — not compliance sought after commitment.",
+    "conclusions": [
       {
-        "caption": "Consent and design as gates before clearance — not compliance sought after commitment.",
-        "conclusions": [
-          {
-            "text": "Gandhi's talisman applies literally: recall the face of the poorest person you have seen and ask whether this step will be of any use to them. Applied to the 40 villages, it converts an investment decision into a design brief.",
-            "type": "Theory-linkage + action"
-          },
-          {
-            "text": "SDG 6 and SDG 16 are not in tension with India's AI ambition; a project that cannot be built with consent was never bankable.",
-            "type": "Broader goal"
-          },
-          {
-            "text": "Leopold's land ethic — a thing is right when it tends to preserve the integrity of the biotic community. The grove is not an obstacle to the data centre; both are infrastructure, on different timescales.",
-            "type": "Quote-based"
-          }
-        ],
-        "decode": {
-          "concepts": [
-            "Environmental ethics",
-            "Intergenerational equity",
-            "Distributive justice",
-            "FPIC and consent"
-          ],
-          "demands": [
-            "Ethical justifiability of the extraction",
-            "Socio-economic and administrative challenges",
-            "Alternatives and policy interventions",
-            "Your course of action as CEO"
-          ],
-          "directive": "(a) verdict. (b) categorised challenges. (c) alternatives — costed and binding. (d) course of action + named ethical principles.",
-          "hidden": "You are a CEO under fiduciary duty, not a Collector — reason through trusteeship, ESG and licence to operate. Second trap: the water-positive-by-2035 pledge is moral licensing, not mitigation.",
-          "limit": "20–25 marks / ~250 words — roughly 60 words per sub-part"
-        },
-        "diagram": "                    +------------------+\n                    |  PROJECT PAUSED  |\n                    +--------+---------+\n                             v\n        +----------------------------------------+\n        | GATE 1 - Independent SIA + basin-level  |\n        | water audit, publicly disclosed         |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 2 - Redesign: closed-loop cooling  |\n        | on treated wastewater; grove excluded   |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 3 - Gram Sabha FPIC + binding      |\n        | benefit-sharing & employment ladder     |\n        +------+--------------------------+------+\n          CONSENT                    NO CONSENT\n               v                          v\n        +-------------+          +------------------+\n        |  PROCEED    | <-audit- |  RELOCATE to a   |\n        |  + monitor  |          |  water-surplus   |\n        |  in public  |          |  site            |\n        +-------------+          +------------------+",
-        "generatedAt": null,
-        "id": "a1",
-        "intros": [
-          {
-            "text": "माता भूमिः पुत्रोऽहं पृथिव्याः (Atharva Veda) — “The earth is my mother, I am her son.” For 40 villages the river and grove are not project inputs; they are the standing conditions of existence.",
-            "type": "Scripture"
-          },
-          {
-            "text": "This is not development versus environment but a question of who bears the cost and who reaps the benefit — a distributive question wearing a technical disguise.",
-            "type": "Framing the dilemma"
-          },
-          {
-            "text": "The case pits economic efficiency against procedural justice and intergenerational equity, with the added temptation of using a 2035 pledge to license a 2026 harm.",
-            "type": "Keyword-led"
-          }
-        ],
-        "model": "imported",
-        "pitfalls": [
-          "Answering as a Collector. The role is CEO — fiduciary duty, trusteeship, licence to operate.",
-          "A binary decision. The marks are in the gated course of action with a stated fallback.",
-          "Treating the 2035 pledge as mitigation instead of naming it as moral licensing.",
-          "Word discipline — four sub-parts at ~60 words each."
-        ],
-        "sections": [
-          {
-            "frameworks": [
-              {
-                "name": "Legality → Morality → Practicality → Sustainability",
-                "points": [
-                  "Legality — Fifth Schedule areas require Gram Sabha consent under PESA (1996) and FRA (2006); a hurried hearing is void in spirit even if valid on paper.",
-                  "Morality — the utilitarian defence fails its own test: the aggregate gain is computed by discounting the losers. Rawls' difference principle is violated.",
-                  "Practicality — 4–5 MLD in a summer-stressed region is not a shared resource but a transferred one. Enclosure, not tragedy, of the commons.",
-                  "Sustainability — aquifer drawdown and spring loss are irreversible; public trust doctrine (M.C. Mehta v. Kamal Nath, 1997).",
-                  "Verdict: not justified as designed — it externalises an irreversible cost onto a community that has neither consented nor shares proportionately."
-                ],
-                "why": "Shows that statutory clearance is a floor, not a ceiling."
-              },
-              {
-                "name": "Anthropocentrism vs biocentrism vs ecocentrism",
-                "points": [
-                  "Anthropocentric framing — the Board's implicit default — counts only human-economic value, so the spring and grove price at zero.",
-                  "Biocentric framing counts the grove's ecosystem as having interests of its own, independent of any human use for it.",
-                  "Ecocentric framing (Leopold's land ethic) judges the integrity of the whole basin, not isolated resources in isolation.",
-                  "Under any framing beyond pure anthropocentrism the extraction fails to preserve what it damages — the 'justification' is really just the frame management picked."
-                ],
-                "why": "Reframes the justification question as which ethical stance the Board is silently assuming."
-              },
-              {
-                "name": "Rights–Justice–Utility triad",
-                "points": [
-                  "Rights — the 40 villages' customary claims under PESA/FRA are prior in time and in law to the company's claim.",
-                  "Justice — Rawls' difference principle requires a just arrangement to improve the worst-off position, not merely maximise the aggregate.",
-                  "Utility — the naive utilitarian sum favours the datacentre only if the villages' loss is priced at zero; a fair valuation reverses the sum.",
-                  "Verdict converges with the first lens: not justified as designed."
-                ],
-                "why": "A verdict test run on whose rights, whose fairness, and whose greatest good are actually being weighed."
-              }
-            ],
-            "heading": "(a) Can it be ethically justified?",
-            "off": [
-              "The sacred grove cannot be compensated. Where loss is incommensurable, cost-benefit analysis is the wrong instrument."
-            ],
-            "valueAdd": [
-              "Keywords: moral licensing, ecological debt, precautionary principle",
-              "Anchors: public trust doctrine, PESA, FRA, Art. 21"
-            ]
-          },
-          {
-            "frameworks": [
-              {
-                "name": "Socio-cultural · Economic · Ecological · Administrative",
-                "points": [
-                  "Socio-cultural — erosion of identity tied to grove and river; loss of unrecorded traditional ecological knowledge; consultation in a format the community cannot engage with.",
-                  "Economic — enclave development; shift from diversified subsistence to dependent wage labour; benefits aggregate and national, costs concentrated and local.",
-                  "Ecological — aquifer depletion, spring decline, habitat fragmentation; cumulative impact invisible because each clearance is assessed alone.",
-                  "Administrative — district capacity deficit; information asymmetry; weak post-clearance monitoring; the State as both investment promoter and rights protector."
-                ],
-                "why": "Prevents the common error of listing only environmental harms."
-              },
-              {
-                "name": "Governance actors — Political executive → Bureaucracy → Judiciary → Civil society → Citizen",
-                "points": [
-                  "Political executive — investment-promotion incentives push clearances faster than basin capacity can be verified.",
-                  "Bureaucracy — district administration lacks the technical capacity to independently contest a hydrogeological claim.",
-                  "Judiciary — ex-post remedies (PIL, NGT) arrive only after aquifer damage is already irreversible.",
-                  "Civil society and citizen — information asymmetry leaves the Gram Sabha unable to contest an EIA written in a register it cannot access."
-                ],
-                "why": "Shows each actor's distinct capacity gap, rather than treating 'administration' as one undifferentiated block."
-              },
-              {
-                "name": "Consequences lens — Individual → Organisation → Society → Nation → Global",
-                "points": [
-                  "Individual — a household's well loses recharge within a single dry season.",
-                  "Organisational — the company inherits reputational and ESG exposure it never priced into the project.",
-                  "Societal — village social structure organised around the grove and river is disrupted.",
-                  "National/global — sets the template for how India's AI-infrastructure boom treats water at every future siting decision."
-                ],
-                "why": "Traces the same challenges by the scale at which their consequences land."
-              }
-            ],
-            "heading": "(b) Socio-economic and administrative challenges",
-            "off": [
-              "The deepest challenge is temporal mismatch — investment runs on quarterly cycles, aquifer recharge on decadal ones, cultural loss on generational ones."
-            ],
-            "valueAdd": [
-              "Keywords: environmental justice, elite capture, consultation vs consent",
-              "Theory: Sen's niti vs nyaya"
-            ]
-          },
-          {
-            "frameworks": [
-              {
-                "name": "Technological → Legal → Economic → Community",
-                "points": [
-                  "Technological — closed-loop immersion or air cooling on treated municipal wastewater; rainwater harvesting, condensate recovery, ZLD; waste-heat recovery for local use.",
-                  "Legal — fresh SIA and cumulative EIA with a basin-level water budget; FPIC via Gram Sabha; grove notified as a Biodiversity Heritage Site; binding public water cap with summer triggers.",
-                  "Economic — DMF-type revenue share into a Gram Sabha trust; community equity rather than one-time compensation; guaranteed local employment ladder with ITI pipeline.",
-                  "Community — document and credit traditional ecological knowledge; grove custodians in catchment management; independent grievance redress.",
-                  "Policy — national water-use norms and disclosure for data centres; siting that weights water alongside power and connectivity."
-                ],
-                "why": "'Substantial' means each must be costed, binding and verifiable."
-              },
-              {
-                "name": "Solutions lens — Legal → Institutional → Behavioural → Technological",
-                "points": [
-                  "Legal — a binding water-use cap written into the clearance itself, not offered as a voluntary pledge.",
-                  "Institutional — an independent river-basin authority with veto power over further extraction, distinct from the investment-promotion agency.",
-                  "Behavioural — grievance channels the Gram Sabha can actually use, in local language and format.",
-                  "Technological — closed-loop cooling and waste-heat reuse, verified by third-party audit rather than self-certification."
-                ],
-                "why": "Regroups the same alternatives by what has to change institutionally for each to actually hold."
-              },
-              {
-                "name": "Balanced evaluation — Merits → Limitations → Conditions under which it holds",
-                "points": [
-                  "Technological fixes hold only if the treated-wastewater source is itself reliable through the dry season.",
-                  "Legal fixes hold only if enforced by a body independent of the clearance-granting authority.",
-                  "Economic fixes hold only if paid into a Gram Sabha-controlled trust, not a state-administered fund the community can't audit.",
-                  "Community fixes hold only if backed by a real veto, not a consultative formality."
-                ],
-                "why": "Tests whether each alternative is real substance or a paper fix."
-              }
-            ],
-            "heading": "(c) Substantial alternatives and policy interventions",
-            "off": [
-              "The strongest intervention is a sequencing rule — consent and design must precede clearance-hunting."
-            ],
-            "valueAdd": [
-              "Anchors: DMF model, BD Act 2002, PESA",
-              "Keywords: social licence to operate, externality transfer"
-            ]
-          },
-          {
-            "frameworks": [
-              {
-                "name": "Decision → Justification → Immediate/Short/Long → Values",
-                "points": [
-                  "Decision first: neither abandon nor proceed as designed. Formal pause; re-enter only via near-zero-freshwater redesign with genuine Gram Sabha consent — relocate if consent is withheld.",
-                  "Kidder — short-term vs long-term and individual vs community; in both the durable interest converges with the company's own.",
-                  "Blanchard–Peale — legal? clearances don't settle it. Balanced? not as designed. Defensible publicly? a dry well beside a cooling tower answers that.",
-                  "Immediate — disclose the water plan; independent assessment; suspend clearance processing; brief the Board on exposure.",
-                  "Short — re-engineer cooling; exclude grove and catchment with a buffer; reconvene Gram Sabha; binding benefit-sharing.",
-                  "Long — community trust and skilling; public monitoring dashboards; watershed restoration."
-                ],
-                "why": "Examiners reward decisiveness; a survey of options without a choice loses marks."
-              },
-              {
-                "name": "Kidder's three resolution principles — ends-based, rule-based, care-based",
-                "points": [
-                  "Ends-based, to the Board: a stranded asset from withdrawn consent costs more than a redesign — consent is the cheaper risk insurance.",
-                  "Rule-based, to regulators: universalise 'extract without consent' as a rule for every AI datacentre in India and the policy collapses on its own logic.",
-                  "Care-based, to the 40 villages: honour the relationship the grove and river represent, not just the transaction.",
-                  "All three converge on the same decision — pause, redesign, seek genuine consent — which is itself evidence the decision is robust."
-                ],
-                "why": "Names which ethical logic each audience — Board, regulator, community — will find persuasive, sharpening the justification."
-              },
-              {
-                "name": "Front-page test + PLUS filter",
-                "points": [
-                  "Front page — 'AI major dries up tribal village wells for cooling water' is a headline the company cannot survive.",
-                  "Policies — the 2035 pledge is a target, not a 2026 safeguard; it fails the company's own ESG policy on its face.",
-                  "Legal — clearances obtained via a hurried hearing are procedurally vulnerable to later challenge, so 'legal' is not even secure.",
-                  "Self — the CEO who signs off knowing the aquifer modelling was contested cannot later use 'the process was followed' as a personal defence."
-                ],
-                "why": "A fast, publicly legible check a CEO can run before the Board meeting."
-              }
-            ],
-            "heading": "(d) Course of action as CEO",
-            "off": [
-              "The Niyamgiri precedent [verify: Orissa Mining Corp. v. MoEF, 2013] shows stranded assets cost more than redesign. Consent is the cheapest risk insurance."
-            ],
-            "valueAdd": [
-              "Values: integrity over compliance, moral courage before the Board, transparency",
-              "Keywords: fiduciary duty, licence to operate, incommensurable loss"
-            ]
-          }
-        ],
-        "vaBank": {
-          "examples": [
-            "Samatha v. State of A.P. (1997) [verify]",
-            "Data centres cooling on treated wastewater in water-stressed Indian cities [verify]"
-          ],
-          "keywords": [
-            "ethical fading",
-            "incommensurable loss",
-            "enclave development"
-          ],
-          "quotes": [
-            "Gandhi — enough for everyone's need, not everyone's greed",
-            "Sen — development as freedom, not merely output"
-          ],
-          "thinkers": [
-            "Aldo Leopold — the biotic community as a moral subject"
-          ]
-        }
+        "text": "Gandhi's talisman applies literally: recall the face of the poorest person you have seen and ask whether this step will be of any use to them. Applied to the 40 villages, it converts an investment decision into a design brief.",
+        "type": "Theory-linkage + action"
+      },
+      {
+        "text": "SDG 6 and SDG 16 are not in tension with India's AI ambition; a project that cannot be built with consent was never bankable.",
+        "type": "Broader goal"
+      },
+      {
+        "text": "Leopold's land ethic — a thing is right when it tends to preserve the integrity of the biotic community. The grove is not an obstacle to the data centre; both are infrastructure, on different timescales.",
+        "type": "Quote-based"
       }
     ],
-    "id": "zenith-ai-datacentre",
-    "mine": {
-      "conclusion": "",
-      "intro": "",
-      "sections": []
+    "decode": {
+      "concepts": [
+        "Environmental ethics",
+        "Intergenerational equity",
+        "Distributive justice",
+        "FPIC and consent"
+      ],
+      "demands": [
+        "Ethical justifiability of the extraction",
+        "Socio-economic and administrative challenges",
+        "Alternatives and policy interventions",
+        "Your course of action as CEO"
+      ],
+      "directive": "(a) verdict. (b) categorised challenges. (c) alternatives — costed and binding. (d) course of action + named ethical principles.",
+      "hidden": "You are a CEO under fiduciary duty, not a Collector — reason through trusteeship, ESG and licence to operate. Second trap: the water-positive-by-2035 pledge is moral licensing, not mitigation.",
+      "limit": "20–25 marks / ~250 words — roughly 60 words per sub-part"
     },
+    "diagram": "                    +------------------+\n                    |  PROJECT PAUSED  |\n                    +--------+---------+\n                             v\n        +----------------------------------------+\n        | GATE 1 - Independent SIA + basin-level  |\n        | water audit, publicly disclosed         |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 2 - Redesign: closed-loop cooling  |\n        | on treated wastewater; grove excluded   |\n        +----------------+-----------------------+\n                         v\n        +----------------------------------------+\n        | GATE 3 - Gram Sabha FPIC + binding      |\n        | benefit-sharing & employment ladder     |\n        +------+--------------------------+------+\n          CONSENT                    NO CONSENT\n               v                          v\n        +-------------+          +------------------+\n        |  PROCEED    | <-audit- |  RELOCATE to a   |\n        |  + monitor  |          |  water-surplus   |\n        |  in public  |          |  site            |\n        +-------------+          +------------------+",
+    "id": "zenith-ai-datacentre",
+    "intros": [
+      {
+        "text": "माता भूमिः पुत्रोऽहं पृथिव्याः (Atharva Veda) — “The earth is my mother, I am her son.” For 40 villages the river and grove are not project inputs; they are the standing conditions of existence.",
+        "type": "Scripture"
+      },
+      {
+        "text": "This is not development versus environment but a question of who bears the cost and who reaps the benefit — a distributive question wearing a technical disguise.",
+        "type": "Framing the dilemma"
+      },
+      {
+        "text": "The case pits economic efficiency against procedural justice and intergenerational equity, with the added temptation of using a 2035 pledge to license a 2026 harm.",
+        "type": "Keyword-led"
+      }
+    ],
     "notes": "",
     "paper": "GS4",
+    "pitfalls": [
+      "Answering as a Collector. The role is CEO — fiduciary duty, trusteeship, licence to operate.",
+      "A binary decision. The marks are in the gated course of action with a stated fallback.",
+      "Treating the 2035 pledge as mitigation instead of naming it as moral licensing.",
+      "Word discipline — four sub-parts at ~60 words each."
+    ],
     "question": "ZenithAI Technologies — as MD & CEO, you must decide on an AI data centre in a backward tribal district: 4–5 million litres/day of freshwater from a river and aquifer serving 40 tribal villages, a sacred grove and spring catchment at risk, hurried public hearings, high-skill jobs likely going to outsiders, and a Board warning that delay endangers international contracts.",
-    "source": "Test series",
+    "sections": [
+      {
+        "frameworks": [
+          {
+            "name": "Legality → Morality → Practicality → Sustainability",
+            "points": [
+              "Legality — Fifth Schedule areas require Gram Sabha consent under PESA (1996) and FRA (2006); a hurried hearing is void in spirit even if valid on paper.",
+              "Morality — the utilitarian defence fails its own test: the aggregate gain is computed by discounting the losers. Rawls' difference principle is violated.",
+              "Practicality — 4–5 MLD in a summer-stressed region is not a shared resource but a transferred one. Enclosure, not tragedy, of the commons.",
+              "Sustainability — aquifer drawdown and spring loss are irreversible; public trust doctrine (M.C. Mehta v. Kamal Nath, 1997).",
+              "Verdict: not justified as designed — it externalises an irreversible cost onto a community that has neither consented nor shares proportionately."
+            ],
+            "why": "Shows that statutory clearance is a floor, not a ceiling."
+          },
+          {
+            "name": "Anthropocentrism vs biocentrism vs ecocentrism",
+            "points": [
+              "Anthropocentric framing — the Board's implicit default — counts only human-economic value, so the spring and grove price at zero.",
+              "Biocentric framing counts the grove's ecosystem as having interests of its own, independent of any human use for it.",
+              "Ecocentric framing (Leopold's land ethic) judges the integrity of the whole basin, not isolated resources in isolation.",
+              "Under any framing beyond pure anthropocentrism the extraction fails to preserve what it damages — the 'justification' is really just the frame management picked."
+            ],
+            "why": "Reframes the justification question as which ethical stance the Board is silently assuming."
+          },
+          {
+            "name": "Rights–Justice–Utility triad",
+            "points": [
+              "Rights — the 40 villages' customary claims under PESA/FRA are prior in time and in law to the company's claim.",
+              "Justice — Rawls' difference principle requires a just arrangement to improve the worst-off position, not merely maximise the aggregate.",
+              "Utility — the naive utilitarian sum favours the datacentre only if the villages' loss is priced at zero; a fair valuation reverses the sum.",
+              "Verdict converges with the first lens: not justified as designed."
+            ],
+            "why": "A verdict test run on whose rights, whose fairness, and whose greatest good are actually being weighed."
+          }
+        ],
+        "heading": "(a) Can it be ethically justified?",
+        "off": [
+          "The sacred grove cannot be compensated. Where loss is incommensurable, cost-benefit analysis is the wrong instrument."
+        ],
+        "valueAdd": [
+          "Keywords: moral licensing, ecological debt, precautionary principle",
+          "Anchors: public trust doctrine, PESA, FRA, Art. 21"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Socio-cultural · Economic · Ecological · Administrative",
+            "points": [
+              "Socio-cultural — erosion of identity tied to grove and river; loss of unrecorded traditional ecological knowledge; consultation in a format the community cannot engage with.",
+              "Economic — enclave development; shift from diversified subsistence to dependent wage labour; benefits aggregate and national, costs concentrated and local.",
+              "Ecological — aquifer depletion, spring decline, habitat fragmentation; cumulative impact invisible because each clearance is assessed alone.",
+              "Administrative — district capacity deficit; information asymmetry; weak post-clearance monitoring; the State as both investment promoter and rights protector."
+            ],
+            "why": "Prevents the common error of listing only environmental harms."
+          },
+          {
+            "name": "Governance actors — Political executive → Bureaucracy → Judiciary → Civil society → Citizen",
+            "points": [
+              "Political executive — investment-promotion incentives push clearances faster than basin capacity can be verified.",
+              "Bureaucracy — district administration lacks the technical capacity to independently contest a hydrogeological claim.",
+              "Judiciary — ex-post remedies (PIL, NGT) arrive only after aquifer damage is already irreversible.",
+              "Civil society and citizen — information asymmetry leaves the Gram Sabha unable to contest an EIA written in a register it cannot access."
+            ],
+            "why": "Shows each actor's distinct capacity gap, rather than treating 'administration' as one undifferentiated block."
+          },
+          {
+            "name": "Consequences lens — Individual → Organisation → Society → Nation → Global",
+            "points": [
+              "Individual — a household's well loses recharge within a single dry season.",
+              "Organisational — the company inherits reputational and ESG exposure it never priced into the project.",
+              "Societal — village social structure organised around the grove and river is disrupted.",
+              "National/global — sets the template for how India's AI-infrastructure boom treats water at every future siting decision."
+            ],
+            "why": "Traces the same challenges by the scale at which their consequences land."
+          }
+        ],
+        "heading": "(b) Socio-economic and administrative challenges",
+        "off": [
+          "The deepest challenge is temporal mismatch — investment runs on quarterly cycles, aquifer recharge on decadal ones, cultural loss on generational ones."
+        ],
+        "valueAdd": [
+          "Keywords: environmental justice, elite capture, consultation vs consent",
+          "Theory: Sen's niti vs nyaya"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Technological → Legal → Economic → Community",
+            "points": [
+              "Technological — closed-loop immersion or air cooling on treated municipal wastewater; rainwater harvesting, condensate recovery, ZLD; waste-heat recovery for local use.",
+              "Legal — fresh SIA and cumulative EIA with a basin-level water budget; FPIC via Gram Sabha; grove notified as a Biodiversity Heritage Site; binding public water cap with summer triggers.",
+              "Economic — DMF-type revenue share into a Gram Sabha trust; community equity rather than one-time compensation; guaranteed local employment ladder with ITI pipeline.",
+              "Community — document and credit traditional ecological knowledge; grove custodians in catchment management; independent grievance redress.",
+              "Policy — national water-use norms and disclosure for data centres; siting that weights water alongside power and connectivity."
+            ],
+            "why": "'Substantial' means each must be costed, binding and verifiable."
+          },
+          {
+            "name": "Solutions lens — Legal → Institutional → Behavioural → Technological",
+            "points": [
+              "Legal — a binding water-use cap written into the clearance itself, not offered as a voluntary pledge.",
+              "Institutional — an independent river-basin authority with veto power over further extraction, distinct from the investment-promotion agency.",
+              "Behavioural — grievance channels the Gram Sabha can actually use, in local language and format.",
+              "Technological — closed-loop cooling and waste-heat reuse, verified by third-party audit rather than self-certification."
+            ],
+            "why": "Regroups the same alternatives by what has to change institutionally for each to actually hold."
+          },
+          {
+            "name": "Balanced evaluation — Merits → Limitations → Conditions under which it holds",
+            "points": [
+              "Technological fixes hold only if the treated-wastewater source is itself reliable through the dry season.",
+              "Legal fixes hold only if enforced by a body independent of the clearance-granting authority.",
+              "Economic fixes hold only if paid into a Gram Sabha-controlled trust, not a state-administered fund the community can't audit.",
+              "Community fixes hold only if backed by a real veto, not a consultative formality."
+            ],
+            "why": "Tests whether each alternative is real substance or a paper fix."
+          }
+        ],
+        "heading": "(c) Substantial alternatives and policy interventions",
+        "off": [
+          "The strongest intervention is a sequencing rule — consent and design must precede clearance-hunting."
+        ],
+        "valueAdd": [
+          "Anchors: DMF model, BD Act 2002, PESA",
+          "Keywords: social licence to operate, externality transfer"
+        ]
+      },
+      {
+        "frameworks": [
+          {
+            "name": "Decision → Justification → Immediate/Short/Long → Values",
+            "points": [
+              "Decision first: neither abandon nor proceed as designed. Formal pause; re-enter only via near-zero-freshwater redesign with genuine Gram Sabha consent — relocate if consent is withheld.",
+              "Kidder — short-term vs long-term and individual vs community; in both the durable interest converges with the company's own.",
+              "Blanchard–Peale — legal? clearances don't settle it. Balanced? not as designed. Defensible publicly? a dry well beside a cooling tower answers that.",
+              "Immediate — disclose the water plan; independent assessment; suspend clearance processing; brief the Board on exposure.",
+              "Short — re-engineer cooling; exclude grove and catchment with a buffer; reconvene Gram Sabha; binding benefit-sharing.",
+              "Long — community trust and skilling; public monitoring dashboards; watershed restoration."
+            ],
+            "why": "Examiners reward decisiveness; a survey of options without a choice loses marks."
+          },
+          {
+            "name": "Kidder's three resolution principles — ends-based, rule-based, care-based",
+            "points": [
+              "Ends-based, to the Board: a stranded asset from withdrawn consent costs more than a redesign — consent is the cheaper risk insurance.",
+              "Rule-based, to regulators: universalise 'extract without consent' as a rule for every AI datacentre in India and the policy collapses on its own logic.",
+              "Care-based, to the 40 villages: honour the relationship the grove and river represent, not just the transaction.",
+              "All three converge on the same decision — pause, redesign, seek genuine consent — which is itself evidence the decision is robust."
+            ],
+            "why": "Names which ethical logic each audience — Board, regulator, community — will find persuasive, sharpening the justification."
+          },
+          {
+            "name": "Front-page test + PLUS filter",
+            "points": [
+              "Front page — 'AI major dries up tribal village wells for cooling water' is a headline the company cannot survive.",
+              "Policies — the 2035 pledge is a target, not a 2026 safeguard; it fails the company's own ESG policy on its face.",
+              "Legal — clearances obtained via a hurried hearing are procedurally vulnerable to later challenge, so 'legal' is not even secure.",
+              "Self — the CEO who signs off knowing the aquifer modelling was contested cannot later use 'the process was followed' as a personal defence."
+            ],
+            "why": "A fast, publicly legible check a CEO can run before the Board meeting."
+          }
+        ],
+        "heading": "(d) Course of action as CEO",
+        "off": [
+          "The Niyamgiri precedent [verify: Orissa Mining Corp. v. MoEF, 2013] shows stranded assets cost more than redesign. Consent is the cheapest risk insurance."
+        ],
+        "valueAdd": [
+          "Values: integrity over compliance, moral courage before the Board, transparency",
+          "Keywords: fiduciary duty, licence to operate, incommensurable loss"
+        ]
+      }
+    ],
     "summary": "As MD & CEO of ZenithAI, you must decide whether to proceed with an AI data centre drawing 4–5 million litres a day from a river and aquifer serving 40 tribal villages, threatening a sacred grove and spring catchment cleared through a hurried public hearing.",
     "tags": [
       [
@@ -549,6 +507,25 @@
         "Environment vs development"
       ]
     ],
-    "type": "Case study"
+    "taxonomyVersion": 1,
+    "type": "Case study",
+    "vaBank": {
+      "examples": [
+        "Samatha v. State of A.P. (1997) [verify]",
+        "Data centres cooling on treated wastewater in water-stressed Indian cities [verify]"
+      ],
+      "keywords": [
+        "ethical fading",
+        "incommensurable loss",
+        "enclave development"
+      ],
+      "quotes": [
+        "Gandhi — enough for everyone's need, not everyone's greed",
+        "Sen — development as freedom, not merely output"
+      ],
+      "thinkers": [
+        "Aldo Leopold — the biotic community as a moral subject"
+      ]
+    }
   }
 ]
