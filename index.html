@@ -1987,10 +1987,23 @@ function validateQ(q,lbl){
    Parsing is separated from committing so an overwrite or a taxonomy change can be shown
    and confirmed first. An external AI reusing the template's "short-slug" id, or inventing
    a category, used to corrupt the bank silently. */
+/* The parser knows exactly which character defeated it and says so; throwing
+   that away for "check for a missing comma" leaves you re-reading 9KB by eye.
+   The usual cause is a quote a model left unescaped inside a string, which is
+   invisible in prose but obvious once you are looking at the right 70 characters. */
+function jsonErr(e,src){
+  var msg=String((e&&e.message)||"Not valid JSON").replace(/^JSON\.parse:\s*/,"");
+  var m=/position (\d+)/.exec(msg), at=m?+m[1]:-1;
+  if(at<0||at>src.length) return msg+".";
+  var before=src.slice(Math.max(0,at-70),at).replace(/\s+/g," ");
+  var after=src.slice(at,at+40).replace(/\s+/g," ");
+  return msg+". It gave up here: …"+before+" ▸◂ "+after+"…";
+}
 function prepare(raw){
+  var src=String(raw).replace(/^\s*```(?:json)?/i,"").replace(/```\s*$/,"");
   var parsed;
-  try{ parsed=JSON.parse(String(raw).replace(/^\s*```(?:json)?/i,"").replace(/```\s*$/,"")); }
-  catch(e){ return {err:"Not valid JSON — check for a missing comma or bracket."}; }
+  try{ parsed=JSON.parse(src); }
+  catch(e){ return {err:jsonErr(e,src)}; }
 
   if(parsed&&parsed.questions&&parsed.taxonomy) return {bank:parsed};
 
