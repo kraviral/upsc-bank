@@ -1494,19 +1494,43 @@ function mbSelect(d){
   var r=document.createRange(); r.selectNodeContents(d);
   var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
 }
+/* The hanging indent has to equal the rendered width of "• " exactly, or every
+   wrapped line sits a few pixels off the text above it. Guessing it was wrong by
+   9px in this font, so it is measured — off-document, in the box's own font, and
+   cached, since mbPaint runs on every keystroke. */
+var mbHang=null;
+function mbMarkerEm(el){
+  if(mbHang!=null) return mbHang;
+  var cs=getComputedStyle(el), fs=parseFloat(cs.fontSize)||16;
+  var s=document.createElement("span");
+  s.textContent="• ";
+  s.style.cssText="position:absolute;left:-9999px;top:0;white-space:pre;visibility:hidden";
+  s.style.font=cs.font; s.style.letterSpacing=cs.letterSpacing;
+  document.body.appendChild(s);
+  mbHang=s.getBoundingClientRect().width/fs;
+  document.body.removeChild(s);
+  return mbHang;
+}
 /* Style only — no text or structure is touched, so the caret never moves. */
 function mbPaint(el){
-  var blank=true;
+  var blank=true, mark=mbMarkerEm(el);
   for(var i=0;i<el.children.length;i++){
     var d=el.children[i], t=d.textContent||"";
     if(t.trim()) blank=false;
     var stray=(t.match(/^[ \t]*/)||[""])[0].replace(/\t/g,MB_STEP).length/MB_STEP.length;
     var depth=(+(d.getAttribute("data-d")||0))+Math.floor(stray);
-    var hang=/^[ \t]*•\s/.test(t)?1.35:0;
+    var hang=/^[ \t]*•\s/.test(t)?mark:0;
     d.style.paddingLeft=(depth*1.7+hang)+"em";
     d.style.textIndent=hang?("-"+hang+"em"):"";
   }
   el.classList.toggle("mbempty",blank&&!(el.textContent||"").trim());
+}
+/* A font that arrives after first paint would invalidate the measurement. */
+if(document.fonts&&document.fonts.ready){
+  document.fonts.ready.then(function(){
+    mbHang=null;
+    document.querySelectorAll(".minebox").forEach(mbPaint);
+  });
 }
 function mbKeys(e,el){
   var d=mbLine(el);
