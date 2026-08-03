@@ -235,6 +235,14 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
   border:1px solid var(--rule);border-radius:2px;padding:8px;margin:10px 0 6px;
   max-height:190px;overflow:auto;white-space:pre-wrap;word-break:break-word}
 .genout:empty{display:none}
+.orlist{max-height:190px;overflow:auto;border:1px solid var(--rule);border-radius:2px;margin:0 0 10px}
+.orrow{display:flex;align-items:baseline;gap:8px;padding:4px 8px;cursor:pointer;font-size:12px;border-bottom:1px solid var(--rule)}
+.orrow:last-child{border-bottom:none}
+.orrow:hover{background:var(--paper)}
+.orrow.on{background:var(--marker)}
+.orid{flex:1;font-family:var(--mono);font-size:11px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.orcost{font-family:var(--mono);font-size:10.5px;color:var(--accent);width:56px;text-align:right;flex:none}
+.orctx{font-family:var(--mono);font-size:10px;color:var(--ink3);width:38px;text-align:right;flex:none}
 .ppick{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
 .ppick .chip{font-size:10.5px;padding:4px 9px}
 .dangerzone{margin:24px 0 40px;padding-top:14px;border-top:1px solid var(--rule);max-width:74ch}
@@ -2352,6 +2360,42 @@ function generationPrompt(q){
     "\n\nReturn only the JSON object. No prose, no markdown fences.";
 }
 
+var orFilter="", orFreeOnly=false, estIn=4400, estOut=5000;
+/* What one generation on this question actually costs, rather than a price per
+   million tokens the reader has to do arithmetic on. */
+/* OpenRouter's meta-routers (openrouter/auto and friends) price at -1 as a
+   sentinel meaning "depends which model it picks". Left as a number that is
+   less than zero it sorts above everything and counts as free, which is the
+   opposite of true. null means unknown. */
+function estCost(m){
+  var pi=parseFloat((m.pricing||{}).prompt||0), po=parseFloat((m.pricing||{}).completion||0);
+  if(pi<0||po<0) return null;
+  return estIn*pi+estOut*po;
+}
+function orListHtml(){
+  var f=orFilter.toLowerCase();
+  var rows=(orModels||[]).filter(function(m){
+    var c=estCost(m);
+    if(orFreeOnly&&c!==0) return false;          // unknown is not free
+    if(!f) return true;
+    return (m.id+" "+(m.name||"")).toLowerCase().indexOf(f)>-1;
+  });
+  rows.sort(function(a,b){
+    var x=estCost(a), y=estCost(b);
+    if(x===null&&y===null) return 0;
+    if(x===null) return 1;                        // unknown pricing sinks
+    if(y===null) return -1;
+    return x-y;
+  });
+  if(!rows.length) return '<p class="ph">nothing matches that filter.</p>';
+  return rows.slice(0,60).map(function(m){
+    var c=estCost(m), ctx=m.context_length?(Math.round(m.context_length/1000)+"k"):"—";
+    return '<div class="orrow'+(m.id===genModel?' on':'')+'" data-mid="'+esc(m.id)+'">'+
+      '<span class="orid">'+esc(m.id)+'</span>'+
+      '<span class="orcost">'+(c===null?"varies":(c===0?"free":money(c)))+'</span>'+
+      '<span class="orctx">'+ctx+'</span></div>';
+  }).join('')+(rows.length>60?'<p class="ph">'+(rows.length-60)+' more — narrow the filter.</p>':'');
+}
 function genDialog(q){
   if(!isLocal()){
     openDlg("Generation runs on localhost only",
@@ -2369,10 +2413,7 @@ function genDialog(q){
                ' — $'+m.inM+'/$'+m.outM+' per Mtok</option>';}).join('')+'</select>';
     }
     if(!orModels) return '<span class="ph">loading model list…</span>';
-    return '<input id="genModelTxt" list="orList" value="'+esc(genModel)+'" placeholder="e.g. a :free model">'+
-      '<datalist id="orList">'+orModels.slice(0,300).map(function(m){
-        var free=parseFloat((m.pricing||{}).prompt||0)===0;
-        return '<option value="'+esc(m.id)+'">'+(free?'free — ':'')+esc(m.name||"")+'</option>';}).join('')+'</datalist>';
+    return '<input id="genModelTxt" value="'+esc(genModel)+'" placeholder="model id, or pick below">';
   }
   function slot(){
     return '<div class="genrow"><label>Provider</label>'+
@@ -2381,6 +2422,11 @@ function genDialog(q){
           '<option value="openrouter"'+(genProvider==="openrouter"?' selected':'')+'>OpenRouter (many models, some free)</option>'+
         '</select></div>'+
       '<div class="genrow"><label>Model</label><span id="genModelWrap">'+modelPicker()+'</span></div>'+
+      (genProvider==="openrouter"?
+        '<div class="genrow"><label>Filter</label>'+
+          '<input id="orFilter" placeholder="name or maker, e.g. gemini, qwen, claude" value="'+esc(orFilter)+'">'+
+          '<label style="width:auto"><input type="checkbox" id="orFree"'+(orFreeOnly?' checked':'')+'> free only</label>'+
+        '</div><div id="orList" class="orlist">'+orListHtml()+'</div>':'')+
       '<div class="genrow"><label>API key</label>'+
         '<input id="genKey" type="password" autocomplete="off" spellcheck="false" value="'+esc(genKey)+'" '+
         'placeholder="'+(genProvider==="anthropic"?"sk-ant-…":"sk-or-…")+'"></div>'+
@@ -2394,22 +2440,39 @@ function genDialog(q){
       genUse.inTok.toLocaleString()+" in / "+genUse.outTok.toLocaleString()+" out, "+money(genUse.usd))
       : "nothing generated yet this session";
   }
+  function keepKey(){ var k=$("genKey"); if(k) genKey=k.value; }
+  function repaint(){ keepKey(); $("dlgSlot").innerHTML=slot(); wire(); }
   function wire(){
     var pv=$("genProv");
     pv.onchange=async function(){
+      keepKey();
       genProvider=pv.value;
       genModel=(genProvider==="anthropic")?"claude-opus-5":(genModel.indexOf("/")>0?genModel:"");
-      $("genModelWrap").innerHTML=modelPicker(); wireModel();
+      repaint();
       if(genProvider==="openrouter"&&!orModels){
-        try{ await fetchOpenRouterModels(); $("genModelWrap").innerHTML=modelPicker(); wireModel(); }
-        catch(e){ $("genModelWrap").innerHTML='<input id="genModelTxt" value="'+esc(genModel)+'" placeholder="model id">'; wireModel(); }
+        try{ await fetchOpenRouterModels(); }catch(e){}
+        repaint();
       }
     };
     wireModel();
   }
   function wireModel(){
     var s=$("genModel"); if(s) s.onchange=function(){genModel=s.value;};
-    var t=$("genModelTxt"); if(t) t.oninput=function(){genModel=t.value.trim();};
+    var t=$("genModelTxt"); if(t) t.oninput=function(){genModel=t.value.trim();paintList();};
+    var f=$("orFilter");   if(f) f.oninput=function(){orFilter=f.value;paintList();};
+    var fr=$("orFree");    if(fr) fr.onchange=function(){orFreeOnly=fr.checked;paintList();};
+    paintRows();
+  }
+  function paintList(){ var l=$("orList"); if(l){l.innerHTML=orListHtml();paintRows();} }
+  function paintRows(){
+    var l=$("orList"); if(!l) return;
+    l.querySelectorAll("[data-mid]").forEach(function(r){
+      r.onclick=function(){
+        genModel=r.getAttribute("data-mid");
+        var t=$("genModelTxt"); if(t) t.value=genModel;
+        paintList();
+      };
+    });
   }
   openDlg("Generate a skeleton",
     "Runs on your machine with your key. The same prompt as Copy prompt, sent for you.",
@@ -2455,7 +2518,7 @@ function genDialog(q){
     });
   wire();
   if(genProvider==="openrouter"&&!orModels){
-    fetchOpenRouterModels().then(function(){ $("genModelWrap").innerHTML=modelPicker(); wireModel(); }).catch(function(){});
+    fetchOpenRouterModels().then(repaint).catch(function(){});
   }
 }
 
