@@ -123,6 +123,20 @@ dialog::backdrop{background:rgba(22,32,46,.42)}
 .drop{position:fixed;inset:0;background:rgba(31,94,85,.12);border:3px dashed var(--accent);z-index:60;display:none;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .drop.on{display:flex}
 .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--sheet);font-size:13px;padding:9px 16px;border-radius:3px;z-index:70;opacity:0;transition:opacity .18s}
+/* generation runs detached from the dialog, so its progress needs somewhere to
+   live that is not the dialog */
+.genstrip{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;gap:6px;width:340px;max-width:calc(100vw - 32px)}
+.genjob{background:var(--sheet);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:3px;padding:8px 10px;box-shadow:0 2px 12px rgba(0,0,0,.09);font-size:12px;color:var(--ink2)}
+.genjob.done{border-left-color:#3f7d4f}
+.genjob.err{border-left-color:#b4453a}
+.genjob.cancelled{border-left-color:var(--ink3)}
+.genjob .gj1{display:flex;gap:8px;align-items:baseline}
+.genjob .gjm{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink)}
+.genjob .gjs{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--ink3);white-space:nowrap}
+.genjob .gjq{display:block;margin-top:3px;color:var(--ink3);line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.genjob .gjb{margin-top:6px;text-align:right}
+.genjob .gjb button{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;background:none;border:1px solid var(--rule);border-radius:2px;color:var(--ink2);cursor:pointer;padding:2px 7px;margin-left:5px}
+.genjob .gjb button:hover{border-color:var(--accent);color:var(--accent)}
 .toast.on{opacity:1}
 
 @media (max-width:860px){
@@ -194,11 +208,16 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .mineblk>summary::-webkit-details-marker{display:none}
 .mineblk>summary::after{content:"+";position:absolute;right:2px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:15px;color:var(--ink3)}
 .mineblk[open]>summary::after{content:"\2212"}
-.mineblk>summary:hover .minehead{color:var(--accent)}
+.mineblk>summary:hover .minehead,.mineblk>summary:hover .mtitle{color:var(--accent)}
 .minehead{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:0}
-.mineblk>summary input{flex:1;min-width:0;font-family:var(--display);font-size:16px;border:0;border-bottom:1px dashed var(--rule);background:none;color:var(--ink);padding:3px 0}
-.mineblk>summary input:focus{outline:none;border-bottom-color:var(--accent)}
+/* the sub-heading reads as text in the summary so the whole row folds; the field
+   that edits it lives in the body, where there is room to click into it */
+.mtitle{flex:1;min-width:0;font-family:var(--display);font-size:16px;line-height:1.3}
 .mbody{padding:0 0 16px}
+.mheadrow{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.mheadrow label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.mheadrow input{flex:1;min-width:0;font-family:var(--display);font-size:15px;border:0;border-bottom:1px dashed var(--rule);background:none;color:var(--ink);padding:3px 0}
+.mheadrow input:focus{outline:none;border-bottom-color:var(--accent)}
 /* contenteditable, not textarea: a textarea wraps every line flush left, so the
    second line of a long bullet lands under the bullet instead of under its text.
    Hanging indent needs one block element per line, which only this gives. */
@@ -241,10 +260,6 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .genrow{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .genrow label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);width:76px;flex:none}
 .genrow select,.genrow input{flex:1;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink)}
-.genout{font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink2);background:var(--paper);
-  border:1px solid var(--rule);border-radius:2px;padding:8px;margin:10px 0 6px;
-  max-height:190px;overflow:auto;white-space:pre-wrap;word-break:break-word}
-.genout:empty{display:none}
 .usemeter{font-size:11.5px;color:var(--ink2);margin-top:8px}
 .usehead{font-size:11.5px;color:var(--ink2);margin:6px 0 4px}
 .usetab{border:1px solid var(--rule);border-radius:2px;max-height:110px;overflow:auto}
@@ -303,6 +318,7 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 
 <div class="drop" id="drop">Drop .json to add</div>
 <div class="toast" id="toast"></div>
+<div class="genstrip" id="genstrip"></div>
 
 <dialog id="dlg"><div class="dlg">
   <h3 id="dlgTitle"></h3>
@@ -1553,16 +1569,17 @@ function wireMine(s){
     });
   });
   s.querySelectorAll("[data-mh]").forEach(function(inp){
-    var e=mineBoxes[inp.getAttribute("data-mh")];
+    var key=inp.getAttribute("data-mh"), e=mineBoxes[key];
     if(!e) return;
-    inp.addEventListener("input",function(){ e.set(inp.value); scheduleSave(); });
-  });
-  // the heading input and its buttons sit inside the <summary>; without this a
-  // click to place the cursor would fold the block instead
-  s.querySelectorAll(".mineblk>summary input").forEach(function(c){
-    c.addEventListener("click",function(e){e.stopPropagation();});
-    c.addEventListener("mousedown",function(e){e.stopPropagation();});
-    c.addEventListener("keydown",function(e){ if(e.key===" "||e.key==="Enter") e.stopPropagation(); });
+    var title=s.querySelector('[data-mt="'+key+'"]');
+    inp.addEventListener("input",function(){
+      e.set(inp.value);
+      if(title){                      // keep the folded label in step as you type
+        title.textContent=inp.value||"untitled sub-heading";
+        title.classList.toggle("ph",!inp.value);
+      }
+      scheduleSave();
+    });
   });
   s.querySelectorAll(".mineblk").forEach(function(blk){
     var key=blk.getAttribute("data-blockkey");
@@ -1586,10 +1603,13 @@ function mineView(q){
   m.sections.forEach(function(sec,i){
     mineBoxes["mh"+i]={get:function(){return sec.heading;},set:function(v){sec.heading=v;}};
     h+=mineBlk("s"+i,
-       '<input data-mh="mh'+i+'" value="'+esc(sec.heading||"")+'" placeholder="sub-heading">'+
+       '<span class="mtitle'+(sec.heading?'':' ph')+'" data-mt="mh'+i+'">'+
+         esc(sec.heading||"untitled sub-heading")+'</span>'+
        actionBtn("↑",function(){if(i>0){var t=m.sections[i];m.sections[i]=m.sections[i-1];m.sections[i-1]=t;save();renderSheet();}},"mvbtn",i===0)+
        actionBtn("↓",function(){if(i<m.sections.length-1){var t=m.sections[i];m.sections[i]=m.sections[i+1];m.sections[i+1]=t;save();renderSheet();}},"mvbtn",i===m.sections.length-1)+
        confirmBtn("×",function(){m.sections.splice(i,1);save();renderSheet();}),
+       '<div class="mheadrow"><label>Sub-heading</label>'+
+         '<input data-mh="mh'+i+'" value="'+esc(sec.heading||"")+'" placeholder="name this sub-heading"></div>'+
        mineBox("s"+i,function(){return sec.body;},function(v){sec.body=v;},"your points for this sub-heading"));
   });
   h+='<div style="margin:14px 0">'+actionBtn("+ Add sub-heading",function(){
@@ -1983,7 +2003,10 @@ function newCatsFor(items){
   });
   return out;
 }
-function commitItems(items){
+/* `quiet` is for answers that land from a background generation: the bank takes
+   them, but the sheet does not jump to the question and the view does not switch
+   out from under whatever the reader is doing. */
+function commitItems(items,quiet){
   var SKEL=["decode","intros","sections","conclusions","diagram","caption","vaBank","pitfalls"];
   items.forEach(function(item){
     var answer={id:"a"+Date.now().toString(36),model:item.model||"pasted",generatedAt:new Date().toISOString()};
@@ -2001,7 +2024,7 @@ function commitItems(items){
       // never overwrite work: a pasted skeleton is stored alongside, not instead of
       normalizeQ(existing);
       existing.answers.push(answer);
-      current=existing; answerIdx=existing.answers.length-1; view="ai";
+      if(!quiet){ current=existing; answerIdx=existing.answers.length-1; view="ai"; }
     } else {
       var q={id:item.id,paper:item.paper,source:item.source||"Test series",type:item.type,
              question:item.question,tags:item.tags||[],
@@ -2010,10 +2033,10 @@ function commitItems(items){
       if(item.year!=null) q.year=item.year;
       if(item.summary) q.summary=item.summary;
       db.questions.push(q);
-      current=q; answerIdx=0; view="ai";
+      if(!quiet){ current=q; answerIdx=0; view="ai"; }
     }
   });
-  homeMode=false;
+  if(!quiet) homeMode=false;
   return items.length;
 }
 function reportHtml(collisions,newCats){
@@ -2393,7 +2416,7 @@ $("promptBtn").onclick=function(){
    The gate is belt-and-braces on top of that — a visitor who edits the check
    out in devtools still has only their own key to spend. */
 var genKey="", genProvider="anthropic", genModel="claude-opus-5", genEffort="high",
-    genUse={inTok:0,outTok:0,usd:0,calls:0}, genAbort=null, orModels=null, orCredits=null;
+    orModels=null, orCredits=null;
 
 /* Usage ledger. Per model, on this device only — never the repo, which is
    public, and never a commit. Cost here is an ESTIMATE: token counts the API
@@ -2437,8 +2460,10 @@ var ANTHROPIC_MODELS=[
   {id:"claude-haiku-4-5", label:"Haiku 4.5 — cheapest",        inM:1,  outM:5}
 ];
 function anthModel(id){ return ANTHROPIC_MODELS.filter(function(x){return x.id===id;})[0]||null; }
-function priceFor(model){
-  if(genProvider==="anthropic"){
+/* provider is explicit so a finished background job is still priced against the
+   provider it actually ran on, not whatever the picker has been switched to since */
+function priceFor(model,provider){
+  if((provider||genProvider)==="anthropic"){
     var m=anthModel(model);
     if(!m) return {inM:0,outM:0};
     if(m.introTo&&new Date().toISOString().slice(0,10)<=m.introTo) return {inM:m.introInM,outM:m.introOutM};
@@ -2448,7 +2473,7 @@ function priceFor(model){
   if(!o||!o.pricing) return {inM:0,outM:0};
   return {inM:parseFloat(o.pricing.prompt||0)*1e6, outM:parseFloat(o.pricing.completion||0)*1e6};
 }
-function usdFor(model,i,o){var p=priceFor(model);return (i/1e6)*p.inM+(o/1e6)*p.outM;}
+function usdFor(model,i,o,provider){var p=priceFor(model,provider);return (i/1e6)*p.inM+(o/1e6)*p.outM;}
 function money(n){ return n<0.01 ? ("$"+n.toFixed(4)) : ("$"+n.toFixed(2)); }
 
 /* The authoritative number. My ledger is arithmetic on reported tokens; this is
@@ -2484,34 +2509,38 @@ async function fetchOpenRouterModels(){
 /* Streams a completion. onDelta gets text as it arrives so a 40-second
    generation shows progress instead of looking hung. Streaming also avoids the
    API refusing a large non-streamed max_tokens. */
-async function callModel(prompt,onDelta){
+/* cfg pins the provider, model, effort and key for the life of one call, and
+   carries that call's own AbortController — several generations can be in the
+   air at once, and the picker may have moved on since any of them started. */
+async function callModel(prompt,onDelta,cfg){
+  cfg=cfg||{provider:genProvider,model:genModel,effort:genEffort,key:genKey};
   var url,headers,body;
-  if(genProvider==="anthropic"){
+  if(cfg.provider==="anthropic"){
     url="https://api.anthropic.com/v1/messages";
-    headers={"content-type":"application/json","x-api-key":genKey,
+    headers={"content-type":"application/json","x-api-key":cfg.key,
              "anthropic-version":"2023-06-01",
              "anthropic-dangerous-direct-browser-access":"true"};
-    var am=anthModel(genModel);
+    var am=anthModel(cfg.model);
     /* On every current Claude model thinking is on by default and its tokens
        come out of max_tokens, so an 8k ceiling would be spent reasoning and the
        skeleton would arrive truncated. display:summarized exists only so the
        progress pane shows movement through the long silent think — the summary
        arrives as thinking_delta and never joins `text`. */
-    body={model:genModel,max_tokens:(am&&am.think)?32000:8000,stream:true,
+    body={model:cfg.model,max_tokens:(am&&am.think)?32000:8000,stream:true,
           messages:[{role:"user",content:prompt}]};
     if(am&&am.think){
       body.thinking={type:"adaptive",display:"summarized"};
-      body.output_config={effort:genEffort};
+      body.output_config={effort:cfg.effort};
     }
   } else {
     url="https://openrouter.ai/api/v1/chat/completions";
-    headers={"content-type":"application/json","authorization":"Bearer "+genKey};
-    body={model:genModel,max_tokens:8000,stream:true,
+    headers={"content-type":"application/json","authorization":"Bearer "+cfg.key};
+    body={model:cfg.model,max_tokens:8000,stream:true,
           stream_options:{include_usage:true},
           messages:[{role:"user",content:prompt}]};
   }
-  genAbort=new AbortController();
-  var res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:genAbort.signal});
+  cfg.abort=new AbortController();
+  var res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:cfg.abort.signal});
   if(!res.ok){
     var detail=await res.text();
     try{ var j=JSON.parse(detail); detail=(j.error&&(j.error.message||j.error.type))||detail; }catch(e){}
@@ -2529,7 +2558,7 @@ async function callModel(prompt,onDelta){
       var payload=ln.slice(5).trim();
       if(payload==="[DONE]") continue;
       var ev; try{ ev=JSON.parse(payload); }catch(e){ continue; }
-      if(genProvider==="anthropic"){
+      if(cfg.provider==="anthropic"){
         if(ev.type==="content_block_delta"&&ev.delta&&typeof ev.delta.text==="string"){
           text+=ev.delta.text; onDelta&&onDelta(text,think);
         }
@@ -2546,9 +2575,134 @@ async function callModel(prompt,onDelta){
       }
     }
   }
-  genAbort=null;
   return {text:text,inTok:inTok,outTok:outTok};
 }
+
+function meterHtml(){
+  var t=useTotal();
+  if(!t.calls) return '<span class="ph">nothing generated on this device yet</span>';
+  var per=Object.keys(useLedger).sort(function(a,b){return useLedger[b].usd-useLedger[a].usd;});
+  var h='<div class="usehead">all time on this device — '+t.calls+' call'+(t.calls===1?'':'s')+
+    (t.failed?(' ('+t.failed+' rejected but billed)'):'')+', '+
+    t.inTok.toLocaleString()+' in / '+t.outTok.toLocaleString()+' out, <b>'+money(t.usd)+'</b> estimated</div>'+
+    '<div class="usetab">'+per.map(function(m){
+      var r=useLedger[m];
+      return '<div class="userow"><span class="orid">'+esc(m)+'</span>'+
+        '<span class="orused">'+r.calls+'×'+(r.failed?(' · '+r.failed+' bad'):'')+'</span>'+
+        '<span class="orcost">'+money(r.usd)+'</span></div>';
+    }).join('')+'</div>';
+  if(genProvider==="openrouter"){
+    h+='<div class="usehead">'+(orCredits
+      ? 'OpenRouter says <b>'+money(orCredits.usage)+'</b> used'+
+        (orCredits.limit!=null?(' of '+money(orCredits.limit)+' limit'):'')+' — that figure is the billable one'
+      : '<span class="ph">enter your key and press Generate to read OpenRouter\'s own total</span>')+'</div>';
+  }
+  return h;
+}
+function refreshGenMeter(){ var m=$("genMeter"); if(m) m.innerHTML=meterHtml(); }
+
+/* -------- generation runs in the background --------
+   The dialog only collects the settings; the request outlives it. A job holds
+   its question by id rather than by reference, so the answer lands on the right
+   question however far you have browsed away — and it is committed quietly, so
+   nothing yanks the sheet back or switches the view under you. */
+var genJobs=[], genSeq=0;
+function jobById(n){ return genJobs.filter(function(j){return j.n===n;})[0]; }
+function jobStatus(j){
+  if(j.state==="running"){
+    if(!j.text) return "thinking…";
+    return j.text.length<1000 ? (j.text.length+" chars") : ((Math.round(j.text.length/100)/10)+"k chars");
+  }
+  if(j.state==="done") return "done · "+j.msg;
+  if(j.state==="cancelled") return "cancelled";
+  return "failed";
+}
+function paintJobs(){
+  var el=$("genstrip"); if(!el) return;
+  el.innerHTML=genJobs.map(function(j){
+    return '<div class="genjob '+j.state+'">'+
+      '<div class="gj1"><span class="gjm">'+esc(j.model)+'</span>'+
+        '<span class="gjs">'+esc(jobStatus(j))+'</span></div>'+
+      '<span class="gjq">'+esc(j.label.slice(0,110))+'</span>'+
+      (j.state==="err"&&j.msg?'<span class="gjq">'+esc(String(j.msg).slice(0,140))+'</span>':'')+
+      '<div class="gjb">'+
+        (j.state==="running"?'<button data-gjc="'+j.n+'">Cancel</button>':'')+
+        (j.raw?'<button data-gjr="'+j.n+'">Copy reply</button>':'')+
+        (j.state==="running"?'':'<button data-gjx="'+j.n+'">Dismiss</button>')+
+      '</div></div>';
+  }).join("");
+  el.querySelectorAll("[data-gjc]").forEach(function(b){
+    b.onclick=function(){ var j=jobById(+b.getAttribute("data-gjc")); if(j&&j.cfg&&j.cfg.abort) j.cfg.abort.abort(); };
+  });
+  el.querySelectorAll("[data-gjr]").forEach(function(b){
+    b.onclick=function(){
+      var j=jobById(+b.getAttribute("data-gjr")); if(!j) return;
+      navigator.clipboard.writeText(j.raw).then(function(){toast("Raw reply copied — paste it into Add.");},
+        function(){toast("Clipboard refused. The reply is in the console.");console.log(j.raw);});
+    };
+  });
+  el.querySelectorAll("[data-gjx]").forEach(function(b){
+    b.onclick=function(){ genJobs=genJobs.filter(function(j){return j.n!==+b.getAttribute("data-gjx");}); paintJobs(); };
+  });
+}
+/* A re-render replaces every box on the sheet, caret included. If the reader is
+   mid-sentence the answer still goes into the bank — the sheet just catches up
+   the next time it is drawn. */
+function rerenderIfIdle(){
+  var a=document.activeElement;
+  if(a&&(a.isContentEditable||a.tagName==="INPUT"||a.tagName==="TEXTAREA")) return false;
+  renderSheet(); return true;
+}
+function startGeneration(q){
+  var job={n:++genSeq,qid:q.id,state:"running",text:"",msg:"",raw:"",
+           model:genModel,
+           label:(isCase(q)&&q.summary)?q.summary:(q.question||q.id),
+           cfg:{provider:genProvider,model:genModel,effort:genEffort,key:genKey}};
+  genJobs.push(job); paintJobs();
+  callModel(generationPrompt(q),function(t){ job.text=t; paintJobs(); },job.cfg)
+    .then(async function(out){
+      /* Book the tokens the moment they come back. A reply that fails to parse
+         has already been paid for; counting only successes made the worst
+         models look like the cheapest. */
+      var spent=usdFor(job.model,out.inTok,out.outTok,job.cfg.provider);
+      var res=prepare(out.text);
+      useBook(job.model,out.inTok,out.outTok,spent,!!res.err);
+      refreshGenMeter();
+      if(job.cfg.provider==="openrouter") fetchOrCredits().then(refreshGenMeter);
+      if(res.err){
+        job.state="err"; job.msg=res.err+" — billed "+money(spent)+" anyway"; job.raw=out.text;
+        paintJobs(); toast("Generation could not be parsed — billed "+money(spent)+".");
+        return;
+      }
+      var target=db.questions.filter(function(x){return x.id===job.qid;})[0];
+      if(!target){
+        job.state="err"; job.msg="that question is no longer in the bank"; job.raw=out.text;
+        paintJobs(); return;
+      }
+      // force it onto THIS question so a model that invents an id cannot create a stray entry
+      res.items.forEach(function(it){
+        it.id=target.id; it.paper=target.paper; it.question=target.question;
+        it.tags=target.tags; it.type=target.type; it.model=job.model;
+        if(target.year!=null) it.year=target.year;
+        if(target.summary) it.summary=target.summary;
+      });
+      commitItems(res.items,true);
+      await save(); renderNav();
+      var shown=(current&&current.id===job.qid) ? rerenderIfIdle() : true;
+      job.state="done"; job.msg=money(spent)+" · "+out.inTok+" in / "+out.outTok+" out";
+      paintJobs();
+      toast("Skeleton ready — "+money(spent)+(shown?"":". Reopen the question to see it."));
+    })
+    .catch(function(e){
+      job.state=(e&&e.name==="AbortError")?"cancelled":"err";
+      job.msg=(e&&e.message)||String(e);
+      paintJobs();
+      if(job.state==="err") toast("Generation failed — "+job.msg);
+    });
+}
+window.addEventListener("beforeunload",function(e){
+  if(genJobs.some(function(j){return j.state==="running";})){ e.preventDefault(); e.returnValue=""; }
+});
 
 function promptKeyFor(q){
   return q.paper==="GS4" ? (isCase(q)?"GS4-case":"GS4-theory") : q.paper;
@@ -2608,7 +2762,6 @@ function genDialog(q){
     return;
   }
   if(!prompts){toast("data/prompts.json did not load.");return;}
-  var streamed="";
   function spent(id){
     var r=useLedger[id];
     return r&&r.calls ? (" · used "+r.calls+"× "+money(r.usd)) : "";
@@ -2659,31 +2812,8 @@ function genDialog(q){
       '<p class="ph">Kept in a variable for this tab only — never written to disk, never committed. '+
         'That is why it is already filled in if you have generated once since loading the page; '+
         'a reload forgets it.</p>'+
-      '<div id="genOut" class="genout"></div>'+
       '<div id="genMeter" class="usemeter">'+meterHtml()+'</div>';
   }
-  function meterHtml(){
-    var t=useTotal();
-    if(!t.calls) return '<span class="ph">nothing generated on this device yet</span>';
-    var per=Object.keys(useLedger).sort(function(a,b){return useLedger[b].usd-useLedger[a].usd;});
-    var h='<div class="usehead">all time on this device — '+t.calls+' call'+(t.calls===1?'':'s')+
-      (t.failed?(' ('+t.failed+' rejected but billed)'):'')+', '+
-      t.inTok.toLocaleString()+' in / '+t.outTok.toLocaleString()+' out, <b>'+money(t.usd)+'</b> estimated</div>'+
-      '<div class="usetab">'+per.map(function(m){
-        var r=useLedger[m];
-        return '<div class="userow"><span class="orid">'+esc(m)+'</span>'+
-          '<span class="orused">'+r.calls+'×'+(r.failed?(' · '+r.failed+' bad'):'')+'</span>'+
-          '<span class="orcost">'+money(r.usd)+'</span></div>';
-      }).join('')+'</div>';
-    if(genProvider==="openrouter"){
-      h+='<div class="usehead">'+(orCredits
-        ? 'OpenRouter says <b>'+money(orCredits.usage)+'</b> used'+
-          (orCredits.limit!=null?(' of '+money(orCredits.limit)+' limit'):'')+' — that figure is the billable one'
-        : '<span class="ph">enter your key and press Generate to read OpenRouter\'s own total</span>')+'</div>';
-    }
-    return h;
-  }
-  function refreshMeter(){ var m=$("genMeter"); if(m) m.innerHTML=meterHtml(); }
   function keepKey(){ var k=$("genKey"); if(k) genKey=k.value; }
   function repaint(){ keepKey(); $("dlgSlot").innerHTML=slot(); wire(); }
   function wire(){
@@ -2721,56 +2851,15 @@ function genDialog(q){
     });
   }
   openDlg("Generate a skeleton",
-    "Runs on your machine with your key. The same prompt as Copy prompt, sent for you.",
-    slot(),"Generate",async function(){
+    "Runs on your machine with your key. The same prompt as Copy prompt, sent for you. "+
+    "It runs in the background — close this and keep working.",
+    slot(),"Generate",function(){
       var kEl=$("genKey"); genKey=(kEl&&kEl.value||"").trim();
       if(!genKey){ $("dlgMsg").className="msg err"; $("dlgMsg").textContent="Enter an API key first."; return; }
       if(!genModel){ $("dlgMsg").className="msg err"; $("dlgMsg").textContent="Pick a model."; return; }
-      var btn=$("dlgAct"); btn.disabled=true; btn.textContent="Generating…";
-      $("dlgMsg").className="msg"; $("dlgMsg").textContent="";
-      try{
-        var out=await callModel(generationPrompt(q),function(t,think){
-          streamed=t;
-          // nothing but thinking has arrived yet - show that rather than a blank pane
-          var shown=t?t:(think?("thinking…\n\n"+think):"");
-          $("genOut").textContent=shown.slice(-1200);
-          $("genOut").scrollTop=$("genOut").scrollHeight;
-        });
-        /* Book the tokens the moment they come back. A reply that fails to parse
-           has already been paid for; counting only successes made the worst
-           models look like the cheapest. */
-        var spent=usdFor(genModel,out.inTok,out.outTok);
-        var res=prepare(out.text);
-        useBook(genModel,out.inTok,out.outTok,spent,!!res.err);
-        genUse.calls++; genUse.inTok+=out.inTok; genUse.outTok+=out.outTok; genUse.usd+=spent;
-        refreshMeter();
-        if(genProvider==="openrouter") fetchOrCredits().then(refreshMeter);
-        if(res.err){
-          $("dlgMsg").className="msg err";
-          $("dlgMsg").textContent=res.err+" — billed "+money(spent)+" anyway. The raw reply is above; "+
-            "you can copy it into Add and fix it by hand.";
-          return;
-        }
-        // force it onto THIS question so a model that invents an id cannot create a stray entry
-        res.items.forEach(function(it){
-          it.id=q.id; it.paper=q.paper; it.question=q.question;
-          it.tags=q.tags; it.type=q.type; it.model=genModel;
-          if(q.year!=null) it.year=q.year;
-          if(q.summary) it.summary=q.summary;
-        });
-        commitItems(res.items);
-        await save(); renderNav(); renderSheet();
-        refreshMeter();
-        $("dlgMsg").className="msg ok";
-        $("dlgMsg").textContent="Added as answer "+current.answers.length+" — "+
-          out.inTok+" in / "+out.outTok+" out, "+money(spent)+
-          ". Generate again with another model to compare.";
-      }catch(e){
-        $("dlgMsg").className="msg err";
-        $("dlgMsg").textContent=(e&&e.name==="AbortError")?"Cancelled.":("Failed — "+(e&&e.message||e));
-      }finally{
-        btn.disabled=false; btn.textContent="Generate";
-      }
+      startGeneration(q);
+      dlg.close();
+      toast("Generating with "+genModel+" — it will attach itself when it lands.");
     });
   wire();
   if(genProvider==="openrouter"&&!orModels){
