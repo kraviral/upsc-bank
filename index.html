@@ -235,6 +235,12 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
   border:1px solid var(--rule);border-radius:2px;padding:8px;margin:10px 0 6px;
   max-height:190px;overflow:auto;white-space:pre-wrap;word-break:break-word}
 .genout:empty{display:none}
+.usemeter{font-size:11.5px;color:var(--ink2);margin-top:8px}
+.usehead{font-size:11.5px;color:var(--ink2);margin:6px 0 4px}
+.usetab{border:1px solid var(--rule);border-radius:2px;max-height:110px;overflow:auto}
+.userow{display:flex;align-items:baseline;gap:8px;padding:3px 8px;border-bottom:1px solid var(--rule)}
+.userow:last-child{border-bottom:none}
+.orused{font-family:var(--mono);font-size:10px;color:var(--ink3);width:74px;text-align:right;flex:none}
 .orlist{max-height:190px;overflow:auto;border:1px solid var(--rule);border-radius:2px;margin:0 0 10px}
 .orrow{display:flex;align-items:baseline;gap:8px;padding:4px 8px;cursor:pointer;font-size:12px;border-bottom:1px solid var(--rule)}
 .orrow:last-child{border-bottom:none}
@@ -2295,7 +2301,31 @@ $("promptBtn").onclick=function(){
    The gate is belt-and-braces on top of that — a visitor who edits the check
    out in devtools still has only their own key to spend. */
 var genKey="", genProvider="anthropic", genModel="claude-opus-5",
-    genUse={inTok:0,outTok:0,usd:0,calls:0}, genAbort=null, orModels=null;
+    genUse={inTok:0,outTok:0,usd:0,calls:0}, genAbort=null, orModels=null, orCredits=null;
+
+/* Usage ledger. Per model, on this device only — never the repo, which is
+   public, and never a commit. Cost here is an ESTIMATE: token counts the API
+   reported, priced from a table. It will drift from the real invoice (prompt
+   caching, rounding, BYOK fees), which is why the OpenRouter figure is fetched
+   and shown beside it rather than instead of it. */
+var USEKEY="upsc-gen-usage"+SCOPE, useLedger={};
+function useLoad(){ try{ useLedger=JSON.parse(localStorage.getItem(USEKEY))||{}; }catch(e){ useLedger={}; } }
+function useSave(){ try{ localStorage.setItem(USEKEY,JSON.stringify(useLedger)); }catch(e){} }
+function useBook(model,inTok,outTok,usd,failed){
+  var r=useLedger[model]||(useLedger[model]={calls:0,failed:0,inTok:0,outTok:0,usd:0});
+  r.calls++; if(failed) r.failed++;
+  r.inTok+=inTok||0; r.outTok+=outTok||0; r.usd+=usd||0; r.last=new Date().toISOString();
+  useSave();
+}
+function useTotal(){
+  var t={calls:0,failed:0,inTok:0,outTok:0,usd:0};
+  Object.keys(useLedger).forEach(function(m){
+    var r=useLedger[m];
+    t.calls+=r.calls||0; t.failed+=r.failed||0;
+    t.inTok+=r.inTok||0; t.outTok+=r.outTok||0; t.usd+=r.usd||0;
+  });
+  return t;
+}
 
 function isLocal(){
   var h=location.hostname;
@@ -2320,6 +2350,23 @@ function priceFor(model){
 function usdFor(model,i,o){var p=priceFor(model);return (i/1e6)*p.inM+(o/1e6)*p.outM;}
 function money(n){ return n<0.01 ? ("$"+n.toFixed(4)) : ("$"+n.toFixed(2)); }
 
+/* The authoritative number. My ledger is arithmetic on reported tokens; this is
+   what OpenRouter will actually bill. Shown beside the estimate, not instead of
+   it, so drift between them is visible. Anthropic has no equivalent for a plain
+   API key — its usage report needs an admin key — so there it stays estimated. */
+async function fetchOrCredits(){
+  if(!genKey) return null;
+  try{
+    var r=await fetch("https://openrouter.ai/api/v1/credits",{headers:{authorization:"Bearer "+genKey}});
+    if(!r.ok) return null;
+    var j=await r.json(), d=j.data||j;
+    var used=(d.total_usage!=null)?d.total_usage:d.usage;
+    var gran=(d.total_credits!=null)?d.total_credits:d.limit;
+    if(used==null) return null;
+    orCredits={usage:used,limit:(gran==null?null:gran)};
+    return orCredits;
+  }catch(e){ return null; }
+}
 async function fetchOpenRouterModels(){
   if(orModels) return orModels;
   var r=await fetch("https://openrouter.ai/api/v1/models");
@@ -2430,8 +2477,10 @@ function orListHtml(){
   if(!rows.length) return '<p class="ph">nothing matches that filter.</p>';
   return rows.slice(0,60).map(function(m){
     var c=estCost(m), ctx=m.context_length?(Math.round(m.context_length/1000)+"k"):"—";
+    var u=useLedger[m.id];
     return '<div class="orrow'+(m.id===genModel?' on':'')+'" data-mid="'+esc(m.id)+'">'+
       '<span class="orid">'+esc(m.id)+'</span>'+
+      '<span class="orused">'+(u&&u.calls?(u.calls+"× "+money(u.usd)):"")+'</span>'+
       '<span class="orcost">'+(c===null?"varies":(c===0?"free":money(c)))+'</span>'+
       '<span class="orctx">'+ctx+'</span></div>';
   }).join('')+(rows.length>60?'<p class="ph">'+(rows.length-60)+' more — narrow the filter.</p>':'');
@@ -2446,11 +2495,15 @@ function genDialog(q){
   }
   if(!prompts){toast("data/prompts.json did not load.");return;}
   var streamed="";
+  function spent(id){
+    var r=useLedger[id];
+    return r&&r.calls ? (" · used "+r.calls+"× "+money(r.usd)) : "";
+  }
   function modelPicker(){
     if(genProvider==="anthropic"){
       return '<select id="genModel">'+ANTHROPIC_MODELS.map(function(m){
         return '<option value="'+esc(m.id)+'"'+(m.id===genModel?' selected':'')+'>'+esc(m.label)+
-               ' — $'+m.inM+'/$'+m.outM+' per Mtok</option>';}).join('')+'</select>';
+               ' — $'+m.inM+'/$'+m.outM+' per Mtok'+esc(spent(m.id))+'</option>';}).join('')+'</select>';
     }
     if(!orModels) return '<span class="ph">loading model list…</span>';
     return '<input id="genModelTxt" value="'+esc(genModel)+'" placeholder="model id, or pick below">';
@@ -2473,13 +2526,30 @@ function genDialog(q){
       '<p class="ph">Kept in memory for this tab only — never written to disk, never committed. '+
         'A reload forgets it.</p>'+
       '<div id="genOut" class="genout"></div>'+
-      '<div id="genMeter" class="ph">'+meterText()+'</div>';
+      '<div id="genMeter" class="usemeter">'+meterHtml()+'</div>';
   }
-  function meterText(){
-    return genUse.calls? ("this session: "+genUse.calls+" call"+(genUse.calls===1?"":"s")+", "+
-      genUse.inTok.toLocaleString()+" in / "+genUse.outTok.toLocaleString()+" out, "+money(genUse.usd))
-      : "nothing generated yet this session";
+  function meterHtml(){
+    var t=useTotal();
+    if(!t.calls) return '<span class="ph">nothing generated on this device yet</span>';
+    var per=Object.keys(useLedger).sort(function(a,b){return useLedger[b].usd-useLedger[a].usd;});
+    var h='<div class="usehead">all time on this device — '+t.calls+' call'+(t.calls===1?'':'s')+
+      (t.failed?(' ('+t.failed+' rejected but billed)'):'')+', '+
+      t.inTok.toLocaleString()+' in / '+t.outTok.toLocaleString()+' out, <b>'+money(t.usd)+'</b> estimated</div>'+
+      '<div class="usetab">'+per.map(function(m){
+        var r=useLedger[m];
+        return '<div class="userow"><span class="orid">'+esc(m)+'</span>'+
+          '<span class="orused">'+r.calls+'×'+(r.failed?(' · '+r.failed+' bad'):'')+'</span>'+
+          '<span class="orcost">'+money(r.usd)+'</span></div>';
+      }).join('')+'</div>';
+    if(genProvider==="openrouter"){
+      h+='<div class="usehead">'+(orCredits
+        ? 'OpenRouter says <b>'+money(orCredits.usage)+'</b> used'+
+          (orCredits.limit!=null?(' of '+money(orCredits.limit)+' limit'):'')+' — that figure is the billable one'
+        : '<span class="ph">enter your key and press Generate to read OpenRouter\'s own total</span>')+'</div>';
+    }
+    return h;
   }
+  function refreshMeter(){ var m=$("genMeter"); if(m) m.innerHTML=meterHtml(); }
   function keepKey(){ var k=$("genKey"); if(k) genKey=k.value; }
   function repaint(){ keepKey(); $("dlgSlot").innerHTML=slot(); wire(); }
   function wire(){
@@ -2527,10 +2597,19 @@ function genDialog(q){
           streamed=t; $("genOut").textContent=t.slice(-1200);
           $("genOut").scrollTop=$("genOut").scrollHeight;
         });
+        /* Book the tokens the moment they come back. A reply that fails to parse
+           has already been paid for; counting only successes made the worst
+           models look like the cheapest. */
+        var spent=usdFor(genModel,out.inTok,out.outTok);
         var res=prepare(out.text);
+        useBook(genModel,out.inTok,out.outTok,spent,!!res.err);
+        genUse.calls++; genUse.inTok+=out.inTok; genUse.outTok+=out.outTok; genUse.usd+=spent;
+        refreshMeter();
+        if(genProvider==="openrouter") fetchOrCredits().then(refreshMeter);
         if(res.err){
           $("dlgMsg").className="msg err";
-          $("dlgMsg").textContent=res.err+" — the raw reply is above; you can copy it into Add and fix it by hand.";
+          $("dlgMsg").textContent=res.err+" — billed "+money(spent)+" anyway. The raw reply is above; "+
+            "you can copy it into Add and fix it by hand.";
           return;
         }
         // force it onto THIS question so a model that invents an id cannot create a stray entry
@@ -2541,13 +2620,11 @@ function genDialog(q){
           if(q.summary) it.summary=q.summary;
         });
         commitItems(res.items);
-        genUse.calls++; genUse.inTok+=out.inTok; genUse.outTok+=out.outTok;
-        genUse.usd+=usdFor(genModel,out.inTok,out.outTok);
         await save(); renderNav(); renderSheet();
-        $("genMeter").textContent=meterText();
+        refreshMeter();
         $("dlgMsg").className="msg ok";
         $("dlgMsg").textContent="Added as answer "+current.answers.length+" — "+
-          out.inTok+" in / "+out.outTok+" out, "+money(usdFor(genModel,out.inTok,out.outTok))+
+          out.inTok+" in / "+out.outTok+" out, "+money(spent)+
           ". Generate again with another model to compare.";
       }catch(e){
         $("dlgMsg").className="msg err";
@@ -2686,7 +2763,7 @@ async function loadPrompts(){
   try{var r=await fetch("data/prompts.json",{cache:"no-store"});if(r.ok) prompts=await r.json();}catch(e){}
 }
 (async function(){
-  ghLoad();
+  ghLoad(); useLoad();
   var files=await fromFiles(),stored=await store.read();
   await loadPrompts();
 
