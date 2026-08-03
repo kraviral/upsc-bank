@@ -60,12 +60,20 @@
    "- Exactly 3 intros and exactly 3 conclusions. Label each with its type.",
    "- Every section carries exactly 3 frameworks. Each is SELF-CONTAINED with its own points.",
    "- The three must be genuinely different lenses, not three renamings of one idea. Strongest fit first —",
+   "    Slicing one lens by time or geography is NOT three lenses. \"Historical case / Contemporary case /",
+   "    International case\" is a single case-study lens applied three times - it gives the candidate no new",
+   "    way to generate points when memory fails, which is the entire purpose. Three lenses means three",
+   "    different questions you could ask of the same sub-heading.",
    "  it renders as the default and the other two are switchable alternatives.",
    "- If a third good lens genuinely does not exist, use a plain logical progression and label it as that",
    "  rather than dressing it up as a framework. A forced framework reads as padding.",
    "- Because the lenses differ, their point sets must read as different treatments of the same sub-heading,",
    "  not the same points relabelled.",
    "- `off` and `valueAdd` sit on the SECTION, shared across all three lenses. Never inside a framework.",
+   "- Each framework's \"why\" states what that lens does for THIS sub-heading. \"Past examples demonstrate",
+   "  ethical politics in action\" restates the name and is worth nothing; \"puts the claim against cases",
+   "  where a leader chose principle over power, so the argument rests on evidence not assertion\" earns",
+   "  its line.",
    "- Points are single-line stems the candidate expands to 2-3 lines in the exam. Never paragraphs.",
    "- EVERY point is substantiated. A bare stem is a reminder, not an answer - in the exam the candidate",
    "  has neither this page nor a memory of it, so each point carries what turns it into a scoring sentence:",
@@ -138,7 +146,10 @@
    "11. Points are one line each, not paragraphs.",
    "12. EVERY point is an object with a non-empty stem, keyword and evidence. No bare strings.",
    "13. No keyword merely restates its stem, and no two points in a section lean on the same evidence.",
-   "14. The JSON parses. One unescaped quote breaks the whole import."
+   "14. GS4 ONLY: every point also has a non-empty \"ethic\". Absent or empty fails.",
+   "15. Every date, Act, judgment and scheme name you asserted is one you are sure of. GST came into force",
+   "    in 2017, not 2020 - a confident wrong year is worse than [verify], and worse than omitting it.",
+   "16. The JSON parses. One unescaped quote breaks the whole import."
   ]
  },
  "papers": [
@@ -332,6 +343,9 @@
     "  - deontology, utilitarianism, Rawls, Gandhi, care ethics, a constitutional value. GS4 is marked on",
     "  whether the reasoning is anchored in ethics rather than in administrative common sense.",
     "- Do not bolt the same theory onto every point. Where a point is genuinely practical rather than",
+    "- \"ethic\" is REQUIRED on every point of this paper, exactly as stem, keyword and evidence are. An",
+    "  answer whose ethic fields are absent or empty is incomplete and fails the self-check below, however",
+    "  good the rest of it looks.",
     "  philosophical, name the value it serves instead of forcing a philosopher onto it."
    ]
   },
@@ -382,6 +396,9 @@
     "  - deontology, utilitarianism, Rawls, Gandhi, care ethics, a constitutional value. GS4 is marked on",
     "  whether the reasoning is anchored in ethics rather than in administrative common sense.",
     "- Do not bolt the same theory onto every point. Where a point is genuinely practical rather than",
+    "- \"ethic\" is REQUIRED on every point of this paper, exactly as stem, keyword and evidence are. An",
+    "  answer whose ethic fields are absent or empty is incomplete and fails the self-check below, however",
+    "  good the rest of it looks.",
     "  philosophical, name the value it serves instead of forcing a philosopher onto it."
    ]
   }
