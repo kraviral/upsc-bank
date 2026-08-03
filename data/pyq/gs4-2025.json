@@ -1,11 +1,610 @@
 [
   {
-    "answers": [],
+    "answers": [
+      {
+        "caption": "Ethical statecraft keeps war as an exceptional, regulated last resort within a wider diplomatic continuum.",
+        "conclusions": [
+          {
+            "text": "Clausewitz remains descriptively relevant because force can pursue political aims; normatively, however, Kantian peace requires that law, mediation and human dignity discipline power before conflict becomes irreversible.",
+            "type": "theory-linkage with course of action"
+          },
+          {
+            "text": "A rules-based order grounded in the UN Charter and SDG 16 must ensure that diplomacy is the first resort, force the narrowly regulated exception, and reconciliation the final objective.",
+            "type": "broader-goal linkage"
+          },
+          {
+            "text": "The ethical statesman treats military capability as a shield for peace, not a substitute for dialogue, and measures national security ultimately by the safety and dignity of people.",
+            "type": "aspirational-normative picture"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Just war theory",
+            "Ethics in international relations",
+            "Means and ends",
+            "Peace and human dignity"
+          ],
+          "demands": [
+            "Explain how war can function as an instrument for pursuing political or diplomatic objectives.",
+            "Assess whether contemporary geopolitical conflicts validate this Clausewitzian proposition.",
+            "Critique the proposition through humanitarian, legal, nuclear and non-state conflict realities.",
+            "Offer an ethically grounded approach to prevent war from replacing diplomacy."
+          ],
+          "directive": "Critically analyse requires explaining the proposition, testing its continuing relevance against contemporary conflicts, identifying its ethical and practical limits, and giving a balanced verdict.",
+          "hidden": "The answer must not treat war and diplomacy as opposites alone: it must show their continuum, while judging whether force can ever remain legitimate under constitutional morality, international law and just-war ethics.",
+          "limit": "10 marks / 150 words"
+        },
+        "diagram": "DIPLOMACY\nv\nDETERRENCE\nv\nCOERCION\nv\nWAR\nv\nNEGOTIATED PEACE",
+        "generatedAt": "2026-08-03T20:56:21.231Z",
+        "id": "amsdplr73",
+        "intros": [
+          {
+            "text": "Clausewitz's better-known formulation, 'War is the continuation of policy with other means', views organised violence not as irrational breakdown but as a coercive instrument of political purpose.",
+            "type": "definition of the core proposition"
+          },
+          {
+            "text": "The Russia-Ukraine war and the Israel-Hamas conflict show that battlefield operations, sanctions, hostage negotiations, ceasefire talks and information warfare increasingly operate together rather than separately.",
+            "type": "recent context"
+          },
+          {
+            "text": "War may be launched to secure national interest, yet its very destruction of lives, trust and institutions can make the diplomatic settlement it seeks harder to attain.",
+            "type": "sharp paradox"
+          }
+        ],
+        "model": "openai/gpt-5.6-terra",
+        "pitfalls": [
+          "Treating the quote as a blanket moral endorsement of war rather than a realist description of its political character.",
+          "Writing only about Russia-Ukraine or West Asia without analysing the ethical conditions of legitimate force.",
+          "Equating national interest with moral legitimacy and ignoring civilian dignity, proportionality and international law.",
+          "Offering pacifism alone without acknowledging self-defence, deterrence and the need for a practicable peace architecture."
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "POLITICS-POWER-BARGAIN",
+                "points": [
+                  {
+                    "ethic": "Consequentialism",
+                    "evidence": "The 1962 Cuban Missile Crisis ended through a negotiated Soviet missile withdrawal and US assurance against invading Cuba.",
+                    "keyword": "coercive diplomacy",
+                    "stem": "Military action can raise the cost of non-compliance and compel an adversary towards negotiations."
+                  },
+                  {
+                    "ethic": "Realism tempered by just-war proportionality",
+                    "evidence": "UN Security Council Resolution 242 (1967) linked territorial withdrawal with secure and recognised boundaries.",
+                    "keyword": "bargaining leverage",
+                    "stem": "Control of territory, routes or strategic assets can be used as leverage in post-war bargaining."
+                  }
+                ],
+                "why": "It explains Clausewitz's claim by tracing how military force changes bargaining positions and seeks a political settlement."
+              },
+              {
+                "name": "MEANS-ENDS TEST",
+                "points": [
+                  {
+                    "ethic": "Deontological limits on state power",
+                    "evidence": "The UN Charter's Article 51 recognises self-defence, not unrestricted conquest, as a basis for force.",
+                    "keyword": "political proportionality",
+                    "stem": "War retains political meaning only when its objective is limited, publicly defensible and capable of settlement."
+                  },
+                  {
+                    "ethic": "Gandhian ethics of non-violence",
+                    "evidence": "The Kellogg-Briand Pact of 1928 renounced war as an instrument of national policy.",
+                    "keyword": "means-end inversion",
+                    "stem": "When military success becomes an end in itself, diplomacy is displaced by militarism and moral blindness."
+                  }
+                ],
+                "why": "It tests whether force is subordinated to a defined public purpose or becomes an autonomous pursuit of domination."
+              },
+              {
+                "name": "STATE-INTEREST-LENS",
+                "points": [
+                  {
+                    "ethic": "Responsibility to protect citizens",
+                    "evidence": "India's doctrine of credible minimum deterrence treats nuclear capability as deterrence rather than war-fighting.",
+                    "keyword": "credible deterrence",
+                    "stem": "States may employ force to signal resolve where retreat is perceived to endanger sovereignty or deterrence."
+                  },
+                  {
+                    "ethic": "Pragmatic peace ethics",
+                    "evidence": "The Black Sea Grain Initiative was brokered by Türkiye and the UN in July 2022 amid the Russia-Ukraine war.",
+                    "keyword": "backchannel diplomacy",
+                    "stem": "Military pressure is often accompanied by negotiation channels, showing that war rarely eliminates diplomacy altogether."
+                  }
+                ],
+                "why": "It captures the realist assumption behind the statement: states use force when persuasion, law and bargaining fail to protect vital interests."
+              }
+            ],
+            "heading": "Why war can operate as diplomacy by coercive means",
+            "off": [
+              "Clausewitz described inter-state war in a nineteenth-century setting; applying his claim unchanged to cyber, proxy and terrorist violence is a category error.",
+              "Diplomacy is ideally communicative and reciprocal, whereas war is asymmetric coercion; their merger risks legitimising aggression."
+            ],
+            "valueAdd": [
+              "Keywords: coercive diplomacy, deterrence, bargaining leverage, political proportionality",
+              "Theory: Clausewitz's realist view of war versus Kantian peace through law",
+              "Anchor: UN Charter Articles 2(4) and 51",
+              "Example: Cuban Missile Crisis demonstrates force, restraint and negotiation operating simultaneously"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "JUST-WAR SCREEN",
+                "points": [
+                  {
+                    "ethic": "Just war theory",
+                    "evidence": "The Fourth Geneva Convention of 1949 protects civilians in time of war.",
+                    "keyword": "discrimination principle",
+                    "stem": "A strategic objective cannot justify indiscriminate harm to non-combatants or destruction disproportionate to military gain."
+                  },
+                  {
+                    "ethic": "Jus ad bellum",
+                    "evidence": "UN Charter Article 2(3) requires states to settle international disputes by peaceful means.",
+                    "keyword": "last resort",
+                    "stem": "Even a claimed defensive war loses ethical legitimacy when peaceful alternatives and ceasefire avenues are ignored."
+                  }
+                ],
+                "why": "It judges political use of force against ethical conditions that realism alone cannot supply: just cause, proportionality and civilian protection."
+              },
+              {
+                "name": "HUMAN-SECURITY LENS",
+                "points": [
+                  {
+                    "ethic": "Human dignity",
+                    "evidence": "UNHCR reported that forced displacement worldwide exceeded 117 million by the end of 2023.",
+                    "keyword": "human security",
+                    "stem": "War converts citizens into instruments of state policy, producing displacement, trauma and inter-generational deprivation."
+                  },
+                  {
+                    "ethic": "Utilitarian concern for aggregate welfare",
+                    "evidence": "The World Food Programme warned that the war in Ukraine disrupted global food supplies and prices.",
+                    "keyword": "negative externalities",
+                    "stem": "Modern conflict damages food, health and climate systems beyond borders, so its consequences cannot remain a bilateral diplomatic matter."
+                  }
+                ],
+                "why": "It shifts evaluation from state advantage to the dignity, survival and long-term welfare of people who bear war's costs."
+              },
+              {
+                "name": "CHANGED-NATURE-OF-WAR",
+                "points": [
+                  {
+                    "ethic": "Precautionary principle",
+                    "evidence": "The Treaty on the Non-Proliferation of Nuclear Weapons entered into force in 1970.",
+                    "keyword": "mutually assured destruction",
+                    "stem": "Nuclear escalation makes the political gains of war radically inferior to its potentially irreversible human cost."
+                  },
+                  {
+                    "ethic": "Accountability",
+                    "evidence": "The Tallinn Manual 2.0 examines how international law applies to cyber operations.",
+                    "keyword": "hybrid warfare",
+                    "stem": "Cyber operations, proxies and armed non-state actors blur attribution, weakening the possibility of clear bargaining and accountable settlement."
+                  }
+                ],
+                "why": "It shows why contemporary hybrid, nuclear and non-state conflicts make war too unpredictable to serve as a controllable diplomatic instrument."
+              }
+            ],
+            "heading": "Why contemporary conflict exposes the limits of the proposition",
+            "off": [
+              "Ethical fading occurs when leaders describe civilian deaths merely as 'collateral damage', converting persons into strategic variables.",
+              "The Mahabharata's failed peace mission of Krishna before Kurukshetra symbolises that war may follow diplomacy, but cannot morally replace the duty to exhaust dialogue."
+            ],
+            "valueAdd": [
+              "Keywords: jus ad bellum, discrimination, proportionality, human security, ethical fading",
+              "Theory: Michael Walzer's just war theory",
+              "Anchor: Geneva Conventions, UN Charter Article 2(3)",
+              "Example: Nuclear risk turns a conventional instrument of policy into a possible civilisational catastrophe"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "PREVENT-PAUSE-SETTLE",
+                "points": [
+                  {
+                    "ethic": "Care ethics",
+                    "evidence": "UN Charter Article 33 lists negotiation, mediation, conciliation and arbitration for peaceful settlement.",
+                    "keyword": "preventive diplomacy",
+                    "stem": "Prevent conflict through early warning, inclusive dialogue and confidence-building before interests harden into enemy images."
+                  },
+                  {
+                    "ethic": "Compassion",
+                    "evidence": "The International Committee of the Red Cross acts under the Geneva Conventions to protect victims of armed conflict.",
+                    "keyword": "humanitarian pause",
+                    "stem": "During conflict, humanitarian corridors, ceasefires and neutral mediation must preserve lives and reopen communication."
+                  }
+                ],
+                "why": "It supplies a practical escalation ladder so diplomacy remains primary before, during and after conflict."
+              },
+              {
+                "name": "LAW-ACCOUNTABILITY-LENS",
+                "points": [
+                  {
+                    "ethic": "Kantian rule of law",
+                    "evidence": "UN Charter Article 2(4) prohibits the threat or use of force against territorial integrity or political independence.",
+                    "keyword": "rule-based order",
+                    "stem": "Any recourse to force must meet necessity, proportionality and transparent legal justification rather than unilateral assertion."
+                  },
+                  {
+                    "ethic": "Retributive and corrective justice",
+                    "evidence": "The Rome Statute established the International Criminal Court in 1998.",
+                    "keyword": "command responsibility",
+                    "stem": "Investigation of war crimes and protection of civilians make military and political leaders answerable for their choices."
+                  }
+                ],
+                "why": "It prevents powerful states from presenting aggression as diplomacy by subjecting force to common rules and scrutiny."
+              },
+              {
+                "name": "INDIA-CIVILISATIONAL LENS",
+                "points": [
+                  {
+                    "ethic": "Constitutional morality and Panchsheel",
+                    "evidence": "India's G20 New Delhi Leaders' Declaration of 2023 stated that all states must refrain from the threat or use of force for territorial acquisition.",
+                    "keyword": "strategic autonomy",
+                    "stem": "India's diplomatic ethic should combine legitimate security interests with dialogue, restraint and respect for sovereign equality."
+                  },
+                  {
+                    "ethic": "Galtung's positive peace",
+                    "evidence": "The UN's Sustainable Development Goal 16 seeks peaceful and inclusive societies.",
+                    "keyword": "positive peace",
+                    "stem": "A just peace requires reconstruction, reconciliation and inclusion of affected communities rather than a victor's imposed silence."
+                  }
+                ],
+                "why": "It offers a normative alternative in which national interest is pursued through dialogue, strategic autonomy and welfare-oriented global cooperation."
+              }
+            ],
+            "heading": "Balanced verdict: subordinate force to ethical diplomacy and durable peace",
+            "off": [
+              "The ethical verdict is conditional: defensive force may be necessary, but it must remain a tightly bounded last resort, never a normal diplomatic language.",
+              "An ordinary neighbourhood dispute illustrates the principle: threats may secure compliance briefly, while dialogue repairs the relationship required for future cooperation."
+            ],
+            "valueAdd": [
+              "Keywords: preventive diplomacy, positive peace, command responsibility, strategic autonomy",
+              "Theory: Kant's perpetual peace and Galtung's positive peace",
+              "Anchor: UN Charter Articles 2(4) and 33; SDG 16",
+              "Example: India's 2023 G20 declaration foregrounded territorial integrity and peaceful settlement"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Cuban Missile Crisis, 1962",
+            "Black Sea Grain Initiative, 2022",
+            "Krishna's peace mission before the Kurukshetra war",
+            "G20 New Delhi Leaders' Declaration, 2023"
+          ],
+          "keywords": [
+            "coercive diplomacy",
+            "jus ad bellum",
+            "proportionality",
+            "human security",
+            "ethical fading",
+            "positive peace",
+            "preventive diplomacy"
+          ],
+          "quotes": [
+            "Clausewitz: 'War is the continuation of policy with other means.'",
+            "Kant: 'Perpetual peace is the ultimate end of all international relations.' [verify wording/translation]"
+          ],
+          "thinkers": [
+            "Carl von Clausewitz",
+            "Immanuel Kant",
+            "Michael Walzer",
+            "Johan Galtung",
+            "Mahatma Gandhi"
+          ]
+        }
+      },
+      {
+        "caption": "War and diplomacy plotted against ethical intensity",
+        "conclusions": [
+          {
+            "text": "Gandhi once said, ‘The best way to find yourself is to lose yourself in the service of others.’ This reminds us that diplomacy, not war, is the truest service to humanity.",
+            "type": "quote"
+          },
+          {
+            "text": "Just War principles demand that any use of force be justified, proportionate, and a last resort, thereby constraining Clausewitz’s broad claim and guiding ethical statecraft.",
+            "type": "theory-linkage"
+          },
+          {
+            "text": "An ideal civil servant should weave diplomatic prudence with moral vigilance, ensuring that the pursuit of national interest never eclipses the sanctity of human life.",
+            "type": "aspirational-normative"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Clausewitzian theory of war",
+            "Just War principles",
+            "Diplomatic norms and international law",
+            "Hybrid warfare and cyber conflict"
+          ],
+          "demands": [
+            "Explain Clausewitz’s claim and its relevance to modern conflicts",
+            "Assess the ethical implications of equating war with diplomacy",
+            "Propose ways to reconcile war and diplomacy in contemporary geopolitics"
+          ],
+          "directive": "Critically analyse",
+          "hidden": "The ethical dimension of war as diplomacy is often overlooked",
+          "limit": "10 marks / 150 words"
+        },
+        "diagram": "          High Ethics\\n            |\\n            |   Diplomacy\\n            |   (Soft Power)\\n            |\\n            |-------------------- War\\n            |   (Hard Power)\\n            |\\n          Low Ethics",
+        "generatedAt": "2026-08-03T21:29:54.119Z",
+        "id": "amsdqswcn",
+        "intros": [
+          {
+            "text": "‘War is a continuation of politics by other means’ – Carl von Clausewitz. This aphorism has guided military thinkers for centuries, yet its relevance today is contested.",
+            "type": "quote"
+          },
+          {
+            "text": "Diplomacy is the art of negotiating interests peacefully, while war is the use of force to achieve political ends. The tension between these two modes defines modern international relations.",
+            "type": "definition"
+          },
+          {
+            "text": "From Russia’s annexation of Crimea to China’s South China Sea assertiveness, contemporary conflicts blend conventional force, cyber‑attacks, and information warfare, blurring the line Clausewitz envisioned.",
+            "type": "recent context"
+          }
+        ],
+        "model": "openai/gpt-oss-20b:free",
+        "pitfalls": [
+          "Treating Clausewitz’s statement as a blanket endorsement of war",
+          "Ignoring asymmetry and non‑state actors",
+          "Overemphasis on state actors at the expense of civil society"
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Clausewitzian Lens",
+                "points": [
+                  {
+                    "ethic": "deontology (duty to national interest)",
+                    "evidence": "Russia’s annexation of Crimea as a political objective pursued through force",
+                    "keyword": "political objectives",
+                    "stem": "Clausewitz defines war as a tool to achieve political objectives when other means fail."
+                  },
+                  {
+                    "ethic": "consequentialism (impact of uncertainty)",
+                    "evidence": "Ukraine’s cyber‑defense failures during 2022",
+                    "keyword": "fog of war",
+                    "stem": "He emphasizes the ‘fog of war’ and the role of chance, evident in cyber‑attacks that create uncertainty."
+                  }
+                ],
+                "why": "Directly applies Clausewitz’s theory to modern wars"
+              },
+              {
+                "name": "Just War Lens",
+                "points": [
+                  {
+                    "ethic": "deontology (right to self‑defence)",
+                    "evidence": "China’s actions in the South China Sea lacking proportional response",
+                    "keyword": "just cause",
+                    "stem": "Just War theory requires just cause and proportionality, often violated in modern hybrid conflicts."
+                  },
+                  {
+                    "ethic": "utilitarianism (least harm)",
+                    "evidence": "US sanctions on Iran before military action",
+                    "keyword": "last resort",
+                    "stem": "The principle of last resort is challenged when diplomatic channels are exhausted but non‑violent options remain."
+                  }
+                ],
+                "why": "Evaluates Clausewitz’s view against Just War criteria"
+              },
+              {
+                "name": "Diplomatic Norms Lens",
+                "points": [
+                  {
+                    "ethic": "constitutional morality",
+                    "evidence": "UN Charter Article 2(4) prohibiting force",
+                    "keyword": "international law",
+                    "stem": "International law codifies diplomatic engagement, limiting unilateral war."
+                  },
+                  {
+                    "ethic": "virtue ethics (practical wisdom)",
+                    "evidence": "India’s cultural diplomacy in the Middle East",
+                    "keyword": "soft power",
+                    "stem": "The rise of soft power demonstrates diplomacy can achieve objectives without force."
+                  }
+                ],
+                "why": "Shows how diplomacy is constrained by international norms"
+              }
+            ],
+            "heading": "Clausewitzian View and Its Relevance to Contemporary Conflicts",
+            "off": [
+              "The Clausewitzian notion of war as a political tool is context‑dependent; in cyber domains, diplomacy is embedded in code."
+            ],
+            "valueAdd": [
+              "Keywords: war, diplomacy, hybrid warfare",
+              "Theory: Clausewitz, Just War",
+              "Anchor: UN Charter, NPT",
+              "Example: Russia‑Ukraine conflict"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Moral Myopia Lens",
+                "points": [
+                  {
+                    "ethic": "deontology (duty to truth)",
+                    "evidence": "Taliban’s use of force to suppress dissent",
+                    "keyword": "moral myopia",
+                    "stem": "War often masks underlying ethical violations, leading to moral myopia."
+                  },
+                  {
+                    "ethic": "utilitarianism (overall suffering)",
+                    "evidence": "Civilian casualties in Syria",
+                    "keyword": "human cost",
+                    "stem": "The focus on strategic gains can eclipse human costs."
+                  }
+                ],
+                "why": "Highlights blind spots in equating war with diplomacy"
+              },
+              {
+                "name": "Bounded Ethicality Lens",
+                "points": [
+                  {
+                    "ethic": "consequentialism",
+                    "evidence": "[verify] US military officials citing national security",
+                    "keyword": "bounded ethicality",
+                    "stem": "Officials may rationalize war as diplomacy due to bounded ethicality."
+                  },
+                  {
+                    "ethic": "deontology (duty to integrity)",
+                    "evidence": "India’s defense procurement decisions",
+                    "keyword": "institutional pressure",
+                    "stem": "Institutional pressures can override personal moral judgments."
+                  }
+                ],
+                "why": "Shows limits of individual ethics in state action"
+              },
+              {
+                "name": "Hybrid Warfare Lens",
+                "points": [
+                  {
+                    "ethic": "Just War (proportionality)",
+                    "evidence": "Russia’s use of disinformation in Ukraine",
+                    "keyword": "hybrid warfare",
+                    "stem": "Hybrid warfare blurs lines between war and diplomacy, complicating ethical assessment."
+                  },
+                  {
+                    "ethic": "virtue ethics (courage)",
+                    "evidence": "ISIS’s use of propaganda",
+                    "keyword": "non‑state actors",
+                    "stem": "Non‑state actors challenge traditional diplomatic frameworks."
+                  }
+                ],
+                "why": "Addresses modern conflict forms that blur war and diplomacy"
+              }
+            ],
+            "heading": "Ethical Critique of War as Diplomacy in the Present",
+            "off": [
+              "The ethical dimension of war as diplomacy is often overlooked, leading to unchecked militarisation."
+            ],
+            "valueAdd": [
+              "Keywords: moral myopia, bounded ethicality, hybrid warfare",
+              "Theory: Just War, Virtue Ethics",
+              "Anchor: UN Charter, NPT",
+              "Example: ISIS propaganda"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Strategic Diplomacy Lens",
+                "points": [
+                  {
+                    "ethic": "deontology (duty to peace)",
+                    "evidence": "EU‑Russia dialogue on Crimea",
+                    "keyword": "early engagement",
+                    "stem": "Early diplomatic engagement can prevent escalation into war."
+                  },
+                  {
+                    "ethic": "consequentialism (reduce harm)",
+                    "evidence": "US‑Russia military transparency talks",
+                    "keyword": "confidence‑building",
+                    "stem": "Confidence‑building measures reduce misperceptions."
+                  }
+                ],
+                "why": "Shows how diplomacy can preempt war"
+              },
+              {
+                "name": "Legal‑Normative Lens",
+                "points": [
+                  {
+                    "ethic": "constitutional morality",
+                    "evidence": "Non‑Proliferation Treaty limiting nuclear use",
+                    "keyword": "treaties",
+                    "stem": "International treaties can constrain war as a diplomatic tool."
+                  },
+                  {
+                    "ethic": "deontology (rule of law)",
+                    "evidence": "UN Security Council Resolution 1973 on Libya",
+                    "keyword": "UN resolutions",
+                    "stem": "Adherence to UN resolutions legitimises diplomatic pressure."
+                  }
+                ],
+                "why": "Emphasises legal frameworks that constrain war as a diplomatic tool"
+              },
+              {
+                "name": "Ethical Leadership Lens",
+                "points": [
+                  {
+                    "ethic": "virtue ethics (practical wisdom)",
+                    "evidence": "Barack Obama’s decision to end war in Iraq",
+                    "keyword": "ethical leadership",
+                    "stem": "Leaders must balance national interest with moral responsibility."
+                  },
+                  {
+                    "ethic": "deontology (duty to inform)",
+                    "evidence": "India’s public briefings on Kashmir",
+                    "keyword": "transparency",
+                    "stem": "Transparent decision‑making builds public trust."
+                  }
+                ],
+                "why": "Highlights the role of leaders in balancing interest and morality"
+              }
+            ],
+            "heading": "Reconciliation of War and Diplomacy: Pathways for Modern Geopolitics",
+            "off": [
+              "Diplomatic engagement must be sustained beyond crisis moments to prevent a return to force."
+            ],
+            "valueAdd": [
+              "Keywords: strategic diplomacy, legal norms, ethical leadership",
+              "Theory: Deontology, Virtue Ethics",
+              "Anchor: UN Charter, NPT",
+              "Example: Obama’s Iraq withdrawal"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Russia‑Ukraine conflict",
+            "China‑South China Sea dispute",
+            "India‑Myanmar relations",
+            "ISIS propaganda campaigns"
+          ],
+          "keywords": [
+            "war",
+            "diplomacy",
+            "hybrid warfare",
+            "moral myopia",
+            "bounded ethicality"
+          ],
+          "quotes": [
+            "‘War is a continuation of politics by other means’ – Clausewitz",
+            "‘The best way to find yourself is to lose yourself in the service of others’ – Gandhi"
+          ],
+          "thinkers": [
+            "Carl von Clausewitz",
+            "Just War theorists (e.g., Aquinas, Grotius)",
+            "Mahatma Gandhi"
+          ]
+        }
+      }
+    ],
     "id": "pyq-gs4-2025-01",
     "mine": {
-      "conclusion": "",
-      "intro": "",
-      "sections": []
+      "conclusion": "We should avoid resorting to violence as taking an \"eye for an eye makes the whole world blind\". - Mahatma Gandhi\n\nViolence is the last refuge of the incompetent.",
+      "intro": "Recent attack by US on Iran in Feb 2026 to prevent it from building nuclear weapons higlights the issue of using war as diplomacy",
+      "sections": [
+        {
+          "body": "- Russia attacking Ukraine (to get control over crimea)\n- US attacking Iran (to prevent it from building nuclear weapon)\n- US capturing president of Venezuela (to get favourable policies)",
+          "heading": "Use of war as diplomacy"
+        },
+        {
+          "body": "- India attacked Pakistan under Operation Sindoor to protect its sovereignty and not as an alternate diplomatic tool\n- Indian soldiers clashed with Chinese troops at Galwan (2020) to safeguard its interests",
+          "heading": "Not all wars are diplomacy by other means"
+        },
+        {
+          "body": "- against Kant's humanity principle (treating humans as mere means)\n- against right of humans to live with dignity\n- against purity of means (Gandhian deontology)",
+          "heading": "Issues with using war as a diplomacy means"
+        },
+        {
+          "body": "- avoid - \n  - preventing war by mutually respecting other country (Vasudhaiva Kutumbakam)\n- diplomacy \n  - Soft power over hard power (demonstrated by Krishna's peace mission before the Kurukshetra war)\n- ethical war\n  - if conflict unavoidable, must strictly adhere to principles of just war and international agreements (UN Charter 1945)\n",
+          "heading": "Way forward"
+        }
+      ]
     },
     "notes": "",
     "paper": "GS4",
