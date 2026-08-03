@@ -620,12 +620,685 @@
     "year": 2025
   },
   {
-    "answers": [],
+    "answers": [
+      {
+        "caption": "Key ethical dilemmas in social media",
+        "conclusions": [
+          {
+            "stem": "Ethics is a necessity.",
+            "text": "\"Ethics is not a luxury, it is a necessity.\" (Kant)",
+            "type": "quote"
+          },
+          {
+            "stem": "Kantian deontology: treat users as ends.",
+            "text": "Applying Kantian deontology, we must treat users as ends, not means, ensuring transparency and consent.",
+            "type": "theory-linkage"
+          },
+          {
+            "stem": "Ethical design fosters trust.",
+            "text": "A future where digital platforms are designed with ethical principles at their core, fostering trust and inclusive participation.",
+            "type": "aspirational"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Privacy",
+            "Misinformation",
+            "Algorithmic Bias",
+            "Digital Divide",
+            "Regulation"
+          ],
+          "demands": [
+            "List the main ethical dilemmas",
+            "Explain why they matter for public service",
+            "Suggest ways to address them"
+          ],
+          "directive": "Describe the key ethical dilemmas in social media.",
+          "hidden": "Impact on public trust and accountability",
+          "limit": "10 marks / 150 words"
+        },
+        "diagram": "+----------------+----------------+\\n|  Privacy       |  Freedom       |\\n|  (Consent)     |  (Expression)  |\\n+----------------+----------------+\\n|  Misinformation|  Algorithmic   |\\n|  (Health)      |  Bias (Equality)|\\n+----------------+----------------+",
+        "generatedAt": "2026-08-03T22:50:35.588Z",
+        "id": "amsdtoo1w",
+        "intros": [
+          {
+            "stem": "Privacy is a fundamental human right.",
+            "text": "\"Privacy is a fundamental human right.\" (UN Human Rights Council)",
+            "type": "quote"
+          },
+          {
+            "stem": "Ethical dilemma: conflict of moral principles.",
+            "text": "An ethical dilemma arises when two or more moral principles conflict, making the right action unclear.",
+            "type": "definition"
+          },
+          {
+            "stem": "EU Digital Services Act 2023",
+            "text": "In 2023, the EU introduced the Digital Services Act to curb misinformation and protect user data, highlighting the urgency of addressing social media ethics.",
+            "type": "recent context"
+          }
+        ],
+        "model": "openai/gpt-oss-20b:free",
+        "pitfalls": [
+          "Listing only one dilemma",
+          "Ignoring public service implications",
+          "Overlooking regulatory frameworks",
+          "Failing to link dilemmas to ethical theories"
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Privacy vs Freedom",
+                "points": [
+                  {
+                    "ethic": "deontology",
+                    "evidence": "Cambridge Analytica scandal (2018)",
+                    "keyword": "consent",
+                    "stem": "User data harvested without explicit consent undermines individual autonomy."
+                  },
+                  {
+                    "ethic": "consequentialism",
+                    "evidence": "India's IT Act 2000 Section 79",
+                    "keyword": "censorship",
+                    "stem": "Freedom of expression is curtailed when platforms censor content to avoid liability."
+                  }
+                ],
+                "why": "Highlights the tension between data protection and free expression"
+              },
+              {
+                "name": "Misinformation vs Public Interest",
+                "points": [
+                  {
+                    "ethic": "utilitarianism",
+                    "evidence": "COVID-19 vaccine misinformation surge (2020)",
+                    "keyword": "misinformation",
+                    "stem": "Rapid spread of false health information can lead to public harm."
+                  },
+                  {
+                    "ethic": "virtue ethics",
+                    "evidence": "Facebook 2016 US election study",
+                    "keyword": "algorithmic amplification",
+                    "stem": "Platform algorithms amplify sensational content, distorting public discourse."
+                  }
+                ],
+                "why": "Shows how false content can harm society while platforms aim to inform"
+              },
+              {
+                "name": "Algorithmic Bias vs Equality",
+                "points": [
+                  {
+                    "ethic": "Rawlsian justice",
+                    "evidence": "Amazon hiring algorithm bias (2018)",
+                    "keyword": "bias",
+                    "stem": "AI-driven hiring tools can perpetuate gender and caste bias."
+                  },
+                  {
+                    "ethic": "care ethics",
+                    "evidence": "YouTube recommendation study (2019)",
+                    "keyword": "filter bubble",
+                    "stem": "Recommendation engines create filter bubbles, limiting exposure to diverse viewpoints."
+                  }
+                ],
+                "why": "Exposes how AI can perpetuate discrimination and limit diverse exposure"
+              }
+            ],
+            "heading": "Key ethical dilemmas in social media",
+            "off": [
+              "Recognise that dilemmas are interlinked; addressing one may exacerbate another."
+            ],
+            "valueAdd": [
+              "Keywords: consent, misinformation, bias",
+              "Theory: Kantian deontology, utilitarianism, Rawlsian justice",
+              "Anchor: GDPR, Digital Services Act",
+              "Example: Cambridge Analytica"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Accountability vs Anonymity",
+                "points": [
+                  {
+                    "ethic": "deontology",
+                    "evidence": "India's 2021 social media harassment cases",
+                    "keyword": "harassment",
+                    "stem": "Anonymous accounts enable harassment without traceability."
+                  },
+                  {
+                    "ethic": "consequentialism",
+                    "evidence": "Trust deficit survey 2022",
+                    "keyword": "trust",
+                    "stem": "Lack of accountability erodes public trust in digital governance."
+                  }
+                ],
+                "why": "Shows how lack of traceability erodes trust in governance"
+              },
+              {
+                "name": "Transparency vs Data Monetization",
+                "points": [
+                  {
+                    "ethic": "Kantian ethics",
+                    "evidence": "EU GDPR 2018 enforcement",
+                    "keyword": "data transparency",
+                    "stem": "Opaque data-sharing practices violate user expectations."
+                  },
+                  {
+                    "ethic": "utilitarianism",
+                    "evidence": "TikTok algorithmic push (2021)",
+                    "keyword": "engagement economy",
+                    "stem": "Monetization models prioritize engagement over user well-being."
+                  }
+                ],
+                "why": "Highlights conflict between user expectations and profit motives"
+              },
+              {
+                "name": "Digital Literacy vs Digital Divide",
+                "points": [
+                  {
+                    "ethic": "care ethics",
+                    "evidence": "India's 2023 Digital Literacy Survey",
+                    "keyword": "digital literacy",
+                    "stem": "Low digital literacy amplifies susceptibility to manipulation."
+                  },
+                  {
+                    "ethic": "Rawlsian justice",
+                    "evidence": "UNESCO report 2022",
+                    "keyword": "digital divide",
+                    "stem": "Digital divide widens socio-economic disparities."
+                  }
+                ],
+                "why": "Shows how unequal access amplifies ethical risks"
+              }
+            ],
+            "heading": "Implications of these dilemmas for public service",
+            "off": [
+              "Highlight the role of civil servants in enforcing accountability."
+            ],
+            "valueAdd": [
+              "Keywords: trust, transparency, digital divide",
+              "Theory: care ethics, consequentialism",
+              "Anchor: IT Act, GDPR",
+              "Example: 2021 harassment cases"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Regulatory Approach vs Self-regulation",
+                "points": [
+                  {
+                    "ethic": "deontology",
+                    "evidence": "EU Digital Services Act 2022",
+                    "keyword": "binding regulation",
+                    "stem": "Binding regulations enforce minimum ethical standards."
+                  },
+                  {
+                    "ethic": "consequentialism",
+                    "evidence": "Facebook 2018 code of conduct",
+                    "keyword": "self-regulation",
+                    "stem": "Self-regulation often lags behind technological change."
+                  }
+                ],
+                "why": "Shows need for enforceable standards"
+              },
+              {
+                "name": "Ethical Design vs Business Incentives",
+                "points": [
+                  {
+                    "ethic": "Kantian ethics",
+                    "evidence": "Apple iOS privacy features (2020)",
+                    "keyword": "privacy by design",
+                    "stem": "Designing for privacy by default aligns with user rights."
+                  },
+                  {
+                    "ethic": "utilitarianism",
+                    "evidence": "Facebook 2019 data monetization policy",
+                    "keyword": "profit motive",
+                    "stem": "Profit motives can override ethical considerations."
+                  }
+                ],
+                "why": "Balances user rights with commercial interests"
+              },
+              {
+                "name": "Public Engagement vs Expert Governance",
+                "points": [
+                  {
+                    "ethic": "virtue ethics",
+                    "evidence": "India 2023 Digital India forum",
+                    "keyword": "stakeholder consultation",
+                    "stem": "Inclusive stakeholder consultations democratize policy-making."
+                  },
+                  {
+                    "ethic": "Rawlsian justice",
+                    "evidence": "NITI Aayog Digital Governance Committee (2021)",
+                    "keyword": "expert governance",
+                    "stem": "Expert governance ensures technical rigor in regulation."
+                  }
+                ],
+                "why": "Ensures inclusive yet technically sound policy-making"
+              }
+            ],
+            "heading": "Way forward: ethical guidelines and regulatory measures",
+            "off": [
+              "Emphasise the need for a multi-stakeholder regulatory framework."
+            ],
+            "valueAdd": [
+              "Keywords: privacy by design, stakeholder consultation",
+              "Theory: deontology, virtue ethics",
+              "Anchor: Digital Services Act, NITI Aayog",
+              "Example: EU DSA"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Cambridge Analytica scandal",
+            "COVID-19 misinformation",
+            "Amazon hiring algorithm bias",
+            "TikTok engagement economy",
+            "EU Digital Services Act"
+          ],
+          "keywords": [
+            "privacy",
+            "misinformation",
+            "algorithmic bias",
+            "digital divide",
+            "transparency",
+            "accountability"
+          ],
+          "quotes": [
+            "Privacy is a fundamental human right. (UN)",
+            "The greatest threat to privacy is the lack of regulation. (Shannon)"
+          ],
+          "thinkers": [
+            "Kant",
+            "Mill",
+            "Rawls",
+            "Gandhi"
+          ]
+        }
+      },
+      {
+        "caption": "Matrix of Ethical Dilemmas in Social Media: Public vs Private sphere and Rights vs Harms",
+        "conclusions": [
+          {
+            "text": "Marshall McLuhan’s insight that ‘We shape our tools, and thereafter our tools shape us’ underscores the ethical urgency: social media’s dilemmas will not be solved by technology alone, but by a conscious ethics of design and use.",
+            "type": "quote"
+          },
+          {
+            "text": "Applying John Rawls’s ‘Veil of Ignorance’, content moderation policies must be framed as if we know not our own identities—ensuring rules protect the most vulnerable without becoming instruments of majoritarian censorship.",
+            "type": "theory-linkage"
+          },
+          {
+            "text": "The ideal digital citizen cultivates the principle of ‘satyam bruyat, priyam bruyat, na bruyat satyam apriyam’—speak truth, speak pleasant, never speak truth that is unpleasant—a tempering of expression with compassion that can guide ethical conduct online.",
+            "type": "aspirational-normative"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Applied ethics in digital technology",
+            "Ethical dilemmas (value conflicts) vs. problems",
+            "Stakeholder ethics (platforms, users, regulators)",
+            "Concepts: privacy, autonomy, harm principle, algorithmic justice"
+          ],
+          "demands": [
+            "Identify and elaborate the core ethical dilemmas raised by social media's revolution in communication.",
+            "Differentiate an ethical dilemma from a mere problem by anchoring each in a conflict of values or principles.",
+            "Frame dilemmas from multiple stakeholder perspectives (users, platforms, regulators, society) to capture the full ethical landscape."
+          ],
+          "directive": "Describe: provide a detailed account of the key ethical dilemmas without necessarily evaluating or prescribing solutions.",
+          "hidden": "Most aspirants list issues (privacy, misinformation, addiction) without isolating the underlying value tension (e.g., freedom vs. harm, autonomy vs. security, truth vs. virality). The ethical vocabulary needed—moral myopia, ethical fading, digital disinhibition, context collapse—is often missing, and the answer misses that dilemmas are structural, embedded in platform design and business models, not just user behavior.",
+          "limit": "10 marks / 150 words"
+        },
+        "diagram": "+------------------+------------------+\n|                  |    RIGHTS        |\n|                  |                  |\n+------------------+------------------+\n| PUBLIC           | Free Speech      | Misinformation   |\n|                  | vs Regulation    | vs Censorship    |\n+------------------+------------------+\n| PRIVATE          | Data Privacy     | Surveillance &   |\n|                  | vs Personalisation| Manipulation     |\n+------------------+------------------+\n",
+        "generatedAt": "2026-08-03T23:23:14.742Z",
+        "id": "amsduunqu",
+        "intros": [
+          {
+            "text": "The WHO’s declaration of an ‘infodemic’ during COVID-19 laid bare the ethical tightrope: the same social media that spread lifesaving information became a vector for deadly misinformation, forcing societies to choose between free flow of speech and public health.",
+            "type": "recent context"
+          },
+          {
+            "text": "An ethical dilemma arises when two or more values we hold dear come into conflict with no clear right answer; social media amplifies this by pitting individual autonomy against collective welfare, privacy against security, and truth against freedom of expression—often in the same newsfeed.",
+            "type": "definition"
+          },
+          {
+            "text": "Social media was designed to democratize voice, yet it has paradoxically birthed echo chambers that silence dissent and algorithmic curation that manufactures consensus—offering a crisis of agency disguised as enhanced choice.",
+            "type": "paradox"
+          }
+        ],
+        "model": "deepseek/deepseek-v4-pro",
+        "pitfalls": [
+          "Listing generic problems (privacy, fake news) without framing them as dilemmas of conflicting values.",
+          "Ignoring platform and algorithmic design as a source of ethical conflict, treating dilemmas as purely individual user issues.",
+          "Omitting the regulatory perspective—state versus corporate power—and the global versus local tension in norms.",
+          "Using evidence only from Western contexts; Indian examples (Puttaswamy, IT Rules, Aarogya Setu) must balance the narrative.",
+          "Failing to deploy ethical terminology (autonomy, harm principle, bounded ethicality) that signals GS4 competence."
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Collapse of Context and the Disinhibition Effect",
+                "points": [
+                  {
+                    "ethic": "Care ethics (Gilligan) – erosion of empathic connection",
+                    "evidence": "John Suler’s 'Online Disinhibition Effect' (2004); cyberbullying escalations where aggressors do not witness the victim’s distress.",
+                    "keyword": "disinhibition effect, empathy erosion",
+                    "stem": "The absence of non-verbal cues online weakens empathy (online disinhibition effect), creating the dilemma between authentic self-expression and the accidental harm it may cause to unseen others."
+                  },
+                  {
+                    "ethic": "Virtue ethics – maintaining integrity across fragmented contexts",
+                    "evidence": "Justine Sacco’s 2013 tweet and subsequent job loss; similar cases of cancelled careers.",
+                    "keyword": "context collapse, identity fragmentation",
+                    "stem": "Context collapse merges audiences—a post meant for friends reaches employers, creating an identity-management dilemma where personal authenticity battles professional reputation."
+                  },
+                  {
+                    "ethic": "Deontology (Kant) – respect for persons supporting the right to be forgotten; utilitarian public interest in opposition",
+                    "evidence": "EU GDPR’s 'right to erasure'; Google Spain v AEPD (2014) CJEU judgment.",
+                    "keyword": "digital permanence, right to be forgotten",
+                    "stem": "The permanence of digital footprints means momentary lapses are preserved forever, raising the ethical dilemma of forgiveness and rehabilitation in the digital sphere—the right to be forgotten versus the public’s right to know."
+                  }
+                ],
+                "why": "Communicative ethics and social psychology lens—explains how the removal of face-to-face cues and audience boundaries creates dilemmas of identity and harm at the individual level."
+              },
+              {
+                "name": "From Community Ethics to Networked Individualism",
+                "points": [
+                  {
+                    "ethic": "Social contract theory – fragmentation of the social contract",
+                    "evidence": "Bystander apathy in viral shaming campaigns where thousands pile on without personal accountability.",
+                    "keyword": "networked individualism, diffusion of responsibility",
+                    "stem": "The move from dense, locally accountable communities to networked individualism means ethical norms are no longer enforced by those who know us, causing a diffusion of responsibility when harm occurs online."
+                  },
+                  {
+                    "ethic": "Habermas’s public sphere – privatisation undermines deliberative democracy",
+                    "evidence": "Twitter’s ban of Donald Trump (2021) and the ensuing global debate on corporate censorship vs. safety.",
+                    "keyword": "platform governance, digital public square",
+                    "stem": "Platforms that act as the new ‘public square’ are privately governed, creating the dilemma: whose values should govern the global commons—shareholders, users, or states?"
+                  },
+                  {
+                    "ethic": "Virtue ethics – honesty and transparency as virtues under threat",
+                    "evidence": "ASCI (India) guidelines for influencer advertising; Fyre Festival (2017) fraud case.",
+                    "keyword": "hidden advertising, authenticity economy",
+                    "stem": "Influencer culture commercialises authenticity by selling trust through sponsored content while hiding commercial intent, creating a dilemma of deception versus economic livelihood."
+                  }
+                ],
+                "why": "Sociological lens (Castells’ network society)—shows that the shift in social structure transforms the moral actor and diffuses responsibility, creating system-level dilemmas."
+              },
+              {
+                "name": "Determinism vs. Human Agency: Technology as Value-Laden",
+                "points": [
+                  {
+                    "ethic": "Consequentialism – the invisible hand of algorithms maximizing harm as a side-effect",
+                    "evidence": "Facebook’s internal research (leaked 2021) revealing Instagram harms teen mental health; Wall Street Journal report.",
+                    "keyword": "attention economy, algorithmic nudging",
+                    "stem": "Engagement-optimized algorithms amplify sensational content structurally, forcing users into the dilemma of being informed versus being manipulated without full awareness."
+                  },
+                  {
+                    "ethic": "Kantian autonomy – designs that undermine rational agency are ethically wrong",
+                    "evidence": "Norwegian Consumer Council report (2018) on deceptive design by Facebook and Google.",
+                    "keyword": "dark patterns, manufactured consent",
+                    "stem": "The illusion of user choice masks a designed architecture that limits genuine autonomy through dark patterns, challenging the ethical principle of informed consent."
+                  },
+                  {
+                    "ethic": "Rawls’s justice as fairness; Amartya Sen’s capability approach",
+                    "evidence": "Twitter’s image-cropping algorithm found to favour lighter skin (2020); Joy Buolamwini’s 'Gender Shades' study (2018).",
+                    "keyword": "algorithmic fairness, representational harm",
+                    "stem": "Algorithmic bias and the digital divide cause representational harms: marginalized communities are misrepresented or excluded from the digital public square, creating a justice dilemma."
+                  }
+                ],
+                "why": "Philosophy of technology lens—reveals that algorithms embed ethical choices by design, so dilemmas are not merely user errors but structural features of the architecture."
+              }
+            ],
+            "heading": "The Ethical Terrain: Why Social Media Creates Novel Dilemmas",
+            "off": [
+              "Ethical fading occurs when engineers focused on technical metrics overlook the embedded moral dimensions of their designs, making these dilemmas a systemic rather than individual failure.",
+              "Bounded ethicality suggests that even well-intentioned users and designers cannot perceive the full ethical picture when the architecture persistently hides long-term harms."
+            ],
+            "valueAdd": [
+              "Keywords: ethical fading, moral myopia, bounded ethicality, disinhibition, context collapse, algorithmic bias.",
+              "Theory: Shannon Vallor’s technomoral virtues (patience, honesty, empathy, justice) as a framework for cultivating ethical tech practices.",
+              "Anchor: Supreme Court in Justice K.S. Puttaswamy (Retd.) vs Union of India (2017) recognized digital privacy as a fundamental right under Article 21.",
+              "Example: The Cambridge Analytica scandal (2018) exposed psychographic profiling used to manipulate voter behaviour, marrying surveillance capitalism with democratic subversion."
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Deontological vs. Utilitarian Tensions",
+                "points": [
+                  {
+                    "ethic": "Deontology (Kant) – treating data as ends, never merely as means",
+                    "evidence": "Puttaswamy judgment (2017); the Pegasus spyware case (2021) in India.",
+                    "keyword": "inviolable personal data, surveillance",
+                    "stem": "From a deontological perspective, personal data is an extension of the self and cannot be used as a mere means, making state surveillance for crime prevention an ethical violation even when it saves lives."
+                  },
+                  {
+                    "ethic": "Utilitarianism (Bentham) – balancing aggregate welfare; but slippery slope concerns",
+                    "evidence": "Aarogya Setu app data usage debates in India (2020); China’s social credit system.",
+                    "keyword": "function creep, normalization of deviance",
+                    "stem": "A utilitarian calculus may justify mass data collection for pandemic response, but the dilemma intensifies through function creep—tools built for emergency persist beyond necessity, normalising surveillance."
+                  },
+                  {
+                    "ethic": "Kantian autonomy – consent must be genuine, else it is ethically void",
+                    "evidence": "Lengthy, opaque privacy policies (e.g., Facebook’s) that studies show few users read or understand; GDPR attempts to remedy.",
+                    "keyword": "informed consent, cognitive load",
+                    "stem": "The digital consent model is ethically compromised because users cannot comprehend the full implications, turning ‘informed consent’ into a fiction and violating autonomy."
+                  }
+                ],
+                "why": "Classic normative ethics lens—directly pits the inviolability of personal data against the collective benefits of its use, making the value conflict explicit."
+              },
+              {
+                "name": "Stakeholder Ethical Analysis",
+                "points": [
+                  {
+                    "ethic": "Virtue ethics – temperance and self-control in digital consumption",
+                    "evidence": "Pew Research Center (2019) survey: 79% of Americans feel they have no control over data collection, yet most accept it for free services.",
+                    "keyword": "personalization-privacy paradox, privacy calculus",
+                    "stem": "For users, the personalization–privacy paradox creates a dilemma: they crave tailored content but resent being profiled, trading long-term privacy for short-term convenience."
+                  },
+                  {
+                    "ethic": "Business ethics – conflict between profit motive and duty of care",
+                    "evidence": "Shoshana Zuboff’s 'The Age of Surveillance Capitalism'; Facebook’s ad-driven revenue model.",
+                    "keyword": "surveillance capitalism, fiduciary duty",
+                    "stem": "Platforms face an ethical dilemma of business model: their fiduciary-like duty to not exploit users’ data conflicts directly with shareholder value maximisation through surveillance capitalism."
+                  },
+                  {
+                    "ethic": "Justice – distributive justice in balancing innovation and rights",
+                    "evidence": "EU GDPR praised for protecting rights but criticised as burdensome for startups; India’s Personal Data Protection Bill debate.",
+                    "keyword": "innovation vs. regulation, regulatory trilemma",
+                    "stem": "Regulators confront a trilemma: over-regulating privacy stifles innovation and economic growth, while under-regulation invites exploitation, forcing a search for just proportionality."
+                  }
+                ],
+                "why": "Multi-stakeholder mapping reveals that the privacy dilemma is not one problem but a web of conflicting duties and interests among users, platforms, and regulators."
+              },
+              {
+                "name": "Virtue Ethics and Digital Personhood",
+                "points": [
+                  {
+                    "ethic": "Virtue ethics (Aristotle) – phronesis in engineering judgment",
+                    "evidence": "Ann Cavoukian’s Privacy by Design framework; contrast between Apple’s privacy-focused marketing and Google’s data-centric approach.",
+                    "keyword": "privacy by design, professional virtue",
+                    "stem": "The virtue of 'techne' requires designers to embed privacy by design, yet market incentives push for maximal data extraction, creating a character dilemma between professional integrity and career success."
+                  },
+                  {
+                    "ethic": "Virtue ethics – temperance and self-knowledge",
+                    "evidence": "Studies on social media addiction and 'doomscrolling'; dopamine-driven variable rewards.",
+                    "keyword": "digital temperance, exhibitionism",
+                    "stem": "Users face the virtue dilemma of cultivating digital temperance to resist oversharing, while the platform’s architecture rewards exhibitionism with likes and validation."
+                  },
+                  {
+                    "ethic": "Virtue ethics – living an authentic life (Charles Taylor)",
+                    "evidence": "Influencers monetizing family moments; 'sharenting' concerns over children’s digital footprints.",
+                    "keyword": "commodification of experience, authenticity",
+                    "stem": "The commodification of personal data turns intimate life into capital, alienating individuals from their own experiences and eroding the virtue of authenticity."
+                  }
+                ],
+                "why": "Character-focused lens—examines the virtues that users and designers need to cultivate to navigate the data economy ethically, moving beyond rules."
+              }
+            ],
+            "heading": "Privacy and Data Dilemmas: Autonomy vs. Collective Good",
+            "off": [
+              "The 'privacy paradox' is often not irrational but a symptom of bounded ethicality, where the architecture renders future risks invisible while making present benefits salient.",
+              "The right to privacy, when framed as a collective public good rather than an individual burden, shifts the ethical debate from consent alone to systemic accountability."
+            ],
+            "valueAdd": [
+              "Keywords: surveillance capitalism, privacy paradox, informed consent, function creep, digital temperance.",
+              "Theory: Michel Foucault’s panopticism applied to social media—power operates through the possibility of being watched, internalising discipline.",
+              "Anchor: Justice K.S. Puttaswamy (Retd.) vs Union of India (2017) — privacy as intrinsic to dignity.",
+              "Example: Facebook–Cambridge Analytica scandal (2018) — psychographic data weaponised for voter manipulation."
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Mill’s Harm Principle vs. Free Speech Absolutism",
+                "points": [
+                  {
+                    "ethic": "Liberalism (Mill) – balancing liberty and the prevention of harm",
+                    "evidence": "UN Fact-Finding Mission (2018) linking Facebook posts to Rohingya genocide; India’s IT Rules 2021 on traceability.",
+                    "keyword": "harm principle, hate speech",
+                    "stem": "Mill’s harm principle permits restricting speech that incites violence, but the dilemma lies in defining ‘harm’ in a contested digital space where misinformation can kill without a single author."
+                  },
+                  {
+                    "ethic": "Value pluralism (Isaiah Berlin) – no single right answer across cultures",
+                    "evidence": "Germany’s NetzDG law; Twitter’s differing moderation policies worldwide.",
+                    "keyword": "free speech absolutism, dignity-based approach",
+                    "stem": "Free speech absolutism (US First Amendment tradition) clashes with dignity-based approaches (European model), creating a global dilemma for platforms that must enforce conflicting ethical norms across jurisdictions."
+                  },
+                  {
+                    "ethic": "Deontology (duty to protect speech) vs. consequentialism (harm of over-censorship)",
+                    "evidence": "Removal of posts documenting human rights abuses in Syria due to algorithmic moderation; activist complaints.",
+                    "keyword": "chilling effect, collateral censorship",
+                    "stem": "Over-removal of content to avoid legal liability causes a chilling effect on legitimate speech, especially for vulnerable groups, presenting a dilemma between platform safety and silent censorship."
+                  }
+                ],
+                "why": "Liberal philosophy lens—directly addresses the fundamental tension between liberty and protection from harm in content regulation."
+              },
+              {
+                "name": "Stakeholder Dilemmas: Users, Platforms, and State",
+                "points": [
+                  {
+                    "ethic": "Duty of care (employer ethics) and justice for workers",
+                    "evidence": "Lawsuits by Facebook content moderators for PTSD; documentary 'The Cleaners' (2018).",
+                    "keyword": "moderation dilemma, content moderators",
+                    "stem": "Platforms face the moderation dilemma: automate content removal for scale but risk biased errors; hire human moderators but expose them to psychological trauma, violating the duty of care."
+                  },
+                  {
+                    "ethic": "Restorative vs. retributive justice; Gandhi’s 'hate the sin, not the sinner'",
+                    "evidence": "The Justine Sacco incident and ensuing debate; online shaming campaigns that lead to mental health crises.",
+                    "keyword": "cancel culture, restorative justice",
+                    "stem": "Users confront the 'call-out vs. call-in' dilemma: public shaming can correct harmful behaviour but also turns into mob justice without due process, destroying lives disproportionately."
+                  },
+                  {
+                    "ethic": "Security vs. liberty in social contract theory",
+                    "evidence": "India’s traceability mandate under IT Rules 2021; FBI vs Apple case (2016).",
+                    "keyword": "encryption vs. lawful access",
+                    "stem": "States face the security–liberty trade-off: demanding encryption backdoors to trace criminals weakens trust and privacy for all, a classic social contract dilemma."
+                  }
+                ],
+                "why": "Parallel ethical analysis across actors reveals that the speech dilemma is experienced differently at each level and cannot be solved by a one-size rule."
+              },
+              {
+                "name": "The Ethics of Information Integrity",
+                "points": [
+                  {
+                    "ethic": "Epistemic justice (Miranda Fricker) – testimonial injustice",
+                    "evidence": "COVID-19 infodemic leading to vaccine hesitancy; WHO’s Infodemic Management framework.",
+                    "keyword": "epistemological crisis, post-truth",
+                    "stem": "Misinformation, even when unintentional, creates an epistemological crisis where citizens cannot agree on basic facts, tearing the ethical precondition of deliberative democracy."
+                  },
+                  {
+                    "ethic": "Kantian duty of truthfulness; consequentialism – catastrophic societal harm",
+                    "evidence": "Fake Barack Obama video by Jordan Peele (2018); deepfake threats to Indian elections [verify current examples].",
+                    "keyword": "deepfakes, visual truth",
+                    "stem": "Deepfakes undermine the very concept of visual truth, posing a fundamental ethical dilemma: if seeing is no longer believing, how can citizens trust evidence, and how can justice function?"
+                  },
+                  {
+                    "ethic": "Autonomy and manipulation (Kant, Sunstein’s Nudge debate)",
+                    "evidence": "Eli Pariser’s 'The Filter Bubble'; Twitter’s 2021 research on algorithmic amplification of right-wing content.",
+                    "keyword": "algorithmic amplification, filter bubble",
+                    "stem": "Algorithmic amplification of extreme content exploits cognitive biases, presenting a free-will dilemma—are users genuinely autonomous if their information diet is curated to keep them engaged at the cost of truth?"
+                  }
+                ],
+                "why": "Epistemological lens—focuses on truth and trust as public goods that social media erodes, creating distinct dilemmas about the fabric of democratic society."
+              }
+            ],
+            "heading": "Speech, Harm, and Platform Responsibility Dilemmas",
+            "off": [
+              "The dilemma of 'digital civil disobedience' arises when activists use social media to organize democratic movements while violating platform terms, forcing a moral judgment on when rule-breaking is ethically justifiable.",
+              "The distinction between harmful speech and uncomfortable speech is not static—it evolves, and ethical frameworks must be dynamic rather than rigid rules."
+            ],
+            "valueAdd": [
+              "Keywords: harm principle, chilling effect, cancel culture, epistemological crisis, deepfakes, algorithmic amplification.",
+              "Theory: John Stuart Mill’s 'On Liberty'; Jürgen Habermas’s decay of the public sphere through commodified communication.",
+              "Anchor: UN Guiding Principles on Business and Human Rights — applied to tech platforms’ responsibility to respect human rights.",
+              "Example: Rohingya crisis and Facebook’s documented role (2018-19) in amplifying hate speech that fuelled violence."
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Cambridge Analytica scandal (2018)",
+            "Rohingya genocide and Facebook (UN 2018)",
+            "Puttaswamy judgment (2017)",
+            "COVID-19 infodemic and WHO",
+            "Justine Sacco tweet (2013)",
+            "Pegasus spyware case (2021)",
+            "Aarogya Setu app debate",
+            "EU GDPR and right to be forgotten"
+          ],
+          "keywords": [
+            "ethical fading",
+            "moral myopia",
+            "bounded ethicality",
+            "context collapse",
+            "disinhibition effect",
+            "surveillance capitalism",
+            "privacy paradox",
+            "function creep",
+            "algorithmic bias",
+            "harm principle",
+            "chilling effect",
+            "deepfakes",
+            "epistemological crisis"
+          ],
+          "quotes": [
+            "Marshall McLuhan: 'We shape our tools, and thereafter our tools shape us.'",
+            "Gandhi: 'Hate the sin, not the sinner.' (applied to restorative justice in online shaming)"
+          ],
+          "thinkers": [
+            "John Stuart Mill (harm principle)",
+            "Immanuel Kant (deontology, autonomy)",
+            "Shoshana Zuboff (surveillance capitalism)",
+            "Jürgen Habermas (public sphere)",
+            "John Rawls (justice, veil of ignorance)",
+            "Shannon Vallor (technomoral virtues)",
+            "Michel Foucault (panopticism)",
+            "Manuel Castells (network society)"
+          ]
+        }
+      }
+    ],
     "id": "pyq-gs4-2025-02",
     "mine": {
       "conclusion": "",
       "intro": "",
-      "sections": []
+      "sections": [
+        {
+          "body": "",
+          "heading": "social media revolutionising communication and interaction"
+        },
+        {
+          "body": "",
+          "heading": "ethical issues and challenges"
+        },
+        {
+          "body": "",
+          "heading": "way forward"
+        }
+      ]
     },
     "notes": "",
     "paper": "GS4",
