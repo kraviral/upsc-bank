@@ -48,7 +48,360 @@
     "year": 2013
   },
   {
-    "answers": [],
+    "answers": [
+      {
+        "caption": "",
+        "conclusions": [
+          {
+            "text": "Mahatma Gandhi once said, \"Ethics is the foundation of all political action.\" This reminds us that ethics is not a luxury but a necessity for democratic legitimacy.",
+            "type": "quote"
+          },
+          {
+            "text": "Adopting a virtue ethics approach, civil servants can cultivate prudence and justice, ensuring that political decisions remain ethically sound.",
+            "type": "theory-linkage"
+          },
+          {
+            "text": "A future where every political actor internalizes constitutional morality will witness governance that is transparent, accountable, and truly for the people.",
+            "type": "aspirational-normative"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Ethics in public sphere",
+            "Normative theories",
+            "Accountability & ethical governance"
+          ],
+          "demands": [
+            "State a clear opinion on the compatibility of politics and ethics.",
+            "Provide justification using normative theories and concrete examples."
+          ],
+          "directive": "State your opinion and justify with illustrations.",
+          "hidden": "The nuance that politics can be ethical when guided by robust ethical frameworks.",
+          "limit": "10 marks / 150 words"
+        },
+        "diagram": "",
+        "generatedAt": "2026-08-03T08:24:23.856Z",
+        "id": "amscyqqeo",
+        "intros": [
+          {
+            "text": "Groucho Marx once quipped, \"Politics is the art of looking for trouble, finding it everywhere, diagnosing it incorrectly, and applying the wrong remedy.\" This cynical view sets the stage for our discussion.",
+            "type": "quote"
+          },
+          {
+            "text": "Ethics, in the public domain, refers to the principles that guide right conduct and decision‑making, ensuring that actions serve the common good.",
+            "type": "definition"
+          },
+          {
+            "text": "In 2024, the Indian Parliament debated the Ethics in Public Service Bill, underscoring the growing concern over ethical lapses in politics.",
+            "type": "recent context"
+          }
+        ],
+        "model": "openai/gpt-oss-20b:free",
+        "pitfalls": [
+          "Treating politics as inherently unethical without acknowledging ethical frameworks.",
+          "Overemphasis on negative examples while ignoring positive ones.",
+          "Failing to link normative theories to concrete political actions.",
+          "Providing illustrations that are too generic or unrelated to the question.",
+          "Not addressing the hidden demand that politics can be ethical."
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Deontology vs Consequentialism Lens",
+                "points": [
+                  {
+                    "evidence": "Indian Constitution's Preamble commitment to truth and justice",
+                    "keyword": "Kantian duty",
+                    "stem": "Duty of public office holders to uphold truth aligns with Kantian deontology."
+                  },
+                  {
+                    "evidence": "PM's Swachh Bharat initiative aimed at maximizing public health benefits",
+                    "keyword": "utilitarian calculus",
+                    "stem": "Outcome‑oriented policies like Swachh Bharat reflect utilitarian calculus."
+                  },
+                  {
+                    "evidence": "BJP's 'Make in India' balancing industrial growth and employment",
+                    "keyword": "hybrid ethics",
+                    "stem": "Balancing duty and outcomes requires a hybrid ethical stance."
+                  }
+                ],
+                "why": "Shows how duty‑based and outcome‑based ethics apply to political action."
+              },
+              {
+                "name": "Institutional vs Individual Lens",
+                "points": [
+                  {
+                    "evidence": "Judicial review of the 2019 GST law for fairness",
+                    "keyword": "Supreme Court oversight",
+                    "stem": "Institutional checks like the Supreme Court enforce ethical norms."
+                  },
+                  {
+                    "evidence": "Dr. APJ Abdul Kalam's emphasis on honesty in public office",
+                    "keyword": "leadership integrity",
+                    "stem": "Individual leaders' integrity shapes public trust."
+                  },
+                  {
+                    "evidence": "IAS training on ethics and integrity",
+                    "keyword": "ethical culture",
+                    "stem": "Collective institutional culture can mitigate ethical lapses."
+                  }
+                ],
+                "why": "Highlights the interplay between institutional checks and individual integrity."
+              },
+              {
+                "name": "Personal vs Public Duty Lens",
+                "points": [
+                  {
+                    "evidence": "Anti‑corruption laws penalizing bribery",
+                    "keyword": "public interest",
+                    "stem": "Public servants must subordinate personal gain to public interest."
+                  },
+                  {
+                    "evidence": "Mahatma Gandhi's non‑violent movement influencing policy",
+                    "keyword": "moral conviction",
+                    "stem": "Personal moral convictions can inspire policy reforms."
+                  },
+                  {
+                    "evidence": "Cabinet Committee on Ethics guidelines",
+                    "keyword": "ethical deliberation",
+                    "stem": "Balancing personal conscience with public duty requires ethical deliberation."
+                  }
+                ],
+                "why": "Explores the tension between personal values and public responsibilities."
+              }
+            ],
+            "heading": "Politics as a Platform for Ethical Governance",
+            "off": [
+              "Ethics is not a luxury but a necessity for sustaining democratic legitimacy."
+            ],
+            "valueAdd": [
+              "Keywords: Kantian duty, utilitarian calculus, hybrid ethics",
+              "Theory: Deontology, Consequentialism",
+              "Anchor: Indian Constitution",
+              "Example: Swachh Bharat initiative"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Virtue Ethics Lens",
+                "points": [
+                  {
+                    "evidence": "Prime Minister's cautious approach during COVID‑19 lockdown",
+                    "keyword": "prudence",
+                    "stem": "Virtues like prudence and justice underpin responsible governance."
+                  },
+                  {
+                    "evidence": "Civil Services Examination's emphasis on ethics",
+                    "keyword": "character building",
+                    "stem": "Character building in civil services fosters ethical conduct."
+                  },
+                  {
+                    "evidence": "Anti‑corruption Bureau's training modules",
+                    "keyword": "corruption resistance",
+                    "stem": "Cultivating virtues reduces susceptibility to corruption."
+                  }
+                ],
+                "why": "Virtues guide political behavior and institutional culture."
+              },
+              {
+                "name": "Rawlsian Justice Lens",
+                "points": [
+                  {
+                    "evidence": "Universal Health Coverage scheme",
+                    "keyword": "veil of ignorance",
+                    "stem": "Rawls' veil of ignorance justifies equitable policy design."
+                  },
+                  {
+                    "evidence": "Reservation policy for SC/ST",
+                    "keyword": "difference principle",
+                    "stem": "Difference principle supports affirmative action in politics."
+                  },
+                  {
+                    "evidence": "Delimitation Commission's role",
+                    "keyword": "electoral fairness",
+                    "stem": "Justice as fairness guides electoral reforms."
+                  }
+                ],
+                "why": "Rawls' principles justify equitable policy design."
+              },
+              {
+                "name": "Constitutional Morality Lens",
+                "points": [
+                  {
+                    "evidence": "Article 14 guaranteeing equality",
+                    "keyword": "constitutional duties",
+                    "stem": "Constitutional provisions embed moral duties of the state."
+                  },
+                  {
+                    "evidence": "Right to Information Act as moral right",
+                    "keyword": "judicial interpretation",
+                    "stem": "Judicial interpretation upholds moral values."
+                  },
+                  {
+                    "evidence": "Preamble's aspiration for 'social justice'",
+                    "keyword": "societal values",
+                    "stem": "Constitutional morality aligns politics with societal values."
+                  }
+                ],
+                "why": "The constitution acts as a moral contract between state and citizen."
+              }
+            ],
+            "heading": "Normative Theories Bridging Politics and Ethics",
+            "off": [
+              "Normative theories provide a common language to assess political actions."
+            ],
+            "valueAdd": [
+              "Keywords: Rawlsian justice, constitutional morality, virtue ethics",
+              "Theory: Rawls, Kant, Virtue Ethics",
+              "Anchor: Indian Constitution",
+              "Example: Right to Information Act"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Historical Case Lens",
+                "points": [
+                  {
+                    "evidence": "Salt March leading to self‑rule",
+                    "keyword": "non‑violent resistance",
+                    "stem": "Mahatma Gandhi's non‑violent resistance exemplifies ethical politics."
+                  },
+                  {
+                    "evidence": "Nehru's policy of secularism in constitution",
+                    "keyword": "secular vision",
+                    "stem": "Jawaharlal Nehru's secular vision guided inclusive governance."
+                  },
+                  {
+                    "evidence": "Patel's role in integrating princely states",
+                    "keyword": "coalition integrity",
+                    "stem": "Sardar Patel's integrity in coalition building set ethical precedents."
+                  }
+                ],
+                "why": "Past examples demonstrate ethical politics in action."
+              },
+              {
+                "name": "Contemporary Case Lens",
+                "points": [
+                  {
+                    "evidence": "Vision 2020 roadmap for science and technology",
+                    "keyword": "ethical foresight",
+                    "stem": "Dr. APJ Abdul Kalam's 'Vision 2020' reflects ethical foresight."
+                  },
+                  {
+                    "evidence": "RTE judgment ensuring free education",
+                    "keyword": "Right to Education",
+                    "stem": "The 2015 Supreme Court ruling on the Right to Education upholds ethical duty."
+                  },
+                  {
+                    "evidence": "GST law's simplification of tax structure",
+                    "keyword": "GST fairness",
+                    "stem": "The 2020 GST implementation balanced revenue and fairness."
+                  }
+                ],
+                "why": "Recent examples show how ethics is practiced today."
+              },
+              {
+                "name": "International Case Lens",
+                "points": [
+                  {
+                    "evidence": "Truth and Reconciliation Commission",
+                    "keyword": "reconciliation",
+                    "stem": "Nelson Mandela's reconciliation policy demonstrates ethical leadership."
+                  },
+                  {
+                    "evidence": "Germany's Energiewende",
+                    "keyword": "climate policy",
+                    "stem": "Angela Merkel's climate policy shows ethical governance."
+                  },
+                  {
+                    "evidence": "UN SDG 16 promoting peace and justice",
+                    "keyword": "SDG ethics",
+                    "stem": "UN Sustainable Development Goals embed ethics in global politics."
+                  }
+                ],
+                "why": "Global examples illustrate universal ethical politics."
+              }
+            ],
+            "heading": "Illustrative Cases of Ethical Politics",
+            "off": [
+              "Illustrations must span leaders, policies, and institutional reforms."
+            ],
+            "valueAdd": [
+              "Keywords: non‑violent resistance, secular vision, ethical foresight",
+              "Theory: Gandhian ethics, SDG framework",
+              "Anchor: UN SDG 16",
+              "Example: GST implementation"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Swachh Bharat initiative",
+            "Make in India",
+            "Supreme Court review of GST law",
+            "Dr. APJ Abdul Kalam's emphasis on honesty",
+            "IAS training on ethics",
+            "Anti-corruption laws",
+            "Mahatma Gandhi's Salt March",
+            "Nehru's secular policy",
+            "Sardar Patel's coalition building",
+            "Dr. APJ Abdul Kalam's Vision 2020",
+            "RTE judgment",
+            "GST implementation",
+            "Nelson Mandela's Truth and Reconciliation Commission",
+            "Angela Merkel's Energiewende",
+            "UN SDG 16"
+          ],
+          "keywords": [
+            "Kantian duty",
+            "utilitarian calculus",
+            "hybrid ethics",
+            "Supreme Court oversight",
+            "leadership integrity",
+            "ethical culture",
+            "public interest",
+            "moral conviction",
+            "ethical deliberation",
+            "prudence",
+            "character building",
+            "corruption resistance",
+            "veil of ignorance",
+            "difference principle",
+            "electoral fairness",
+            "constitutional duties",
+            "judicial interpretation",
+            "societal values",
+            "non-violent resistance",
+            "secular vision",
+            "coalition integrity",
+            "ethical foresight",
+            "Right to Education",
+            "GST fairness",
+            "reconciliation",
+            "climate policy",
+            "SDG ethics"
+          ],
+          "quotes": [
+            "Groucho Marx: \"Politics is the art of looking for trouble, finding it everywhere, diagnosing it incorrectly, and applying the wrong remedy.\"",
+            "Mahatma Gandhi: \"Ethics is the foundation of all political action.\""
+          ],
+          "thinkers": [
+            "Kant",
+            "Utilitarianism",
+            "Rawls",
+            "Gandhi",
+            "Nelson Mandela",
+            "Angela Merkel",
+            "Dr. APJ Abdul Kalam",
+            "Jawaharlal Nehru",
+            "Sardar Patel"
+          ]
+        }
+      }
+    ],
     "id": "pyq-gs4-2013-03",
     "marks": 10,
     "mine": {
