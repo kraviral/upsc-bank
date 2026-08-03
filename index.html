@@ -228,6 +228,13 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .chipn{margin-left:5px;opacity:.6}
 .collide{font-size:12.5px;color:var(--margin);margin:8px 0 0}
 .collide ul{margin:4px 0 0;padding-left:17px}
+.genrow{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.genrow label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);width:76px;flex:none}
+.genrow select,.genrow input{flex:1;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink)}
+.genout{font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink2);background:var(--paper);
+  border:1px solid var(--rule);border-radius:2px;padding:8px;margin:10px 0 6px;
+  max-height:190px;overflow:auto;white-space:pre-wrap;word-break:break-word}
+.genout:empty{display:none}
 .ppick{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
 .ppick .chip{font-size:10.5px;padding:4px 9px}
 .dangerzone{margin:24px 0 40px;padding-top:14px;border-top:1px solid var(--rule);max-width:74ch}
@@ -1481,7 +1488,8 @@ function aiView(q){
   if(!q.answers.length){
     return '<div class="blank"><p>No AI answer stored for this question yet.</p>'+
       '<button class="tool" id="pasteAnsBtn">Paste a skeleton</button>'+
-      '<button class="tool" id="copyPromptHere">Copy prompt</button></div>';
+      '<button class="tool" id="copyPromptHere">Copy prompt</button>'+
+      (isLocal()?'<button class="tool" id="genBtnHere">Generate</button>':'')+'</div>';
   }
   if(answerIdx>=q.answers.length) answerIdx=0;
   var a=q.answers[answerIdx];
@@ -1491,6 +1499,7 @@ function aiView(q){
       h+='<button class="anschip'+(i===answerIdx?' on':'')+'" data-ans="'+i+'">'+esc(x.model||("answer "+(i+1)))+'</button>';
     });
     h+='<span class="ansmeta">'+esc(a.generatedAt?String(a.generatedAt).slice(0,16).replace("T"," "):"imported")+'</span>';
+    if(isLocal()) h+='<button class="anschip" id="regenBtn" title="generate another with a different model">+ another model</button>';
     h+=confirmBtn("Delete this answer",function(){
       q.answers.splice(answerIdx,1);answerIdx=0;save();renderSheet();
     });
@@ -1720,6 +1729,8 @@ function renderSheet(){
   });
   var pab=$("pasteAnsBtn"); if(pab) pab.onclick=function(){ $("addBtn").click(); };
   var cph=$("copyPromptHere"); if(cph) cph.onclick=function(){ $("promptBtn").click(); };
+  var gbh=$("genBtnHere"); if(gbh) gbh.onclick=function(){ if(current) genDialog(current); };
+  var rgb=$("regenBtn");   if(rgb) rgb.onclick=function(){ if(current) genDialog(current); };
 
   s.querySelectorAll("[data-all]").forEach(function(b){
     b.onclick=function(){var o=b.getAttribute("data-all")==="1";s.querySelectorAll("details.block").forEach(function(x){x.open=o;});};
@@ -2225,6 +2236,228 @@ $("promptBtn").onclick=function(){
     });
   wire();
 };
+
+/* ==================== generation ====================
+   The API key lives in this closure and nowhere else — never localStorage,
+   never the repo, never the page source. A reload forgets it.
+
+   Generation is refused anywhere but localhost. That is the whole answer to
+   "can a visitor spend my credit": the deployed copy has no key in it and
+   will not ask for one, so there is nothing on the public page to spend.
+   The gate is belt-and-braces on top of that — a visitor who edits the check
+   out in devtools still has only their own key to spend. */
+var genKey="", genProvider="anthropic", genModel="claude-opus-5",
+    genUse={inTok:0,outTok:0,usd:0,calls:0}, genAbort=null, orModels=null;
+
+function isLocal(){
+  var h=location.hostname;
+  return h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]"||h==="";
+}
+/* USD per million tokens. Anthropic's list is small and stable enough to carry;
+   OpenRouter's is fetched live so nothing here goes stale or gets invented. */
+var ANTHROPIC_MODELS=[
+  {id:"claude-opus-5",    label:"Opus 5 — best skeletons",  inM:5,  outM:25},
+  {id:"claude-sonnet-5",  label:"Sonnet 5 — good, cheaper", inM:3,  outM:15},
+  {id:"claude-haiku-4-5", label:"Haiku 4.5 — cheapest",     inM:1,  outM:5}
+];
+function priceFor(model){
+  if(genProvider==="anthropic"){
+    var m=ANTHROPIC_MODELS.filter(function(x){return x.id===model;})[0];
+    return m?{inM:m.inM,outM:m.outM}:{inM:0,outM:0};
+  }
+  var o=(orModels||[]).filter(function(x){return x.id===model;})[0];
+  if(!o||!o.pricing) return {inM:0,outM:0};
+  return {inM:parseFloat(o.pricing.prompt||0)*1e6, outM:parseFloat(o.pricing.completion||0)*1e6};
+}
+function usdFor(model,i,o){var p=priceFor(model);return (i/1e6)*p.inM+(o/1e6)*p.outM;}
+function money(n){ return n<0.01 ? ("$"+n.toFixed(4)) : ("$"+n.toFixed(2)); }
+
+async function fetchOpenRouterModels(){
+  if(orModels) return orModels;
+  var r=await fetch("https://openrouter.ai/api/v1/models");
+  if(!r.ok) throw new Error("model list unavailable ("+r.status+")");
+  var j=await r.json();
+  orModels=(j.data||[]).slice().sort(function(a,b){
+    var af=parseFloat((a.pricing||{}).prompt||0)===0, bf=parseFloat((b.pricing||{}).prompt||0)===0;
+    if(af!==bf) return af?-1:1;                       // free models first
+    return String(a.id).localeCompare(String(b.id));
+  });
+  return orModels;
+}
+
+/* Streams a completion. onDelta gets text as it arrives so a 40-second
+   generation shows progress instead of looking hung. Streaming also avoids the
+   API refusing a large non-streamed max_tokens. */
+async function callModel(prompt,onDelta){
+  var url,headers,body;
+  if(genProvider==="anthropic"){
+    url="https://api.anthropic.com/v1/messages";
+    headers={"content-type":"application/json","x-api-key":genKey,
+             "anthropic-version":"2023-06-01",
+             "anthropic-dangerous-direct-browser-access":"true"};
+    body={model:genModel,max_tokens:8000,stream:true,
+          messages:[{role:"user",content:prompt}]};
+  } else {
+    url="https://openrouter.ai/api/v1/chat/completions";
+    headers={"content-type":"application/json","authorization":"Bearer "+genKey};
+    body={model:genModel,max_tokens:8000,stream:true,
+          stream_options:{include_usage:true},
+          messages:[{role:"user",content:prompt}]};
+  }
+  genAbort=new AbortController();
+  var res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:genAbort.signal});
+  if(!res.ok){
+    var detail=await res.text();
+    try{ var j=JSON.parse(detail); detail=(j.error&&(j.error.message||j.error.type))||detail; }catch(e){}
+    throw new Error("HTTP "+res.status+" — "+String(detail).slice(0,300));
+  }
+  var reader=res.body.getReader(), dec=new TextDecoder(), buf="", text="", inTok=0, outTok=0;
+  for(;;){
+    var chunk=await reader.read();
+    if(chunk.done) break;
+    buf+=dec.decode(chunk.value,{stream:true});
+    var lines=buf.split("\n"); buf=lines.pop();
+    for(var i=0;i<lines.length;i++){
+      var ln=lines[i].trim();
+      if(ln.indexOf("data:")!==0) continue;
+      var payload=ln.slice(5).trim();
+      if(payload==="[DONE]") continue;
+      var ev; try{ ev=JSON.parse(payload); }catch(e){ continue; }
+      if(genProvider==="anthropic"){
+        if(ev.type==="content_block_delta"&&ev.delta&&typeof ev.delta.text==="string"){
+          text+=ev.delta.text; onDelta&&onDelta(text);
+        }
+        if(ev.type==="message_start"&&ev.message&&ev.message.usage) inTok=ev.message.usage.input_tokens||0;
+        if(ev.type==="message_delta"&&ev.usage) outTok=ev.usage.output_tokens||outTok;
+        if(ev.type==="error") throw new Error((ev.error&&ev.error.message)||"stream error");
+      } else {
+        var d=ev.choices&&ev.choices[0]&&ev.choices[0].delta;
+        if(d&&typeof d.content==="string"&&d.content){ text+=d.content; onDelta&&onDelta(text); }
+        if(ev.usage){ inTok=ev.usage.prompt_tokens||inTok; outTok=ev.usage.completion_tokens||outTok; }
+      }
+    }
+  }
+  genAbort=null;
+  return {text:text,inTok:inTok,outTok:outTok};
+}
+
+function promptKeyFor(q){
+  return q.paper==="GS4" ? (isCase(q)?"GS4-case":"GS4-theory") : q.paper;
+}
+/* The model is given the same prompt as the Copy prompt button, with the
+   question appended — so a generated skeleton and a hand-pasted one are
+   produced by identical instructions and are comparable. */
+function generationPrompt(q){
+  return buildPrompt(promptKeyFor(q))+q.question+
+    "\n\nReturn only the JSON object. No prose, no markdown fences.";
+}
+
+function genDialog(q){
+  if(!isLocal()){
+    openDlg("Generation runs on localhost only",
+      "This is the deployed copy. Clone the repo, run python -m http.server, and open it there.",
+      '<p class="ph">No API key is stored in this page, so nothing here can be charged to anyone. '+
+      'Use Copy prompt instead and paste into any AI.</p>',null,null);
+    return;
+  }
+  if(!prompts){toast("data/prompts.json did not load.");return;}
+  var streamed="";
+  function modelPicker(){
+    if(genProvider==="anthropic"){
+      return '<select id="genModel">'+ANTHROPIC_MODELS.map(function(m){
+        return '<option value="'+esc(m.id)+'"'+(m.id===genModel?' selected':'')+'>'+esc(m.label)+
+               ' — $'+m.inM+'/$'+m.outM+' per Mtok</option>';}).join('')+'</select>';
+    }
+    if(!orModels) return '<span class="ph">loading model list…</span>';
+    return '<input id="genModelTxt" list="orList" value="'+esc(genModel)+'" placeholder="e.g. a :free model">'+
+      '<datalist id="orList">'+orModels.slice(0,300).map(function(m){
+        var free=parseFloat((m.pricing||{}).prompt||0)===0;
+        return '<option value="'+esc(m.id)+'">'+(free?'free — ':'')+esc(m.name||"")+'</option>';}).join('')+'</datalist>';
+  }
+  function slot(){
+    return '<div class="genrow"><label>Provider</label>'+
+        '<select id="genProv">'+
+          '<option value="anthropic"'+(genProvider==="anthropic"?' selected':'')+'>Anthropic (direct)</option>'+
+          '<option value="openrouter"'+(genProvider==="openrouter"?' selected':'')+'>OpenRouter (many models, some free)</option>'+
+        '</select></div>'+
+      '<div class="genrow"><label>Model</label><span id="genModelWrap">'+modelPicker()+'</span></div>'+
+      '<div class="genrow"><label>API key</label>'+
+        '<input id="genKey" type="password" autocomplete="off" spellcheck="false" value="'+esc(genKey)+'" '+
+        'placeholder="'+(genProvider==="anthropic"?"sk-ant-…":"sk-or-…")+'"></div>'+
+      '<p class="ph">Kept in memory for this tab only — never written to disk, never committed. '+
+        'A reload forgets it.</p>'+
+      '<div id="genOut" class="genout"></div>'+
+      '<div id="genMeter" class="ph">'+meterText()+'</div>';
+  }
+  function meterText(){
+    return genUse.calls? ("this session: "+genUse.calls+" call"+(genUse.calls===1?"":"s")+", "+
+      genUse.inTok.toLocaleString()+" in / "+genUse.outTok.toLocaleString()+" out, "+money(genUse.usd))
+      : "nothing generated yet this session";
+  }
+  function wire(){
+    var pv=$("genProv");
+    pv.onchange=async function(){
+      genProvider=pv.value;
+      genModel=(genProvider==="anthropic")?"claude-opus-5":(genModel.indexOf("/")>0?genModel:"");
+      $("genModelWrap").innerHTML=modelPicker(); wireModel();
+      if(genProvider==="openrouter"&&!orModels){
+        try{ await fetchOpenRouterModels(); $("genModelWrap").innerHTML=modelPicker(); wireModel(); }
+        catch(e){ $("genModelWrap").innerHTML='<input id="genModelTxt" value="'+esc(genModel)+'" placeholder="model id">'; wireModel(); }
+      }
+    };
+    wireModel();
+  }
+  function wireModel(){
+    var s=$("genModel"); if(s) s.onchange=function(){genModel=s.value;};
+    var t=$("genModelTxt"); if(t) t.oninput=function(){genModel=t.value.trim();};
+  }
+  openDlg("Generate a skeleton",
+    "Runs on your machine with your key. The same prompt as Copy prompt, sent for you.",
+    slot(),"Generate",async function(){
+      var kEl=$("genKey"); genKey=(kEl&&kEl.value||"").trim();
+      if(!genKey){ $("dlgMsg").className="msg err"; $("dlgMsg").textContent="Enter an API key first."; return; }
+      if(!genModel){ $("dlgMsg").className="msg err"; $("dlgMsg").textContent="Pick a model."; return; }
+      var btn=$("dlgAct"); btn.disabled=true; btn.textContent="Generating…";
+      $("dlgMsg").className="msg"; $("dlgMsg").textContent="";
+      try{
+        var out=await callModel(generationPrompt(q),function(t){
+          streamed=t; $("genOut").textContent=t.slice(-1200);
+          $("genOut").scrollTop=$("genOut").scrollHeight;
+        });
+        var res=prepare(out.text);
+        if(res.err){
+          $("dlgMsg").className="msg err";
+          $("dlgMsg").textContent=res.err+" — the raw reply is above; you can copy it into Add and fix it by hand.";
+          return;
+        }
+        // force it onto THIS question so a model that invents an id cannot create a stray entry
+        res.items.forEach(function(it){
+          it.id=q.id; it.paper=q.paper; it.question=q.question;
+          it.tags=q.tags; it.type=q.type; it.model=genModel;
+          if(q.year!=null) it.year=q.year;
+          if(q.summary) it.summary=q.summary;
+        });
+        commitItems(res.items);
+        genUse.calls++; genUse.inTok+=out.inTok; genUse.outTok+=out.outTok;
+        genUse.usd+=usdFor(genModel,out.inTok,out.outTok);
+        await save(); renderNav(); renderSheet();
+        $("genMeter").textContent=meterText();
+        $("dlgMsg").className="msg ok";
+        $("dlgMsg").textContent="Added as answer "+current.answers.length+" — "+
+          out.inTok+" in / "+out.outTok+" out, "+money(usdFor(genModel,out.inTok,out.outTok))+
+          ". Generate again with another model to compare.";
+      }catch(e){
+        $("dlgMsg").className="msg err";
+        $("dlgMsg").textContent=(e&&e.name==="AbortError")?"Cancelled.":("Failed — "+(e&&e.message||e));
+      }finally{
+        btn.disabled=false; btn.textContent="Generate";
+      }
+    });
+  wire();
+  if(genProvider==="openrouter"&&!orModels){
+    fetchOpenRouterModels().then(function(){ $("genModelWrap").innerHTML=modelPicker(); wireModel(); }).catch(function(){});
+  }
+}
 
 /* -------- categories: edit names, identical names merge -------- */
 $("catBtn").onclick=function(){

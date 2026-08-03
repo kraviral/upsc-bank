@@ -10,6 +10,7 @@ Five ways in, plus one that looks like a sixth and will bite you. Pick by what y
 | 3. External AI → drop file | several files at once | yes, on drop | browser draft |
 | 4. **New** button | repairing or extending | live banner only | browser draft |
 | 5. Editing `data/*.json` | one-word typo fixes | nothing | `data/` directly |
+| 6. **Generate** button | answering what's already filed | yes, on arrival | browser draft |
 
 Anything writing to the *browser draft* needs a **Save** afterwards to reach the repo.
 
@@ -69,6 +70,48 @@ Slow, and not what the app is for. Use it to fix or extend an existing skeleton.
 
 Only worth it for a typo. Nothing validates you, and a stray comma silently breaks the whole
 file's load.
+
+## Method 6 — Generate, in the app
+
+Only for questions already in the bank, which after the PYQ import is most of them.
+
+1. Open the question. **Generate** sits beside Paste a skeleton.
+2. Pick a provider — **Anthropic** direct, or **OpenRouter** for many models including free ones.
+3. Pick a model. Anthropic's three are listed with their per-million-token prices; OpenRouter's list
+   is fetched live from their API, free models first, so the prices are theirs and never stale.
+4. Paste your API key and press **Generate**. The reply streams in so you can see it working.
+5. It arrives as a **new answer entry** on that question, tagged with the model that wrote it.
+   **+ another model** in the answer bar generates a second one alongside for comparison.
+6. **Save** → **Commit**.
+
+The prompt sent is character-for-character the one behind **Copy prompt**, so a generated skeleton and
+a hand-pasted one are produced by identical instructions and are worth comparing.
+
+### It only runs on localhost
+
+The **Generate** button is not rendered anywhere but `localhost`. On your GitHub Pages copy it simply
+is not there, and the whole question of a visitor spending your credit does not arise: the deployed
+page holds no key and never asks for one. Someone who edits the check out in devtools still has only
+their own key to spend.
+
+### The key is not stored
+
+It lives in memory for that tab and is gone on reload — never localStorage, never a file, never the
+repo. That is deliberately unlike the **GitHub token**, which *is* stored so Save can work without
+retyping it. If you are on a shared machine, that asymmetry is the thing to know.
+
+### Cost is shown, per call and per session
+
+Every generation reports its input and output tokens and what they cost, and the dialog keeps a
+running total for the tab. Anthropic prices come from a table in `index.html`; OpenRouter's come from
+its own API response. A free OpenRouter model reports `$0.0000`.
+
+### When it fails
+
+A model that returns prose, fences or broken JSON is rejected by the same validator that gates Add,
+and the raw reply stays on screen so you can copy it into **Add** and fix it by hand. The question's
+`id`, `paper`, `tags` and text are forced back onto whatever comes back, so a model that invents an
+id cannot create a stray entry or overwrite a different question.
 
 ## Not a method: Import
 
