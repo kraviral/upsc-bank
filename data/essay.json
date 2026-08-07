@@ -2,6 +2,681 @@
   {
     "answers": [
       {
+        "caption": "",
+        "conclusions": [
+          {
+            "text": "Just as a gardener tends to soil before planting, we must cultivate our thoughts before sowing happiness.",
+            "type": "return to opening image"
+          },
+          {
+            "text": "Harnessing science, culture, and policy, we can design a future where every mind is equipped to nurture its own joy.",
+            "type": "forward‑looking vision"
+          },
+          {
+            "text": "Let educators, policymakers, and technologists collaborate to embed thought‑quality training into everyday life, ensuring happiness is not a privilege but a shared human right.",
+            "type": "call to specific change"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Cognitive Behavioral Theory",
+            "Positive Psychology",
+            "Stoicism"
+          ],
+          "demands": [
+            "Explain the relationship between thoughts and happiness",
+            "Provide philosophical and psychological evidence",
+            "Discuss practical ways to improve thought quality",
+            "Address counterarguments and limitations",
+            "Suggest societal implications"
+          ],
+          "directive": "Explain and evaluate the claim that happiness depends on the quality of thoughts.",
+          "hidden": "Define what constitutes 'quality of thoughts' and propose methods to cultivate it",
+          "limit": "125 marks / 1000-1200 words"
+        },
+        "diagram": "",
+        "generatedAt": "2026-08-07T08:29:21.188Z",
+        "id": "amsiooihw",
+        "intros": [
+          {
+            "text": "‘The mind is everything; what you think, you become.’ – Buddha, illustrating the ancient belief that thoughts shape reality.",
+            "type": "quote"
+          },
+          {
+            "text": "We often chase external pleasures, yet the true source of lasting joy lies within the mind’s own terrain.",
+            "type": "sharp paradox"
+          },
+          {
+            "text": "A young entrepreneur, after years of relentless hustle, found peace only when he began journaling his thoughts, turning inner noise into constructive dialogue.",
+            "type": "anecdote"
+          }
+        ],
+        "model": "openai/gpt-oss-20b:free",
+        "pitfalls": [
+          "Assuming a one‑size‑fits‑all model of thought quality; overlooking cultural, biological, and socioeconomic constraints."
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Stoic Lens",
+                "points": [
+                  {
+                    "evidence": "Epictetus’ ‘Enchiridion’ emphasizes control over judgments",
+                    "keyword": "Stoic Epistemology",
+                    "stem": "Stoics argued that external events are neutral; only our judgments turn them into joy or distress"
+                  },
+                  {
+                    "evidence": "Personal diary entries highlight thought discipline as a path to contentment",
+                    "keyword": "Aurelius’ Meditations",
+                    "stem": "Marcus Aurelius practiced daily reflection to align thoughts with virtue"
+                  }
+                ],
+                "why": "Shows how ancient Stoics linked thoughts to emotional well‑being"
+              },
+              {
+                "name": "Buddhist Mindfulness Lens",
+                "points": [
+                  {
+                    "evidence": "RCTs by Kabat‑Zinn et al. show decreased depressive symptoms",
+                    "keyword": "Mindfulness Practice",
+                    "stem": "Mindfulness meditation reduces rumination and increases present‑moment awareness"
+                  },
+                  {
+                    "evidence": "Sutta Pitaka outlines the Four Noble Truths linking thought to suffering",
+                    "keyword": "Buddhist Ethics",
+                    "stem": "Buddhist teachings classify thoughts into wholesome and unwholesome, guiding ethical cognition"
+                  }
+                ],
+                "why": "Demonstrates meditation’s role in cultivating wholesome thought patterns"
+              },
+              {
+                "name": "Modern Ethical Lens",
+                "points": [
+                  {
+                    "evidence": "Kant’s ‘Groundwork of the Metaphysic of Morals’ discusses rational will",
+                    "keyword": "Kantian Autonomy",
+                    "stem": "Kantian ethics stresses autonomous rationality, implying that self‑regulated thoughts foster moral and personal flourishing"
+                  },
+                  {
+                    "evidence": "Aristotle’s ‘Nicomachean Ethics’ links habituation to eudaimonia",
+                    "keyword": "Aristotelian Virtue",
+                    "stem": "Virtue ethics posits that habitual good thoughts cultivate virtuous character, which in turn yields happiness"
+                  }
+                ],
+                "why": "Connects contemporary moral philosophy with self‑knowledge and happiness"
+              }
+            ],
+            "heading": "Philosophical Underpinnings of Thought as the Root of Happiness",
+            "off": [
+              "The Stoic practice of pre‑meditation (premeditatio malorum) anticipates future challenges, turning potential distress into resilience."
+            ],
+            "valueAdd": [
+              "Keywords: Stoicism, Mindfulness, Virtue Ethics",
+              "Theory: Epistemic Control, Present‑Moment Awareness, Habitual Virtue",
+              "Anchor: Epictetus, Marcus Aurelius, Aristotle",
+              "Example: Daily journaling as a Stoic exercise"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Cognitive Behavioral Lens",
+                "points": [
+                  {
+                    "evidence": "Meta‑analysis by Hofmann et al. (2012) reports 60% reduction in depressive symptoms",
+                    "keyword": "Cognitive Restructuring",
+                    "stem": "CBT interventions that reframe negative thoughts lead to measurable mood improvement"
+                  },
+                  {
+                    "evidence": "CBT manuals by Beck illustrate structured self‑monitoring",
+                    "keyword": "Thought Record",
+                    "stem": "Thought‑record sheets help individuals identify automatic negative thoughts"
+                  }
+                ],
+                "why": "Shows how CBT demonstrates causal link between thoughts and mood"
+              },
+              {
+                "name": "Positive Psychology Lens",
+                "points": [
+                  {
+                    "evidence": "Seligman’s 2011 book ‘Flourish’ presents empirical support",
+                    "keyword": "PERMA",
+                    "stem": "Seligman’s PERMA framework shows that positive emotions, engagement, and meaning arise from constructive thought habits"
+                  },
+                  {
+                    "evidence": "Emmons & McCullough (2003) report increased life satisfaction",
+                    "keyword": "Gratitude Practice",
+                    "stem": "Interventions like gratitude journaling shift thought focus toward appreciation, boosting happiness scores"
+                  }
+                ],
+                "why": "Highlights PERMA model linking positive thought patterns to well‑being"
+              },
+              {
+                "name": "Neuroscience Lens",
+                "points": [
+                  {
+                    "evidence": "Lutz et al. (2008) show increased activity in dorsolateral PFC during mindfulness",
+                    "keyword": "Prefrontal Activation",
+                    "stem": "fMRI studies reveal that meditation activates the prefrontal cortex, associated with positive affect"
+                  },
+                  {
+                    "evidence": "Study by Davidson et al. (2003) links meditation to serotonin modulation",
+                    "keyword": "Serotonin Release",
+                    "stem": "Neurochemical changes, such as elevated serotonin, accompany sustained positive thought patterns"
+                  }
+                ],
+                "why": "Provides brain imaging evidence of thought‑happiness circuitry"
+              }
+            ],
+            "heading": "Empirical Validation: Cognitive Science and Positive Psychology",
+            "off": [
+              "The convergence of CBT, PERMA, and neuroimaging underscores a multidisciplinary consensus that thought quality is a tangible determinant of happiness."
+            ],
+            "valueAdd": [
+              "Keywords: CBT, PERMA, fMRI",
+              "Theory: Cognitive Restructuring, Positive Affect, Neuroplasticity",
+              "Anchor: Beck, Seligman, Lutz",
+              "Example: Gratitude journaling as a CBT adjunct"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Mindfulness Practice Lens",
+                "points": [
+                  {
+                    "evidence": "Mindfulness‑Based Stress Reduction (MBSR) program reports decreased rumination",
+                    "keyword": "Focused Attention",
+                    "stem": "Regular mindfulness meditation trains attention, reducing intrusive negative thoughts"
+                  },
+                  {
+                    "evidence": "Kabat‑Zinn’s ‘Wherever You Go, There You Are’ outlines this technique",
+                    "keyword": "Open Monitoring",
+                    "stem": "Open‑monitoring meditation fosters non‑judgmental awareness of thoughts"
+                  }
+                ],
+                "why": "Shows how structured meditation cultivates wholesome cognition"
+              },
+              {
+                "name": "Cognitive Restructuring Lens",
+                "points": [
+                  {
+                    "evidence": "Beck’s cognitive therapy manual lists common distortions",
+                    "keyword": "Cognitive Distortion",
+                    "stem": "Identifying cognitive distortions (e.g., catastrophizing) allows targeted challenge and replacement"
+                  },
+                  {
+                    "evidence": "CBT training modules emphasize guided inquiry",
+                    "keyword": "Socratic Method",
+                    "stem": "Socratic questioning helps individuals test the validity of their beliefs"
+                  }
+                ],
+                "why": "Demonstrates practical CBT tools for altering thought patterns"
+              },
+              {
+                "name": "Habit Formation Lens",
+                "points": [
+                  {
+                    "evidence": "Charles Duhigg’s ‘The Power of Habit’ outlines the loop",
+                    "keyword": "Habit Loop",
+                    "stem": "The habit loop (cue‑routine‑reward) can be applied to thought habits, making positive thinking habitual"
+                  },
+                  {
+                    "evidence": "Research by Cloninger et al. (2014) shows affirmation training alters brain activity",
+                    "keyword": "Positive Affirms",
+                    "stem": "Consistent practice of positive affirmations reinforces neural pathways for optimism"
+                  }
+                ],
+                "why": "Explains how repeated thought practices become automatic, sustaining happiness"
+              }
+            ],
+            "heading": "Transforming Thought Quality: Techniques and Practices",
+            "off": [
+              "Integrating mindfulness with CBT creates a synergistic framework where attention training and cognitive challenge reinforce each other."
+            ],
+            "valueAdd": [
+              "Keywords: Mindfulness, CBT, Habit Loop",
+              "Theory: Attention Training, Cognitive Distortion, Neural Plasticity",
+              "Anchor: Kabat‑Zinn, Beck, Duhigg",
+              "Example: Daily 10‑minute meditation plus thought record"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Cultural Relativism Lens",
+                "points": [
+                  {
+                    "evidence": "Hofstede’s cultural dimensions report lower individualism in East Asia",
+                    "keyword": "Collectivism",
+                    "stem": "Collectivist cultures prioritize social harmony over individual thought control, moderating the impact of personal cognition"
+                  },
+                  {
+                    "evidence": "Buddhist teachings on ‘dukkha’ as a catalyst for insight",
+                    "keyword": "Suffering as Virtue",
+                    "stem": "In some traditions, suffering is valued as a path to enlightenment, challenging the notion that all positive thoughts yield happiness"
+                  }
+                ],
+                "why": "Shows that happiness definitions vary across societies, affecting thought‑happiness link"
+              },
+              {
+                "name": "Biological Determinism Lens",
+                "points": [
+                  {
+                    "evidence": "Lykken & Tellegen (1996) report heritability of life satisfaction",
+                    "keyword": "Heritability",
+                    "stem": "Twin studies estimate 50% heritability of baseline happiness, suggesting genetic constraints"
+                  },
+                  {
+                    "evidence": "SSRIs target serotonin to alleviate depression, indicating biological limits",
+                    "keyword": "Serotonin Deficit",
+                    "stem": "Neurochemical imbalances (e.g., serotonin deficiency) can blunt the effect of positive thoughts"
+                  }
+                ],
+                "why": "Highlights genetic and neurobiological limits to thought‑based happiness"
+              },
+              {
+                "name": "Socioeconomic Lens",
+                "points": [
+                  {
+                    "evidence": "Marmot Review (2010) links low income to reduced mental capacity",
+                    "keyword": "Socioeconomic Stress",
+                    "stem": "Poverty and chronic stress impair cognitive resources, limiting the efficacy of thought‑based practices"
+                  },
+                  {
+                    "evidence": "UNDP Human Development Index shows correlation between education and well‑being",
+                    "keyword": "Access Inequality",
+                    "stem": "Access to education and healthcare determines the ability to learn and apply thought‑quality techniques"
+                  }
+                ],
+                "why": "Shows material conditions can override cognitive interventions"
+              }
+            ],
+            "heading": "Critiques and Caveats: When Thoughts Fail to Guarantee Happiness",
+            "off": [
+              "The interplay of culture, biology, and economics reminds us that thought quality is necessary but not sufficient for universal happiness."
+            ],
+            "valueAdd": [
+              "Keywords: Cultural Relativism, Heritability, Socioeconomic Stress",
+              "Theory: Cultural Dimensions, Biological Determinism, Social Determinants",
+              "Anchor: Hofstede, Lykken, Marmot",
+              "Example: Poverty alleviation programs enhancing cognitive capacity"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Educational Reform Lens",
+                "points": [
+                  {
+                    "evidence": "Durlak et al. (2011) meta‑analysis reports improved academic outcomes",
+                    "keyword": "SEL",
+                    "stem": "Integrating social‑emotional learning (SEL) into schools improves students’ emotional regulation"
+                  },
+                  {
+                    "evidence": "MBSR programs in elementary schools show lower stress scores",
+                    "keyword": "Mindfulness Curriculum",
+                    "stem": "Mindfulness‑based curricula reduce anxiety and enhance academic performance"
+                  }
+                ],
+                "why": "Shows curriculum changes can embed thought‑quality training"
+              },
+              {
+                "name": "Policy Incentive Lens",
+                "points": [
+                  {
+                    "evidence": "Finland’s UBI experiment reported increased life satisfaction",
+                    "keyword": "UBI",
+                    "stem": "Universal basic income trials reduce financial anxiety, creating space for positive cognition"
+                  },
+                  {
+                    "evidence": "WHO reports 30% reduction in untreated depression with subsidized care",
+                    "keyword": "Mental Health Subsidy",
+                    "stem": "Mental health subsidies lower barriers to therapy, enabling thought‑quality interventions"
+                  }
+                ],
+                "why": "Highlights welfare policies that support mental well‑being"
+              },
+              {
+                "name": "Technological Lens",
+                "points": [
+                  {
+                    "evidence": "Headspace reports 70 million users and 4‑week retention",
+                    "keyword": "Digital Meditation",
+                    "stem": "Apps like Headspace provide guided meditation, reaching millions with low cost"
+                  },
+                  {
+                    "evidence": "Woebot study shows significant mood improvement after 4 weeks",
+                    "keyword": "AI Therapy",
+                    "stem": "AI‑driven chatbots offer cognitive restructuring prompts in real time"
+                  }
+                ],
+                "why": "Shows digital tools can scale thought‑quality practices"
+              }
+            ],
+            "heading": "From Individual to Society: Implications for Education and Policy",
+            "off": [
+              "Policy and technology together can democratize access to thought‑quality practices, turning individual gains into societal progress."
+            ],
+            "valueAdd": [
+              "Keywords: SEL, UBI, Digital Meditation",
+              "Theory: Social Policy, Digital Health",
+              "Anchor: Durlak, WHO, Headspace",
+              "Example: Finland UBI pilot"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [],
+          "keywords": [],
+          "quotes": [],
+          "thinkers": []
+        }
+      },
+      {
+        "caption": "",
+        "conclusions": [
+          {
+            "text": "Revisit the potter's clay – societies that prioritize cognitive health build vessels resilient to life's turbulence.",
+            "type": "return to opening"
+          },
+          {
+            "text": "Charting cognitive liberation – curricula cultivating metacognition, media ecosystems rewarding nuance, urban design enabling collective reflection.",
+            "type": "forward-looking vision"
+          },
+          {
+            "text": "Personal agency and collective scaffolding as twined roots nourishing the tree of resilient contentment.",
+            "type": "reconciliation of tension"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Cognitive-behavioral feedback loops",
+            "Mindfulness and metacognition",
+            "Environmental influences on cognition",
+            "Subjective well-being frameworks"
+          ],
+          "demands": [
+            "Explain how thoughts influence happiness",
+            "Identify factors affecting 'quality' of thoughts",
+            "Discuss pathways to cultivating constructive thinking",
+            "Connect individual experience to wider societal implications"
+          ],
+          "directive": "Analyze the relationship between cognitive patterns and well-being",
+          "hidden": "Societal structures' role in enabling or hindering positive cognition",
+          "limit": "125 marks / 1000-1200 words"
+        },
+        "diagram": "",
+        "generatedAt": "2026-08-07T09:23:19.406Z",
+        "id": "amsiqlx4e",
+        "intros": [
+          {
+            "text": "Marcus Aurelius confronting the duality of imperial power and inner peace, embodying his Stoic belief in thought mastery amid external chaos.",
+            "type": "historical moment"
+          },
+          {
+            "text": "A potter's wheel – thoughts as raw clay, constantly shaped and reshaped, determining the vessel that holds life's experiences.",
+            "type": "concrete image"
+          },
+          {
+            "text": "In an age of unprecedented material comfort, global misery indices rise; suggesting happiness lies not in circumstance but in interpretive frameworks.",
+            "type": "sharp paradox"
+          }
+        ],
+        "model": "deepseek/deepseek-r1-0528",
+        "pitfalls": [
+          "Over-emphasizing individualism by ignoring structural inequality's constraints on cognitive bandwidth"
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Cognitive Psychology",
+                "points": [
+                  {
+                    "evidence": "Martin Seligman's 'positive psychology' research on explanatory styles",
+                    "keyword": "amygdala hijack",
+                    "stem": "Catastrophizing thoughts activate the amygdala's fight-flight response"
+                  },
+                  {
+                    "evidence": "Richard Davidson's fMRI studies on meditation's brain impact",
+                    "keyword": "neuroplasticity",
+                    "stem": "Neuroplasticity allows deliberate thought reframing to weaken negative neural pathways"
+                  }
+                ],
+                "why": "Demonstrates the physiological feedback loop where thoughts trigger emotional and hormonal responses"
+              },
+              {
+                "name": "Philosophical Traditions",
+                "points": [
+                  {
+                    "evidence": "The Satipatthana Sutta's instruction for watching thoughts",
+                    "keyword": "vipassanā",
+                    "stem": "Buddhist mindfulness practices (vipassana) build detachment from destructive mental patterns"
+                  },
+                  {
+                    "evidence": "Epictetus' Enchiridion: 'Happiness depends on what we can control'",
+                    "keyword": "dichotomy of control",
+                    "stem": "Stoic dichotomy of control focuses thoughts only on actionable responses"
+                  }
+                ],
+                "why": "Grounded in time-tested frameworks from diverse cultures showing thought mastery as liberation"
+              },
+              {
+                "name": "Lived Experience Narratives",
+                "points": [
+                  {
+                    "evidence": "Experiences detailed in 'Man's Search for Meaning'",
+                    "keyword": "tragic optimism",
+                    "stem": "Viktor Frankl's choice of meaning-focused thoughts in concentration camps"
+                  },
+                  {
+                    "evidence": "Krishna's counsel: 'Yoga is skill in action through balanced mind'",
+                    "keyword": "samatvam",
+                    "stem": "Bhagavad Gita's equanimity (samatvam) as freedom from thought turbulence"
+                  }
+                ],
+                "why": "Humanizes abstract concepts by anchoring them in cultural wisdom and personal triumphs"
+              }
+            ],
+            "heading": "Thought as Architecture of Experience",
+            "off": [
+              "Modern brain-imaging as empirical validation of ancient practices"
+            ],
+            "valueAdd": [
+              "Keywords: metacognition, allostatic load, confirmation bias",
+              "Theory: Broaden-and-Build (Fredrickson)",
+              "Anchor: World Happiness Report 2023 patterns",
+              "Example: Bhutan's Gross National Happiness policy implementation"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Information Ecology",
+                "points": [
+                  {
+                    "evidence": "Pew Research data on anxiety spikes from news overload",
+                    "keyword": "doomscrolling",
+                    "stem": "Doomscrolling reinforces neural bias toward threat detection"
+                  },
+                  {
+                    "evidence": "Jean Twenge's cross-generational studies on social media and depression",
+                    "keyword": "relative deprivation",
+                    "stem": "Advertising's cultivation of perpetual dissatisfaction through comparative thinking"
+                  }
+                ],
+                "why": "Shows how media architecture selects for attention-grabbing, negative content"
+              },
+              {
+                "name": "Socioeconomic Structures",
+                "points": [
+                  {
+                    "evidence": "Sendhil Mullainathan's research on cognitive load under financial stress",
+                    "keyword": "scarcity mindset",
+                    "stem": "Poverty's cognitive tax reduces mental space for long-term planning"
+                  },
+                  {
+                    "evidence": "Wilkinson & Pickett's 'The Spirit Level' correlational data",
+                    "keyword": "social comparison theory",
+                    "stem": "Inequality feeds envy and status anxiety through upward social comparison"
+                  }
+                ],
+                "why": "Reveals material precarity's impact on cognitive bandwidth for future-oriented thought"
+              },
+              {
+                "name": "Urban Design & Community",
+                "points": [
+                  {
+                    "evidence": "UN-Habitat studies on urban mental health",
+                    "keyword": "attention restoration theory",
+                    "stem": "Green spaces reduce cortisol levels and promote mind-wandering creativity"
+                  },
+                  {
+                    "evidence": "Robert Putnam's 'Bowling Alone' documenting declining social capital",
+                    "keyword": "social buffering",
+                    "stem": "Social isolation diminishes reality-testing capacity for intrusive thoughts"
+                  }
+                ],
+                "why": "Highlights spatial determinants of rumination versus restorative cognition"
+              }
+            ],
+            "heading": "Societal Currents Shaping Thought",
+            "off": [
+              "Postmodern fragmentation of shared narratives undermining meaning-making"
+            ],
+            "valueAdd": [
+              "Keywords: attentional commons, hedonic treadmill, alienation",
+              "Theory: Maslow's hierarchy of needs safety layer",
+              "Anchor: Ancient Indian gram sabhas as community mental resilience",
+              "Example: Finland's education system fostering autonomy-supportive environments"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Cognitive Training Tools",
+                "points": [
+                  {
+                    "evidence": "Meta-analysis in JAMA Psychiatry showing MBSR's depression relapse reduction",
+                    "keyword": "decentering",
+                    "stem": "Mindfulness-Based Stress Reduction (MBSR) reduces rumination cycles through non-judgmental awareness"
+                  },
+                  {
+                    "evidence": "Emmons & McCullough studies on gratitude and life satisfaction",
+                    "keyword": "negativity bias",
+                    "stem": "Gratitude journaling counters negativity bias by amplifying positive cognition"
+                  }
+                ],
+                "why": "Offers actionable techniques for thought pattern interruption and redirection"
+              },
+              {
+                "name": "Education Reform",
+                "points": [
+                  {
+                    "evidence": "CASEL's longitudinal data on SEL reducing anxiety disorders",
+                    "keyword": "emotional granularity",
+                    "stem": "Social-Emotional Learning (SEL) curricula build meta-awareness in schoolchildren"
+                  },
+                  {
+                    "evidence": "UNESCO's Media Information Literacy initiatives",
+                    "keyword": "media literacy",
+                    "stem": "Critical media literacy empowers resistance to cognitive colonization"
+                  }
+                ],
+                "why": "Addresses developmental windows for building cognitive resilience foundations"
+              },
+              {
+                "name": "Policy Levers for Cognitive Well-being",
+                "points": [
+                  {
+                    "evidence": "OECD Better Life Index correlation of leisure with satisfaction",
+                    "keyword": "time affluence",
+                    "stem": "Worktime regulations protecting leisure for reflection and relationship-building"
+                  },
+                  {
+                    "evidence": "Eric Klinenberg's resilience analysis during Chicago heatwave",
+                    "keyword": "social infrastructure",
+                    "stem": "Urban planning mandating third spaces for spontaneous community interaction"
+                  }
+                ],
+                "why": "Scales individual practices through governance shifts prioritizing mental ecology"
+              }
+            ],
+            "heading": "Cultivation Practices & Institutional Enablers",
+            "off": [
+              "Ayurvedic dinacharya (daily rhythm) aligning activity with circadian cognition"
+            ],
+            "valueAdd": [
+              "Keywords: cognitive reframing, flow state, antifragility",
+              "Theory: Self-determination theory competence-autonomy-relatedness",
+              "Anchor: Aristotle's eudaimonia vs hedonism distinction",
+              "Example: Kerala's Asramam schools integrating local culture into pedagogy"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Karma yoga in stress management",
+            "Japanese forest bathing (shinrin-yoku)",
+            "Ambedkar's transformation through critical reading",
+            "Swachh Bharat enabling dignity"
+          ],
+          "keywords": [
+            "Cognitive distortions",
+            "Affective forecasting errors",
+            "Amartya Sen's capability approach",
+            "Learned helplessness",
+            "Cultural consonance"
+          ],
+          "quotes": [
+            "'Watch your thoughts; they become words. Watch your words; they become actions' – Lao Tzu",
+            "'The mind is its own place, and in itself can make a heaven of hell, a hell of heaven' – Milton",
+            "'We are formed by our thoughts; we become what we think' – Gautam Buddha"
+          ],
+          "thinkers": [
+            "Marcus Aurelius (Stoicism)",
+            "Jon Kabat-Zinn (MBSR)",
+            "Martha Nussbaum (Capabilities)",
+            "Indian Saint Thyagaraja on devotion and mental peace"
+          ]
+        }
+      }
+    ],
+    "id": "q-1786090620090",
+    "mine": {
+      "conclusion": "",
+      "intro": "",
+      "sections": []
+    },
+    "notes": "",
+    "paper": "Essay",
+    "question": "The Happiness of Your Life Depends Upon the Quality of Your Thoughts.",
+    "source": "Test series",
+    "tags": [],
+    "type": "Theory/Concept",
+    "year": null
+  },
+  {
+    "answers": [],
+    "id": "q-1786103303890",
+    "mine": {
+      "conclusion": "",
+      "intro": "",
+      "sections": []
+    },
+    "notes": "",
+    "paper": "Essay",
+    "question": "A society that has more justice is a society that needs less charity.",
+    "source": "Test series",
+    "tags": [],
+    "type": "Theory/Concept",
+    "year": null
+  },
+  {
+    "answers": [
+      {
         "caption": "No diagram. This is prose, and a chart here would draw attention to itself rather than clarify the argument.",
         "conclusions": [
           {
