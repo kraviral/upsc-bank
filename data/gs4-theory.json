@@ -455,7 +455,7 @@
   },
   {
     "answers": [],
-    "id": "q-1786628782515",
+    "id": "q-1786628899215",
     "mine": {
       "conclusion": "",
       "intro": "",
@@ -465,7 +465,12 @@
     "paper": "GS4",
     "question": "“When medicine can prolong life but cannot relieve suffering, ethics\nmust guide law.” Evaluate this statement in the context of euthanasia\nand assisted dying, highlighting the risks of misuse and the need for\nethical regulation. ",
     "source": "Test series",
-    "tags": [],
+    "tags": [
+      [
+        "",
+        ""
+      ]
+    ],
     "type": "Theory/Concept",
     "year": null
   }
