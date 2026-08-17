@@ -473,5 +473,102 @@
     ],
     "type": "Theory/Concept",
     "year": null
+  },
+  {
+    "answers": [
+      {
+        "caption": "Temporary test flow",
+        "conclusions": [
+          {
+            "text": "Confirm the saved record.",
+            "type": "Action"
+          },
+          {
+            "text": "Protect learner work.",
+            "type": "Value"
+          },
+          {
+            "text": "Remove the temporary test later.",
+            "type": "Forward"
+          }
+        ],
+        "decode": {
+          "concepts": [],
+          "demands": [
+            "Verify the add and commit flow"
+          ],
+          "directive": "Examine",
+          "hidden": "",
+          "limit": ""
+        },
+        "diagram": "save-v-commit",
+        "generatedAt": "2026-08-17T11:15:35.927Z",
+        "id": "amsx50tpz",
+        "intros": [
+          {
+            "text": "A temporary test record.",
+            "type": "Definition"
+          },
+          {
+            "text": "Used only to verify persistence.",
+            "type": "Context"
+          },
+          {
+            "text": "Reliable saves protect study work.",
+            "type": "Value"
+          }
+        ],
+        "model": "pasted",
+        "pitfalls": [],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Flow",
+                "points": [],
+                "why": ""
+              },
+              {
+                "name": "Storage",
+                "points": [],
+                "why": ""
+              },
+              {
+                "name": "Commit",
+                "points": [],
+                "why": ""
+              }
+            ],
+            "heading": "Verification",
+            "off": [],
+            "valueAdd": []
+          }
+        ],
+        "vaBank": {
+          "examples": [],
+          "keywords": [],
+          "quotes": [],
+          "thinkers": []
+        }
+      }
+    ],
+    "id": "save-flow-test-20260817",
+    "mine": {
+      "conclusion": "",
+      "intro": "",
+      "sections": []
+    },
+    "notes": "",
+    "paper": "GS4",
+    "question": "Temporary save-flow verification question. What should the viewer do after this test?",
+    "source": "Test series",
+    "tags": [
+      [
+        "Attitude",
+        "Attitude in public service"
+      ]
+    ],
+    "type": "Theory/Concept",
+    "year": 2026
   }
 ]
