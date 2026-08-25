@@ -158,6 +158,7 @@ dialog::backdrop{background:var(--scrim)}
 .toast.on{opacity:1}
 
 @media (max-width:860px){
+  button,select,input:not([type="hidden"]),summary{min-height:44px}
   main{grid-template-columns:1fr}
   .nav{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--rule)}
   .sheet{padding:22px 16px 70px 26px}
@@ -165,6 +166,8 @@ dialog::backdrop{background:var(--scrim)}
   .decode dl{grid-template-columns:1fr;gap:2px}
   .decode dt{padding-top:8px}
   .catrow{grid-template-columns:1fr;gap:3px}
+  button.tool,.chip,.qbtn,.tree summary,.themecard,.qlist button{min-height:44px}
+  button.tool,.chip{padding-top:9px;padding-bottom:9px}
 }
 .ef{margin-bottom:14px;max-width:74ch}
 .ef>label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
@@ -316,6 +319,14 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .ghnote{font-size:12.5px;color:var(--ink2);margin:10px 0 0;line-height:1.5}
 .ghnote code{font-family:var(--mono);font-size:11.5px;background:var(--paper);padding:1px 4px;border-radius:2px}
 .ghfiles{font-family:var(--mono);font-size:11px;color:var(--ink2);margin:10px 0 0;line-height:1.7}
+.draftconflicts{max-height:48vh;overflow:auto;border-top:1px solid var(--rule);margin-top:10px}
+.draftconflict{padding:10px 0;border-bottom:1px solid var(--rule)}
+.draftconflict strong{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink);margin-bottom:4px}
+.draftversions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:7px}
+.draftversion{font-size:11.5px;color:var(--ink2);background:var(--paper);padding:6px 8px;border-radius:2px;overflow-wrap:anywhere}
+.draftversion b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px}
+.draftactions{display:flex;gap:6px;justify-content:flex-end}
+@media (max-width:560px){.draftversions{grid-template-columns:1fr}}
 @media print{:root[data-theme="dark"]{--paper:#fff;--sheet:#fff;--ink:#16202E;--ink2:#5C6875;--ink3:#8B95A0;--rule:#D8DDD6;--margin:#A8483C;--marker:#F5D76E;--accent:#1F5E55;--lift:transparent;--lift2:transparent;--onmarker:#16202E}.masthead,.nav,.revealbar,.tagrow,.pencil,.zonebar,.secctl,.dangerzone,.addbtn,.xbtn,.mvbtn{display:none}main{grid-template-columns:1fr}.sheet{background:#fff}.block>summary::after{display:none}.block.editing,.zone.editing{background:none;box-shadow:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -336,8 +347,8 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
   <button class="wordmark" id="homeBtn" title="All questions" style="background:none;border:0;cursor:pointer;padding:0;color:inherit;font-family:inherit;font-size:inherit">UPSC <em>·</em> answer skeletons</button>
   <span class="src" id="src"></span>
   <div class="spacer"></div>
-  <button class="tool" id="newBtn">New</button>
-  <button class="tool" id="addBtn">Add</button>
+  <button class="tool" id="newBtn">New question</button>
+  <button class="tool" id="addBtn">Add JSON</button>
   <button class="tool" id="catBtn">Categories</button>
   <button class="tool" id="promptBtn">Copy prompt</button>
   <button class="tool" id="saveBtn">Save</button>
@@ -346,20 +357,20 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 </header>
 
 <main>
-  <nav class="nav">
+  <nav class="nav" aria-label="Question bank navigation">
     <input class="search" id="search" type="search" placeholder="Search everything…" aria-label="Search">
     <div class="filters" id="filters"></div>
     <div class="papers" id="papers"></div>
     <div class="tree" id="tree"></div>
   </nav>
-  <section class="sheet" id="sheet"></section>
+  <section class="sheet" id="sheet" aria-label="Question details"></section>
 </main>
 
 <div class="drop" id="drop">Drop .json to add</div>
-<div class="toast" id="toast"></div>
-<div class="genstrip" id="genstrip"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<div class="genstrip" id="genstrip" aria-live="polite" aria-label="Generation progress"></div>
 
-<dialog id="dlg"><div class="dlg">
+<dialog id="dlg" aria-labelledby="dlgTitle" aria-describedby="dlgHint"><div class="dlg">
   <h3 id="dlgTitle"></h3>
   <p class="hint" id="dlgHint"></p>
   <div id="dlgSlot"></div>
@@ -999,6 +1010,7 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 }
 </script>
 
+<script src="draft-journal.js"></script>
 <script>
 (function(){
 "use strict";
@@ -1015,9 +1027,8 @@ var TYPES=["Theory/Concept","Quote-based","Case study","Essay"];
 var FILES={"Essay":"essay.json","GS1":"gs1.json","GS2":"gs2.json","GS3":"gs3.json"};
 
 var GHKEY="upsc-github-config"+SCOPE;
-/* Local storage is a DRAFT BUFFER, not a second source of truth. It carries a `dirty` flag:
-   only a dirty draft is allowed to override what came from the repo. A clean one is discarded
-   on load, so a stale browser copy can never silently shadow the committed files. */
+/* Local storage is a change journal, not a second copy of the bank. Only changed questions
+   are stored, together with the repository value they started from. */
 var store={
   read:async function(){
     try{
@@ -1031,21 +1042,48 @@ var store={
       }
       if(!raw) return null;
       var o=JSON.parse(raw);
-      if(o&&o.questions) return {dirty:true,db:o};      // legacy shape: assume unsaved
-      return o;
+      if(o&&o.version===2) return {journal:o};
+      if(o&&o.questions) return {legacy:o};
+      if(o&&o.db&&o.dirty) return {legacy:o.db};
+      return null;
     }catch(e){return null;}
   },
-  write:async function(d,dirty){
-    var s=JSON.stringify({dirty:!!dirty,savedAt:new Date().toISOString(),db:d});
+  write:async function(journal){
+    var s=JSON.stringify(journal);
     try{
       if(window.storage&&window.storage.set){await window.storage.set(KEY,s);return true;}
       localStorage.setItem(KEY,s);return true;
     }catch(e){return false;}
+  },
+  clear:async function(){
+    try{
+      if(window.storage&&window.storage.delete) await window.storage.delete(KEY);
+      else if(window.storage&&window.storage.set) await window.storage.set(KEY,"");
+      else localStorage.removeItem(KEY);
+      if(KEY!==LEGACY_KEY) localStorage.removeItem(LEGACY_KEY);
+      return true;
+    }catch(e){return false;}
   }
 };
 var ghCfg={owner:"",repo:"",branch:"main",token:""};
-function ghLoad(){try{var r=localStorage.getItem(GHKEY);if(r)ghCfg=JSON.parse(r);}catch(e){}}
-function ghSave(){try{localStorage.setItem(GHKEY,JSON.stringify(ghCfg));}catch(e){}}
+function ghLoad(){
+  try{
+    var r=localStorage.getItem(GHKEY),saved=r?JSON.parse(r):{};
+    ghCfg.owner=saved.owner||"";ghCfg.repo=saved.repo||"";ghCfg.branch=saved.branch||"main";
+    /* Migrate an older persisted token into this tab's session, then immediately
+       scrub it from durable storage. */
+    ghCfg.token=sessionStorage.getItem(GHKEY+"-token")||saved.token||"";
+    if(ghCfg.token) sessionStorage.setItem(GHKEY+"-token",ghCfg.token);
+    if(saved.token) ghSave();
+  }catch(e){}
+}
+function ghSave(){
+  try{
+    localStorage.setItem(GHKEY,JSON.stringify({owner:ghCfg.owner,repo:ghCfg.repo,branch:ghCfg.branch||"main"}));
+    if(ghCfg.token) sessionStorage.setItem(GHKEY+"-token",ghCfg.token);
+    else sessionStorage.removeItem(GHKEY+"-token");
+  }catch(e){}
+}
 function ghReady(){return !!(ghCfg.owner&&ghCfg.repo&&ghCfg.token);}
 
 var db={taxonomy:{},questions:[]}, current=null, paperFilter="All", query="", addedSinceExport=0;
@@ -1062,17 +1100,46 @@ function toast(m){var t=$("toast");t.textContent=m;t.classList.add("on");setTime
 function isCase(q){return q.type===CASE_TYPE||(q.tags||[]).some(function(t){return t[0]===CS;});}
 
 var dirty=false, baseSha=null, lastSaved=null, srcLabel="";
+var repoBase=null,draftJournal=null,draftConflicts=[];
 function syncBadge(){
   var el=$("src");if(!el) return;
   el.textContent=srcLabel+(dirty?" · unsaved":"");
   el.className="src"+(dirty?" warn":"");
 }
 async function save(){
-  dirty=true;
-  var ok=await store.write(db,true);
+  var next=DraftJournal.make(repoBase||{schemaVersion:db.schemaVersion||1,taxonomy:{},questions:[]},db,{baseSha:baseSha});
+  /* A quarantined conflict is deliberately absent from db, which shows the repository
+     version. Keep its local side in the journal until the reader resolves it. */
+  draftConflicts.forEach(function(conflict){
+    if(conflict.kind==="bank") next.bank=DraftJournal.clone(conflict.change);
+    else {
+      next.changes=next.changes.filter(function(change){return change.id!==conflict.id;});
+      next.changes.push(DraftJournal.clone(conflict.change));
+    }
+  });
+  next.changes.sort(function(a,b){return a.id<b.id?-1:a.id>b.id?1:0;});
+  draftJournal=next;dirty=!DraftJournal.empty(next);
+  var ok=await store.write(next);
   if(!ok) toast("Could not keep a local draft — storage is blocked. Save now so you don't lose this.");
   syncBadge();
   return ok;
+}
+async function fetchWithTimeout(url,opts,timeoutMs){
+  opts=opts||{};timeoutMs=timeoutMs||12000;
+  var controller=new AbortController(),timer=setTimeout(function(){controller.abort();},timeoutMs);
+  var copy={};Object.keys(opts).forEach(function(k){copy[k]=opts[k];});copy.signal=controller.signal;
+  try{return await fetch(url,copy);}finally{clearTimeout(timer);}
+}
+async function fetchStatic(url,opts){
+  var last;
+  for(var attempt=0;attempt<2;attempt++){
+    try{
+      var response=await fetchWithTimeout(url,opts,12000);
+      if(response.ok||response.status<500) return response;
+      last=new Error("HTTP "+response.status);
+    }catch(e){last=e;}
+  }
+  throw last||new Error("Request failed");
 }
 
 /* -------- search -------- */
@@ -1114,6 +1181,27 @@ function matches(q){
   if(aiFilter==="No"&&hasAI(q)) return false;
   if(!query) return true;
   return haystack(q).indexOf(query)>-1;
+}
+
+function writeQuestionUrl(id,replace){
+  try{
+    var u=new URL(location.href);
+    if(id) u.searchParams.set("q",id); else u.searchParams.delete("q");
+    history[replace?"replaceState":"pushState"]({q:id||null},"",u.pathname+u.search+u.hash);
+  }catch(e){}
+}
+function revealSheet(){
+  setTimeout(function(){
+    if(!current) window.scrollTo(0,0);
+    else if(window.matchMedia&&matchMedia("(max-width: 860px)").matches) $("sheet").scrollIntoView({block:"start"});
+    else window.scrollTo(0,0);
+  },0);
+}
+function openQuestion(q,historyMode){
+  current=q||null;homeMode=!current;
+  renderNav();renderSheet();
+  if(historyMode!==false) writeQuestionUrl(current&&current.id,historyMode==="replace");
+  revealSheet();
 }
 
 /* -------- nav -------- */
@@ -1213,7 +1301,7 @@ function qBtn(q){
   b.textContent=label.slice(0,80)+(label.length>80?"…":"");
   if(!isTouched(q)) b.style.opacity=".62";
   if(current&&current.id===q.id) b.setAttribute("aria-current","true");
-  b.onclick=function(){current=q;homeMode=false;renderNav();renderSheet();window.scrollTo(0,0);};
+  b.onclick=function(){openQuestion(q);};
   return b;
 }
 
@@ -1843,8 +1931,7 @@ function wireHome(s){
   s.querySelectorAll("[data-open]").forEach(function(b){
     b.onclick=function(){
       var id=b.getAttribute("data-open");
-      current=db.questions.filter(function(x){return x.id===id;})[0]||null;
-      homeMode=false;renderNav();renderSheet();window.scrollTo(0,0);
+      openQuestion(db.questions.filter(function(x){return x.id===id;})[0]||null);
     };
   });
 }
@@ -2003,9 +2090,42 @@ function renderSheet(){
 /* -------- shared validation (used on import, and live in the sheet while editing) --------
    Deliberately reads q.type and q.tags separately rather than going through isCase(),
    because catching the two disagreeing is the whole point. */
+function validateSkeleton(a,lbl){
+  if(!a||typeof a!=="object"||Array.isArray(a)) return lbl+" must be an object.";
+  var d=a.decode;
+  if(!d||typeof d!=="object"||Array.isArray(d)) return lbl+" needs a decode object.";
+  if(!Array.isArray(d.demands)||!Array.isArray(d.concepts)) return lbl+" decode.demands and decode.concepts must be arrays.";
+  if(!Array.isArray(a.intros)||a.intros.length!==3) return lbl+" needs exactly 3 introductions.";
+  if(!Array.isArray(a.conclusions)||a.conclusions.length!==3) return lbl+" needs exactly 3 conclusions.";
+  var badOpt=a.intros.concat(a.conclusions).find(function(o){return !o||typeof o.type!=="string"||typeof o.text!=="string";});
+  if(badOpt) return lbl+" introduction and conclusion entries need string type and text fields.";
+  if(!Array.isArray(a.sections)||!a.sections.length) return lbl+" needs at least one section.";
+  for(var i=0;i<a.sections.length;i++){
+    var s=a.sections[i];
+    if(!s||typeof s.heading!=="string") return lbl+" section "+(i+1)+" needs a heading.";
+    if(!Array.isArray(s.frameworks)||s.frameworks.length!==3) return lbl+" section '"+(s.heading||i+1)+"' needs exactly 3 framework options.";
+    if(!Array.isArray(s.off)||!Array.isArray(s.valueAdd)) return lbl+" section '"+(s.heading||i+1)+"' needs off and valueAdd arrays.";
+    for(var j=0;j<s.frameworks.length;j++){
+      var fw=s.frameworks[j];
+      if(!fw||typeof fw.name!=="string"||typeof fw.why!=="string"||!Array.isArray(fw.points))
+        return lbl+" framework "+(j+1)+" in '"+(s.heading||i+1)+"' needs name, why and points.";
+      var badPoint=fw.points.find(function(p){return typeof p!=="string"&&(!p||typeof p!=="object"||typeof p.stem!=="string");});
+      if(badPoint) return lbl+" has a point that is neither a string nor an object with a stem.";
+    }
+  }
+  if(!a.vaBank||["quotes","keywords","examples","thinkers"].some(function(k){return !Array.isArray(a.vaBank[k]);}))
+    return lbl+" needs vaBank arrays for quotes, keywords, examples and thinkers.";
+  if(!Array.isArray(a.pitfalls)||typeof a.diagram!=="string"||typeof a.caption!=="string")
+    return lbl+" needs pitfalls, diagram and caption in the documented types.";
+  return null;
+}
 function validateQ(q,lbl){
   if(!q||!q.question) return lbl+" has no \"question\" field.";
+  if(typeof q.id!=="string"||!q.id.trim()) return lbl+" needs a non-empty string id.";
   if(!q.paper||PAPERS.indexOf(q.paper)<0) return lbl+": \"paper\" must be one of "+PAPERS.join(", ")+".";
+  if(TYPES.indexOf(q.type)<0) return lbl+": \"type\" must be one of "+TYPES.join(", ")+".";
+  if(!Array.isArray(q.tags)||q.tags.length!==1||!Array.isArray(q.tags[0])||q.tags[0].length!==2)
+    return lbl+": tags must contain exactly one [Topic, Sub-topic] pair.";
   var hasCS=(q.tags||[]).some(function(t){return t[0]===CS;}),hasOther=(q.tags||[]).some(function(t){return t[0]!==CS;});
   if(hasCS&&q.paper!=="GS4") return lbl+": only GS4 questions can use the Case Studies branch.";
   if(hasCS&&hasOther) return lbl+": a case study is tagged only under Case Studies \u2014 remove the theory tags.";
@@ -2014,10 +2134,15 @@ function validateQ(q,lbl){
   if(q.type===CASE_TYPE&&!hasCS) return lbl+": type is \"Case study\" but it has no Case Studies tag.";
   if(q.type!==CASE_TYPE&&hasCS) return lbl+": tagged under Case Studies but type is \""+(q.type||"")+"\".";
   if(q.type===CASE_TYPE&&!q.summary) return lbl+": case studies need a one-line \"summary\" field for the collapsed view.";
-  var allSecs=(q.sections||[]).concat(
-    (q.answers||[]).reduce(function(acc,a){return acc.concat(a.sections||[]);},[]));
-  var badSec=allSecs.find(function(sc){return sc.frameworks&&sc.frameworks.length!==3;});
-  if(badSec) return lbl+": section \""+badSec.heading+"\" needs exactly 3 framework options.";
+  if(q.answers!==undefined&&!Array.isArray(q.answers)) return lbl+": answers must be an array.";
+  for(var i=0;i<(q.answers||[]).length;i++){
+    var answerErr=validateSkeleton(q.answers[i],lbl+" answer "+(i+1));
+    if(answerErr) return answerErr;
+  }
+  if(q.decode||q.intros||q.sections||q.conclusions){
+    var skeletonErr=validateSkeleton(q,lbl+" skeleton");
+    if(skeletonErr) return skeletonErr;
+  }
   return null;
 }
 
@@ -2185,17 +2310,78 @@ function openDlg(title,hint,slotHtml,actLabel,onAct){
   $("dlgTitle").textContent=title;$("dlgHint").textContent=hint;
   $("dlgSlot").innerHTML=slotHtml;$("dlgMsg").textContent="";$("dlgMsg").className="msg";
   var b=$("dlgAct");
+  $("dlgClose").style.display="";
   if(actLabel){b.style.display="";b.textContent=actLabel;act=onAct;} else {b.style.display="none";act=null;}
-  dlg.showModal();
+  if(!dlg.open) dlg.showModal();
 }
 $("dlgClose").onclick=function(){dlg.close();};
 $("dlgAct").onclick=function(){if(act)act();};
 function ta(v){return '<textarea id="taBox" spellcheck="false">'+esc(v||"")+'</textarea>';}
 
+function draftVersionText(value,kind){
+  if(kind==="bank"){
+    var tax=(value&&value.taxonomy)||{},topics=0,subs=0;
+    Object.keys(tax).forEach(function(p){Object.keys(tax[p]||{}).forEach(function(t){topics++;subs+=(tax[p][t]||[]).length;});});
+    return topics+" subjects, "+subs+" sub-topics";
+  }
+  if(!value) return "Question absent";
+  return (value.paper?value.paper+" · ":"")+String(value.summary||value.question||value.id||"Untitled").slice(0,150);
+}
+function downloadDraftRecovery(){
+  var payload={exportedAt:new Date().toISOString(),source:"UPSC Bank local-draft recovery",conflicts:draftConflicts.map(function(c){
+    return {kind:c.kind,id:c.id,repository:c.remote,local:c.change.local,originalBase:c.change.base};
+  })};
+  var blob=new Blob([JSON.stringify(payload,null,2)+"\n"],{type:"application/json"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="upsc-draft-recovery.json";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(a.href);},3000);
+}
+async function resolveDraftConflict(index,useLocal){
+  var conflict=draftConflicts[index];if(!conflict) return;
+  if(useLocal){
+    if(conflict.kind==="bank"){
+      db.schemaVersion=conflict.change.local.schemaVersion||1;
+      db.taxonomy=DraftJournal.clone(conflict.change.local.taxonomy||{});
+    }else{
+      var at=-1;db.questions.some(function(q,i){if(q.id===conflict.id){at=i;return true;}return false;});
+      if(conflict.change.local==null){if(at>-1) db.questions.splice(at,1);}
+      else if(at>-1) db.questions[at]=normalizeQ(DraftJournal.clone(conflict.change.local));
+      else db.questions.push(normalizeQ(DraftJournal.clone(conflict.change.local)));
+    }
+  }
+  draftConflicts.splice(index,1);
+  srcLabel=srcLabel.replace(/ · \d+ draft conflicts?/,draftConflicts.length?(" · "+draftConflicts.length+" draft conflict"+(draftConflicts.length===1?"":"s")):"");
+  await save();
+  renderNav();renderSheet();
+  if(draftConflicts.length) renderDraftConflictDlg();
+  else {dlg.close();toast(useLocal?"Local draft kept safely.":"Repository version kept.");}
+}
+function renderDraftConflictDlg(){
+  var legacy=draftConflicts.some(function(c){return !!c.change.legacy;});
+  var rows=draftConflicts.map(function(c,i){
+    return '<div class="draftconflict"><strong>'+(c.kind==="bank"?'Taxonomy':esc(c.id))+'</strong>'+
+      '<div class="draftversions"><div class="draftversion"><b>Repository</b>'+esc(draftVersionText(c.remote,c.kind))+'</div>'+
+      '<div class="draftversion"><b>Local draft</b>'+esc(draftVersionText(c.change.local,c.kind))+'</div></div>'+
+      '<div class="draftactions"><button class="tool" data-draft-repo="'+i+'">Keep repository</button>'+
+      '<button class="tool" data-draft-local="'+i+'">Use local draft</button></div></div>';
+  }).join("");
+  var intro=(legacy?"An older full-bank draft was found and safely converted. ":"")+
+    "Both versions are preserved; choose one for each conflict before saving to GitHub.";
+  openDlg("Local draft needs review",draftConflicts.length+" conflict"+(draftConflicts.length===1?"":"s")+" found.",
+    '<p class="ghnote">'+esc(intro)+'</p><div class="draftconflicts">'+rows+'</div>'+
+    '<div class="dlgrow"><button class="tool" id="draftDownload">Download recovery JSON</button></div>',null,null);
+  $("dlgClose").style.display="none";
+  $("draftDownload").onclick=downloadDraftRecovery;
+  $("dlgSlot").querySelectorAll("[data-draft-repo]").forEach(function(b){b.onclick=function(){resolveDraftConflict(+b.getAttribute("data-draft-repo"),false);};});
+  $("dlgSlot").querySelectorAll("[data-draft-local]").forEach(function(b){b.onclick=function(){resolveDraftConflict(+b.getAttribute("data-draft-local"),true);};});
+}
+function openDraftConflictDlg(){
+  if(draftConflicts.length) renderDraftConflictDlg();
+}
+
 $("newBtn").onclick=function(){
   var initialPaper=(current&&current.paper)||(paperFilter!=="All"&&paperFilter)||"GS4";
-  var initialTag=(current&&current.paper===initialPaper&&current.tags&&current.tags[0])||[];
-  var state={paper:initialPaper,topic:initialTag[0]||"",sub:initialTag[1]||"",question:"",summary:""};
+  var state={paper:initialPaper,topic:"",sub:"",question:"",summary:""};
 
   function options(values,selected,placeholder){
     var h=placeholder?'<option value="">'+esc(placeholder)+'</option>':"";
@@ -2212,9 +2398,9 @@ $("newBtn").onclick=function(){
   function formHtml(){
     var tax=db.taxonomy[state.paper]||{};
     var topics=Object.keys(tax).sort();
-    if(topics.indexOf(state.topic)<0) state.topic=topics[0]||"";
+    if(topics.indexOf(state.topic)<0) state.topic="";
     var subs=(tax[state.topic]||[]).slice().sort();
-    if(subs.indexOf(state.sub)<0) state.sub=subs[0]||"";
+    if(subs.indexOf(state.sub)<0) state.sub="";
     var caseFields=state.paper==="GS4"&&state.topic===CS
       ? '<label for="newSummary" class="qfield">Summary</label><textarea id="newSummary" style="min-height:70px" placeholder="One-sentence case précis">'+esc(state.summary)+'</textarea>'
       : "";
@@ -2248,8 +2434,9 @@ $("newBtn").onclick=function(){
     if(isCS) q.summary=state.summary.trim();
     db.questions.push(q);current=q;homeMode=false;view="mine";
     var ok=await save();renderNav();renderSheet();dlg.close();
+    writeQuestionUrl(q.id,false);
     toast(ok?"Question added.":"Added, but local storage failed — save now.");
-    window.scrollTo(0,0);
+    revealSheet();
   });
   repaint();
   $("newQuestion").focus();
@@ -2298,19 +2485,20 @@ function byId(a,b){return a.id<b.id?-1:a.id>b.id?1:0;}
 /* The eight data/ files, exactly as they should appear on disk.
    sortKeys applies to the questions too, not just the taxonomy - CLAUDE.md rule 5 - so an
    app write and a Claude Code write of the same content are byte-identical and diff cleanly. */
-function buildFiles(){
+function buildFiles(source){
+  var bank=source||db;
   var SLUG={"Essay":"essay","GS1":"gs1","GS2":"gs2","GS3":"gs3","GS4":"gs4"};
   var out=[], papers={};
 
   // PYQs are sharded by paper and year - one file per exam paper. Without this the
   // 8-file writer would drop every shard from the manifest on the first Save.
   var shards={};
-  db.questions.filter(function(q){return q.source==="PYQ";}).forEach(function(q){
+  bank.questions.filter(function(q){return q.source==="PYQ";}).forEach(function(q){
     var name="pyq/"+SLUG[q.paper]+"-"+(q.year||"undated")+".json";
     (shards[name]=shards[name]||[]).push(q);
   });
 
-  var authored=db.questions.filter(function(q){return q.source!=="PYQ";});
+  var authored=bank.questions.filter(function(q){return q.source!=="PYQ";});
   var gs4=authored.filter(function(q){return q.paper==="GS4";});
   function add(name,arr){ out.push({path:"data/"+name,text:JSON.stringify(sortKeys(arr.sort(byId)),null,2)+"\n"}); }
 
@@ -2329,10 +2517,10 @@ function buildFiles(){
     if(paper) papers[paper]=(papers[paper]||[]).concat([name]);
   });
 
-  var manifest={schemaVersion:db.schemaVersion||1,exported:new Date().toISOString().slice(0,10),
+  var manifest={schemaVersion:bank.schemaVersion||1,exported:new Date().toISOString().slice(0,10),
                 taxonomy:"taxonomy.json",papers:papers};
   out.unshift({path:"data/manifest.json",text:JSON.stringify(sortKeys(manifest),null,2)+"\n"});
-  out.push({path:"data/taxonomy.json",text:JSON.stringify(sortKeys(db.taxonomy),null,2)+"\n"});
+  out.push({path:"data/taxonomy.json",text:JSON.stringify(sortKeys(bank.taxonomy),null,2)+"\n"});
   return out;
 }
 function downloadAll(){
@@ -2380,6 +2568,71 @@ async function ghHeadSha(){
   var ref=await ghFetch("/git/ref/heads/"+encodeURIComponent(ghCfg.branch));
   return ref.object.sha;
 }
+function unb64(s){
+  var bin=atob(String(s||"").replace(/\s/g,"")),bytes=new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+function ghPath(path){return path.split("/").map(encodeURIComponent).join("/");}
+async function ghFileText(path,ref){
+  var item=await ghFetch("/contents/"+ghPath(path)+"?ref="+encodeURIComponent(ref));
+  if(!item||item.type!=="file"||!item.content) throw new Error("Could not read "+path+" from GitHub.");
+  return unb64(item.content);
+}
+function filesMap(files){
+  var out={};(files||[]).forEach(function(f){out[f.path]=f.text;});return out;
+}
+function bankFromMap(map){
+  var man=JSON.parse(map["data/manifest.json"]),tax=JSON.parse(map["data/"+(man.taxonomy||"taxonomy.json")]),qs=[],seen={};
+  Object.keys(man.papers||{}).forEach(function(p){(man.papers[p]||[]).forEach(function(name){
+    var path="data/"+name;if(seen[path]) return;seen[path]=1;
+    if(!map[path]) throw new Error("Remote manifest references missing "+path+".");
+    var part=JSON.parse(map[path]);if(!Array.isArray(part)) throw new Error(path+" is not a question array.");
+    qs=qs.concat(part);
+  });});
+  qs.forEach(normalizeQ);
+  return {schemaVersion:man.schemaVersion||1,taxonomy:tax,questions:qs};
+}
+async function ghFullBankAt(ref){
+  var map={},manifest=await ghFileText("data/manifest.json",ref);map["data/manifest.json"]=manifest;
+  var man=JSON.parse(manifest),paths=["data/"+(man.taxonomy||"taxonomy.json")],seen={};
+  Object.keys(man.papers||{}).forEach(function(p){(man.papers[p]||[]).forEach(function(name){paths.push("data/"+name);});});
+  await Promise.all(paths.filter(function(path){if(seen[path]) return false;seen[path]=1;return true;}).map(async function(path){map[path]=await ghFileText(path,ref);}));
+  return {bank:bankFromMap(map),map:map};
+}
+async function ghRemoteBank(head){
+  var map=filesMap(lastSaved?Object.keys(lastSaved).map(function(path){return {path:path,text:lastSaved[path]};}):buildFiles(repoBase));
+  try{
+    var cmp=await ghFetch("/compare/"+encodeURIComponent(baseSha)+"..."+encodeURIComponent(head));
+    var changed=(cmp&&cmp.files)||[];
+    for(var i=0;i<changed.length;i++){
+      var f=changed[i];
+      if(f.previous_filename&&f.previous_filename.indexOf("data/")===0) delete map[f.previous_filename];
+      if(f.filename.indexOf("data/")!==0) continue;
+      if(f.status==="removed") delete map[f.filename];
+      else map[f.filename]=await ghFileText(f.filename,head);
+    }
+    return {bank:bankFromMap(map),map:map};
+  }catch(e){
+    /* Force-pushes and very old bases can make Compare unavailable. Reading the
+       current manifest is slower but still safe. */
+    return ghFullBankAt(head);
+  }
+}
+async function mergeMovedBranch(head){
+  var currentId=current&&current.id,remote=await ghRemoteBank(head);
+  var localJournal=DraftJournal.make(repoBase,db,{baseSha:baseSha});
+  var merged=DraftJournal.apply(remote.bank,localJournal);
+  repoBase=DraftJournal.clone(remote.bank);db=merged.db;baseSha=head;lastSaved=remote.map;
+  draftJournal=merged.journal;draftConflicts=merged.conflicts;
+  dirty=!DraftJournal.empty(draftJournal);
+  srcLabel="repo"+(draftConflicts.length?(" · "+draftConflicts.length+" draft conflict"+(draftConflicts.length===1?"":"s")):"");
+  current=currentId?db.questions.filter(function(q){return q.id===currentId;})[0]||null:null;
+  homeMode=!current;
+  await save();renderNav();renderSheet();syncBadge();
+  if(draftConflicts.length){openDraftConflictDlg();return false;}
+  return true;
+}
 async function ghCommit(files,message,expectedBase){
   var head=await ghHeadSha();
   // the real conflict guard: fast-forward alone would silently absorb someone else's commit,
@@ -2412,7 +2665,7 @@ function ghFormHtml(){
   '</div>'+
   '<p class="ghnote">Create a <b>fine-grained</b> token at <code>github.com/settings/personal-access-tokens</code>. '+
   'Give it access to this one repository, set <code>Contents: Read and write</code> and nothing else, and set an expiry. '+
-  'It is kept in this browser only and is never written into the repo, so nobody reading your published page can see it.</p>';
+  'The token is kept only for this browser tab and is removed when the tab session ends. It is never written into the repo.</p>';
 }
 function readGhForm(){
   ghCfg.owner=$("ghOwner").value.trim();
@@ -2450,7 +2703,12 @@ function changedFiles(){
   return all.filter(function(f){return lastSaved[f.path]!==f.text;});
 }
 function openSaveDlg(){
-  var files=changedFiles(), overwrite=false;
+  if(draftConflicts.length){
+    openDraftConflictDlg();
+    toast("Resolve the local draft conflicts before saving to GitHub.");
+    return;
+  }
+  var files=changedFiles();
   var body='<p class="ghnote">One commit to <code>'+esc(ghCfg.owner+"/"+ghCfg.repo)+'</code> on <code>'+esc(ghCfg.branch)+'</code>.</p>'+
     '<div class="ghfiles">'+(files.length?files.map(function(f){return esc(f.path);}).join("<br>")
       :"Nothing has changed since the last save.")+'</div>'+
@@ -2463,26 +2721,34 @@ function openSaveDlg(){
       var b=$("dlgAct");b.disabled=true;b.textContent="Saving…";
       $("dlgMsg").className="msg";$("dlgMsg").textContent="";
       try{
-        var sha=await ghCommit(files,"bank: update from viewer",overwrite?null:baseSha);
+        var sha;
+        try{sha=await ghCommit(files,"bank: update from viewer",baseSha);}
+        catch(moved){
+          if(!moved||!moved.remoteMoved) throw moved;
+          $("dlgMsg").textContent="The branch moved. Merging the new repository changes…";
+          if(!await mergeMovedBranch(moved.head)) return;
+          files=changedFiles();
+          sha=files.length?await ghCommit(files,"bank: update from viewer",baseSha):baseSha;
+        }
         lastSaved=lastSaved||{};
         files.forEach(function(f){lastSaved[f.path]=f.text;});
         dirty=false;baseSha=sha;addedSinceExport=0;
-        await store.write(db,false);syncBadge();
-        $("dlgMsg").className="msg ok";$("dlgMsg").textContent="Committed "+sha.slice(0,7)+".";
+        repoBase=DraftJournal.clone(db);
+        draftJournal=DraftJournal.make(repoBase,db,{baseSha:sha});
+        await store.write(draftJournal);syncBadge();
+        $("dlgMsg").className="msg ok";$("dlgMsg").textContent=(files.length?"Committed ":"Already up to date at ")+sha.slice(0,7)+".";
         setTimeout(function(){dlg.close();},900);
       }catch(e){
         $("dlgMsg").className="msg";
         if(e&&e.remoteMoved){
-          overwrite=true;
-          $("dlgMsg").textContent="The branch moved since this page loaded — something else committed to "+
-            ghCfg.branch+". Reload to pick those changes up, or press Commit again to overwrite them with what is on screen.";
-          b.textContent="Overwrite";
+          $("dlgMsg").textContent="The branch moved again during the merge. Press Retry to merge the newest changes safely.";
+          b.textContent="Retry";
         } else {
           $("dlgMsg").textContent=(e&&e.message)||"Save failed.";
         }
       } finally {
         b.disabled=false;
-        if(!overwrite) b.textContent="Commit";
+        if(b.textContent==="Saving…") b.textContent="Commit";
       }
     });
   $("ghCfgBtn").onclick=function(){openGhSetup();};
@@ -2490,17 +2756,14 @@ function openSaveDlg(){
   // the other half of the dirty flag: a draft you can see warned about but not throw away
   // is a draft that silently shadows the repo forever
   var disc=$("ghDiscard");
-  if(disc) disc.onclick=function(){
+  if(disc) disc.onclick=async function(){
     if(disc.getAttribute("data-armed")!=="1"){
       disc.setAttribute("data-armed","1");disc.textContent="Discard — really?";
       $("dlgMsg").className="msg";
       $("dlgMsg").textContent="Throws away every unsaved change in this browser and reloads from the repo. The repo copy is not touched.";
       return;
     }
-    try{
-      localStorage.removeItem(KEY);
-      if(KEY!==LEGACY_KEY) localStorage.removeItem(LEGACY_KEY);
-    }catch(e){}
+    await store.clear();
     location.reload();
   };
 }
@@ -3167,7 +3430,12 @@ $("themeBtn").onclick=function(){
 };
 
 /* -------- boot -------- */
-$("homeBtn").onclick=function(){homeMode=true;current=null;lastRenderedId=null;renderNav();renderSheet();window.scrollTo(0,0);};
+$("homeBtn").onclick=function(){lastRenderedId=null;openQuestion(null);};
+window.addEventListener("popstate",function(){
+  var id="";try{id=new URL(location.href).searchParams.get("q")||"";}catch(e){}
+  current=id?db.questions.filter(function(q){return q.id===id;})[0]||null:null;
+  homeMode=!current;lastRenderedId=null;renderNav();renderSheet();revealSheet();
+});
 $("search").addEventListener("input",function(e){
   query=e.target.value.toLowerCase().trim();
   renderNav();
@@ -3180,10 +3448,10 @@ window.addEventListener("beforeprint",function(){document.querySelectorAll("deta
 
 async function fromFiles(){
   try{
-    var m=await fetch("data/manifest.json",{cache:"no-store"});
+    var m=await fetchStatic("data/manifest.json",{cache:"no-store"});
     if(!m.ok) return null;
     var man=await m.json();
-    var tr=await fetch("data/"+(man.taxonomy||"taxonomy.json"),{cache:"no-store"});
+    var tr=await fetchStatic("data/"+(man.taxonomy||"taxonomy.json"),{cache:"no-store"});
     if(!tr.ok) return null;
     var tax=await tr.json(),qs=[],names=[];
     Object.keys(man.papers||{}).forEach(function(p){(man.papers[p]||[]).forEach(function(f){names.push(f);});});
@@ -3194,7 +3462,7 @@ async function fromFiles(){
        skipped so the rest of the bank remains usable. */
     var parts=await Promise.all(names.map(async function(name){
       try{
-        var r=await fetch("data/"+name,{cache:"no-store"});
+        var r=await fetchStatic("data/"+name,{cache:"no-store"});
         if(!r.ok) throw new Error("HTTP "+r.status);
         var arr=await r.json();
         if(!Array.isArray(arr)) throw new Error("not a question array");
@@ -3211,7 +3479,7 @@ async function fromFiles(){
   }catch(e){return null;}
 }
 async function loadPrompts(){
-  try{var r=await fetch("data/prompts.json",{cache:"no-store"});if(r.ok) prompts=await r.json();}catch(e){}
+  try{var r=await fetchStatic("data/prompts.json",{cache:"no-store"});if(r.ok) prompts=await r.json();}catch(e){}
 }
 (async function(){
   ghLoad(); useLoad();
@@ -3224,10 +3492,6 @@ async function loadPrompts(){
   var files=startup[0],stored=startup[1];
   var loadFailures=(files&&files.failedFiles)||[];
   if(files) delete files.failedFiles;
-
-  // A stored draft only counts when it is DIRTY. A clean one is a stale mirror of files we have
-  // just re-read, and letting it overwrite them is how a hand-edit or a git pull used to vanish.
-  var draft=(stored&&stored.dirty&&stored.db&&(stored.db.questions||[]).length)?stored.db:null;
 
   if(files){
     db=files;srcLabel="repo"+(loadFailures.length?(" · "+loadFailures.length+" file"+
@@ -3243,28 +3507,37 @@ async function loadPrompts(){
     db.questions.forEach(normalizeQ);
     lastSaved={};
     buildFiles().forEach(function(f){ lastSaved[f.path]=f.text; });
-    if(draft){
-      // Index by id, and APPEND rather than unshift. Unshifting mid-loop shifted every
-      // element by one and invalidated every index already recorded, so the next "replace"
-      // wrote over an innocent question and left the intended one behind as a duplicate —
-      // it both duplicated and silently destroyed. Appending keeps every index valid.
-      var have={},extra=0;
-      db.questions.forEach(function(q,i){have[q.id]=i;});
-      draft.questions.forEach(function(q){
-        if(have[q.id]!==undefined){ db.questions[have[q.id]]=q; }
-        else { have[q.id]=db.questions.length; db.questions.push(q); extra++; }
-      });
-      Object.keys(draft.taxonomy||{}).forEach(function(p){
-        db.taxonomy[p]=db.taxonomy[p]||{};
-        Object.keys(draft.taxonomy[p]).forEach(function(t){
-          db.taxonomy[p][t]=db.taxonomy[p][t]||[];
-          draft.taxonomy[p][t].forEach(function(x){if(db.taxonomy[p][t].indexOf(x)<0) db.taxonomy[p][t].push(x);});
-        });
-      });
-      dirty=true;srcLabel="repo + "+extra+" new";
+    repoBase=DraftJournal.clone(db);
+    var incomingJournal=stored&&stored.journal;
+    if(stored&&stored.legacy){
+      stored.legacy.taxonomy=stored.legacy.taxonomy||{};stored.legacy.questions=stored.legacy.questions||[];
+      stored.legacy.questions.forEach(normalizeQ);
+      incomingJournal=DraftJournal.migrateLegacy(repoBase,stored.legacy);
     }
-  } else if(draft){ db=draft;dirty=true;srcLabel="draft only"; }
-  else { db=JSON.parse($("seed").textContent);srcLabel="seed";await store.write(db,false); }
+    if(incomingJournal){
+      var merged=DraftJournal.apply(repoBase,incomingJournal);
+      db=merged.db;draftJournal=merged.journal;draftConflicts=merged.conflicts;
+      dirty=!DraftJournal.empty(draftJournal);
+      if(draftConflicts.length) srcLabel="repo · "+draftConflicts.length+" draft conflict"+(draftConflicts.length===1?"":"s");
+      await store.write(draftJournal);
+    }
+  } else if(stored&&(stored.legacy||stored.journal)){
+    var fallback=JSON.parse($("seed").textContent);
+    fallback.taxonomy=fallback.taxonomy||{};fallback.questions=fallback.questions||[];
+    fallback.questions.forEach(normalizeQ);repoBase=DraftJournal.clone(fallback);
+    if(stored.legacy){
+      db=stored.legacy;db.taxonomy=db.taxonomy||{};db.questions=db.questions||[];db.questions.forEach(normalizeQ);
+      draftJournal=DraftJournal.make(repoBase,db);
+    }else{
+      var offline=DraftJournal.apply(repoBase,stored.journal);
+      db=offline.db;draftJournal=offline.journal;draftConflicts=offline.conflicts;
+    }
+    dirty=!DraftJournal.empty(draftJournal);srcLabel="draft only";await store.write(draftJournal);
+  } else {
+    db=JSON.parse($("seed").textContent);db.taxonomy=db.taxonomy||{};db.questions=db.questions||[];
+    db.questions.forEach(normalizeQ);repoBase=DraftJournal.clone(db);srcLabel="seed";
+    draftJournal=DraftJournal.make(repoBase,db);await store.write(draftJournal);
+  }
 
   db.taxonomy=db.taxonomy||{};db.questions=db.questions||[];
   // Safety net: a duplicate id means something upstream went wrong. Keep the first,
@@ -3285,8 +3558,12 @@ async function loadPrompts(){
     catch(e){ toast("GitHub is configured but unreachable — you can still edit; saving will retry."); }
   }
   syncBadge();
-  current=null;homeMode=true;
+  var linkedId="";try{linkedId=new URL(location.href).searchParams.get("q")||"";}catch(e){}
+  current=linkedId?db.questions.filter(function(q){return q.id===linkedId;})[0]||null:null;
+  homeMode=!current;
+  if(linkedId&&!current) writeQuestionUrl(null,true);
   renderFilters();renderNav();renderSheet();
+  if(draftConflicts.length) setTimeout(openDraftConflictDlg,250);
   if(loadFailures.length)
     toast("Loaded the available questions; "+loadFailures.length+" data file"+
       (loadFailures.length===1?" was":"s were")+" unavailable.");

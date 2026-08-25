@@ -1,0 +1,15 @@
+"use strict";
+const assert=require("assert");
+const fs=require("fs");
+const html=fs.readFileSync(require("path").resolve(__dirname,"../index.html"),"utf8");
+assert(html.includes('<script src="draft-journal.js"></script>'),"draft journal script is missing");
+assert(html.includes('id="toast" role="status" aria-live="polite"'),"toast announcements are not accessible");
+assert(html.includes('id="newBtn">New question</button>'),"new-question action is ambiguously labelled");
+assert(html.includes('id="addBtn">Add JSON</button>'),"JSON import action is ambiguously labelled");
+assert(html.includes('searchParams.set("q",id)'),"question deep links are missing");
+assert(!html.includes('localStorage.setItem(GHKEY,JSON.stringify(ghCfg))'),"GitHub token may be persisted in localStorage");
+assert(!html.includes('b.textContent="Overwrite"'),"unsafe remote overwrite action is present");
+const scripts=[...html.matchAll(/<script(?![^>]*type="application\/json")(?![^>]*src=)[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]);
+assert(scripts.length>=2,"expected inline application scripts");
+for(const source of scripts) new Function(source);
+console.log("HTML scripts parse cleanly");
