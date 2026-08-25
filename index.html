@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UPSC — Answer Skeletons</title>
+<title>UPSC Mains Answer Bank</title>
 <style>
 :root{
   color-scheme:light;
@@ -37,6 +37,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:
 .wordmark{font-family:var(--display);font-size:19px}
 .wordmark em{font-style:normal;color:var(--ink3)}
 .masthead .spacer{flex:1}
+.advanced-tools{display:none}
+.browsebtn{display:none}
 button.tool{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink2);padding:5px 9px;border-radius:2px;cursor:pointer}
 button.tool:hover{border-color:var(--accent);color:var(--accent)}
 button.tool:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -160,7 +162,9 @@ dialog::backdrop{background:var(--scrim)}
 @media (max-width:860px){
   button,select,input:not([type="hidden"]),summary{min-height:44px}
   main{grid-template-columns:1fr}
-  .nav{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--rule)}
+  .browsebtn{display:inline-block}
+  .nav{display:none;position:static;max-height:none;border-right:0;border-bottom:1px solid var(--rule)}
+  body.nav-open .nav{display:block}
   .sheet{padding:22px 16px 70px 26px}
   .sheet::before{left:12px}
   .decode dl{grid-template-columns:1fr;gap:2px}
@@ -168,6 +172,14 @@ dialog::backdrop{background:var(--scrim)}
   .catrow{grid-template-columns:1fr;gap:3px}
   button.tool,.chip,.qbtn,.tree summary,.themecard,.qlist button{min-height:44px}
   button.tool,.chip{padding-top:9px;padding-bottom:9px}
+  .dashgrid{grid-template-columns:1fr 1fr}
+  .workspace-tabs{display:flex}
+  .workspace{display:block}
+  .workspace-pane{display:none}
+  .workspace[data-mobile-view="ai"] .ai-pane,.workspace[data-mobile-view="draft"] .draft-pane{display:block}
+  .workspace-pane.ai-pane{padding-right:0;border-right:0}
+  .studybar .studydate{width:100%;margin-left:0}
+  .settingsgrid{grid-template-columns:1fr}
 }
 .ef{margin-bottom:14px;max-width:74ch}
 .ef>label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
@@ -251,6 +263,17 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 
 /* home */
 .home{max-width:104ch}
+.homesearch{width:100%;max-width:720px;font-size:15px;padding:10px 12px;border:1px solid var(--rule);border-radius:3px;background:var(--sheet);color:var(--ink);margin:0 0 18px}
+.dashgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 22px}
+.dashcard{text-align:left;border:1px solid var(--rule);background:var(--sheet);border-radius:3px;padding:12px;cursor:pointer;color:var(--ink)}
+.dashcard:hover{border-color:var(--accent)}
+.dashcard .dn{display:block;font-family:var(--display);font-size:25px;line-height:1;color:var(--accent)}
+.dashcard .dl{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-top:6px}
+.dashsection{margin:0 0 22px;max-width:90ch}
+.dashsection h3{font-family:var(--display);font-size:17px;margin:0 0 7px;display:flex;align-items:baseline;gap:8px}
+.dashsection h3 span{font-family:var(--mono);font-size:9.5px;color:var(--ink3)}
+.dashsection .qlist{margin-top:0}
+.browsehead{font-family:var(--display);font-size:19px;margin:30px 0 12px;padding-top:18px;border-top:1px solid var(--rule)}
 .homehead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
 .homehead h2{font-family:var(--display);font-size:22px;margin:0}
 .homehead .cnt{font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
@@ -313,6 +336,32 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .csband{margin:10px 0 2px 9px;padding-top:7px;border-top:1px dashed var(--margin);font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--margin)}
 .src{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
 .src.warn{color:var(--margin)}
+.studybar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 16px;padding:10px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);max-width:none}
+.studybar .statuslabel{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.studybar select,.studybar input{font:inherit;font-size:12px;padding:5px 7px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink)}
+.studybar .studydate{font-family:var(--mono);font-size:9.5px;color:var(--ink3);margin-left:auto}
+.workspace-tabs{display:none;margin:0 0 12px;border-bottom:1px solid var(--rule)}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.9fr);gap:28px;align-items:start}
+.workspace-pane{min-width:0}
+.workspace-pane>h2{font-family:var(--display);font-size:18px;margin:0 0 12px}
+.workspace-pane.ai-pane{padding-right:24px;border-right:1px solid var(--rule)}
+.workspace .block,.workspace .decode,.workspace .qtext,.workspace .mine,.workspace .blank{max-width:none}
+.revisionbox{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule)}
+.revisionbox label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.revisionbox textarea{width:100%;min-height:90px;resize:vertical;font:inherit;font-size:13.5px;line-height:1.5;padding:8px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);border-radius:2px}
+.settingsgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.settingsgrid button{text-align:left;padding:10px!important}
+.settingsgrid button small{display:block;text-transform:none;letter-spacing:0;font-family:var(--body);font-size:11.5px;color:var(--ink3);margin-top:3px}
+@media (max-width:860px){
+  .dashgrid{grid-template-columns:1fr 1fr}
+  .workspace-tabs{display:flex}
+  .workspace{display:block}
+  .workspace-pane{display:none}
+  .workspace[data-mobile-view="ai"] .ai-pane,.workspace[data-mobile-view="draft"] .draft-pane{display:block}
+  .workspace-pane.ai-pane{padding-right:0;border-right:0}
+  .studybar .studydate{width:100%;margin-left:0}
+  .settingsgrid{grid-template-columns:1fr}
+}
 .ghform{display:grid;grid-template-columns:110px minmax(0,1fr);gap:8px 12px;align-items:center;margin-bottom:6px}
 .ghform label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
 .ghform input{font-size:13px;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--paper);color:var(--ink);width:100%;font-family:var(--body)}
@@ -344,16 +393,20 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 <body>
 
 <header class="masthead">
-  <button class="wordmark" id="homeBtn" title="All questions" style="background:none;border:0;cursor:pointer;padding:0;color:inherit;font-family:inherit;font-size:inherit">UPSC <em>·</em> answer skeletons</button>
+  <button class="wordmark" id="homeBtn" title="Writing dashboard" style="background:none;border:0;cursor:pointer;padding:0;color:inherit;font-family:inherit;font-size:inherit">UPSC <em>·</em> Answer Bank</button>
   <span class="src" id="src"></span>
   <div class="spacer"></div>
-  <button class="tool" id="newBtn">New question</button>
-  <button class="tool" id="addBtn">Add JSON</button>
-  <button class="tool" id="catBtn">Categories</button>
-  <button class="tool" id="promptBtn">Copy prompt</button>
-  <button class="tool" id="saveBtn">Save</button>
-  <button class="tool" id="impBtn">Import</button>
-  <button class="tool" id="themeBtn" title="Light or dark">Dark</button>
+  <button class="tool" id="newBtn">Add question</button>
+  <button class="tool browsebtn" id="browseBtn" aria-expanded="false">Browse</button>
+  <button class="tool" id="saveBtn">Sync changes</button>
+  <button class="tool" id="settingsBtn">Settings</button>
+  <span class="advanced-tools" aria-hidden="true">
+    <button class="tool" id="addBtn" tabindex="-1">Paste AI output</button>
+    <button class="tool" id="catBtn" tabindex="-1">Manage syllabus</button>
+    <button class="tool" id="promptBtn" tabindex="-1">Copy AI prompt</button>
+    <button class="tool" id="impBtn" tabindex="-1">Import bank</button>
+    <button class="tool" id="themeBtn" tabindex="-1" title="Light or dark">Dark</button>
+  </span>
 </header>
 
 <main>
@@ -1090,7 +1143,7 @@ var db={taxonomy:{},questions:[]}, current=null, paperFilter="All", query="", ad
 var uidCounter=0, fieldRegistry={}, actionRegistry={}, editKey=null, confirmKey=null, pendingArr=null, pendingIdx=-1;
 var openBlocks={}, lastRenderedId=null;
 var sheetPaper="", editBlocks={}, editAll=false, EDIT=false, prompts=null, navOpen={}, navRenderedWithQuery=false;
-var view="ai", answerIdx=0, homeMode=true, homeGroup="theme", openTheme=null, srcFilter="All", mineFilter="All", aiFilter="All";
+var view="ai", workspaceView="draft", answerIdx=0, homeMode=true, homeGroup="theme", openTheme=null, srcFilter="All", mineFilter="All", aiFilter="All", homeSearchTimer=null;
 function blockEdit(key){return editAll||!!editBlocks[key];}
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -1103,7 +1156,8 @@ var dirty=false, baseSha=null, lastSaved=null, srcLabel="";
 var repoBase=null,draftJournal=null,draftConflicts=[];
 function syncBadge(){
   var el=$("src");if(!el) return;
-  el.textContent=srcLabel+(dirty?" · unsaved":"");
+  el.title=srcLabel+(dirty?" · unsaved":"");
+  el.textContent=draftConflicts.length?"Conflict":(dirty?"Local changes":(srcLabel.indexOf("repo")===0?"Synced":srcLabel));
   el.className="src"+(dirty?" warn":"");
 }
 async function save(){
@@ -1144,7 +1198,7 @@ async function fetchStatic(url,opts){
 
 /* -------- search -------- */
 function haystack(q){
-  var s=[q.question,q.type,q.paper,q.source,(q.notes||""),(q.summary||"")];
+  var s=[q.question,q.type,q.paper,q.source,(q.notes||""),(q.summary||""),(q.mine&&q.mine.study&&q.mine.study.revisionNotes)||""];
   (q.tags||[]).forEach(function(t){s.push(t.join(" "));});
   var m=q.mine||{};
   s.push(m.intro||"",m.conclusion||"");
@@ -1198,11 +1252,17 @@ function revealSheet(){
   },0);
 }
 function openQuestion(q,historyMode){
+  document.body.classList.remove("nav-open");
+  if($("browseBtn")) $("browseBtn").setAttribute("aria-expanded","false");
   current=q||null;homeMode=!current;
   renderNav();renderSheet();
   if(historyMode!==false) writeQuestionUrl(current&&current.id,historyMode==="replace");
   revealSheet();
 }
+$("browseBtn").onclick=function(){
+  var open=document.body.classList.toggle("nav-open");
+  $("browseBtn").setAttribute("aria-expanded",String(open));
+};
 
 /* -------- nav -------- */
 /* The tree is rebuilt from scratch on every render, so open/closed state has to be carried
@@ -1552,6 +1612,31 @@ function normalizeQ(q){
   q.mine.sections=q.mine.sections||[];
   return q;
 }
+function studyOf(q,create){
+  q.mine=q.mine||{};
+  /* Writing progress belongs beside the reader's own intro, sections and
+     conclusion, rather than changing the generated-question schema. */
+  if(!q.mine.study&&create) q.mine.study={};
+  return q.mine.study||{};
+}
+function studyStatus(q){
+  var status=studyOf(q).status;
+  if(status) return status;
+  return hasMine(q)?"draft":"not-started";
+}
+function statusLabel(status){
+  return {"not-started":"Not started",draft:"Draft in progress",revision:"Revision due",revised:"Revised"}[status]||"Not started";
+}
+function today(){return new Date().toISOString().slice(0,10);}
+function markWritten(q){
+  if(!q) return;
+  var st=studyOf(q,true);st.lastWrittenAt=new Date().toISOString();
+  if(!st.status||st.status==="not-started"||st.status==="revised") st.status="draft";
+}
+function revisionDue(q){
+  var st=studyOf(q),status=studyStatus(q);
+  return status==="revision"||!!(st.nextRevisionAt&&st.nextRevisionAt<=today());
+}
 function hasAI(q){ return (q.answers||[]).length>0; }
 function hasMine(q){
   var m=q.mine||{};
@@ -1587,7 +1672,7 @@ function pointHtml(p){
    hanging indent lands where the text starts instead of two characters right of
    it. Anything written before this change still loads: leading spaces are read
    back into data-d, and a leading "- " is rewritten to "• ". */
-var mineBoxes={}, saveTimer=null, MB_STEP="  ";
+var mineBoxes={}, mineQuestion=null, saveTimer=null, MB_STEP="  ";
 function scheduleSave(){ clearTimeout(saveTimer); saveTimer=setTimeout(function(){save();},500); }
 try{ document.execCommand("defaultParagraphSeparator",false,"div"); }catch(e){}
 
@@ -1711,7 +1796,7 @@ function wireMine(s){
     var e=mineBoxes[el.getAttribute("data-mb")];
     if(!e) return;
     mbPaint(el);
-    el.addEventListener("input",function(){ mbInput(el); e.set(mbText(el)); scheduleSave(); });
+    el.addEventListener("input",function(){ mbInput(el); e.set(mbText(el));markWritten(mineQuestion);scheduleSave(); });
     el.addEventListener("keydown",function(ev){ mbKeys(ev,el); });
     el.addEventListener("paste",function(ev){
       ev.preventDefault();
@@ -1725,6 +1810,7 @@ function wireMine(s){
     var title=s.querySelector('[data-mt="'+key+'"]');
     inp.addEventListener("input",function(){
       e.set(inp.value);
+      markWritten(mineQuestion);
       if(title){                      // keep the folded label in step as you type
         title.textContent=inp.value||"untitled sub-heading";
         title.classList.toggle("ph",!inp.value);
@@ -1747,7 +1833,7 @@ function mineBlk(key,headHtml,inner){
 function mineView(q){
   // your own answer is always editable - no pencil, no read mode. actionBtn/confirmBtn
   // return nothing while EDIT is false, so this must be set before building any control.
-  var wasEdit=EDIT; EDIT=true;
+  var wasEdit=EDIT; EDIT=true;mineQuestion=q;
   var m=q.mine, h='<div class="mine">';
   h+=mineBlk("intro",'<span class="minehead">Introduction</span>',
      mineBox("intro",function(){return m.intro;},function(v){m.intro=v;},"your opening — 2-3 lines"));
@@ -1778,10 +1864,10 @@ function aiView(q){
   var h="";
   sheetPaper=q.paper;          // sectionBlock is top-level; it needs the paper for the GS4 ethics field
   if(!q.answers.length){
-    return '<div class="blank"><p>No AI answer stored for this question yet.</p>'+
-      '<button class="tool" id="pasteAnsBtn">Paste a skeleton</button>'+
-      '<button class="tool" id="copyPromptHere">Copy prompt</button>'+
-      (isLocal()?'<button class="tool" id="genBtnHere">Generate</button>':'')+'</div>';
+    return '<div class="blank"><p>No AI framework is stored for this question yet.</p>'+
+      '<button class="tool" id="pasteAnsBtn">Paste generated output</button>'+
+      '<button class="tool" id="copyPromptHere">Copy AI prompt</button>'+
+      (canGenerate()?'<button class="tool" id="genBtnHere">Generate AI framework</button>':'')+'</div>';
   }
   if(answerIdx>=q.answers.length) answerIdx=0;
   var a=q.answers[answerIdx];
@@ -1791,8 +1877,8 @@ function aiView(q){
       h+='<button class="anschip'+(i===answerIdx?' on':'')+'" data-ans="'+i+'">'+esc(x.model||("answer "+(i+1)))+'</button>';
     });
     h+='<span class="ansmeta">'+esc(a.generatedAt?String(a.generatedAt).slice(0,16).replace("T"," "):"imported")+'</span>';
-    if(isLocal()) h+='<button class="anschip" id="regenBtn" title="generate another with a different model">+ another model</button>';
-    h+=confirmBtn("Delete this answer",function(){
+    if(canGenerate()) h+='<button class="anschip" id="regenBtn" title="generate another with a different model">Generate another</button>';
+    h+=confirmBtn("Delete this framework",function(){
       q.answers.splice(answerIdx,1);answerIdx=0;save();renderSheet();
     });
     h+='</div>';
@@ -1847,11 +1933,31 @@ function themeOf(q){
 function renderHome(){
   var s=$("sheet");
   var qs=db.questions.filter(matches);
-  var h='<div class="home"><div class="homehead"><h2>All questions</h2>'+
+  var drafts=qs.filter(function(q){return hasMine(q)&&studyStatus(q)==="draft";});
+  var revisions=qs.filter(revisionDue);
+  var ready=qs.filter(function(q){return hasAI(q)&&!hasMine(q);});
+  var revised=qs.filter(function(q){return studyStatus(q)==="revised";}).sort(function(a,b){return String(studyOf(b).lastRevisedAt||"").localeCompare(String(studyOf(a).lastRevisedAt||""));});
+  function dashSection(id,title,list,empty){
+    return '<section class="dashsection" id="'+id+'"><h3>'+title+' <span>'+list.length+'</span></h3>'+
+      (list.length?'<div class="qlist">'+list.slice(0,6).map(qRow).join("")+'</div>':'<p class="empty">'+empty+'</p>')+'</section>';
+  }
+  var h='<div class="home"><div class="homehead"><h2>Writing dashboard</h2>'+
         '<span class="cnt">'+qs.length+' shown'+(qs.length!==db.questions.length?' of '+db.questions.length:'')+'</span>'+
-        '<div class="grouptog">'+
-          '<button class="chip'+(homeGroup==="theme"?" on":"")+'" data-hg="theme">by theme</button>'+
-          '<button class="chip'+(homeGroup==="year"?" on":"")+'" data-hg="year">by year</button>'+
+        '</div><input class="homesearch" id="homeSearch" type="search" aria-label="Search question bank" placeholder="Search questions, frameworks and notes…" value="'+esc(query)+'">'+
+        '<div class="dashgrid">'+
+          '<button class="dashcard" data-dash="dash-drafts"><span class="dn">'+drafts.length+'</span><span class="dl">Continue writing</span></button>'+
+          '<button class="dashcard" data-dash="dash-revision"><span class="dn">'+revisions.length+'</span><span class="dl">Revision queue</span></button>'+
+          '<button class="dashcard" data-dash="dash-ready"><span class="dn">'+ready.length+'</span><span class="dl">AI frameworks ready</span></button>'+
+          '<button class="dashcard" data-dash="dash-revised"><span class="dn">'+revised.length+'</span><span class="dl">Revised</span></button>'+
+        '</div>'+
+        dashSection("dash-drafts","Continue writing",drafts,"Start a draft from any question below.")+
+        dashSection("dash-revision","Revision queue",revisions,"Nothing is due for revision.")+
+        dashSection("dash-ready","AI frameworks ready",ready,"Generate a framework from a question workspace.")+
+        dashSection("dash-revised","Recently revised",revised,"Mark a completed revision to build your history.")+
+        '<h2 class="browsehead">Browse question bank</h2>'+
+        '<div class="homehead"><span class="cnt">Choose a paper, topic or year</span><div class="grouptog">'+
+          '<button class="chip'+(homeGroup==="theme"?" on":"")+'" data-hg="theme">By topic</button>'+
+          '<button class="chip'+(homeGroup==="year"?" on":"")+'" data-hg="year">By year</button>'+
         '</div></div>';
 
   h+='<div class="filters homepapers">';
@@ -1913,11 +2019,16 @@ function qRow(q){
   return '<button data-open="'+esc(q.id)+'">'+
     (q.year?'<span class="yr">'+esc(q.year)+'</span>':'')+
     esc(label.slice(0,120))+(label.length>120?"…":"")+
-    (q.source==="PYQ"?'<span class="badge pyq">PYQ</span>':'')+
-    (isTouched(q)?'<span class="badge done">started</span>':'')+
+    (q.source==="PYQ"?'<span class="badge pyq">Previous year</span>':'')+
+    (hasMine(q)?'<span class="badge done">'+esc(statusLabel(studyStatus(q)))+'</span>':(hasAI(q)?'<span class="badge">AI ready</span>':''))+
     '</button>';
 }
 function wireHome(s){
+  var hs=$("homeSearch");if(hs) hs.addEventListener("input",function(){
+    clearTimeout(homeSearchTimer);var value=hs.value;
+    homeSearchTimer=setTimeout(function(){query=value.toLowerCase().trim();$("search").value=value;renderNav();renderHome();var fresh=$("homeSearch");if(fresh){fresh.focus();fresh.setSelectionRange(fresh.value.length,fresh.value.length);}},180);
+  });
+  s.querySelectorAll("[data-dash]").forEach(function(b){b.onclick=function(){var el=$(b.getAttribute("data-dash"));if(el)el.scrollIntoView({behavior:"smooth",block:"start"});};});
   s.querySelectorAll("[data-hg]").forEach(function(b){
     b.onclick=function(){homeGroup=b.getAttribute("data-hg");renderHome();};
   });
@@ -1947,9 +2058,9 @@ function renderFilters(){
      conflated them — a question with three AI answers and nothing of your own
      counted as started. */
   f.innerHTML=
-    row("source",srcFilter,"sf",[["All","All"],["PYQ","PYQ"],["Test series","Test"]])+
-    row("my answer",mineFilter,"mf",[["All","Any"],["Yes","Written"],["No","Blank"]])+
-    row("ai answer",aiFilter,"af",[["All","Any"],["Yes","Generated"],["No","None"]]);
+    row("source",srcFilter,"sf",[["All","All"],["PYQ","Previous year"],["Test series","Practice"]])+
+    row("my draft",mineFilter,"mf",[["All","Any"],["Yes","Started"],["No","Not started"]])+
+    row("AI framework",aiFilter,"af",[["All","Any"],["Yes","Ready"],["No","None"]]);
   function bind(attr,set){
     f.querySelectorAll("["+attr+"]").forEach(function(b){
       b.onclick=function(){set(b.getAttribute(attr));renderFilters();renderNav();if(homeMode)renderSheet();};
@@ -1960,13 +2071,39 @@ function renderFilters(){
   bind("data-af",function(v){aiFilter=v;});
 }
 
+function studyBarHtml(q){
+  var st=studyOf(q),status=studyStatus(q),last=st.lastRevisedAt||st.lastWrittenAt||"";
+  return '<div class="studybar"><span class="statuslabel">Writing status</span>'+
+    '<select id="studyStatus" aria-label="Writing status">'+
+      [["not-started","Not started"],["draft","Draft in progress"],["revision","Mark for revision"],["revised","Revised"]].map(function(o){return '<option value="'+o[0]+'"'+(status===o[0]?' selected':'')+'>'+o[1]+'</option>';}).join("")+
+    '</select><label class="statuslabel" for="nextRevision">Next revision</label>'+
+    '<input id="nextRevision" type="date" value="'+esc(st.nextRevisionAt||"")+'">'+
+    (canGenerate()?'<button class="tool" id="generateWorkspace">'+(hasAI(q)?"Generate another framework":"Generate AI framework")+'</button>':'')+
+    (last?'<span class="studydate">Last activity '+esc(String(last).slice(0,10))+'</span>':'')+'</div>';
+}
+function wireStudyWorkspace(s,q){
+  var status=$("studyStatus");
+  if(status) status.onchange=async function(){
+    var st=studyOf(q,true);st.status=status.value;
+    if(status.value==="revised") st.lastRevisedAt=new Date().toISOString();
+    if(status.value==="revision"&&!st.nextRevisionAt) st.nextRevisionAt=today();
+    await save();renderNav();renderSheet();
+  };
+  var next=$("nextRevision");
+  if(next) next.onchange=function(){studyOf(q,true).nextRevisionAt=next.value;save();};
+  var rev=$("revisionNotes");
+  if(rev) rev.addEventListener("input",function(){studyOf(q,true).revisionNotes=rev.value;scheduleSave();});
+  var gen=$("generateWorkspace");if(gen) gen.onclick=function(){genDialog(q);};
+  s.querySelectorAll("[data-workspace-view]").forEach(function(b){b.onclick=function(){workspaceView=b.getAttribute("data-workspace-view");renderSheet();};});
+}
+
 function renderSheet(){
   var s=$("sheet");
   uidCounter=0;fieldRegistry={};actionRegistry={};mineBoxes={};
   if(homeMode){ renderHome(); return; }
   if(!current){s.innerHTML='<p class="empty">Pick a question from the tree, or press the wordmark for all questions.</p>';lastRenderedId=null;return;}
   var q=normalizeQ(current);
-  if(q.id!==lastRenderedId){openBlocks={};editBlocks={};editAll=false;answerIdx=0;view="ai";lastRenderedId=q.id;}
+  if(q.id!==lastRenderedId){openBlocks={};editBlocks={};editAll=false;answerIdx=0;view="ai";workspaceView="draft";lastRenderedId=q.id;}
   var isCS=isCase(q),h="";
 
   EDIT=blockEdit("head");
@@ -2019,15 +2156,19 @@ function renderSheet(){
     if(verr) h+='<div class="vwarn">'+esc(verr)+'</div>';
   }
 
-  h+='<div class="viewbar">'+
-     '<button class="viewtab" data-view="ai" aria-selected="'+(view==="ai")+'">AI answers<span class="n">'+q.answers.length+'</span></button>'+
-     '<button class="viewtab" data-view="mine" aria-selected="'+(view==="mine")+'">My answer</button>'+
-     '</div>';
-
-  h+= (view==="mine") ? mineView(q) : aiView(q);
+  h+=studyBarHtml(q)+
+    '<div class="workspace-tabs">'+
+      '<button class="viewtab" data-workspace-view="draft" aria-selected="'+(workspaceView==="draft")+'">My draft</button>'+
+      '<button class="viewtab" data-workspace-view="ai" aria-selected="'+(workspaceView==="ai")+'">AI framework<span class="n">'+q.answers.length+'</span></button>'+
+    '</div>'+
+    '<div class="workspace" data-mobile-view="'+esc(workspaceView)+'">'+
+      '<section class="workspace-pane ai-pane" aria-label="AI framework"><h2>AI framework</h2>'+aiView(q)+'</section>'+
+      '<section class="workspace-pane draft-pane" aria-label="My draft"><h2>My draft</h2>'+mineView(q)+
+        '<div class="revisionbox"><label for="revisionNotes">Revision notes</label><textarea id="revisionNotes" placeholder="What should improve on the next attempt?">'+esc(studyOf(q).revisionNotes||"")+'</textarea></div>'+
+      '</section></div>';
 
   EDIT=blockEdit("notes");
-  h+=block("notes","—","My notes","",etext(function(){return q.notes;},function(v){q.notes=v;},{multiline:true,block:true,placeholder:"your notes"}));
+  h+=block("notes","—","Study notes","",etext(function(){return q.notes;},function(v){q.notes=v;},{multiline:true,block:true,placeholder:"facts, examples or reminders for this question"}));
 
   EDIT=editAll;
   if(editAll) h+='<div class="dangerzone">'+confirmBtn("Delete this question",function(){
@@ -2037,9 +2178,6 @@ function renderSheet(){
 
   s.innerHTML=h;
 
-  s.querySelectorAll("[data-view]").forEach(function(b){
-    b.onclick=function(){view=b.getAttribute("data-view");editKey=null;confirmKey=null;renderSheet();};
-  });
   s.querySelectorAll("[data-ans]").forEach(function(b){
     b.onclick=function(){answerIdx=+b.getAttribute("data-ans");editKey=null;renderSheet();};
   });
@@ -2084,6 +2222,7 @@ function renderSheet(){
   });
   wireInlineEdits(s);
   wireMine(s);
+  wireStudyWorkspace(s,q);
   pendingArr=null;pendingIdx=-1;
 }
 
@@ -2225,7 +2364,8 @@ function commitItems(items,quiet){
       // never overwrite work: a pasted skeleton is stored alongside, not instead of
       normalizeQ(existing);
       existing.answers.push(answer);
-      if(!quiet){ current=existing; answerIdx=existing.answers.length-1; view="ai"; }
+      studyOf(existing,true).frameworkGeneratedAt=new Date().toISOString();
+      if(!quiet){ current=existing; answerIdx=existing.answers.length-1; view="ai";workspaceView="ai"; }
     } else {
       var q={id:item.id,paper:item.paper,source:item.source||"Test series",type:item.type,
              question:item.question,tags:item.tags||[],
@@ -2233,8 +2373,9 @@ function commitItems(items,quiet){
              mine:{intro:"",sections:[],conclusion:""},notes:""};
       if(item.year!=null) q.year=item.year;
       if(item.summary) q.summary=item.summary;
+      if(q.answers.length) studyOf(q,true).frameworkGeneratedAt=new Date().toISOString();
       db.questions.push(q);
-      if(!quiet){ current=q; answerIdx=0; view="ai"; }
+      if(!quiet){ current=q; answerIdx=0; view="ai";workspaceView="ai"; }
     }
   });
   if(!quiet) homeMode=false;
@@ -2416,7 +2557,7 @@ $("newBtn").onclick=function(){
     $("newPaper").onchange=function(){readForm();state.topic="";state.sub="";repaint();};
     $("newTopic").onchange=function(){readForm();state.sub="";repaint();};
   }
-  openDlg("New question","Enter the question and file it under one existing taxonomy category.",formHtml(),"Add question",async function(){
+  openDlg("Add question","Enter the question and file it under one existing syllabus category.",formHtml(),"Add question",async function(){
     readForm();
     if(!state.question.trim()){$("dlgMsg").className="msg err";$("dlgMsg").textContent="Enter the question text.";$("newQuestion").focus();return;}
     if(!state.topic){$("dlgMsg").className="msg err";$("dlgMsg").textContent="Select a subject.";return;}
@@ -2885,6 +3026,7 @@ function isLocal(){
   var h=location.hostname;
   return h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]"||h==="";
 }
+function canGenerate(){return isLocal()||location.protocol==="https:";}
 /* USD per million tokens, from OpenRouter's own live list so nothing here goes
    stale or gets invented. Claude is still reachable — as anthropic/claude-*. */
 function priceFor(model){
@@ -2990,24 +3132,32 @@ async function callModel(prompt,onDelta,cfg){
   }
   cfg.abort=new AbortController();
   var res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:cfg.abort.signal});
-  /* `supported_parameters` is a model-wide union: JSON mode and reasoning may
-     each exist somewhere while no single provider endpoint supports both. If
-     that strict combination has no route, drop only the optional reasoning
-     control and retry. Never drop JSON mode: prompt-only JSON from a weak model
-     can look complete yet contain stray quotes and broken fields. */
-  if(res.status===404&&body.response_format&&body.reasoning){
-    var routeDetail=await res.clone().text();
-    if(/no endpoints found.*requested parameters/i.test(routeDetail)){
-      delete body.reasoning;
-      cfg.reasoningFallback=true;
-      res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:cfg.abort.signal});
-    }
+  /* `supported_parameters` is a model-wide union, while require_parameters is
+     evaluated against one concrete endpoint. Retry progressively when that
+     endpoint match fails: reasoning is optional, max_tokens is the older and
+     more widely advertised spelling, and stream_options is OpenRouter usage
+     metadata rather than answer content. Strict JSON stays on every attempt. */
+  var routeFallbacks=[];
+  async function routeRejected(r){
+    return r.status===404&&/no endpoints found.*requested parameters/i.test(await r.clone().text());
   }
+  async function retryRoute(label,change){
+    if(!(await routeRejected(res))) return false;
+    change(); routeFallbacks.push(label);
+    res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:cfg.abort.signal});
+    return true;
+  }
+  if(body.reasoning) await retryRoute("without reasoning",function(){delete body.reasoning;});
+  if(body.max_completion_tokens!=null)
+    await retryRoute("with max_tokens",function(){body.max_tokens=body.max_completion_tokens;delete body.max_completion_tokens;});
+  if(body.stream_options)
+    await retryRoute("without usage metadata",function(){delete body.stream_options;});
   if(!res.ok){
-    var detail=await res.text();
-    try{ var j=JSON.parse(detail); detail=(j.error&&(j.error.message||j.error.type))||detail; }catch(e){}
-    if(res.status===404&&/no endpoints found.*requested parameters/i.test(detail)&&body.response_format)
-      throw new Error("This model has no provider endpoint supporting the required JSON mode. Pick another model from the list.");
+    var rawDetail=await res.text(),detail=rawDetail;
+    try{ var j=JSON.parse(rawDetail); detail=(j.error&&(j.error.message||j.error.type))||rawDetail; }catch(e){}
+    if(res.status===404&&/no endpoints found.*requested parameters/i.test(detail))
+      throw new Error("OpenRouter could not find a provider for this request after compatibility retries"+
+        (routeFallbacks.length?" ("+routeFallbacks.join(", ")+")":"")+". OpenRouter: "+String(detail).slice(0,220));
     throw new Error("HTTP "+res.status+" — "+String(detail).slice(0,300));
   }
   var reader=res.body.getReader(), dec=new TextDecoder(), buf="", text="", inTok=0, outTok=0, stop="";
@@ -3028,7 +3178,7 @@ async function callModel(prompt,onDelta,cfg){
       if(ev.usage){ inTok=ev.usage.prompt_tokens||inTok; outTok=ev.usage.completion_tokens||outTok; }
     }
   }
-  return {text:text,inTok:inTok,outTok:outTok,stop:stop,reasoningFallback:!!cfg.reasoningFallback};
+  return {text:text,inTok:inTok,outTok:outTok,stop:stop,routeFallbacks:routeFallbacks};
 }
 
 /* Why the model stopped, when it stopped somewhere other than the end. Both of
@@ -3188,12 +3338,13 @@ function startGeneration(q){
         if(target.summary) it.summary=target.summary;
       });
       commitItems(res.items,true);
+      studyOf(target,true).frameworkGeneratedAt=new Date().toISOString();
       await save(); renderNav();
       var shown=(current&&current.id===job.qid) ? rerenderIfIdle() : true;
       job.state="done"; job.msg=money(spent)+" · "+out.inTok+" in / "+out.outTok+" out"+
-        (out.reasoningFallback?" · JSON route":"");
+        (out.routeFallbacks&&out.routeFallbacks.length?" · compatibility route":"");
       paintJobs();
-      toast("Skeleton ready — "+money(spent)+(shown?"":". Reopen the question to see it."));
+      toast("AI framework ready — "+money(spent)+(shown?"":". Reopen the question to see it."));
     })
     .catch(function(e){
       job.state=(e&&e.name==="AbortError")?"cancelled":"err";
@@ -3258,11 +3409,10 @@ function orListHtml(){
   }).join('')+(rows.length>60?'<p class="ph">'+(rows.length-60)+' more — narrow the filter.</p>':'');
 }
 function genDialog(q){
-  if(!isLocal()){
-    openDlg("Generation runs on localhost only",
-      "This is the deployed copy. Clone the repo, run python -m http.server, and open it there.",
-      '<p class="ph">No API key is stored in this page, so nothing here can be charged to anyone. '+
-      'Use Copy prompt instead and paste into any AI.</p>',null,null);
+  if(!canGenerate()){
+    openDlg("Secure connection required",
+      "Generation is available on HTTPS or when the bank is served from localhost.",
+      '<p class="ph">Open the published HTTPS site or serve the repository locally before entering an API key.</p>',null,null);
     return;
   }
   if(!prompts){toast("data/prompts.json did not load.");return;}
@@ -3304,8 +3454,8 @@ function genDialog(q){
       };
     });
   }
-  openDlg("Generate a skeleton",
-    "Runs on your machine with your key. The same prompt as Copy prompt, sent for you. "+
+  openDlg("Generate AI framework",
+    "Runs securely in this browser with your key. The same prompt as Copy AI prompt, sent for you. "+
     "It runs in the background — close this and keep working.",
     slot(),"Generate",function(){
       var kEl=$("genKey"); genKey=(kEl&&kEl.value||"").trim();
@@ -3342,7 +3492,7 @@ $("catBtn").onclick=function(){
       '<input data-i="'+r.i+'" data-f="sub" value="'+esc(r.sub)+'">'+
       '<span class="n">'+n+'</span></div>';
   }).join('')+'</div>';
-  openDlg("Categories","Edit any name and apply. Two rows given the same name merge into one. Counts are questions currently tagged there.",html,"Apply",async function(){
+  openDlg("Manage syllabus","Edit any name and apply. Two rows given the same name merge into one. Counts are questions currently tagged there.",html,"Apply",async function(){
     var edits={};
     $("dlgSlot").querySelectorAll("input").forEach(function(inp){
       var i=+inp.getAttribute("data-i");edits[i]=edits[i]||{};edits[i][inp.getAttribute("data-f")]=inp.value.trim();
@@ -3427,6 +3577,25 @@ $("themeBtn").onclick=function(){
   var next=(document.documentElement.getAttribute("data-theme")==="dark")?"light":"dark";
   try{ localStorage.setItem("upsc-theme",next); }catch(e){}
   applyTheme(next);
+};
+$("settingsBtn").onclick=function(){
+  var body='<div class="settingsgrid">'+
+    '<button class="tool" id="settingsGitHub">GitHub connection<small>Connect the repository used for syncing</small></button>'+
+    '<button class="tool" id="settingsSyllabus">Manage syllabus<small>Rename and merge topics or sub-topics</small></button>'+
+    '<button class="tool" id="settingsPaste">Paste AI output<small>Add generated framework JSON or questions</small></button>'+
+    '<button class="tool" id="settingsImport">Import bank<small>Restore a complete bank backup</small></button>'+
+    '<button class="tool" id="settingsExport">Export bank<small>Download the current data files</small></button>'+
+    '<button class="tool" id="settingsPrompt">Copy AI prompt<small>Use the generation prompt in another AI tool</small></button>'+
+    '<button class="tool" id="settingsTheme">Appearance<small>Switch between light and dark mode</small></button>'+
+    '</div>';
+  openDlg("Settings","Data management and less-frequent tools live here.",body,null,null);
+  $("settingsGitHub").onclick=openGhSetup;
+  $("settingsSyllabus").onclick=function(){$("catBtn").click();};
+  $("settingsPaste").onclick=function(){$("addBtn").click();};
+  $("settingsImport").onclick=function(){$("impBtn").click();};
+  $("settingsExport").onclick=function(){downloadAll();dlg.close();};
+  $("settingsPrompt").onclick=function(){$("promptBtn").click();};
+  $("settingsTheme").onclick=function(){$("themeBtn").click();$("settingsBtn").click();};
 };
 
 /* -------- boot -------- */

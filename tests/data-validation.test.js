@@ -56,6 +56,12 @@ for(const filename of files){
     assert.strictEqual(topic==="Case Studies",isCase,q.id+" has inconsistent case-study type/tag");
     if(isCase) assert(q.paper==="GS4"&&q.summary,q.id+" case study needs GS4 and a summary");
     assert(Array.isArray(q.answers||[]),q.id+" answers must be an array");
+    const study=q.mine&&q.mine.study;
+    if(study!==undefined){
+      assert(study&&typeof study==="object"&&!Array.isArray(study),q.id+" study metadata must be an object");
+      if(study.status) assert(["not-started","draft","revision","revised"].includes(study.status),q.id+" has an invalid study status");
+      if(study.nextRevisionAt) assert(/^\d{4}-\d{2}-\d{2}$/.test(study.nextRevisionAt),q.id+" has an invalid next revision date");
+    }
     for(const a of q.answers||[]){answers++;skeleton(a,q.id+" answer");}
   }
 }
