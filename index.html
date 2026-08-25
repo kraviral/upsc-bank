@@ -282,6 +282,11 @@ textarea.inlineedit{resize:vertical;min-height:52px;line-height:1.5;display:bloc
 .genrow{display:flex;align-items:center;gap:10px;margin-bottom:9px}
 .genrow label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);width:76px;flex:none}
 .genrow select,.genrow input{flex:1;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink)}
+.newform{display:grid;grid-template-columns:90px minmax(0,1fr);gap:10px 12px;align-items:center}
+.newform label{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.newform select,.newform textarea{width:100%;font:inherit;font-size:13px;padding:7px 8px;border:1px solid var(--rule);border-radius:2px;background:var(--sheet);color:var(--ink)}
+.newform textarea{min-height:150px;resize:vertical;line-height:1.5}
+.newform .qfield{align-self:start;padding-top:8px}
 .usemeter{font-size:11.5px;color:var(--ink2);margin-top:8px}
 .usehead{font-size:11.5px;color:var(--ink2);margin:6px 0 4px}
 .usetab{border:1px solid var(--rule);border-radius:2px;max-height:110px;overflow:auto}
@@ -2188,14 +2193,66 @@ $("dlgAct").onclick=function(){if(act)act();};
 function ta(v){return '<textarea id="taBox" spellcheck="false">'+esc(v||"")+'</textarea>';}
 
 $("newBtn").onclick=function(){
-  var q={
-    id:"q-"+Date.now(),paper:"GS4",source:"Test series",type:"Theory/Concept",year:null,
-    question:"",tags:[],answers:[],
-    mine:{intro:"",sections:[],conclusion:""},notes:""
-  };
-  db.questions.push(q);current=q;homeMode=false;view="mine";
-  save();renderNav();renderSheet();
-  window.scrollTo(0,0);
+  var initialPaper=(current&&current.paper)||(paperFilter!=="All"&&paperFilter)||"GS4";
+  var initialTag=(current&&current.paper===initialPaper&&current.tags&&current.tags[0])||[];
+  var state={paper:initialPaper,topic:initialTag[0]||"",sub:initialTag[1]||"",question:"",summary:""};
+
+  function options(values,selected,placeholder){
+    var h=placeholder?'<option value="">'+esc(placeholder)+'</option>':"";
+    return h+values.map(function(v){return '<option value="'+esc(v)+'"'+(v===selected?' selected':'')+'>'+esc(v)+'</option>';}).join("");
+  }
+  function readForm(){
+    var el;
+    if((el=$("newPaper"))) state.paper=el.value;
+    if((el=$("newTopic"))) state.topic=el.value;
+    if((el=$("newSub"))) state.sub=el.value;
+    if((el=$("newQuestion"))) state.question=el.value;
+    if((el=$("newSummary"))) state.summary=el.value;
+  }
+  function formHtml(){
+    var tax=db.taxonomy[state.paper]||{};
+    var topics=Object.keys(tax).sort();
+    if(topics.indexOf(state.topic)<0) state.topic=topics[0]||"";
+    var subs=(tax[state.topic]||[]).slice().sort();
+    if(subs.indexOf(state.sub)<0) state.sub=subs[0]||"";
+    var caseFields=state.paper==="GS4"&&state.topic===CS
+      ? '<label for="newSummary" class="qfield">Summary</label><textarea id="newSummary" style="min-height:70px" placeholder="One-sentence case précis">'+esc(state.summary)+'</textarea>'
+      : "";
+    return '<div class="newform">'+
+      '<label for="newPaper">Paper</label><select id="newPaper">'+options(PAPERS,state.paper)+"</select>"+
+      '<label for="newTopic">Subject</label><select id="newTopic">'+options(topics,state.topic,"Select subject")+"</select>"+
+      '<label for="newSub">Sub-topic</label><select id="newSub"'+(subs.length?'':' disabled')+'>'+options(subs,state.sub,subs.length?'Select sub-topic':'No sub-topics')+"</select>"+
+      '<label for="newQuestion" class="qfield">Question</label><textarea id="newQuestion" placeholder="Paste or type the full question">'+esc(state.question)+"</textarea>"+
+      caseFields+'</div>';
+  }
+  function repaint(){
+    $("dlgSlot").innerHTML=formHtml();
+    $("newPaper").onchange=function(){readForm();state.topic="";state.sub="";repaint();};
+    $("newTopic").onchange=function(){readForm();state.sub="";repaint();};
+  }
+  openDlg("New question","Enter the question and file it under one existing taxonomy category.",formHtml(),"Add question",async function(){
+    readForm();
+    if(!state.question.trim()){$("dlgMsg").className="msg err";$("dlgMsg").textContent="Enter the question text.";$("newQuestion").focus();return;}
+    if(!state.topic){$("dlgMsg").className="msg err";$("dlgMsg").textContent="Select a subject.";return;}
+    var subs=(db.taxonomy[state.paper]&&db.taxonomy[state.paper][state.topic])||[];
+    if(subs.length&&!state.sub){$("dlgMsg").className="msg err";$("dlgMsg").textContent="Select a sub-topic.";return;}
+    var isCS=state.paper==="GS4"&&state.topic===CS;
+    if(isCS&&!state.summary.trim()){$("dlgMsg").className="msg err";$("dlgMsg").textContent="Case studies need a one-sentence summary.";$("newSummary").focus();return;}
+    var tag=state.sub?[state.topic,state.sub]:[state.topic];
+    var q={
+      id:"q-"+Date.now(),paper:state.paper,source:"Test series",
+      type:isCS?CASE_TYPE:(state.paper==="Essay"?"Essay":"Theory/Concept"),year:null,
+      question:state.question.trim(),tags:[tag],answers:[],
+      mine:{intro:"",sections:[],conclusion:""},notes:""
+    };
+    if(isCS) q.summary=state.summary.trim();
+    db.questions.push(q);current=q;homeMode=false;view="mine";
+    var ok=await save();renderNav();renderSheet();dlg.close();
+    toast(ok?"Question added.":"Added, but local storage failed — save now.");
+    window.scrollTo(0,0);
+  });
+  repaint();
+  $("newQuestion").focus();
 };
 $("addBtn").onclick=function(){
   var staged=null, stagedCats=[];
@@ -2594,15 +2651,50 @@ async function fetchOrCredits(){
 }
 async function fetchOpenRouterModels(){
   if(orModels) return orModels;
-  var r=await fetch("https://openrouter.ai/api/v1/models");
+  /* The unfiltered catalogue also contains music, image and audio generators.
+     They can return a perfectly successful stream whose `content` is a lyric
+     transcript rather than an answer, so ask for text models and enforce the
+     same constraint locally in case a provider's metadata is over-broad. */
+  var r=await fetch("https://openrouter.ai/api/v1/models?output_modalities=text");
   if(!r.ok) throw new Error("model list unavailable ("+r.status+")");
   var j=await r.json();
-  orModels=(j.data||[]).slice().sort(function(a,b){
+  orModels=(j.data||[]).filter(function(m){return isTextOnlyModel(m)&&canFitSkeleton(m)&&modelSupportsJson(m);}).sort(function(a,b){
     var af=parseFloat((a.pricing||{}).prompt||0)===0, bf=parseFloat((b.pricing||{}).prompt||0)===0;
     if(af!==bf) return af?-1:1;                       // free models first
     return String(a.id).localeCompare(String(b.id));
   });
   return orModels;
+}
+function modelInfo(id){
+  return (orModels||[]).filter(function(m){return m.id===id;})[0]||null;
+}
+function isTextOnlyModel(m){
+  var a=(m&&m.architecture)||{}, out=a.output_modalities||[];
+  if(out.length) return out.length===1&&out[0]==="text";
+  return !a.modality||/->text$/.test(a.modality);
+}
+function modelOutputLimit(m){
+  var n=m&&m.top_provider&&Number(m.top_provider.max_completion_tokens);
+  return n>0?n:null;
+}
+function canFitSkeleton(m){
+  var n=modelOutputLimit(m);
+  return n===null||n>=12000;
+}
+function completionBudget(id){
+  var n=modelOutputLimit(modelInfo(id));
+  return n===null?24000:Math.min(24000,n);
+}
+function modelSupportsJson(m){
+  var p=(m&&m.supported_parameters)||[];
+  return p.indexOf("response_format")>-1;
+}
+function supportsJsonMode(id){
+  return modelSupportsJson(modelInfo(id));
+}
+function supportsReasoningControl(id){
+  var m=modelInfo(id), p=(m&&m.supported_parameters)||[];
+  return p.indexOf("reasoning")>-1||p.indexOf("reasoning_effort")>-1;
 }
 
 /* Streams a completion. onDelta gets text as it arrives so a 40-second
@@ -2615,14 +2707,44 @@ async function callModel(prompt,onDelta,cfg){
   cfg=cfg||{model:genModel,key:genKey};
   var url="https://openrouter.ai/api/v1/chat/completions",
       headers={"content-type":"application/json","authorization":"Bearer "+cfg.key},
-      body={model:cfg.model,max_tokens:16000,stream:true,
+      body={model:cfg.model,max_completion_tokens:cfg.maxCompletion||24000,stream:true,
             stream_options:{include_usage:true},
             messages:[{role:"user",content:prompt}]};
+  /* JSON mode is used only when the selected model advertises support. Requiring
+     the parameter prevents OpenRouter from silently routing to an endpoint that
+     ignores it. Models without it still use the prompt plus strict validation. */
+  if(cfg.jsonMode){
+    body.response_format={type:"json_object"};
+    body.provider={require_parameters:true};
+  }
+  /* Reasoning tokens share the completion ceiling with visible JSON. A model
+     spending most of that allowance thinking can stop halfway through a string,
+     even when the visible answer is modest. Minimal effort preserves some
+     planning while reserving the budget for the actual skeleton. */
+  if(cfg.reasoningControl){
+    body.reasoning={effort:"minimal",exclude:true};
+    body.provider={require_parameters:true};
+  }
   cfg.abort=new AbortController();
   var res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:cfg.abort.signal});
+  /* `supported_parameters` is a model-wide union: JSON mode and reasoning may
+     each exist somewhere while no single provider endpoint supports both. If
+     that strict combination has no route, drop only the optional reasoning
+     control and retry. Never drop JSON mode: prompt-only JSON from a weak model
+     can look complete yet contain stray quotes and broken fields. */
+  if(res.status===404&&body.response_format&&body.reasoning){
+    var routeDetail=await res.clone().text();
+    if(/no endpoints found.*requested parameters/i.test(routeDetail)){
+      delete body.reasoning;
+      cfg.reasoningFallback=true;
+      res=await fetch(url,{method:"POST",headers:headers,body:JSON.stringify(body),signal:cfg.abort.signal});
+    }
+  }
   if(!res.ok){
     var detail=await res.text();
     try{ var j=JSON.parse(detail); detail=(j.error&&(j.error.message||j.error.type))||detail; }catch(e){}
+    if(res.status===404&&/no endpoints found.*requested parameters/i.test(detail)&&body.response_format)
+      throw new Error("This model has no provider endpoint supporting the required JSON mode. Pick another model from the list.");
     throw new Error("HTTP "+res.status+" — "+String(detail).slice(0,300));
   }
   var reader=res.body.getReader(), dec=new TextDecoder(), buf="", text="", inTok=0, outTok=0, stop="";
@@ -2643,7 +2765,7 @@ async function callModel(prompt,onDelta,cfg){
       if(ev.usage){ inTok=ev.usage.prompt_tokens||inTok; outTok=ev.usage.completion_tokens||outTok; }
     }
   }
-  return {text:text,inTok:inTok,outTok:outTok,stop:stop};
+  return {text:text,inTok:inTok,outTok:outTok,stop:stop,reasoningFallback:!!cfg.reasoningFallback};
 }
 
 /* Why the model stopped, when it stopped somewhere other than the end. Both of
@@ -2658,6 +2780,30 @@ function stopNote(stop){
     return "A content filter stopped this one. Another model will usually take it.";
   if(stop==="error")
     return "The provider reported an error part-way through, so the reply is incomplete.";
+  return "";
+}
+function replyKindNote(raw){
+  raw=String(raw||"");
+  if(/\[\[[A-Z]\d+\]\]/.test(raw)||/^\[\d+(?:\.\d+)?:\]/m.test(raw))
+    return "The selected model returned a song or audio transcript instead of JSON. Pick one of the listed text models and generate again.";
+  return "";
+}
+
+/* prepare() also supports importing a bare question, but generation must return
+   a complete answer skeleton. Keep that stricter contract here so malformed or
+   unrelated JSON can never be attached as an apparently successful answer. */
+function generatedSkeletonError(item,n){
+  var p="Generated item "+n;
+  if(!item||!item.decode||typeof item.decode!=="object") return p+" has no decode object.";
+  if(!Array.isArray(item.intros)||item.intros.length!==3) return p+" needs exactly 3 introductions.";
+  if(!Array.isArray(item.sections)||!item.sections.length) return p+" has no answer sections.";
+  for(var i=0;i<item.sections.length;i++){
+    var s=item.sections[i];
+    if(!s||!Array.isArray(s.frameworks)||s.frameworks.length!==3)
+      return p+": section "+(i+1)+" needs exactly 3 framework options.";
+  }
+  if(!Array.isArray(item.conclusions)||item.conclusions.length!==3) return p+" needs exactly 3 conclusions.";
+  if(!item.vaBank||typeof item.vaBank!=="object") return p+" has no value-addition bank.";
   return "";
 }
 
@@ -2738,7 +2884,8 @@ function startGeneration(q){
   var job={n:++genSeq,qid:q.id,state:"running",text:"",msg:"",raw:"",
            model:genModel,
            label:(isCase(q)&&q.summary)?q.summary:(q.question||q.id),
-           cfg:{model:genModel,key:genKey}};
+           cfg:{model:genModel,key:genKey,jsonMode:supportsJsonMode(genModel),
+                reasoningControl:supportsReasoningControl(genModel),maxCompletion:completionBudget(genModel)}};
   genJobs.push(job); paintJobs();
   callModel(generationPrompt(q),function(t){ job.text=t; paintJobs(); },job.cfg)
     .then(async function(out){
@@ -2747,12 +2894,18 @@ function startGeneration(q){
          models look like the cheapest. */
       var spent=usdFor(job.model,out.inTok,out.outTok);
       var res=prepare(out.text);
+      if(!res.err){
+        for(var ri=0;ri<res.items.length;ri++){
+          var shapeErr=generatedSkeletonError(res.items[ri],ri+1);
+          if(shapeErr){res={err:shapeErr};break;}
+        }
+      }
       useBook(job.model,out.inTok,out.outTok,spent,!!res.err);
       refreshGenMeter();
       fetchOrCredits().then(refreshGenMeter);
       if(res.err){
         // a stop the model chose explains the bad reply better than the parser can
-        var why=stopNote(out.stop)||res.err;
+        var why=stopNote(out.stop)||replyKindNote(out.text)||res.err;
         job.state="err"; job.msg=why+" — "+money(spent)+" estimated"; job.raw=out.text;
         paintJobs();
         toast(out.stop==="length"?"Cut off at the token ceiling — nothing usable.":
@@ -2774,7 +2927,8 @@ function startGeneration(q){
       commitItems(res.items,true);
       await save(); renderNav();
       var shown=(current&&current.id===job.qid) ? rerenderIfIdle() : true;
-      job.state="done"; job.msg=money(spent)+" · "+out.inTok+" in / "+out.outTok+" out";
+      job.state="done"; job.msg=money(spent)+" · "+out.inTok+" in / "+out.outTok+" out"+
+        (out.reasoningFallback?" · JSON route":"");
       paintJobs();
       toast("Skeleton ready — "+money(spent)+(shown?"":". Reopen the question to see it."));
     })
@@ -2797,7 +2951,9 @@ function promptKeyFor(q){
    produced by identical instructions and are comparable. */
 function generationPrompt(q){
   return buildPrompt(promptKeyFor(q))+q.question+
-    "\n\nReturn only the JSON object. No prose, no markdown fences.";
+    "\n\nReturn only the JSON object. No prose, no markdown fences. "+
+    "Keep the complete reply under 12000 output tokens: use concise one-line points, exactly 3 points per framework, "+
+    "and no placeholder evidence such as 'example of X'. Complete and close every JSON array and object.";
 }
 
 var orFilter="", orFreeOnly=false, estIn=4400, estOut=5000;
@@ -2892,6 +3048,11 @@ function genDialog(q){
       var kEl=$("genKey"); genKey=(kEl&&kEl.value||"").trim();
       if(!genKey){ $("dlgMsg").className="msg err"; $("dlgMsg").textContent="Enter an API key first."; return; }
       if(!genModel){ $("dlgMsg").className="msg err"; $("dlgMsg").textContent="Pick a model."; return; }
+      if(orModels&&!modelInfo(genModel)){
+        $("dlgMsg").className="msg err";
+        $("dlgMsg").textContent="That model is not eligible: generation requires text output, JSON mode and at least a 12k-token output allowance. Pick one from the list.";
+        return;
+      }
       startGeneration(q);
       dlg.close();
       toast("Generating with "+genModel+" — it will attach itself when it lands.");
@@ -3026,11 +3187,27 @@ async function fromFiles(){
     if(!tr.ok) return null;
     var tax=await tr.json(),qs=[],names=[];
     Object.keys(man.papers||{}).forEach(function(p){(man.papers[p]||[]).forEach(function(f){names.push(f);});});
-    for(var i=0;i<names.length;i++){
-      var r=await fetch("data/"+names[i],{cache:"no-store"});
-      if(r.ok){var arr=await r.json();if(Array.isArray(arr)) qs=qs.concat(arr);}
-    }
-    return {schemaVersion:man.schemaVersion||1,taxonomy:tax,questions:qs};
+    /* These are independent shards. Waiting for all 70 one by one made the
+       deployed page look empty for tens of seconds on GitHub Pages. Browser
+       connection limits still provide natural throttling while Promise.all
+       lets available slots work concurrently. A broken shard is recorded and
+       skipped so the rest of the bank remains usable. */
+    var parts=await Promise.all(names.map(async function(name){
+      try{
+        var r=await fetch("data/"+name,{cache:"no-store"});
+        if(!r.ok) throw new Error("HTTP "+r.status);
+        var arr=await r.json();
+        if(!Array.isArray(arr)) throw new Error("not a question array");
+        return {name:name,questions:arr};
+      }catch(e){ return {name:name,error:(e&&e.message)||String(e)}; }
+    }));
+    var failed=[];
+    parts.forEach(function(part){
+      if(part.error) failed.push(part.name+" — "+part.error);
+      else qs=qs.concat(part.questions);
+    });
+    if(!qs.length&&failed.length) return null;
+    return {schemaVersion:man.schemaVersion||1,taxonomy:tax,questions:qs,failedFiles:failed};
   }catch(e){return null;}
 }
 async function loadPrompts(){
@@ -3038,15 +3215,23 @@ async function loadPrompts(){
 }
 (async function(){
   ghLoad(); useLoad();
-  var files=await fromFiles(),stored=await store.read();
-  await loadPrompts();
+  /* Paint before the first network wait. Previously the untouched empty sheet
+     was indistinguishable from a bank with no questions. */
+  $("tree").innerHTML='<p class="ph">Loading question bank…</p>';
+  $("sheet").innerHTML='<div class="home"><div class="homehead"><h2>Loading questions…</h2></div>'+
+    '<p class="ph">Fetching the latest taxonomy and question files.</p></div>';
+  var startup=await Promise.all([fromFiles(),store.read(),loadPrompts()]);
+  var files=startup[0],stored=startup[1];
+  var loadFailures=(files&&files.failedFiles)||[];
+  if(files) delete files.failedFiles;
 
   // A stored draft only counts when it is DIRTY. A clean one is a stale mirror of files we have
   // just re-read, and letting it overwrite them is how a hand-edit or a git pull used to vanish.
   var draft=(stored&&stored.dirty&&stored.db&&(stored.db.questions||[]).length)?stored.db:null;
 
   if(files){
-    db=files;srcLabel="repo";
+    db=files;srcLabel="repo"+(loadFailures.length?(" · "+loadFailures.length+" file"+
+      (loadFailures.length===1?"":"s")+" unavailable"):"");
     /* Baseline for "what changed". Without it lastSaved stays null until the
        first in-app commit, so changedFiles() falls back to "everything" and
        Save lists all 70 data files whether or not one byte differs — which
@@ -3102,6 +3287,9 @@ async function loadPrompts(){
   syncBadge();
   current=null;homeMode=true;
   renderFilters();renderNav();renderSheet();
+  if(loadFailures.length)
+    toast("Loaded the available questions; "+loadFailures.length+" data file"+
+      (loadFailures.length===1?" was":"s were")+" unavailable.");
 })();
 })();
 </script>
