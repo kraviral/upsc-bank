@@ -524,6 +524,406 @@
             "Daniel Dennett (steel-manning)"
           ]
         }
+      },
+      {
+        "caption": "",
+        "conclusions": [
+          {
+            "text": "The essay closes with the traveller again on the mountain, now aware that his mood colours the vista, yet able to pause and see the peak as it truly is.",
+            "type": "return to the opening image"
+          },
+          {
+            "text": "Envisages a society where educational reforms and institutional checks nurture citizens who perceive reality with humility and curiosity.",
+            "type": "forward-looking vision"
+          },
+          {
+            "text": "Urges the Union Public Service Commission to embed bias‑awareness modules in all civil‑service training programmes.",
+            "type": "call to a specific change"
+          }
+        ],
+        "decode": {
+          "concepts": [
+            "Perception",
+            "Cognitive bias",
+            "Self-awareness",
+            "Social construction of reality"
+          ],
+          "demands": [
+            "Explain the quote’s meaning (core)",
+            "Show its relevance in individual and societal contexts (core)",
+            "Identify ways to overcome biased perception (enabling)",
+            "Take a reasoned position on the extent of the statement’s truth (enabling)"
+          ],
+          "directive": "Discuss the meaning and implications of the quote, exploring how perception is shaped by internal dispositions.",
+          "hidden": "Most aspirants miss the need to connect subjective perception to concrete societal harms and to propose actionable remedies.",
+          "limit": "125 marks / 1000-1200 words"
+        },
+        "diagram": "",
+        "generatedAt": "2026-08-26T20:05:23.701Z",
+        "id": "amtaiwtbp",
+        "intros": [
+          {
+            "text": "A traveller describes the same mountain differently depending on his mood — joyous sunrise reveals grandeur, while fatigue sees only threat.",
+            "type": "anecdote or vignette"
+          },
+          {
+            "text": "Opening with the quote itself: ‘We don't see things as they are, we see them as we are.’",
+            "type": "quote"
+          },
+          {
+            "text": "During the 1947 Partition, communal narratives turned identical events into opposing histories, showing how identity shapes perception.",
+            "type": "historical moment"
+          }
+        ],
+        "model": "nvidia/nemotron-3-super-120b-a12b:free",
+        "pitfalls": [
+          "Describing the quote without linking it to concrete examples, data, or actionable remedies."
+        ],
+        "sections": [
+          {
+            "frameworks": [
+              {
+                "name": "Cognitive Science Lens",
+                "points": [
+                  {
+                    "evidence": "Kahneman & Tversky’s work on judgment under uncertainty (1974)",
+                    "keyword": "heuristics",
+                    "stem": "Human perception relies on heuristics that simplify complex stimuli."
+                  },
+                  {
+                    "evidence": "Nickerson’s review (1998) of biased information processing",
+                    "keyword": "confirmation bias",
+                    "stem": "Confirmation bias leads individuals to favor information matching prior beliefs."
+                  },
+                  {
+                    "evidence": "Forgas’ experiments on mood and perception (1995)",
+                    "keyword": "affect heuristic",
+                    "stem": "Emotional states alter sensory input, making the same stimulus appear different."
+                  }
+                ],
+                "why": "Explains how mental shortcuts filter reality, grounding the quote in empirical research."
+              },
+              {
+                "name": "Philosophical Lens",
+                "points": [
+                  {
+                    "evidence": "Critique of Pure Reason (1781), A‑edition",
+                    "keyword": "transcendental idealism",
+                    "stem": "Kant argued that we perceive phenomena through innate categories of understanding."
+                  },
+                  {
+                    "evidence": "Ideas I (1913) introduction of Lebenswelt",
+                    "keyword": "lifeworld",
+                    "stem": "Phenomenologists like Husserl stress the lived experience shaping perception."
+                  },
+                  {
+                    "evidence": "Berger & Luckmann’s The Social Construction of Reality (1966)",
+                    "keyword": "social construction",
+                    "stem": "Constructivists hold that reality is socially constructed through language and interaction."
+                  }
+                ],
+                "why": "Positions the quote within epistemological debates about objectivity versus subjectivity."
+              },
+              {
+                "name": "Neuroscientific Lens",
+                "points": [
+                  {
+                    "evidence": "Friston’s free‑energy principle (2010) applied to perception",
+                    "keyword": "predictive coding",
+                    "stem": "Visual cortex fills gaps using prior expectations, creating perceptual predictions."
+                  },
+                  {
+                    "evidence": "Whalen et al. fMRI study (1998) on fear faces",
+                    "keyword": "amygdala bias",
+                    "stem": "Amygdala activation modulates threat perception based on personal anxiety levels."
+                  },
+                  {
+                    "evidence": "Merzenich’s monkey cortical remapping experiments (1980s)",
+                    "keyword": "neuroplasticity",
+                    "stem": "Neuroplasticity allows repeated experiences to rewire perceptual pathways."
+                  }
+                ],
+                "why": "Shows how brain mechanisms actively construct perception rather than passively record it."
+              }
+            ],
+            "heading": "Psychological roots of subjective perception",
+            "off": [
+              "Cultural relativism reminds us that even basic sensory thresholds vary across societies."
+            ],
+            "valueAdd": [
+              "Keywords: heuristics, confirmation bias, affect heuristic",
+              "Theory: Predictive coding framework",
+              "Anchor: Friston’s free‑energy principle (2010)",
+              "Example: Mood‑dependent visual illusion experiments"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Behavioral Economics Lens",
+                "points": [
+                  {
+                    "evidence": "Tversky & Kahneman (1991) prospect theory",
+                    "keyword": "loss aversion",
+                    "stem": "Loss aversion makes potential losses loom larger than equivalent gains."
+                  },
+                  {
+                    "evidence": "Barber & Odean (2001) study of online investors",
+                    "keyword": "overconfidence",
+                    "stem": "Overconfidence bias leads traders to overestimate their knowledge."
+                  },
+                  {
+                    "evidence": "Samuelson & Zeckhauser (1988) seminal paper",
+                    "keyword": "status quo bias",
+                    "stem": "Status quo bias causes individuals to stick with current options even when better exist."
+                  }
+                ],
+                "why": "Links subjective perception to irrational choices that affect personal welfare."
+              },
+              {
+                "name": "Ethical Lens",
+                "points": [
+                  {
+                    "evidence": "Tversky & Kahneman (1981) Asian disease problem",
+                    "keyword": "framing effect",
+                    "stem": "Moral dilemmas are resolved differently depending on framing effects."
+                  },
+                  {
+                    "evidence": "Greenwald & Banaji (1995) Implicit Association Test",
+                    "keyword": "implicit bias",
+                    "stem": "Implicit associations can produce discriminatory actions without conscious intent."
+                  },
+                  {
+                    "evidence": "Mezulis et al. meta‑analysis (2004)",
+                    "keyword": "self‑serving bias",
+                    "stem": "Self‑serving bias lets individuals attribute success to themselves and failure to externals."
+                  }
+                ],
+                "why": "Examines how subjective perception influences moral judgments and responsibility."
+              },
+              {
+                "name": "Practical Life Lens",
+                "points": [
+                  {
+                    "evidence": "Weinstein (1980) study of unrealistic optimism about health",
+                    "keyword": "optimism bias",
+                    "stem": "Patients may ignore symptoms due to optimism bias, delaying treatment."
+                  },
+                  {
+                    "evidence": "Gottman’s longitudinal marriage research (1994)",
+                    "keyword": "negative affect bias",
+                    "stem": "Couples misinterpret neutral remarks as criticism because of negative affect."
+                  },
+                  {
+                    "evidence": "Nisbett & Wilson (1977) halo effect experiment",
+                    "keyword": "halo effect",
+                    "stem": "Consumers overpay for branded goods due to halo effect."
+                  }
+                ],
+                "why": "Shows everyday consequences of biased perception in health, finance, relationships."
+              }
+            ],
+            "heading": "Personal decision‑making and behavior",
+            "off": [
+              "Mindfulness‑based stress reduction has been shown to lower susceptibility to several biases."
+            ],
+            "valueAdd": [
+              "Keywords: loss aversion, overconfidence, status quo bias",
+              "Theory: Prospect theory",
+              "Anchor: Kahneman & Tversky (1979) prospect theory paper",
+              "Example: 2008 financial crisis exacerbated by overconfidence in mortgage markets"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Social Justice Lens",
+                "points": [
+                  {
+                    "evidence": "The Sentencing Project report (2020) on incarceration disparities",
+                    "keyword": "racial bias",
+                    "stem": "Racial stereotypes lead to harsher sentencing for minority defendants."
+                  },
+                  {
+                    "evidence": "World Economic Forum Global Gender Gap Report 2023",
+                    "keyword": "gender bias",
+                    "stem": "Gender bias in hiring persists despite equal qualifications."
+                  },
+                  {
+                    "evidence": "2002 Gujarat riots analysis by Human Rights Watch",
+                    "keyword": "communal bias",
+                    "stem": "Religious communalism fuels violence when perceived threat outweighs reality."
+                  }
+                ],
+                "why": "Shows how subjective perceptions sustain stereotypes and discrimination."
+              },
+              {
+                "name": "Political Lens",
+                "points": [
+                  {
+                    "evidence": "Jervis’ Perception and Misperception in International Politics (1976)",
+                    "keyword": "misperception",
+                    "stem": "Misperception of adversary intentions can trigger arms races."
+                  },
+                  {
+                    "evidence": "Mudde & Kaltwasser (2017) on populism",
+                    "keyword": "threat inflation",
+                    "stem": "Populist leaders amplify threat perceptions to consolidate support."
+                  },
+                  {
+                    "evidence": "NITI Aayog evaluation of farm loan waivers (2019)",
+                    "keyword": "evidence‑free policymaking",
+                    "stem": "Policy based on anecdotal evidence ignores structural causes."
+                  }
+                ],
+                "why": "Illustrates how leaders’ perceptions shape policy choices and international relations."
+              },
+              {
+                "name": "Economic Lens",
+                "points": [
+                  {
+                    "evidence": "Shiller (2000) on dot‑com bubble",
+                    "keyword": "irrational exuberance",
+                    "stem": "Investor optimism fuels asset bubbles detached from fundamentals."
+                  },
+                  {
+                    "evidence": "University of Michigan Survey of Consumers monthly data",
+                    "keyword": "consumer sentiment",
+                    "stem": "Consumer confidence indices swing with mood, affecting spending."
+                  },
+                  {
+                    "evidence": "IMF World Economic Outlook April 2023 forecast errors",
+                    "keyword": "national optimism bias",
+                    "stem": "Export‑import forecasts often overestimate demand due to national pride bias."
+                  }
+                ],
+                "why": "Demonstrates how biased market perceptions create bubbles and misallocations."
+              }
+            ],
+            "heading": "Societal repercussions: prejudice, policy and conflict",
+            "off": [
+              "Algorithmic recommendation engines can amplify perception biases, creating echo chambers."
+            ],
+            "valueAdd": [
+              "Keywords: racial bias, gender bias, confirmation bias",
+              "Theory: Social identity theory",
+              "Anchor: Tajfel & Turner (1979) social identity theory",
+              "Example: 2020 Black Lives Matter protests highlighted perception gaps in policing"
+            ]
+          },
+          {
+            "frameworks": [
+              {
+                "name": "Educational Lens",
+                "points": [
+                  {
+                    "evidence": "Lewandowsky et al. (2012) debunking handbook",
+                    "keyword": "metacognitive training",
+                    "stem": "Explicit instruction in logical fallacies reduces belief in conspiracy theories."
+                  },
+                  {
+                    "evidence": "Pettigrew & Tropp meta‑analysis (2006)",
+                    "keyword": "intergroup contact",
+                    "stem": "Diversity exposure in classrooms lowers implicit bias scores."
+                  },
+                  {
+                    "evidence": "Moon (1999) on reflective learning in higher education",
+                    "keyword": "reflective practice",
+                    "stem": "Curricula incorporating reflective journals improve self‑awareness."
+                  }
+                ],
+                "why": "Teaches critical thinking and metacognition to recognize bias."
+              },
+              {
+                "name": "Institutional Lens",
+                "points": [
+                  {
+                    "evidence": "Orlando et al. (2019) study on symphony orchestras",
+                    "keyword": "blind hiring",
+                    "stem": "Blind recruitment hides demographics, lowering gender and race bias."
+                  },
+                  {
+                    "evidence": "Bolukbasi et al. (2016) word embedding bias paper",
+                    "keyword": "algorithmic fairness",
+                    "stem": "Algorithmic audits detect and correct biased outputs in AI systems."
+                  },
+                  {
+                    "evidence": "Klein (2007) premortem technique in project management",
+                    "keyword": "premortem analysis",
+                    "stem": "Decision‑checklists force consideration of disconfirming evidence."
+                  }
+                ],
+                "why": "Structures decision‑making processes to counteract individual bias."
+              },
+              {
+                "name": "Personal Practice Lens",
+                "points": [
+                  {
+                    "evidence": "Kabat‑Zinn (1990) MBSR program outcomes",
+                    "keyword": "mindfulness",
+                    "stem": "Mindfulness meditation reduces reactivity to emotional stimuli."
+                  },
+                  {
+                    "evidence": "Janis (1982) groupthink prevention",
+                    "keyword": "devil’s advocate",
+                    "stem": "Seeking devil’s advocate opinions counters confirmation bias."
+                  },
+                  {
+                    "evidence": "Harvard Business Review (2017) on decision diaries",
+                    "keyword": "decision journal",
+                    "stem": "Keeping a decision journal tracks patterns of bias over time."
+                  }
+                ],
+                "why": "Daily habits train the mind to perceive more objectively."
+              }
+            ],
+            "heading": "Strategies to curb subjective distortion",
+            "off": [
+              "Technology‑assisted deliberation platforms can aggregate diverse viewpoints to reduce individual bias."
+            ],
+            "valueAdd": [
+              "Keywords: mindfulness, blind hiring, premortem",
+              "Theory: Dual‑process theory (System 1 vs System 2)",
+              "Anchor: Kahneman (2011) Thinking, Fast and Slow",
+              "Example: Singapore’s civil service uses bias‑training modules since 2018"
+            ]
+          }
+        ],
+        "vaBank": {
+          "examples": [
+            "Kahneman & Tversky prospect theory (1979)",
+            "Implicit Association Test (Greenwald & Banaji, 1995)",
+            "2008 financial crisis",
+            "2002 Gujarat riots",
+            "NITI Aayog farm loan waiver evaluation (2019)",
+            "Singapore civil service bias‑training (since 2018)"
+          ],
+          "keywords": [
+            "heuristics",
+            "confirmation bias",
+            "loss aversion",
+            "implicit bias",
+            "predictive coding",
+            "social construction",
+            "algorithmic fairness"
+          ],
+          "quotes": [
+            "'We are what we think. All that we are arises with our thoughts.' – Buddha",
+            "'The eye sees only what the mind is prepared to comprehend.' – Robertson Davies"
+          ],
+          "thinkers": [
+            "Daniel Kahneman",
+            "Amos Tversky",
+            "Immanuel Kant",
+            "Edmund Husserl",
+            "Peter Berger",
+            "Thomas Luckmann",
+            "Karl Friston",
+            "Amos Tversky",
+            "Cass Sunstein",
+            "Richard Thaler"
+          ]
+        }
       }
     ],
     "id": "q-1787667357019",
@@ -532,6 +932,7 @@
       "intro": "dscvxbcvnbcnx \nxcvxcv \nsada",
       "sections": [],
       "study": {
+        "frameworkGeneratedAt": "2026-08-26T20:05:23.701Z",
         "lastWrittenAt": "2026-08-26T19:58:01.409Z",
         "status": "draft"
       }
