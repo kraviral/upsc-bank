@@ -529,8 +529,12 @@
     "id": "q-1787667357019",
     "mine": {
       "conclusion": "",
-      "intro": "dscvxbcvnbcnx \nxcvxcv ",
-      "sections": []
+      "intro": "dscvxbcvnbcnx \nxcvxcv \nsada",
+      "sections": [],
+      "study": {
+        "lastWrittenAt": "2026-08-26T19:58:01.409Z",
+        "status": "draft"
+      }
     },
     "notes": "",
     "paper": "Essay",
